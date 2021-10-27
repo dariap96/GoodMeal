@@ -57,13 +57,16 @@ public class IngridientsToRecipes {
     @JoinColumn(name = "recipe_id")
     Recipe recipe;
 
-    float amount;
+    float quantity;
 
-    public IngridientsToRecipes(IngridientsToRecipesKey id, Ingridient ingridient, Recipe recipe, float amount) {
+    String measure;
+
+    public IngridientsToRecipes(IngridientsToRecipesKey id, Ingridient ingridient, Recipe recipe, float quantity, String measure) {
         this.id = id;
         this.ingridient = ingridient;
         this.recipe = recipe;
-        this.amount = amount;
+        this.quantity = quantity;
+        this.measure = measure;
     }
 
     public IngridientsToRecipes() {
@@ -76,6 +79,14 @@ public class IngridientsToRecipes {
 
     public void setId(IngridientsToRecipesKey id) {
         this.id = id;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 
     public Ingridient getIngridient() {
@@ -94,11 +105,11 @@ public class IngridientsToRecipes {
         this.recipe = recipe;
     }
 
-    public float getAmount() {
-        return amount;
+    public float getquantity() {
+        return quantity;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
+    public void setquantity(float quantity) {
+        this.quantity = quantity;
     }
 }

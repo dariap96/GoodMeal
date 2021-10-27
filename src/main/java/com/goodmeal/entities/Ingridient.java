@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-// All data provided for 100g of product
+
 
 @JsonApiResource(type = "ingridient")
 @Entity
@@ -37,20 +37,26 @@ public class Ingridient {
     @Column
     private Float sodium;
 
-    public Set<IngridientsToRecipes> getIngridientsSet() {
-        return ingridientsSet;
-    }
+    @Column
+    private String image;
 
-    public void setIngridientsSet(Set<IngridientsToRecipes> ingridientsSet) {
-        this.ingridientsSet = ingridientsSet;
-    }
+    @Column
+    private String originalId;
 
     @OneToMany(mappedBy = "ingridient")
-    private Set<IngridientsToRecipes> ingridientsSet = new HashSet<IngridientsToRecipes>();
+    private Set<IngridientsToRecipes> ingridientsSet = new HashSet<>();
+
+//    public Set<IngridientsToRecipes> getIngridientsSet() {
+//        return ingridientsSet;
+//    }
+//
+//    public void setIngridientsSet(Set<IngridientsToRecipes> ingridientsSet) {
+//        this.ingridientsSet = ingridientsSet;
+//    }
 
     public Ingridient() {}
     
-    public Ingridient(Long id, String name, Float energy, Float fat, Float protein, Float carbs, Float sodium) {
+    public Ingridient(Long id, String name, Float energy, Float fat, Float protein, Float carbs, Float sodium, String image, String originalId) {
         this.id = id;
         this.name = name;
         this.energy = energy;
@@ -58,6 +64,24 @@ public class Ingridient {
         this.protein = protein;
         this.carbs = carbs;
         this.sodium = sodium;
+        this.image = image;
+        this.originalId = originalId;
+    }
+
+    public String getOriginalId() {
+        return originalId;
+    }
+
+    public void setOriginalId(String originalId) {
+        this.originalId = originalId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Long getId() {
