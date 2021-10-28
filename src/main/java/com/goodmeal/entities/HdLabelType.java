@@ -9,19 +9,20 @@ import java.util.Set;
 
 
 
-@JsonApiResource(type = "meal")
+@JsonApiResource(type = "hd_label_type")
 @Entity
-@Table(name = "Meals")
-public class Meal {
+@Table(name = "HD_Label_Types")
 
+public class HdLabelType {
     @Id
     @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column String type;
+    @Column
+    private String type;
 
-    @OneToMany(mappedBy = "meal")
-    private Set<Recipe> recipes= new HashSet<>();
+    @OneToMany(mappedBy = "hd_label_type")
+    private Set<HealthDietLabel> labelsSet;
 
 }

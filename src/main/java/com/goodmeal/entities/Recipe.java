@@ -43,6 +43,12 @@ public class Recipe {
     @ManyToOne
     private Dish dish;
 
+    @ManyToMany(mappedBy = "recipe")
+    @JoinTable(name = "Labels_Recipes",
+               joinColumns = @JoinColumn(name = "recipe_id"),
+               inverseJoinColumns = @JoinColumn(name = "label_id"))
+    private Set<HealthDietLabel> labelsSet = new HashSet<>();
+
     @OneToMany(mappedBy = "recipe")
     private Set<IngridientsToRecipes> ingridientsSet = new HashSet<>();
 
@@ -54,10 +60,17 @@ public class Recipe {
         this.ingridientsSet = ingridientsSet;
     }
 
+    public Set<HealthDietLabel> getLabelsSet() {
+        return labelsSet;
+    }
+
+    public void setLabelsSet(Set<HealthDietLabel> labelsSet) {
+        this.labelsSet = labelsSet;
+    }
 
     public Recipe() {}
 
-    public Recipe(Long id, String name, Integer cookTime, Integer prepTime, String image, Cuisine cuisine, Meal meal, Dish dish, Set<IngridientsToRecipes> ingridientsSet, String originalId) {
+    public Recipe(Long id, String name, Integer cookTime, Integer prepTime, String image, Cuisine cuisine, Meal meal, Dish dish, Set<IngridientsToRecipes> ingridientsSet, Set<HealthDietLabel> labelsSet, String originalId) {
         this.id = id;
         this.name = name;
         this.cookTime = cookTime;
@@ -68,6 +81,7 @@ public class Recipe {
         this.dish = dish;
         this.ingridientsSet = ingridientsSet;
         this.originalId = originalId;
+        this.labelsSet = labelsSet;
     }
 
     public String getOriginalId() {
