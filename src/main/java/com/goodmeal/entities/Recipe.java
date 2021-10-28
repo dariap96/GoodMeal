@@ -52,6 +52,9 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private Set<IngridientsToRecipes> ingridientsSet = new HashSet<>();
 
+    @ManyToMany(mappedBy = "recipe")
+    private Set<Selection> recipeSet = new HashSet<>();
+
     public Set<IngridientsToRecipes> getIngridientsSet() {
         return ingridientsSet;
     }
