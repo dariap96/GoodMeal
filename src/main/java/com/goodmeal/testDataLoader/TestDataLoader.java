@@ -20,6 +20,7 @@ public class TestDataLoader {
 
 
     // ------ CAUSES ERROR ------
+    // Viktor: добавлено мной, при разкомментировании – org.hibernate.PersistentObjectException: detached entity passed to persist: com.goodmeal.entities.Ingridient
     /*
     @PostConstruct
     public void setup() {
