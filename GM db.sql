@@ -179,14 +179,6 @@ REFERENCES "GoodMeal"."Dishes" (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: "GoodMeal".role_enum | type: TYPE --
--- DROP TYPE IF EXISTS "GoodMeal".role_enum CASCADE;
-CREATE TYPE "GoodMeal".role_enum AS
- ENUM ();
--- ddl-end --
-ALTER TYPE "GoodMeal".role_enum OWNER TO postgres;
--- ddl-end --
-
 -- object: "GoodMeal"."Users_Roles" | type: TABLE --
 -- DROP TABLE IF EXISTS "GoodMeal"."Users_Roles" CASCADE;
 CREATE TABLE "GoodMeal"."Users_Roles" (
