@@ -18,6 +18,9 @@ public class TestDataLoader {
     @Autowired
     private EntityManager entityManager;
 
+
+    // ------ CAUSES ERROR ------
+    /*
     @PostConstruct
     public void setup() {
         transactionRunner.doInTransaction(new Callable<Object>() {
@@ -30,4 +33,5 @@ public class TestDataLoader {
             }
         });
     }
+     */
 }

@@ -44,7 +44,7 @@ public class Recipe {
     @ManyToOne
     private Dish dish;
 
-    @ManyToMany(mappedBy = "recipesSet")
+    @ManyToMany
     @JoinTable(name = "Labels_Recipes",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "label_id"))
@@ -53,8 +53,9 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private Set<IngridientsToRecipes> ingridientsSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "recipe")
-    private Set<Selection> recipeSet = new HashSet<>();
+    // ------ CAUSES ERROR ------
+//    @ManyToMany(mappedBy = "recipe")
+//    private Set<Selection> recipeSet = new HashSet<>();
 
     public Set<IngridientsToRecipes> getIngridientsSet() {
         return ingridientsSet;

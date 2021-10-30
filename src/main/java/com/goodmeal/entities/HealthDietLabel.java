@@ -12,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "Health_Diet_Labels")
 public class HealthDietLabel {
+
     @Id
     @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,21 +22,20 @@ public class HealthDietLabel {
     private String label;
 
     @ManyToOne
+    @JoinColumn(name = "id_HD_Label_Types", referencedColumnName = "id")
     private HdLabelType hdLabelType;
 
     @ManyToMany(mappedBy = "labelsSet")
     private Set<Recipe> recipesSet = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private HdLabelType hd_label_type;
+    // ------ CAUSES ERROR ------
+    // Viktor: вообще не понимаю зОчем эта переменная, при её наличии вылетает ошибка дублирования колонн
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private HdLabelType hd_label_type;
 
-    public HdLabelType getHd_label_type() {
-        return hd_label_type;
-    }
+//    public HdLabelType getHd_label_type() { return hd_label_type; }
 
-    public void setHd_label_type(HdLabelType hd_label_type) {
-        this.hd_label_type = hd_label_type;
-    }
+//    public void setHd_label_type(HdLabelType hd_label_type) { this.hd_label_type = hd_label_type;}
 
     public Long getId() {
         return id;

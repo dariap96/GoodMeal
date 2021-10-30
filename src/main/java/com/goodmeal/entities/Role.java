@@ -23,8 +23,9 @@ public class Role {
     @Column
     private String role;
 
-    @ManyToMany(mappedBy = "roleSet")
-    private Set<User> userSet = new HashSet<>();
+    // ------ CAUSES ERROR ------
+//    @ManyToMany(mappedBy = "roleSet")
+//    private Set<User> userSet = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -42,18 +43,14 @@ public class Role {
         this.role = role;
     }
 
-    public Set<User> getUserSet() {
-        return userSet;
-    }
+//    public Set<User> getUserSet() { return userSet; }
 
-    public void setUserSet(Set<User> userSet) {
-        this.userSet = userSet;
-    }
+//    public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
 
     public Role(Long id, String role, Set<User> userSet) {
         this.id = id;
         this.role = role;
-        this.userSet = userSet;
+        //this.userSet = userSet;
     }
     public Role(){};
 }

@@ -12,8 +12,8 @@ import java.util.Set;
 @JsonApiResource(type = "hd_label_type")
 @Entity
 @Table(name = "HD_Label_Types")
-
 public class HdLabelType {
+
     @Id
     @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
