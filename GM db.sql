@@ -148,14 +148,6 @@ CREATE TABLE "GoodMeal"."Labels_Recipes" (
 ALTER TABLE "GoodMeal"."Labels_Recipes" OWNER TO gm_team;
 -- ddl-end --
 
--- object: "GoodMeal".meal_enum | type: TYPE --
--- DROP TYPE IF EXISTS "GoodMeal".meal_enum CASCADE;
-CREATE TYPE "GoodMeal".meal_enum AS
- ENUM ();
--- ddl-end --
-ALTER TYPE "GoodMeal".meal_enum OWNER TO postgres;
--- ddl-end --
-
 -- object: "GoodMeal"."Dishes" | type: TABLE --
 -- DROP TABLE IF EXISTS "GoodMeal"."Dishes" CASCADE;
 CREATE TABLE "GoodMeal"."Dishes" (
