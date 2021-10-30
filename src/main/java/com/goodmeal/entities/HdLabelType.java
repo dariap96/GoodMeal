@@ -22,7 +22,38 @@ public class HdLabelType {
     @Column
     private String type;
 
-    @OneToMany(mappedBy = "hd_label_type")
+    @OneToMany(mappedBy = "hdLabelType")
     private Set<HealthDietLabel> labelsSet;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<HealthDietLabel> getLabelsSet() {
+        return labelsSet;
+    }
+
+    public void setLabelsSet(Set<HealthDietLabel> labelsSet) {
+        this.labelsSet = labelsSet;
+    }
+
+    public HdLabelType(Long id, String type, Set<HealthDietLabel> labelsSet) {
+        this.id = id;
+        this.type = type;
+        this.labelsSet = labelsSet;
+    }
+
+    public HdLabelType(){};
 }

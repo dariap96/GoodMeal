@@ -25,6 +25,36 @@ public class Dish {
     @OneToMany(mappedBy = "dish")
     private Set<Recipe> recipes = new HashSet<>();
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Dish(Long id, String type, Set<Recipe> recipes) {
+        this.id = id;
+        this.type = type;
+        this.recipes = recipes;
+    }
+
+    public Dish(){};
 
 }

@@ -11,7 +11,7 @@ import java.util.Set;
 
 @JsonApiResource(type = "ingridient")
 @Entity
-@Table(name = "Ingrigients")
+@Table(name="Ingridients")
 public class Ingridient {
 
     @Id
@@ -46,16 +46,16 @@ public class Ingridient {
     @OneToMany(mappedBy = "ingridient")
     private Set<IngridientsToRecipes> ingridientsSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "ingridient")
+    @ManyToMany(mappedBy = "ingridientSet")
     private Set<Selection> selectionSet = new HashSet<>();
 
-//    public Set<IngridientsToRecipes> getIngridientsSet() {
-//        return ingridientsSet;
-//    }
-//
-//    public void setIngridientsSet(Set<IngridientsToRecipes> ingridientsSet) {
-//        this.ingridientsSet = ingridientsSet;
-//    }
+    public Set<IngridientsToRecipes> getIngridientsSet() {
+        return ingridientsSet;
+    }
+
+    public void setIngridientsSet(Set<IngridientsToRecipes> ingridientsSet) {
+        this.ingridientsSet = ingridientsSet;
+    }
 
     public Ingridient() {}
     

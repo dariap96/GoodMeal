@@ -5,11 +5,12 @@ import io.crnk.core.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @JsonApiResource(type = "healthDietLabel")
 @Entity
-@Table(name = "Health_Diet_Label")
+@Table(name = "Health_Diet_Labels")
 public class HealthDietLabel {
     @Id
     @JsonApiId
@@ -22,8 +23,19 @@ public class HealthDietLabel {
     @ManyToOne
     private HdLabelType hdLabelType;
 
-    @ManyToMany(mappedBy = "healthDietLabel")
+    @ManyToMany(mappedBy = "labelsSet")
     private Set<Recipe> recipesSet = new HashSet<>();
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private HdLabelType hd_label_type;
+
+    public HdLabelType getHd_label_type() {
+        return hd_label_type;
+    }
+
+    public void setHd_label_type(HdLabelType hd_label_type) {
+        this.hd_label_type = hd_label_type;
+    }
 
     public Long getId() {
         return id;

@@ -5,6 +5,7 @@ import io.crnk.core.resource.annotations.JsonApiResource;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -43,7 +44,7 @@ public class Recipe {
     @ManyToOne
     private Dish dish;
 
-    @ManyToMany(mappedBy = "recipe")
+    @ManyToMany(mappedBy = "recipesSet")
     @JoinTable(name = "Labels_Recipes",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "label_id"))

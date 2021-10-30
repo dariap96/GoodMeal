@@ -41,6 +41,7 @@ class IngridientsToRecipesKey implements Serializable {
 }
 
 @Entity
+@Table(name = "Ingridients_Recipes")
 public class IngridientsToRecipes {
 
     @EmbeddedId
@@ -56,9 +57,9 @@ public class IngridientsToRecipes {
     @JoinColumn(name = "recipe_id")
     Recipe recipe;
 
-    float quantity;
+    private float quantity;
 
-    String measure;
+    private String measure;
 
     public IngridientsToRecipes(IngridientsToRecipesKey id, Ingridient ingridient, Recipe recipe, float quantity, String measure) {
         this.id = id;
