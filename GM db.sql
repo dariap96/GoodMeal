@@ -96,14 +96,6 @@ REFERENCES "GoodMeal"."Ingridients" (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
--- object: "GoodMeal".enum | type: TYPE --
--- DROP TYPE IF EXISTS "GoodMeal".enum CASCADE;
-CREATE TYPE "GoodMeal".enum AS
- ENUM ();
--- ddl-end --
-ALTER TYPE "GoodMeal".enum OWNER TO postgres;
--- ddl-end --
-
 -- object: "GoodMeal"."Selections" | type: TABLE --
 -- DROP TABLE IF EXISTS "GoodMeal"."Selections" CASCADE;
 CREATE TABLE "GoodMeal"."Selections" (
