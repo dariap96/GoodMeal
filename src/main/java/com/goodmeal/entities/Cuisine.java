@@ -11,7 +11,7 @@ import java.util.Set;
 
 @JsonApiResource(type = "cuisine")
 @Entity
-@Table(name = "Cuisine")
+@Table(name = "Cuisine", schema = "goodmeal")
 public class Cuisine {
 
     @Id

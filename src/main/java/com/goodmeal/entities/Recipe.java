@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @JsonApiResource(type = "recipe")
 @Entity
-@Table(name = "Recipes")
+@Table(name = "Recipes", schema = "goodmeal")
 public class Recipe {
 
     @Id

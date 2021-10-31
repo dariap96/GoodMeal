@@ -11,7 +11,7 @@ import java.util.Set;
 
 @JsonApiResource(type = "hd_label_type")
 @Entity
-@Table(name = "HD_Label_Types")
+@Table(name = "HD_Label_Types", schema = "goodmeal")
 public class HdLabelType {
 
     @Id

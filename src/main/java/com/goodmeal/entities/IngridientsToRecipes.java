@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table (name = "Ingridients_Recipes")
+@Table (name = "Ingridients_Recipes", schema = "goodmeal")
 public class IngridientsToRecipes {
 
     @EmbeddedId

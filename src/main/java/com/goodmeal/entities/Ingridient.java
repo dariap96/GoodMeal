@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @JsonApiResource(type = "ingridient")
 @Entity
-@Table(name="Ingridients")
+@Table(name="Ingridients", schema = "goodmeal")
 public class Ingridient implements Serializable {
 
     @Id

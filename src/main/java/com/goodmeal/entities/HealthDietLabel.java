@@ -10,7 +10,7 @@ import java.util.Set;
 
 @JsonApiResource(type = "healthDietLabel")
 @Entity
-@Table(name = "Health_Diet_Labels")
+@Table(name = "Health_Diet_Labels", schema = "goodmeal")
 public class HealthDietLabel {
 
     @Id
