@@ -118,8 +118,7 @@ public class User {
         this.selectionSet = selectionSet;
     }
 
-    public User(Long id, String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
-        this.id = id;
+    public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
         this.login = login;
         this.password = password;
         this.name = name;

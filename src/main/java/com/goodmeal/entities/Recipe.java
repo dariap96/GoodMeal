@@ -74,8 +74,7 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(Long id, String name, Integer cookTime, Integer prepTime, String image, Cuisine cuisine, Meal meal, Dish dish, Set<IngridientsToRecipes> ingridientsSet, Set<HealthDietLabel> labelsSet, String originalId) {
-        this.id = id;
+    public Recipe(String name, Integer cookTime, Integer prepTime, String image, Cuisine cuisine, Meal meal, Dish dish, Set<IngridientsToRecipes> ingridientsSet, Set<HealthDietLabel> labelsSet, String originalId) {
         this.name = name;
         this.cookTime = cookTime;
         this.prepTime = prepTime;

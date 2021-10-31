@@ -50,8 +50,7 @@ public class Cuisine {
         return id;
     }
 
-    public Cuisine(Long id, String type) {
-        this.id = id;
+    public Cuisine(String type) {
         this.type = type;
     }
     public Cuisine(){}

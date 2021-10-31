@@ -60,8 +60,7 @@ public class Ingridient {
 
     public Ingridient() {}
     
-    public Ingridient(Long id, String name, Float energy, Float fat, Float protein, Float carbs, Float sodium, String image, String originalId) {
-        this.id = id;
+    public Ingridient(String name, Float energy, Float fat, Float protein, Float carbs, Float sodium, String image, String originalId) {
         this.name = name;
         this.energy = energy;
         this.fat = fat;

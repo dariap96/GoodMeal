@@ -28,7 +28,7 @@ public class IngridientsToRecipes {
     private String measure;
 
     public IngridientsToRecipes(Ingridient ingridient, Recipe recipe, float quantity, String measure) {
-        this.id = new IngridientsToRecipesKey(ingridient.getId(),recipe.getId());
+        //this.id = new IngridientsToRecipesKey(ingridient.getId(),recipe.getId());
         this.ingridient = ingridient;
         this.recipe = recipe;
         this.quantity = quantity;

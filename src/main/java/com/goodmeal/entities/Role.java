@@ -43,14 +43,13 @@ public class Role {
         this.role = role;
     }
 
-//    public Set<User> getUserSet() { return userSet; }
+     public Set<User> getUserSet() { return userSet; }
 
-//    public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
+    public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
 
-    public Role(Long id, String role, Set<User> userSet) {
-        this.id = id;
+    public Role(String role, Set<User> userSet) {
         this.role = role;
-        //this.userSet = userSet;
+        this.userSet = userSet;
     }
     public Role(){};
 }

@@ -49,8 +49,7 @@ public class Meal {
         this.recipes = recipes;
     }
 
-    public Meal(Long id, String type, Set<Recipe> recipes) {
-        this.id = id;
+    public Meal(String type, Set<Recipe> recipes) {
         this.type = type;
         this.recipes = recipes;
     }

@@ -81,8 +81,7 @@ public class Selection {
         this.recipeSet = recipeSet;
     }
 
-    public Selection(Long id, String selectionName, User user, Set<Ingridient> ingridientSet, Set<Recipe> recipeSet) {
-        this.id = id;
+    public Selection(String selectionName, User user, Set<Ingridient> ingridientSet, Set<Recipe> recipeSet) {
         this.selectionName = selectionName;
         this.user = user;
         this.ingridientSet = ingridientSet;

@@ -49,8 +49,7 @@ public class Dish {
         this.recipes = recipes;
     }
 
-    public Dish(Long id, String type, Set<Recipe> recipes) {
-        this.id = id;
+    public Dish(String type, Set<Recipe> recipes) {
         this.type = type;
         this.recipes = recipes;
     }

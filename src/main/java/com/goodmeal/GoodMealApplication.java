@@ -18,10 +18,4 @@ public class GoodMealApplication {
 		SpringApplication.run(GoodMealApplication.class, args);
 	}
 
-	@EventListener(ApplicationReadyEvent.class)
-	public void testJpaMethods(){
-//		Ingridient ingridient = new Ingridient();
-//        ingridient.setName("ingridient");
-//        ingridient.setCarbs(2.0F);
-	}
 }

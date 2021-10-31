@@ -60,8 +60,7 @@ public class HealthDietLabel {
         this.recipesSet = recipesSet;
     }
 
-    public HealthDietLabel(Long id, String label, HdLabelType hdLabelType, Set<Recipe> recipesSet) {
-        this.id = id;
+    public HealthDietLabel(String label, HdLabelType hdLabelType, Set<Recipe> recipesSet) {
         this.label = label;
         this.hdLabelType = hdLabelType;
         this.recipesSet = recipesSet;

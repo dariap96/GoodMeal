@@ -49,8 +49,7 @@ public class HdLabelType {
         this.labelsSet = labelsSet;
     }
 
-    public HdLabelType(Long id, String type, Set<HealthDietLabel> labelsSet) {
-        this.id = id;
+    public HdLabelType(String type, Set<HealthDietLabel> labelsSet) {
         this.type = type;
         this.labelsSet = labelsSet;
     }
