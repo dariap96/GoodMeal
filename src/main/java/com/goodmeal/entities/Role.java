@@ -23,9 +23,9 @@ public class Role {
     @Column
     private String role;
 
-    // ------ CAUSES ERROR ------
-//    @ManyToMany(mappedBy = "roleSet")
-//    private Set<User> userSet = new HashSet<>();
+    // ------ CAUSES ERROR ------ щас должно работать
+    @ManyToMany(mappedBy = "roleSet")
+    private Set<User> userSet = new HashSet<>();
 
     public Long getId() {
         return id;
