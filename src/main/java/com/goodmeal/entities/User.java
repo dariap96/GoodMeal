@@ -41,18 +41,18 @@ public class User {
     private Date bday;
 
     // ------ CAUSES ERROR ------ щас должно работать
-    @ManyToMany
-  @JoinTable(name = "Users_Roles",
-               joinColumns = @JoinColumn(name = "user_id"),
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roleSet = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(name = "Users_Roles",
+//               joinColumns = @JoinColumn(name = "user_id"),
+//               inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roleSet = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<Selection> selectionSet = new HashSet<>();
 
-    public Set<Role> getRole() { return roleSet; }
+   // public Set<Role> getRole() { return roleSet; }
 
-    public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
+    //public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
 
     public Long getId() {
         return id;
@@ -125,7 +125,7 @@ public class User {
         this.surname = surname;
         this.email = email;
         this.bday = bday;
-        this.roleSet = roleSet;
+       // this.roleSet = roleSet;
         this.selectionSet = selectionSet;
     }
 

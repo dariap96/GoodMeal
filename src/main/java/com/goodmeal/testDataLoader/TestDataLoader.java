@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 
 @Configuration
@@ -29,7 +30,7 @@ public class TestDataLoader {
         transactionRunner.doInTransaction(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
-                Ingridient ing1 = new Ingridient( "ingr1", 100F, 101F, 102F, 103F, 104F, "null", "1");
+                Ingridient ing1 = new Ingridient( "ingr1", 100F, 101F, 102F, 103F, 104F, "null", UUID.randomUUID());
                 entityManager.persist(ing1);
                 entityManager.flush();
                 return null;

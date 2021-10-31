@@ -5,15 +5,16 @@ import io.crnk.core.resource.annotations.JsonApiResource;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
+import java.util.UUID;
 
 
 @JsonApiResource(type = "ingridient")
 @Entity
 @Table(name="Ingridients")
-public class Ingridient {
+public class Ingridient implements Serializable {
 
     @Id
     @JsonApiId
@@ -42,7 +43,7 @@ public class Ingridient {
     private String image;
 
     @Column
-    private String originalId;
+    private UUID originalId;
 
     @OneToMany(mappedBy = "ingridient")
     private Set<IngridientsToRecipes> ingridientsSet = new HashSet<>();
@@ -60,7 +61,7 @@ public class Ingridient {
 
     public Ingridient() {}
     
-    public Ingridient(String name, Float energy, Float fat, Float protein, Float carbs, Float sodium, String image, String originalId) {
+    public Ingridient(String name, Float energy, Float fat, Float protein, Float carbs, Float sodium, String image, UUID originalId) {
         this.name = name;
         this.energy = energy;
         this.fat = fat;
@@ -71,11 +72,11 @@ public class Ingridient {
         this.originalId = originalId;
     }
 
-    public String getOriginalId() {
+    public UUID getOriginalId() {
         return originalId;
     }
 
-    public void setOriginalId(String originalId) {
+    public void setOriginalId(UUID originalId) {
         this.originalId = originalId;
     }
 

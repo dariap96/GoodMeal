@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+import java.util.UUID;
 
 
 @JsonApiResource(type = "recipe")
@@ -33,7 +33,7 @@ public class Recipe {
     private String image;
 
     @Column
-    private String originalId;
+    private UUID originalId;
 
     @ManyToOne
     private Cuisine cuisine;
@@ -74,7 +74,7 @@ public class Recipe {
 
     public Recipe() {}
 
-    public Recipe(String name, Integer cookTime, Integer prepTime, String image, Cuisine cuisine, Meal meal, Dish dish, Set<IngridientsToRecipes> ingridientsSet, Set<HealthDietLabel> labelsSet, String originalId) {
+    public Recipe(String name, Integer cookTime, Integer prepTime, String image, Cuisine cuisine, Meal meal, Dish dish, Set<IngridientsToRecipes> ingridientsSet, Set<HealthDietLabel> labelsSet, UUID originalId) {
         this.name = name;
         this.cookTime = cookTime;
         this.prepTime = prepTime;
@@ -87,11 +87,11 @@ public class Recipe {
         this.labelsSet = labelsSet;
     }
 
-    public String getOriginalId() {
+    public UUID getOriginalId() {
         return originalId;
     }
 
-    public void setOriginalId(String originalId) {
+    public void setOriginalId(UUID originalId) {
         this.originalId = originalId;
     }
 
