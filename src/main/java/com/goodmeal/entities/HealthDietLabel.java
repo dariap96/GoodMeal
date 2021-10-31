@@ -28,15 +28,6 @@ public class HealthDietLabel {
     @ManyToMany(mappedBy = "labelsSet")
     private Set<Recipe> recipesSet = new HashSet<>();
 
-    // ------ CAUSES ERROR ------
-    // Viktor: вообще не понимаю зОчем эта переменная, при её наличии вылетает ошибка дублирования колонн
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private HdLabelType hd_label_type;
-
-//    public HdLabelType getHd_label_type() { return hd_label_type; }
-
-//    public void setHd_label_type(HdLabelType hd_label_type) { this.hd_label_type = hd_label_type;}
-
     public Long getId() {
         return id;
     }
