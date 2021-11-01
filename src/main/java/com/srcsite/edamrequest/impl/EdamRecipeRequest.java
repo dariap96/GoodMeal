@@ -2,7 +2,7 @@ package com.srcsite.edamrequest.impl;
 
 import com.srcsite.edamrequest.EdamRequest;
 
-import com.srcsite.site_database_getter.site_recipe_base.SiteRecipeBase;
+import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 public class EdamRecipeRequest extends EdamRequest {
     public static final int MIN_FROM = 0;

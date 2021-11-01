@@ -2,6 +2,8 @@ package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,6 +14,8 @@ import java.util.Set;
 @JsonApiResource(type = "meal")
 @Entity
 @Table(name = "Meals", schema = "goodmeal")
+@Getter
+@Setter
 public class Meal {
 
     @Id
@@ -24,30 +28,6 @@ public class Meal {
 
     @OneToMany(mappedBy = "meal")
     private Set<Recipe> recipes= new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 
     public Meal(String type, Set<Recipe> recipes) {
         this.type = type;

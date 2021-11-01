@@ -1,8 +1,7 @@
 package com.srcsite.edamrequest.impl;
 
 import com.srcsite.edamrequest.EdamRequest;
-import com.srcsite.site_database_getter.site_ingredient_base.SiteIngredientBase;
-import com.srcsite.site_database_getter.site_recipe_base.SiteRecipeBase;
+import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 
 public class EdamIngredientRequest extends EdamRequest {
     public static final String DEFAULT_INGREDIENT = "apple";

@@ -2,11 +2,11 @@ package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -14,7 +14,8 @@ import java.util.Set;
 @JsonApiResource(type = "selection")
 @Entity
 @Table(name = "Selections", schema = "goodmeal")
-
+@Getter
+@Setter
 public class Selection {
 
     @Id
@@ -30,10 +31,10 @@ public class Selection {
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "Ingridients_Selections",
+    @JoinTable(name = "Ingredients_Selections",
             joinColumns = @JoinColumn(name = "selection_id"),
-            inverseJoinColumns = @JoinColumn(name = "ingridient_id"))
-    private Set<Ingridient> ingridientSet = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> ingredientSet = new HashSet<>();
 
     @ManyToMany
     @JoinTable(name = "Recipes_Selections",
@@ -41,50 +42,10 @@ public class Selection {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipeSet = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSelectionName() {
-        return selectionName;
-    }
-
-    public void setSelectionName(String selectionName) {
-        this.selectionName = selectionName;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Set<Ingridient> getIngridientSet() {
-        return ingridientSet;
-    }
-
-    public void setIngridientSet(Set<Ingridient> ingridientSet) {
-        this.ingridientSet = ingridientSet;
-    }
-
-    public Set<Recipe> getRecipeSet() {
-        return recipeSet;
-    }
-
-    public void setRecipeSet(Set<Recipe> recipeSet) {
-        this.recipeSet = recipeSet;
-    }
-
-    public Selection(String selectionName, User user, Set<Ingridient> ingridientSet, Set<Recipe> recipeSet) {
+    public Selection(String selectionName, User user, Set<Ingredient> ingredientSet, Set<Recipe> recipeSet) {
         this.selectionName = selectionName;
         this.user = user;
-        this.ingridientSet = ingridientSet;
+        this.ingredientSet = ingredientSet;
         this.recipeSet = recipeSet;
     }
 
