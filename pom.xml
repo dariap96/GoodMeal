@@ -20,49 +20,63 @@
 
 	<dependencies>
 
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-web</artifactId>
-		<version>2.5.5</version>
-	</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.5.5</version>
+		</dependency>
 
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-data-jpa</artifactId>
-		<version>2.5.5</version>
-	</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>2.5.5</version>
+		</dependency>
 
-	<dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<version>2.5.5</version>
-		<scope>test</scope>
-	</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>2.5.5</version>
+			<scope>test</scope>
+		</dependency>
 
-	<dependency>
-		<groupId>org.postgresql</groupId>
-		<artifactId>postgresql</artifactId>
-		<scope>runtime</scope>
-	</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
-	<dependency>
-		<groupId>io.crnk</groupId>
-		<artifactId>crnk-setup-spring-boot2</artifactId>
-		<version>3.4.20210509072026</version>
-	</dependency>
+		<dependency>
+			<groupId>io.crnk</groupId>
+			<artifactId>crnk-setup-spring-boot2</artifactId>
+			<version>3.4.20210509072026</version>
+		</dependency>
 
-	<dependency>
-		<groupId>io.crnk</groupId>
-		<artifactId>crnk-data-jpa</artifactId>
-		<version>3.4.20210509072026</version>
-	</dependency>
+		<dependency>
+			<groupId>io.crnk</groupId>
+			<artifactId>crnk-data-jpa</artifactId>
+			<version>3.4.20210509072026</version>
+		</dependency>
 
-	<dependency>
-		<groupId>io.crnk</groupId>
-		<artifactId>crnk-home</artifactId>
-		<version>3.4.20210509072026</version>
-		<scope>test</scope>
-	</dependency>
+		<dependency>
+			<groupId>io.crnk</groupId>
+			<artifactId>crnk-home</artifactId>
+			<version>3.4.20210509072026</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.22</version>
+			<scope>provided</scope>
+		</dependency>
 
 	</dependencies>
 
