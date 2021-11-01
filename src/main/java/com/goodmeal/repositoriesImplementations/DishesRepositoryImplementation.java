@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class DishesRepositoryImplementation extends ResourceRepositoryBase<Dish, Long> implements IRepository<Dish, Long> {
+public class DishesRepositoryImplementation extends JpaEntityRepositoryBase<Dish, Long> implements IRepository<Dish, Long> {
 
     private Map<Long, Dish> dishes= new HashMap<>();
 

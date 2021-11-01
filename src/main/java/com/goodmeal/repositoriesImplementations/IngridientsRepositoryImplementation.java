@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Component
-public class IngridientsRepositoryImplementation extends ResourceRepositoryBase<Ingridient,Long> implements IRepository<Ingridient,Long> {
+public class IngridientsRepositoryImplementation extends JpaEntityRepositoryBase<Ingridient,Long> implements IRepository<Ingridient,Long> {
 
     private Map<Long, Ingridient> ingridients = new HashMap<>();
 

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class IngridientsToRecipesRepositoryImplementation extends ResourceRepositoryBase<IngridientsToRecipes,IngridientsToRecipesKey> implements IRepository<IngridientsToRecipes,IngridientsToRecipesKey> {
+public class IngridientsToRecipesRepositoryImplementation extends JpaEntityRepositoryBase<IngridientsToRecipes,IngridientsToRecipesKey> implements IRepository<IngridientsToRecipes,IngridientsToRecipesKey> {
 
     private Map<IngridientsToRecipesKey, IngridientsToRecipes> ingridientsToRecipes = new HashMap<>();
 

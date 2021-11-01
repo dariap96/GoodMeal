@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class RolesRepositoryImplementation extends ResourceRepositoryBase<Role,Long> implements IRepository<Role,Long> {
+public class RolesRepositoryImplementation extends JpaEntityRepositoryBase<Role,Long> implements IRepository<Role,Long> {
 
     private Map<Long, Role> roles = new HashMap<>();
 

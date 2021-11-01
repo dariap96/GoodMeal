@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class SelectionsRepositoryImplementation extends ResourceRepositoryBase<Selection,Long> implements IRepository<Selection,Long> {
+public class SelectionsRepositoryImplementation extends JpaEntityRepositoryBase<Selection,Long> implements IRepository<Selection,Long> {
 
     private Map<Long, Selection> selections = new HashMap<>();
 
