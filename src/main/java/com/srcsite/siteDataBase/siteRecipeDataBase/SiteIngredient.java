@@ -14,7 +14,7 @@ public class SiteIngredient {
     @JsonProperty("weight")
     private double weight;
     @JsonProperty("foodId")
-    private String original_id;
+    private String originalId;
     @JsonProperty("image")
     private String imageURI;
 }

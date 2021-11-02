@@ -19,7 +19,7 @@ public abstract class EdamRequest {
 
     protected abstract String getURI();
 
-    protected  <SiteBase> SiteBase sendRequest(Class<SiteBase> siteBaseClass) {
+    protected <SiteBase> SiteBase sendRequest(Class<SiteBase> siteBaseClass) {
         return new RestTemplate().getForObject(getURI(), siteBaseClass);
     }
 }

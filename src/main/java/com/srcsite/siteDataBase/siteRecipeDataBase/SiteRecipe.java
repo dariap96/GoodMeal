@@ -7,12 +7,16 @@ import java.util.List;
 
 @Getter
 public class SiteRecipe {
+    public static final String ID_SEPARATOR = "#";
+
     @JsonProperty("label")
     private String name;
+    @JsonProperty("uri")
+    private String originalRecipeURI;
     @JsonProperty("shareAs")
     private String siteRecipeURI;
     @JsonProperty("url")
-    private String originalRecipeURI;
+    private String originalRecipeURL;
     @JsonProperty("image")
     private String imageURI;
     @JsonProperty("yield")
@@ -34,9 +38,13 @@ public class SiteRecipe {
     @JsonProperty("totalTime")
     private double cookTime;
     @JsonProperty("cuisineType")
-    private List<String> cuisine;
+    private List<String> cuisines;
     @JsonProperty("mealType")
-    private List<String> meal;
+    private List<String> meals;
     @JsonProperty("dishType")
-    private List<String> dish;
+    private List<String> dishes;
+
+    public String getOriginalId(){
+        return originalRecipeURI.split(ID_SEPARATOR)[1];
+    }
 }
