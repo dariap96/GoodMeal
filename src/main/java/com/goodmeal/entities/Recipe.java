@@ -25,7 +25,7 @@ public class Recipe {
     @Column
     private String name;
 
-    @Column(name = "time")
+    @Column(name = "time_")
     private Integer time; //in minutes
 
     @Column
