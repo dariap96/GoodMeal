@@ -39,7 +39,7 @@ public class User {
     private String name;
 
     @Column
-    private int surname;
+    private String surname;
 
     @Column
     private String email;
@@ -61,7 +61,7 @@ public class User {
 
     //public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
 
-    public User(String login, String password, String name, int surname, String email, Date bday/*, Set<Role> roleSet*/, Set<Selection> selectionSet) {
+    public User(String login, String password, String name, String surname, String email, Date bday/*, Set<Role> roleSet*/, Set<Selection> selectionSet) {
         this.login = login;
         this.password = password;
         this.name = name;
