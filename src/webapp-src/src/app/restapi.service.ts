@@ -22,6 +22,6 @@ export class RestapiService {
         let headers = this.authHeader;
         headers.append('Access-Control-Allow-Origin', 'localhost:8080');
 
-        return  this.http.get("http://localhost:8080/user",{headers, responseType: 'text' as 'json'});
+        return  this.http.get("http://localhost:4200/api/user",{headers, responseType: 'text' as 'json'});
     }
 }
