@@ -14,24 +14,25 @@ import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe, Recipe> {
     private Ingredient createIngredient(SiteIngredient siteIngredient){
-        // getting new ingredients
+        // getting new site ingredients
         SiteIngredientBase siteIngredientBase =
                 new EdamIngredientRequest("", "", siteIngredient.getName())
                         .sendRequest();
+
+        // getting or creating new ingredients
         List<Ingredient> ingredients =
                 new SiteToEntityIngredientBaseAdapter()
                         .transform(siteIngredientBase);
-        // creating new ingredients
 
         // result
-        return SiteToEntityAdapter.find(
-                Ingredient.class,
-                siteIngredient.getOriginalId(),
-                new IngredientsRepositoryImplementation(),
-                Ingredient::getOriginalId);
+        return ingredients
+                .stream()
+                .filter(ingredient -> siteIngredient.getOriginalId().equals(ingredient.getOriginalId()))
+                .collect(Collectors.toList()).get(0);
     }
 
     private Cuisine createCuisine(String cuisine){

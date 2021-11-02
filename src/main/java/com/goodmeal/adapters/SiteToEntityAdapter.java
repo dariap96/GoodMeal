@@ -16,11 +16,15 @@ public interface SiteToEntityAdapter<Site, Entity> {
             IRepository<RepoKeyEntity, RepoValueEntity> repository,
             Function<RepoKeyEntity, IdClass> function
     ){
-        List<RepoKeyEntity> entities = repository.findAll(new QuerySpec(entityClass));
-        List<IdClass> entitiesId = entities.stream().map(function).collect(Collectors.toList());
-        if(entitiesId.contains(id)) {
-            return entities.get(entitiesId.indexOf(id));
+        List<RepoKeyEntity> entities = repository
+                .findAll(new QuerySpec(entityClass))
+                .stream()
+                .filter(entity -> id.equals(function.apply(entity)))
+                .collect(Collectors.toList());
+        if(entities.size() != 0) {
+            return entities.get(0);
         }
+
         return null;
     }
 
