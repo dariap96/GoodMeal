@@ -64,8 +64,6 @@ public class Recipe {
             Cuisine cuisine,
             Meal meal,
             Dish dish,
-            Set<IngredientsToRecipes> ingredientsSet,
-            Set<HealthDietLabel> labelsSet,
             String originalId
     ) {
         this.name = name;
@@ -74,8 +72,6 @@ public class Recipe {
         this.cuisine = cuisine;
         this.meal = meal;
         this.dish = dish;
-        this.ingredientsSet = ingredientsSet;
         this.originalId = originalId;
-        this.labelsSet = labelsSet;
     }
 }
