@@ -8,7 +8,7 @@ import java.util.List;
 @Getter
 public class SiteRecipe {
     public static final String ID_SEPARATOR = "#";
-
+    public static final String IL_SEPARATOR = "\n";
     @JsonProperty("label")
     private String name;
     @JsonProperty("uri")

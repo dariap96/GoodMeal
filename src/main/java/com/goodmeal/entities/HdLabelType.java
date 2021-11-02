@@ -29,9 +29,8 @@ public class HdLabelType {
     @OneToMany(mappedBy = "hdLabelType")
     private Set<HealthDietLabel> labelsSet;
 
-    public HdLabelType(String type, Set<HealthDietLabel> labelsSet) {
+    public HdLabelType(String type) {
         this.type = type;
-        this.labelsSet = labelsSet;
     }
 
     public HdLabelType(){};

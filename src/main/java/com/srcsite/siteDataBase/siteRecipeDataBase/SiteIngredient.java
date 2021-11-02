@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public class SiteIngredient {
     @JsonProperty("quantity")
-    private double quantity;
+    private float quantity;
     @JsonProperty("measure")
     private String measure;
     @JsonProperty("food")

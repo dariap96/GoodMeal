@@ -34,6 +34,9 @@ public class Recipe {
     @Column
     private String originalId;
 
+    @Column(name = "actions_sequence")
+    private String actionsSequence;
+
     @ManyToOne
     private Cuisine cuisine;
 
@@ -61,6 +64,7 @@ public class Recipe {
             String name,
             Integer time,
             String image,
+            String actionsSequence,
             Cuisine cuisine,
             Meal meal,
             Dish dish,
@@ -69,6 +73,7 @@ public class Recipe {
         this.name = name;
         this.time = time;
         this.image = image;
+        this.actionsSequence = actionsSequence;
         this.cuisine = cuisine;
         this.meal = meal;
         this.dish = dish;

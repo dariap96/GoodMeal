@@ -36,27 +36,56 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     }
 
     private Cuisine createCuisine(String cuisine){
+        // creating cuisine
         Cuisine cuisineEntity = new Cuisine(cuisine);
+
+        // result
         return cuisineEntity;
     }
     private Dish createDish(String dish){
-        return null;
+        // create dish
+        Dish dishEntity = new Dish(dish);
+
+        // result
+        return dishEntity;
     }
     private Meal createMeal(String meal){
-        return null;
+        // create meal
+        Meal mealEntity = new Meal(meal);
+
+        // result
+        return mealEntity;
     }
-    private HealthDietLabel createHealthDietLabel(String hdLabel){
-        return null;
+    private HealthDietLabel createHealthDietLabel(String hdLabel, String hdLabelType){
+        // create health diet Label
+        HdLabelType hdLabelTypeEntity = SiteToEntityAdapter.findOrCreate(
+                HdLabelType.class,
+                hdLabelType,
+                new HdLabelTypeRepositoryImplementation(),
+                HdLabelType::getType,
+                this::createHDLabelType,
+                hdLabelType
+        );
+        HealthDietLabel healthDietLabel = new HealthDietLabel(hdLabel, hdLabelTypeEntity);
+
+        // result
+        return healthDietLabel;
     }
     private HdLabelType createHDLabelType(String hdLabelType){
-        return null;
+        // create hd label type
+        HdLabelType hdLabelTypeEntity = new HdLabelType(hdLabelType);
+
+        // result
+        return hdLabelTypeEntity;
     }
-    private IngredientsToRecipes createIngredientToRecipe(Ingredient ingredient, Recipe recipe){
-        return null;
+    private IngredientsToRecipes createIngredientToRecipe(IngredientsToRecipes ingredientsToRecipes){
+        // create ingredient to recipe
+
+        // result
+        return ingredientsToRecipes;
     }
 
     private Recipe createRecipe(SiteRecipe siteRecipe) {
-        Recipe recipe;
         // getting cuisine
         Cuisine cuisine = SiteToEntityAdapter.findOrCreate(
                 Cuisine.class,
@@ -95,28 +124,76 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                     label,
                     new HealthDietLabelRepositoryImplementation(),
                     HealthDietLabel::getLabel,
-                    this::createHealthDietLabel,
+                    (str -> createHealthDietLabel(str, "healths")),
                     label
             ));
         }
 
-        // getting ingredients
-        Set<Ingredient> ingredients = new HashSet<>();
+        for (String label : siteRecipe.getCautions()){
+            healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
+                    HealthDietLabel.class,
+                    label,
+                    new HealthDietLabelRepositoryImplementation(),
+                    HealthDietLabel::getLabel,
+                    (str -> createHealthDietLabel(str, "cautions")),
+                    label
+            ));
+        }
+
+        for (String label : siteRecipe.getDiets()){
+            healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
+                    HealthDietLabel.class,
+                    label,
+                    new HealthDietLabelRepositoryImplementation(),
+                    HealthDietLabel::getLabel,
+                    (str -> createHealthDietLabel(str, "diets")),
+                    label
+            ));
+        }
+
+        // creating recipe
+        Recipe recipe = new Recipe(
+                siteRecipe.getName(),
+                (int)siteRecipe.getCookTime(),
+                siteRecipe.getImageURI(),
+                String.join(SiteRecipe.IL_SEPARATOR , siteRecipe.getIngredientLines()),
+                cuisine,
+                meal,
+                dish,
+                siteRecipe.getOriginalId()
+        );
+
+        // creating ingredients to recipes
         for(SiteIngredient siteIngredient : siteRecipe.getSiteIngredients()){
-            ingredients.add(SiteToEntityAdapter.findOrCreate(
+            Ingredient ingredient = SiteToEntityAdapter.findOrCreate(
                     Ingredient.class,
                     siteIngredient.getOriginalId(),
                     new IngredientsRepositoryImplementation(),
                     Ingredient::getOriginalId,
                     this::createIngredient,
                     siteIngredient
-            ));
+            );
+
+            IngredientsToRecipes ingredientsToRecipes =
+                    new IngredientsToRecipes(
+                            ingredient,
+                            recipe,
+                            siteIngredient.getQuantity(),
+                            siteIngredient.getMeasure()
+                    );
+
+            SiteToEntityAdapter.findOrCreate(
+                    IngredientsToRecipes.class,
+                    ingredientsToRecipes.getId(),
+                    new IngredientsToRecipesRepositoryImplementation(),
+                    IngredientsToRecipes::getId,
+                    this::createIngredientToRecipe,
+                    ingredientsToRecipes
+            );
         }
 
-        // creating recipe
-
         // result
-        return null;
+        return recipe;
     }
 
     @Override
