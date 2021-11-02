@@ -30,7 +30,7 @@ SET search_path TO pg_catalog,public,GoodMeal;
 
 -- object: "GoodMeal"."Ingridients" | type: TABLE --
 -- DROP TABLE IF EXISTS "GoodMeal"."Ingridients" CASCADE;
-CREATE TABLE GoodMeal.Ingridients (
+CREATE TABLE GoodMeal.Ingredients (
 	id serial NOT NULL,
 	name character varying NOT NULL,
 	energy float NOT NULL,
@@ -40,11 +40,11 @@ CREATE TABLE GoodMeal.Ingridients (
 	fiber float NOT NULL,
 	image character varying NOT NULL,
 	original_id uuid NOT NULL,
-	CONSTRAINT Ingridients_pk PRIMARY KEY (id)
+	CONSTRAINT Ingredients_pk PRIMARY KEY (id)
 
 );
 -- ddl-end --
-ALTER TABLE GoodMeal.Ingridients OWNER TO gm_team;
+ALTER TABLE GoodMeal.Ingredients OWNER TO gm_team;
 -- ddl-end --
 
 -- object: "GoodMeal"."Recipes" | type: TABLE --
@@ -52,14 +52,14 @@ ALTER TABLE GoodMeal.Ingridients OWNER TO gm_team;
 CREATE TABLE GoodMeal.Recipes (
 	id serial NOT NULL,
 	name character varying NOT NULL,
-	cook_time time NOT NULL,
-	prep_time time NOT NULL,
+	time_ time NOT NULL,
 	id_Cuisine integer,
 	id_Dishes integer,
 	id_Meals integer,
 	image character varying NOT NULL,
 	original_id uuid NOT NULL,
-	CONSTRAINT Recipes_pk PRIMARY KEY (id)
+	CONSTRAINT Recipes_pk PRIMARY KEY (id),
+	actions_sequence character varying NOT NULL
 
 );
 -- ddl-end --
@@ -68,31 +68,31 @@ ALTER TABLE GoodMeal.Recipes OWNER TO gm_team;
 
 -- object: "GoodMeal"."Ingridients_Recipes" | type: TABLE --
 -- DROP TABLE IF EXISTS "GoodMeal"."Ingridients_Recipes" CASCADE;
-CREATE TABLE GoodMeal.Ingridients_Recipes (
-	ingridient_id serial NOT NULL,
+CREATE TABLE GoodMeal.Ingredients_Recipes (
+	ingredient_id serial NOT NULL,
 	recipe_id serial NOT NULL,
 	id_Recipes integer,
-	id_Ingridients integer,
+	id_Ingredients integer,
 	quantity float NOT NULL,
 	measure character varying NOT NULL,
-	CONSTRAINT Ingridients_Recipes_pk PRIMARY KEY (ingridient_id,recipe_id)
+	CONSTRAINT Ingredients_Recipes_pk PRIMARY KEY (ingredient_id,recipe_id)
 
 );
 -- ddl-end --
-ALTER TABLE GoodMeal.Ingridients_Recipes OWNER TO gm_team;
+ALTER TABLE GoodMeal.Ingredients_Recipes OWNER TO gm_team;
 -- ddl-end --
 
 -- object: "Recipes_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Ingridients_Recipes" DROP CONSTRAINT IF EXISTS "Recipes_fk" CASCADE;
-ALTER TABLE GoodMeal.Ingridients_Recipes ADD CONSTRAINT Recipes_fk FOREIGN KEY (id_Recipes)
+ALTER TABLE GoodMeal.Ingredients_Recipes ADD CONSTRAINT Recipes_fk FOREIGN KEY (id_Recipes)
 REFERENCES GoodMeal.Recipes (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: "Ingridients_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Ingridients_Recipes" DROP CONSTRAINT IF EXISTS "Ingridients_fk" CASCADE;
-ALTER TABLE GoodMeal.Ingridients_Recipes ADD CONSTRAINT Ingridients_fk FOREIGN KEY (id_Ingridients)
-REFERENCES GoodMeal.Ingridients (id) MATCH FULL
+ALTER TABLE GoodMeal.Ingredients_Recipes ADD CONSTRAINT Ingredients_fk FOREIGN KEY (id_Ingredients)
+REFERENCES GoodMeal.Ingredients (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
@@ -116,11 +116,11 @@ ALTER TABLE GoodMeal.Selections OWNER TO gm_team;
 -- DROP TABLE IF EXISTS "GoodMeal"."Users" CASCADE;
 CREATE TABLE GoodMeal.Users (
 	id serial NOT NULL,
-	login character varying NOT NULL,
+	login character varying NOT NULL UNIQUE,
 	password character varying NOT NULL,
 	name character varying,
-	surname smallint,
-	email character varying NOT NULL,
+	surname character varying,
+	email character varying NOT NULL UNIQUE,
 	bday date,
 	CONSTRAINT Users_pk PRIMARY KEY (id)
 
@@ -316,16 +316,16 @@ ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- object: "GoodMeal"."Ingridients_Selections" | type: TABLE --
 -- DROP TABLE IF EXISTS "GoodMeal"."Ingridients_Selections" CASCADE;
-CREATE TABLE GoodMeal.Ingridients_Selections (
-	ingridient_id serial NOT NULL,
+CREATE TABLE GoodMeal.Ingredients_Selections (
+	ingredient_id serial NOT NULL,
 	selection_id serial NOT NULL,
-	id_Ingridients integer,
+	id_Ingredients integer,
 	selection_id_Selections integer,
-	CONSTRAINT Ingridients_Selections_pk PRIMARY KEY (ingridient_id,selection_id)
+	CONSTRAINT Ingredients_Selections_pk PRIMARY KEY (ingredient_id,selection_id)
 
 );
 -- ddl-end --
-ALTER TABLE GoodMeal.Ingridients_Selections OWNER TO gm_team;
+ALTER TABLE GoodMeal.Ingredients_Selections OWNER TO gm_team;
 -- ddl-end --
 
 -- object: "GoodMeal"."Recipes_Selections" | type: TABLE --
@@ -344,14 +344,14 @@ ALTER TABLE GoodMeal.Recipes_Selections OWNER TO gm_team;
 
 -- object: "Ingridients_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Ingridients_Selections" DROP CONSTRAINT IF EXISTS "Ingridients_fk" CASCADE;
-ALTER TABLE GoodMeal.Ingridients_Selections ADD CONSTRAINT Ingridients_fk FOREIGN KEY (id_Ingridients)
-REFERENCES GoodMeal.Ingridients (id) MATCH FULL
+ALTER TABLE GoodMeal.Ingredients_Selections ADD CONSTRAINT Ingredients_fk FOREIGN KEY (id_Ingredients)
+REFERENCES GoodMeal.Ingredients (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
 
 -- object: "Selections_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Ingridients_Selections" DROP CONSTRAINT IF EXISTS "Selections_fk" CASCADE;
-ALTER TABLE GoodMeal.Ingridients_Selections ADD CONSTRAINT Selections_fk FOREIGN KEY (selection_id_Selections)
+ALTER TABLE GoodMeal.Ingredients_Selections ADD CONSTRAINT Selections_fk FOREIGN KEY (selection_id_Selections)
 REFERENCES GoodMeal.Selections (selection_id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
