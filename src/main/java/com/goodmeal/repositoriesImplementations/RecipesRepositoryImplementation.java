@@ -23,4 +23,5 @@ public class RecipesRepositoryImplementation extends JpaEntityRepositoryBase<Rec
     public ResourceList<Recipe> findAll(QuerySpec querySpec) {
         return querySpec.apply(recipes.values());
     }
+
 }

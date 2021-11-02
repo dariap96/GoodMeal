@@ -2,15 +2,9 @@ package com.goodmeal.adapters.impl;
 
 import com.goodmeal.adapters.SiteToEntityAdapter;
 import com.goodmeal.entities.Ingredient;
-import com.goodmeal.repositories.IRepository;
 import com.goodmeal.repositoriesImplementations.IngredientsRepositoryImplementation;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Nutrients;
-import io.crnk.core.queryspec.QuerySpec;
-import io.crnk.core.resource.list.ResourceList;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, Ingredient> {
     private Ingredient createIngredient(Food food) {
