@@ -29,9 +29,8 @@ public class Meal {
     @OneToMany(mappedBy = "meal")
     private Set<Recipe> recipes= new HashSet<>();
 
-    public Meal(String type, Set<Recipe> recipes) {
+    public Meal(String type) {
         this.type = type;
-        this.recipes = recipes;
     }
 
     public Meal(){};

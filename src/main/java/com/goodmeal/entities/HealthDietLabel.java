@@ -32,10 +32,9 @@ public class HealthDietLabel {
     @ManyToMany(mappedBy = "labelsSet")
     private Set<Recipe> recipesSet = new HashSet<>();
 
-    public HealthDietLabel(String label, HdLabelType hdLabelType, Set<Recipe> recipesSet) {
+    public HealthDietLabel(String label, HdLabelType hdLabelType) {
         this.label = label;
         this.hdLabelType = hdLabelType;
-        this.recipesSet = recipesSet;
     }
 
     public HealthDietLabel() {
