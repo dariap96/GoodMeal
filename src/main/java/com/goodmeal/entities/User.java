@@ -11,7 +11,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
+// --------- IMPORTANT ---------
+//
+// Временно меню surname на int, тк надо протестить кое-то, а в бд goodmeal:users:surname – smallint
+//
+// -----------------------------
 
 @JsonApiResource(type = "user")
 @Entity
@@ -35,7 +39,7 @@ public class User {
     private String name;
 
     @Column
-    private String surname;
+    private int surname;
 
     @Column
     private String email;
@@ -57,7 +61,7 @@ public class User {
 
     //public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
 
-    public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
+    public User(String login, String password, String name, int surname, String email, Date bday/*, Set<Role> roleSet*/, Set<Selection> selectionSet) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -68,6 +72,5 @@ public class User {
         this.selectionSet = selectionSet;
     }
 
-    public User() {
-    }
+    public User() {}
 }
