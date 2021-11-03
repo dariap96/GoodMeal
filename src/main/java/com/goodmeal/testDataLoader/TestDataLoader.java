@@ -1,7 +1,10 @@
 package com.goodmeal.testDataLoader;
 
+import com.goodmeal.adapters.impl.SiteToEntityRecipeAdapter;
 import com.goodmeal.entities.Ingredient;
+import com.goodmeal.entities.Recipe;
 import com.goodmeal.entities.User;
+import com.srcsite.edamrequest.impl.EdamRecipeRequest;
 import io.crnk.core.engine.transaction.TransactionRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +38,15 @@ public class TestDataLoader {
                 User u2 = new User("user2", "4321", "name2", "surname2", "email2@mail.ru", new Date(1, 1, 2000), null);
                 entityManager.persist(u1);
                 entityManager.persist(u2);
+                entityManager.persist(new SiteToEntityRecipeAdapter().transform(
+                        new EdamRecipeRequest(
+                                "86eec527",
+                                "15ab7f74aaa32f92d53df79c9ecdc948",
+                                "chicken",
+                                0,
+                                100)
+                                .sendRequest().getRecipes().get(0)
+                ));
                 entityManager.flush();
                 return null;
             }

@@ -184,9 +184,11 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
             SiteToEntityAdapter.findOrCreate(
                     IngredientsToRecipes.class,
-                    ingredientsToRecipes.getId(),
+                    ingredientsToRecipes.getRecipe().getOriginalId()
+                            + ingredientsToRecipes.getIngredient().getOriginalId(),
                     new IngredientsToRecipesRepositoryImplementation(),
-                    IngredientsToRecipes::getId,
+                    (ingredientsToRecipesLambda -> ingredientsToRecipesLambda.getRecipe().getOriginalId()
+                            + ingredientsToRecipesLambda.getIngredient().getOriginalId()),
                     this::createIngredientToRecipe,
                     ingredientsToRecipes
             );
