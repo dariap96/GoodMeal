@@ -5,7 +5,7 @@
 -- Model Author: dariap96
 -- object: gm_team | type: ROLE --
 -- DROP ROLE IF EXISTS gm_team;
-CREATE ROLE gm_team WITH ;
+CREATE ROLE gm_team;
 -- ddl-end --
 
 
@@ -39,7 +39,7 @@ CREATE TABLE GoodMeal.Ingredients (
 	carbs float NOT NULL,
 	fiber float NOT NULL,
 	image character varying NOT NULL,
-	original_id uuid NOT NULL,
+	original_id character varying NOT NULL,
 	CONSTRAINT Ingredients_pk PRIMARY KEY (id)
 
 );
@@ -53,11 +53,11 @@ CREATE TABLE GoodMeal.Recipes (
 	id serial NOT NULL,
 	name character varying NOT NULL,
 	time_ time NOT NULL,
-	id_Cuisine integer,
-	id_Dishes integer,
-	id_Meals integer,
+	Cuisine_id integer,
+	Dish_id integer,
+	Meal_id integer,
 	image character varying NOT NULL,
-	original_id uuid NOT NULL,
+	original_id character varying NOT NULL,
 	CONSTRAINT Recipes_pk PRIMARY KEY (id),
 	actions_sequence character varying NOT NULL
 
@@ -177,7 +177,7 @@ ALTER TABLE GoodMeal.Meals OWNER TO gm_team;
 
 -- object: "Dishes_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Recipes" DROP CONSTRAINT IF EXISTS "Dishes_fk" CASCADE;
-ALTER TABLE GoodMeal.Recipes ADD CONSTRAINT Dishes_fk FOREIGN KEY (id_Dishes)
+ALTER TABLE GoodMeal.Recipes ADD CONSTRAINT Dishes_fk FOREIGN KEY (dish_id)
 REFERENCES GoodMeal.Dishes (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
@@ -199,7 +199,7 @@ ALTER TABLE GoodMeal.Users_Roles OWNER TO gm_team;
 
 -- object: "Meals_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Recipes" DROP CONSTRAINT IF EXISTS "Meals_fk" CASCADE;
-ALTER TABLE GoodMeal.Recipes ADD CONSTRAINT Meals_fk FOREIGN KEY (id_Meals)
+ALTER TABLE GoodMeal.Recipes ADD CONSTRAINT Meals_fk FOREIGN KEY (meal_id)
 REFERENCES GoodMeal.Meals (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
@@ -218,7 +218,7 @@ ALTER TABLE GoodMeal.Cuisine OWNER TO gm_team;
 
 -- object: "Cuisine_fk" | type: CONSTRAINT --
 -- ALTER TABLE "GoodMeal"."Recipes" DROP CONSTRAINT IF EXISTS "Cuisine_fk" CASCADE;
-ALTER TABLE GoodMeal.Recipes ADD CONSTRAINT Cuisine_fk FOREIGN KEY (id_Cuisine)
+ALTER TABLE GoodMeal.Recipes ADD CONSTRAINT Cuisine_fk FOREIGN KEY (cuisine_id)
 REFERENCES GoodMeal.Cuisine (id) MATCH FULL
 ON DELETE SET NULL ON UPDATE CASCADE;
 -- ddl-end --
