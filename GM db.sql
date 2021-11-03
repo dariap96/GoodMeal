@@ -5,7 +5,7 @@
 -- Model Author: dariap96
 -- object: gm_team | type: ROLE --
 -- DROP ROLE IF EXISTS gm_team;
-CREATE ROLE gm_team WITH ;
+CREATE ROLE gm_team;
 -- ddl-end --
 
 

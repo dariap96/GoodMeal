@@ -20,8 +20,10 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private Ingredient createIngredient(SiteIngredient siteIngredient){
         // getting new site ingredients
         SiteIngredientBase siteIngredientBase =
-                new EdamIngredientRequest("", "", siteIngredient.getName())
-                        .sendRequest();
+                new EdamIngredientRequest(
+                        "184d0a52",
+                        "f291617da6961a97b11fc48b33f6845d",
+                        siteIngredient.getName()).sendRequest();
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =

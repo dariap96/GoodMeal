@@ -33,6 +33,7 @@ public class TestDataLoader {
             public Object call() throws Exception {
 
                 entityManager.createQuery("DELETE FROM User").executeUpdate();
+                entityManager.createQuery("DELETE FROM User").executeUpdate();
 
                 User u1 = new User("user1", "1234", "name1", "surname1", "email1@mail.ru", new Date(1, 1, 2000), null);
                 User u2 = new User("user2", "4321", "name2", "surname2", "email2@mail.ru", new Date(1, 1, 2000), null);
