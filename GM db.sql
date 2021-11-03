@@ -38,7 +38,7 @@ CREATE TABLE GoodMeal.Ingredients (
 	fat float NOT NULL,
 	carbs float NOT NULL,
 	fiber float NOT NULL,
-	image character varying NOT NULL,
+	image character varying,
 	original_id character varying NOT NULL,
 	CONSTRAINT Ingredients_pk PRIMARY KEY (id)
 
