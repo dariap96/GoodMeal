@@ -23,6 +23,15 @@ public interface SiteToEntityAdapter<Site, Entity> {
                 .stream()
                 .filter(entity -> id.equals(function.apply(entity)))
                 .collect(Collectors.toList());
+        System.out.println("++++++++++++++++++++++++++++++++++++++++");
+        for(RepoKeyEntity entity : repository.findAll(new QuerySpec(entityClass))) {
+            System.out.println(id.toString());
+            System.out.println(function.apply(entity));
+            System.out.println(id.equals(function.apply(entity)));
+            System.out.println("=====================================");
+        }
+        System.out.println("++++++++++++++++++++++++++++++++++++++++");
+
         if(entities.size() != 0) {
             return entities.get(0);
         }

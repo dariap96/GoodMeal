@@ -41,16 +41,4 @@ public class CuisinesRepositoryImplementation extends JpaEntityRepositoryBase<Cu
     public ResourceList<Cuisine> findAll(QuerySpec querySpec) {
         return querySpec.apply(cuisines.values());
     }
-
-//    @PostConstruct
-    public void addToDatabase(Cuisine cuisine) {
-/*        transactionRunner.doInTransaction(new Callable<Object>() {
-            @Override
-            public Object call() throws Exception {
-                entityManager.persist(cuisine);
-                entityManager.flush();
-                return cuisine;
-            }
-        });
-*/    }
 }

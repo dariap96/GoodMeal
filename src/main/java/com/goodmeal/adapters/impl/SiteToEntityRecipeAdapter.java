@@ -12,6 +12,7 @@ import com.srcsite.siteDataBase.siteIngredientDataBase.Hint;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
+import io.crnk.core.queryspec.QuerySpec;
 
 import javax.persistence.EntityManager;
 import java.util.HashSet;
@@ -33,12 +34,6 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                         "184d0a52",
                         "f291617da6961a97b11fc48b33f6845d",
                         siteIngredient.getName()).sendRequest();
-        for(Hint hint : siteIngredientBase.getHints()) {
-            System.out.println(hint.getFood().getName());
-            System.out.println(hint.getFood().getImageURI());
-            System.out.println(hint.getFood().getFoodId());
-            System.out.println("====================================");
-        }
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =
@@ -55,7 +50,6 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private Cuisine createCuisine(String cuisine){
         // creating cuisine
         Cuisine cuisineEntity = new Cuisine(cuisine);
-        new CuisinesRepositoryImplementation().addToDatabase(cuisineEntity);
 
         entityManager.persist(cuisineEntity);
         entityManager.flush();
