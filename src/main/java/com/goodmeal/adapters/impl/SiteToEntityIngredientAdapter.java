@@ -6,7 +6,16 @@ import com.goodmeal.repositoriesImplementations.IngredientsRepositoryImplementat
 import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Nutrients;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
 public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, Ingredient> {
+    private final EntityManager entityManager;
+
+    public SiteToEntityIngredientAdapter(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     private Ingredient createIngredient(Food food) {
         Nutrients nutrients = food.getNutrients();
         Ingredient ingredient =
@@ -19,6 +28,9 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
                         nutrients.getFiber(),
                         food.getImageURI(),
                         food.getFoodId());
+
+        entityManager.persist(ingredient);
+        entityManager.flush();
 
         return ingredient;
     }

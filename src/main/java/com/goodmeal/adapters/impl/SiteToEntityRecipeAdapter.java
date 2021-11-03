@@ -7,16 +7,25 @@ import com.goodmeal.entities.*;
 import com.goodmeal.repositoriesImplementations.*;
 
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
+import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
+import com.srcsite.siteDataBase.siteIngredientDataBase.Hint;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
 
+import javax.persistence.EntityManager;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe, Recipe> {
+    private final EntityManager entityManager;
+
+    public SiteToEntityRecipeAdapter(EntityManager entityManager){
+        this.entityManager = entityManager;
+    }
+
     private Ingredient createIngredient(SiteIngredient siteIngredient){
         // getting new site ingredients
         SiteIngredientBase siteIngredientBase =
@@ -24,10 +33,16 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                         "184d0a52",
                         "f291617da6961a97b11fc48b33f6845d",
                         siteIngredient.getName()).sendRequest();
+        for(Hint hint : siteIngredientBase.getHints()) {
+            System.out.println(hint.getFood().getName());
+            System.out.println(hint.getFood().getImageURI());
+            System.out.println(hint.getFood().getFoodId());
+            System.out.println("====================================");
+        }
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =
-                new SiteToEntityIngredientBaseAdapter()
+                new SiteToEntityIngredientBaseAdapter(entityManager)
                         .transform(siteIngredientBase);
 
         // result
@@ -40,6 +55,10 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private Cuisine createCuisine(String cuisine){
         // creating cuisine
         Cuisine cuisineEntity = new Cuisine(cuisine);
+        new CuisinesRepositoryImplementation().addToDatabase(cuisineEntity);
+
+        entityManager.persist(cuisineEntity);
+        entityManager.flush();
 
         // result
         return cuisineEntity;
@@ -48,12 +67,18 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // create dish
         Dish dishEntity = new Dish(dish);
 
+        entityManager.persist(dishEntity);
+        entityManager.flush();
+
         // result
         return dishEntity;
     }
     private Meal createMeal(String meal){
         // create meal
         Meal mealEntity = new Meal(meal);
+
+        entityManager.persist(mealEntity);
+        entityManager.flush();
 
         // result
         return mealEntity;
@@ -69,6 +94,8 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                 hdLabelType
         );
         HealthDietLabel healthDietLabel = new HealthDietLabel(hdLabel, hdLabelTypeEntity);
+        entityManager.persist(healthDietLabel);
+        entityManager.flush();
 
         // result
         return healthDietLabel;
@@ -76,12 +103,16 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private HdLabelType createHDLabelType(String hdLabelType){
         // create hd label type
         HdLabelType hdLabelTypeEntity = new HdLabelType(hdLabelType);
+        entityManager.persist(hdLabelTypeEntity);
+        entityManager.flush();
 
         // result
         return hdLabelTypeEntity;
     }
     private IngredientsToRecipes createIngredientToRecipe(IngredientsToRecipes ingredientsToRecipes){
         // create ingredient to recipe
+        entityManager.persist(ingredientsToRecipes);
+        entityManager.flush();
 
         // result
         return ingredientsToRecipes;
@@ -164,6 +195,8 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                 dish,
                 siteRecipe.getOriginalId()
         );
+        entityManager.persist(recipe);
+        entityManager.flush();
 
         // creating ingredients to recipes
         for(SiteIngredient siteIngredient : siteRecipe.getSiteIngredients()){
