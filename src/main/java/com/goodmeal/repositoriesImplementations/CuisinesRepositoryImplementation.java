@@ -24,13 +24,6 @@ import java.util.concurrent.Callable;
 @Component
 public class CuisinesRepositoryImplementation extends JpaEntityRepositoryBase<Cuisine, Long> implements IRepository<Cuisine,Long> {
 
-    //    @Autowired
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    @Autowired
-    private TransactionRunner transactionRunner;
-
     private Map<Long, Cuisine> cuisines = new HashMap<>();
 
     public CuisinesRepositoryImplementation() {

@@ -30,7 +30,7 @@ public interface SiteToEntityAdapter<Site, Entity> {
             System.out.println(id.equals(function.apply(entity)));
             System.out.println("=====================================");
         }
-        System.out.println("++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++\n\n");
 
         if(entities.size() != 0) {
             return entities.get(0);
