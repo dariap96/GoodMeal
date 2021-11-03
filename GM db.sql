@@ -52,7 +52,7 @@ ALTER TABLE GoodMeal.Ingredients OWNER TO gm_team;
 CREATE TABLE GoodMeal.Recipes (
 	id serial NOT NULL,
 	name character varying NOT NULL,
-	time_ time NOT NULL,
+	time_ integer NOT NULL,
 	Cuisine_id integer,
 	Dish_id integer,
 	Meal_id integer,
