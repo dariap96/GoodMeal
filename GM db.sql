@@ -74,7 +74,7 @@ CREATE TABLE GoodMeal.Ingredients_Recipes (
 	id_Recipes integer,
 	id_Ingredients integer,
 	quantity float NOT NULL,
-	measure character varying NOT NULL,
+	measure character varying,
 	CONSTRAINT Ingredients_Recipes_pk PRIMARY KEY (ingredient_id,recipe_id)
 
 );

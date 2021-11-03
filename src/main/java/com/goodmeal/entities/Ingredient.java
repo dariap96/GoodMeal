@@ -16,7 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name="Ingredients", schema = "goodmeal")
 @Getter
-@Setter
 public class Ingredient implements Serializable {
 
     @Id

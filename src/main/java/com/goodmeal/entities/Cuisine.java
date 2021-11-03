@@ -3,10 +3,8 @@ package com.goodmeal.entities;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 
@@ -15,7 +13,6 @@ import java.util.Set;
 @Entity
 @Table(name = "Cuisine", schema = "goodmeal")
 @Getter
-@Setter
 public class Cuisine {
 
     @Id

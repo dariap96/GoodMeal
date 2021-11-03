@@ -14,7 +14,6 @@ import java.util.Set;
 @Entity
 @Table(name = "Health_Diet_Labels", schema = "goodmeal")
 @Getter
-@Setter
 public class HealthDietLabel {
 
     @Id

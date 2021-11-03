@@ -14,7 +14,6 @@ import java.util.Set;
 @Entity
 @Table(name = "Recipes", schema = "goodmeal")
 @Getter
-@Setter
 public class Recipe {
 
     @Id

@@ -9,7 +9,6 @@ import java.util.Objects;
 @Entity
 @Table (name = "Ingredients_Recipes", schema = "goodmeal")
 @Getter
-@Setter
 public class IngredientsToRecipes {
 
     @EmbeddedId
@@ -17,12 +16,12 @@ public class IngredientsToRecipes {
 
     @ManyToOne
     @MapsId("ingredientId")
-    //@JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "ingredient_id")
     Ingredient ingredient;
 
     @ManyToOne
     @MapsId("recipeId")
-    //@JoinColumn(name = "recipe_id")
+    @JoinColumn(name = "recipe_id")
     Recipe recipe;
 
     @Column(name = "quantity")
@@ -32,7 +31,7 @@ public class IngredientsToRecipes {
     private String measure;
 
     public IngredientsToRecipes(Ingredient ingredient, Recipe recipe, float quantity, String measure) {
-        //this.id = new IngredientsToRecipesKey(ingredient.getId(),recipe.getId());
+        this.id = new IngredientsToRecipesKey(ingredient.getId(),recipe.getId());
         this.ingredient = ingredient;
         this.recipe = recipe;
         this.quantity = quantity;
