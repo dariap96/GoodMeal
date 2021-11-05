@@ -22,6 +22,7 @@ public class UserDetailsImplementation implements UserDetails {
         this.user = user;
         this.isActive = true;
 
+        this.grantedAuthorityList = new LinkedList<>();
         List<Role> rolesList = new LinkedList<Role>();
         rolesList.addAll(user.getRole());
 

@@ -17,8 +17,8 @@ public class UserServiceImplementation implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
@@ -36,8 +36,8 @@ public class UserServiceImplementation implements UserDetailsService {
         set.add(r);
         user.setRole(set);
 
-//        String oldPass = user.getPassword();
-//        user.setPassword(passwordEncoder.encode(oldPass));
+        String oldPass = user.getPassword();
+        user.setPassword(passwordEncoder.encode(oldPass));
 
         System.out.println("password: " + user.getPassword());
 
