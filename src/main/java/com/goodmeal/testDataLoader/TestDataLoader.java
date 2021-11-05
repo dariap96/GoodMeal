@@ -34,6 +34,7 @@ public class TestDataLoader {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /*
     @PostConstruct
     public void setup() {
         transactionRunner.doInTransaction(new Callable<Object>() {
@@ -58,11 +59,12 @@ public class TestDataLoader {
                         new SiteToEntityRecipeAdapter(entityManager)
                                 .transform(siteRecipeBase.getRecipes().get(0));
 
-/*                entityManager.persist(new SiteToEntityRecipeAdapter(entityManager)
+                entityManager.persist(new SiteToEntityRecipeAdapter(entityManager)
                         .transform(siteRecipeBase.getRecipes().get(0)));
                 entityManager.flush();
-*/                return null;
+               return null;
             }
         });
     }
+    */
 }

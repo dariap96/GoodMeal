@@ -12,31 +12,30 @@ import java.util.Set;
 
 
 
-@JsonApiResource(type = "role")
+//@JsonApiResource(type = "role")
 @Entity
 @Table(name = "Roles", schema = "goodmeal")
 @Getter
 public class Role {
 
     @Id
-    @JsonApiId
+    //@JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
     private String role;
 
-    // ------ CAUSES ERROR ------ щас должно работать
-//    @ManyToMany(mappedBy = "roleSet")
-//    private Set<User> userSet = new HashSet<>();
+    @ManyToMany(mappedBy = "roleSet")
+    private Set<User> userSet = new HashSet<>();
 
-     //public Set<User> getUserSet() { return userSet; }
+    public Set<User> getUserSet() { return userSet; }
 
-    //public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
+    public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
 
     public Role(String role, Set<User> userSet) {
         this.role = role;
-        //this.userSet = userSet;
+        this.userSet = userSet;
     }
     public Role(){};
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 @CrossOrigin(origins = "*")
-@Import({TestDataLoader.class})
+//@Import({TestDataLoader.class})
 public class GoodMealApplication {
 
 	@GetMapping("/")
@@ -33,6 +33,7 @@ public class GoodMealApplication {
 		SpringApplication.run(GoodMealApplication.class, args);
 	}
 
+	/*
 	public static void dataLoader() {
 		System.out.println(new EdamRecipeRequest(
 				"86eec527",
@@ -42,4 +43,5 @@ public class GoodMealApplication {
 				100)
 				.sendRequest().getRecipes().get(0).getIngredientLines().size());
 	}
+	 */
 }
