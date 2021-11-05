@@ -8,10 +8,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class UserServiceImplementation implements UserDetailsService {
 
     @Autowired
@@ -31,10 +33,7 @@ public class UserServiceImplementation implements UserDetailsService {
         System.out.println("----- USER: ");
         System.out.println("login: " + user.getLogin());
 
-        Role r = new Role("USER", null);
-        Set<Role> set = new HashSet<>();
-        set.add(r);
-        user.setRole(set);
+        user.setRole(forceRoleSetup());
 
         String oldPass = user.getPassword();
         user.setPassword(passwordEncoder.encode(oldPass));
@@ -42,6 +41,25 @@ public class UserServiceImplementation implements UserDetailsService {
         System.out.println("password: " + user.getPassword());
 
         return new UserDetailsImplementation(user);
+    }
+
+    public boolean saveUser(User user) {
+        User userFromDB = userRepository.getUserByLogin(user.getLogin());
+
+        if (userFromDB != null) {
+            return false;
+        }
+
+        user.setRole(forceRoleSetup());
+        userRepository.save(user);
+        return true;
+    }
+
+    public Set<Role> forceRoleSetup() {
+        Role r = new Role("USER", null);
+        Set<Role> set = new HashSet<>();
+        set.add(r);
+        return set;
     }
 
 }

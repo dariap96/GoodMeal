@@ -1,6 +1,5 @@
 package com.goodmeal.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -34,13 +33,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests().anyRequest().authenticated()
                 .and().httpBasic();
-        //httpSecurity.csrf().disable();
-        //httpSecurity.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//        authenticationManagerBuilder.inMemoryAuthentication().withUser("user1").password("{noop}1234").roles("USER");
-//    }
-
 }
