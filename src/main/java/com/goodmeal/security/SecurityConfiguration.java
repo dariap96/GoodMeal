@@ -15,13 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public UserDetailsService userDetailsService() { return new UserServiceImplementation(); }
+//    @Bean
+//    public UserDetailsService userDetailsService() { return new UserServiceImplementation(); }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService());
+//    }
 
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
@@ -30,17 +30,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors();
-        httpSecurity.csrf().disable()
-                .authorizeRequests().anyRequest().authenticated()
-                .and().httpBasic();
-        //httpSecurity.csrf().disable();
-        //httpSecurity.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
+//        httpSecurity.cors();
+//        httpSecurity.csrf().disable()
+//                .authorizeRequests().anyRequest().authenticated()
+//                .and().httpBasic();
+        httpSecurity.csrf().disable();
+        httpSecurity.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//        authenticationManagerBuilder.inMemoryAuthentication().withUser("user1").password("{noop}1234").roles("USER");
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.inMemoryAuthentication().withUser("user1").password("{noop}1234").roles("USER");
+    }
 
 }
