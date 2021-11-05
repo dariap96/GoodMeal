@@ -10,16 +10,14 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
-
-//@JsonApiResource(type = "role")
+@JsonApiResource(type = "role")
 @Entity
 @Table(name = "Roles", schema = "goodmeal")
 @Getter
 public class Role {
 
     @Id
-    //@JsonApiId
+    @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

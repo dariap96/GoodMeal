@@ -3,24 +3,20 @@ package com.goodmeal.entities;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-
-
-//@JsonApiResource(type = "user")
+@JsonApiResource(type = "user")
 @Entity
 @Table(name = "Users", schema = "goodmeal")
 @Getter
 public class User {
 
     @Id
-    //@JsonApiId
+    @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -59,6 +55,7 @@ public class User {
 
     public String getPassword() { return password; }
 
+    public void setPassword(String password) { this.password = password; }
 
     public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
         this.login = login;

@@ -1,6 +1,7 @@
 package com.goodmeal;
 import com.goodmeal.testDataLoader.TestDataLoader;
 import com.srcsite.edamrequest.impl.EdamRecipeRequest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 

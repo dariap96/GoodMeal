@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    //@Query(value = "SELECT u FROM User u WHERE u.login = :login")
-    //public User getUserByLogin(@Param("login") String login);
-
-    User findByLogin(String email);
+    User getUserByLogin(String login);
 
 }
+
+/*
+@Query(value = "SELECT u FROM User u WHERE u.login = :login")
+public User getUserByLogin(@Param("login") String login);
+ */
