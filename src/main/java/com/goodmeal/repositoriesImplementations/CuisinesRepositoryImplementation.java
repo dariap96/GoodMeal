@@ -17,6 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.swing.text.html.parser.Entity;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -24,14 +25,7 @@ import java.util.concurrent.Callable;
 @Component
 public class CuisinesRepositoryImplementation extends JpaEntityRepositoryBase<Cuisine, Long> implements IRepository<Cuisine,Long> {
 
-    private Map<Long, Cuisine> cuisines = new HashMap<>();
-
     public CuisinesRepositoryImplementation() {
         super(Cuisine.class);
-    }
-
-    @Override
-    public ResourceList<Cuisine> findAll(QuerySpec querySpec) {
-        return querySpec.apply(cuisines.values());
     }
 }

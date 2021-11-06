@@ -16,14 +16,8 @@ import java.util.Map;
 @Component
 public class DishesRepositoryImplementation extends JpaEntityRepositoryBase<Dish, Long> implements IRepository<Dish, Long> {
 
-    private Map<Long, Dish> dishes= new HashMap<>();
-
     public DishesRepositoryImplementation() {
         super(Dish.class);
     }
 
-    @Override
-    public ResourceList<Dish> findAll(QuerySpec querySpec) {
-        return querySpec.apply(dishes.values());
-    }
 }

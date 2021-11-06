@@ -14,14 +14,8 @@ import java.util.Map;
 @Component
 public class IngredientsToRecipesRepositoryImplementation extends JpaEntityRepositoryBase<IngredientsToRecipes, IngredientsToRecipesKey> implements IRepository<IngredientsToRecipes, IngredientsToRecipesKey> {
 
-    private Map<IngredientsToRecipesKey, IngredientsToRecipes> ingredientsToRecipes = new HashMap<>();
-
     public IngredientsToRecipesRepositoryImplementation() {
         super(IngredientsToRecipes.class);
     }
 
-    @Override
-    public ResourceList<IngredientsToRecipes> findAll(QuerySpec querySpec) {
-        return querySpec.apply(ingredientsToRecipes.values());
-    }
 }

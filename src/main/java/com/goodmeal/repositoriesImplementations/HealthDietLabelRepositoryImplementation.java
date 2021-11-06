@@ -16,16 +16,8 @@ public class HealthDietLabelRepositoryImplementation
         extends JpaEntityRepositoryBase<HealthDietLabel, Long>
         implements IRepository<HealthDietLabel,Long> {
 
-    private Map<Long, HealthDietLabel> healthDietLabels = new HashMap<>();
-
     public HealthDietLabelRepositoryImplementation() {
         super(HealthDietLabel.class);
     }
-
-    @Override
-    public ResourceList<HealthDietLabel> findAll(QuerySpec querySpec) {
-        return querySpec.apply(healthDietLabels.values());
-    }
-
 
 }

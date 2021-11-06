@@ -13,14 +13,8 @@ import java.util.Map;
 @Component
 public class RolesRepositoryImplementation extends JpaEntityRepositoryBase<Role,Long> implements IRepository<Role,Long> {
 
-    private Map<Long, Role> roles = new HashMap<>();
-
     public RolesRepositoryImplementation() {
         super(Role.class);
     }
 
-    @Override
-    public ResourceList<Role> findAll(QuerySpec querySpec) {
-        return querySpec.apply(roles.values());
-    }
 }

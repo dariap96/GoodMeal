@@ -21,12 +21,4 @@ public class UsersRepositoryImplementation extends JpaEntityRepositoryBase<User,
         super(User.class);
     }
 
-    // ------ WTF ------
-    //
-    // При наличии метода ниже при запросе localhost:8080/user я получаю ровно ничего. При отсутствии – список всех юзеров
-    //
-    // -----------------
-
-    //@Override
-    //public ResourceList<User> findAll(QuerySpec querySpec) { return querySpec.apply(users.values()); }
 }

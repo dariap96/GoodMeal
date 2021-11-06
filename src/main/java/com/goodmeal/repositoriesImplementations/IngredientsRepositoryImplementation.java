@@ -13,14 +13,7 @@ import java.util.Map;
 @Component
 public class IngredientsRepositoryImplementation extends JpaEntityRepositoryBase<Ingredient,Long> implements IRepository<Ingredient,Long> {
 
-    private Map<Long, Ingredient> ingredients = new HashMap<>();
-
     public IngredientsRepositoryImplementation() {
         super(Ingredient.class);
-    }
-
-    @Override
-    public ResourceList<Ingredient> findAll(QuerySpec querySpec) {
-        return querySpec.apply(ingredients.values());
     }
 }
