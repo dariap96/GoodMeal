@@ -40,8 +40,8 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "Users_Roles",
-               joinColumns = @JoinColumn(name = "user_id"),
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
+               joinColumns = @JoinColumn(name = "id_users"),
+               inverseJoinColumns = @JoinColumn(name = "id_roles"))
     private Set<Role> roleSet = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
@@ -57,7 +57,7 @@ public class User {
 
     public void setPassword(String password) { this.password = password; }
 
-    public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
+    public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -65,7 +65,6 @@ public class User {
         this.email = email;
         this.bday = bday;
         this.roleSet = roleSet;
-        this.selectionSet = selectionSet;
     }
 
     public User() {}
