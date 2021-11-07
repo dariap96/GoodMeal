@@ -21,10 +21,35 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe, Recipe> {
-    private final EntityManager entityManager;
 
-    public SiteToEntityRecipeAdapter(EntityManager entityManager){
-        this.entityManager = entityManager;
+    private final RecipesRepositoryImplementation recipesRepository;
+    private final IngredientsRepositoryImplementation ingredientsRepository;
+    private final CuisinesRepositoryImplementation cuisinesRepository;
+    private final DishesRepositoryImplementation dishesRepository;
+    private final MealsRepositoryImplementation mealsRepository;
+    private final HealthDietLabelRepositoryImplementation hdLabelsRepository;
+    private final HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
+    private final IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+
+
+    public SiteToEntityRecipeAdapter(
+            RecipesRepositoryImplementation recipesRepo,
+            IngredientsRepositoryImplementation ingredientsRepo,
+            CuisinesRepositoryImplementation cuisinesRepo,
+            DishesRepositoryImplementation dishesRepo,
+            MealsRepositoryImplementation mealsRepo,
+            HealthDietLabelRepositoryImplementation hdLabelsRepo,
+            HdLabelTypeRepositoryImplementation hdLabelTypesRepo,
+            IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepo
+    ){
+        this.recipesRepository = recipesRepo;
+        this.ingredientsRepository = ingredientsRepo;
+        this.cuisinesRepository = cuisinesRepo;
+        this.dishesRepository = dishesRepo;
+        this.mealsRepository = mealsRepo;
+        this.hdLabelsRepository = hdLabelsRepo;
+        this.hdLabelTypesRepository = hdLabelTypesRepo;
+        this.ingredientsToRecipesRepository = ingredientsToRecipesRepo;
     }
 
     private Ingredient createIngredient(SiteIngredient siteIngredient){
@@ -37,7 +62,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =
-                new SiteToEntityIngredientBaseAdapter(entityManager)
+                new SiteToEntityIngredientBaseAdapter(ingredientsRepository)
                         .transform(siteIngredientBase);
 
         // result
@@ -51,8 +76,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // creating cuisine
         Cuisine cuisineEntity = new Cuisine(cuisine);
 
-        entityManager.persist(cuisineEntity);
-        entityManager.flush();
+        cuisinesRepository.create(cuisineEntity);
 
         // result
         return cuisineEntity;
@@ -61,8 +85,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // create dish
         Dish dishEntity = new Dish(dish);
 
-        entityManager.persist(dishEntity);
-        entityManager.flush();
+        dishesRepository.create(dishEntity);
 
         // result
         return dishEntity;
@@ -71,8 +94,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // create meal
         Meal mealEntity = new Meal(meal);
 
-        entityManager.persist(mealEntity);
-        entityManager.flush();
+        mealsRepository.create(mealEntity);
 
         // result
         return mealEntity;
@@ -88,8 +110,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                 hdLabelType
         );
         HealthDietLabel healthDietLabel = new HealthDietLabel(hdLabel, hdLabelTypeEntity);
-        entityManager.persist(healthDietLabel);
-        entityManager.flush();
+        hdLabelsRepository.create(healthDietLabel);
 
         // result
         return healthDietLabel;
@@ -97,16 +118,14 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private HdLabelType createHDLabelType(String hdLabelType){
         // create hd label type
         HdLabelType hdLabelTypeEntity = new HdLabelType(hdLabelType);
-        entityManager.persist(hdLabelTypeEntity);
-        entityManager.flush();
+        hdLabelTypesRepository.create(hdLabelTypeEntity);
 
         // result
         return hdLabelTypeEntity;
     }
     private IngredientsToRecipes createIngredientToRecipe(IngredientsToRecipes ingredientsToRecipes){
         // create ingredient to recipe
-        entityManager.persist(ingredientsToRecipes);
-        entityManager.flush();
+        ingredientsToRecipesRepository.create(ingredientsToRecipes);
 
         // result
         return ingredientsToRecipes;
@@ -189,8 +208,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                 dish,
                 siteRecipe.getOriginalId()
         );
-        entityManager.persist(recipe);
-        entityManager.flush();
+        recipesRepository.create(recipe);
 
         // creating ingredients to recipes
         for(SiteIngredient siteIngredient : siteRecipe.getSiteIngredients()){

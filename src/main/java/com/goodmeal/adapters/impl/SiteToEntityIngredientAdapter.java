@@ -10,10 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, Ingredient> {
-    private final EntityManager entityManager;
+    private final IngredientsRepositoryImplementation ingredientsRepository;
 
-    public SiteToEntityIngredientAdapter(EntityManager entityManager){
-        this.entityManager = entityManager;
+    public SiteToEntityIngredientAdapter(IngredientsRepositoryImplementation repo){
+        this.ingredientsRepository = repo;
     }
 
     private Ingredient createIngredient(Food food) {
@@ -29,8 +29,7 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
                         food.getImageURI(),
                         food.getFoodId());
 
-        entityManager.persist(ingredient);
-        entityManager.flush();
+        ingredientsRepository.create(ingredient);
 
         return ingredient;
     }
@@ -40,7 +39,7 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
         return SiteToEntityAdapter.findOrCreate(
                 Ingredient.class,
                 food.getFoodId(),
-                new IngredientsRepositoryImplementation(),
+                ingredientsRepository,
                 Ingredient::getOriginalId,
                 this::createIngredient,
                 food);

@@ -1,7 +1,5 @@
 package com.goodmeal;
 import com.goodmeal.testDataLoader.TestDataLoader;
-import com.srcsite.edamrequest.impl.EdamRecipeRequest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 @CrossOrigin(origins = "*")
-//@Import({TestDataLoader.class})
+@Import({TestDataLoader.class})
 public class GoodMealApplication {
 
 	@GetMapping("/")
