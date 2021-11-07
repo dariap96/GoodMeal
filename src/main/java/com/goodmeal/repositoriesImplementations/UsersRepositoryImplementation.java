@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@JsonApiResource(type ="user")
 public class UsersRepositoryImplementation extends IRepository<User,Long> {
 
     public UsersRepositoryImplementation() {

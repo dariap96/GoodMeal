@@ -8,19 +8,19 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
 @Service
 @Repository
 @Transactional
-public class CuisineService implements IService<Cuisine> {
+public class CuisinesService implements IService<Cuisine> {
     @Autowired
     private CuisinesRepositoryImplementation cuisinesRepository;
 
     @Override
-    public List<Cuisine> findAll() {
-        return new LinkedList<Cuisine>((Collection<? extends Cuisine>)cuisinesRepository.findAll());
+    public Iterable<Cuisine> findAll() {
+        return cuisinesRepository.findAll();
     }
+
+
+
+
 }

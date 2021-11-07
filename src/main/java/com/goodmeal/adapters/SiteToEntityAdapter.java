@@ -20,13 +20,12 @@ public interface SiteToEntityAdapter<Site, Entity> {
             IRepository<RepoKeyEntity, RepoValueEntity> repository,
             Function<RepoKeyEntity, IdClass> function
     ){
-        List<RepoKeyEntity> entities = repository
-                .findAll(new QuerySpec(entityClass))
-                .stream()
-                .filter(entity -> id.equals(function.apply(entity)))
-                .collect(Collectors.toList());
+        Iterable<RepoKeyEntity> entities = repository
+                .findAll();
+        entities.forEach(entity -> id.equals(function.apply(entity)));
+
         System.out.println("++++++++++++++++++++++++++++++++++++++++");
-        for(RepoKeyEntity entity : repository.findAll(new QuerySpec(entityClass))) {
+        for(RepoKeyEntity entity : repository.findAll()) {
             System.out.println(id.toString());
             System.out.println(function.apply(entity));
             System.out.println(id.equals(function.apply(entity)));
@@ -34,8 +33,8 @@ public interface SiteToEntityAdapter<Site, Entity> {
         }
         System.out.println("++++++++++++++++++++++++++++++++++++++++\n\n");
 
-        if(entities.size() != 0) {
-            return entities.get(0);
+        if(entities.iterator().hasNext()) {
+            return entities.iterator().next();
         }
 
         return null;

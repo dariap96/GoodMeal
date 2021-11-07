@@ -4,13 +4,7 @@ import com.goodmeal.entities.*;
 import io.crnk.core.repository.ResourceRepository;
 import io.crnk.data.jpa.JpaEntityRepositoryBase;
 import io.crnk.data.jpa.JpaRepositoryConfig;
+import org.springframework.data.repository.CrudRepository;
 
-public abstract class IRepository<T, I> extends JpaEntityRepositoryBase<T,I> {
-    public IRepository(Class<T> entityClass) {
-        super(entityClass);
-    }
-
-    public IRepository(JpaRepositoryConfig<T> config) {
-        super(config);
-    }
+public interface IRepository<T, I> extends CrudRepository<T, I> {
 }

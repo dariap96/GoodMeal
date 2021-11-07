@@ -29,7 +29,7 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
                         food.getImageURI(),
                         food.getFoodId());
 
-        ingredientsRepository.create(ingredient);
+        ingredientsRepository.save(ingredient);
 
         return ingredient;
     }
