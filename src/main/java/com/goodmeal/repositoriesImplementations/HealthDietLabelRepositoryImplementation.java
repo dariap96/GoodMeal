@@ -15,8 +15,7 @@ import java.util.Map;
 @JsonApiResource(type = "healthDietLabel")
 @Component
 public class HealthDietLabelRepositoryImplementation
-        extends JpaEntityRepositoryBase<HealthDietLabel, Long>
-        implements IRepository<HealthDietLabel,Long> {
+        extends IRepository<HealthDietLabel,Long> {
 
     public HealthDietLabelRepositoryImplementation() {
         super(HealthDietLabel.class);

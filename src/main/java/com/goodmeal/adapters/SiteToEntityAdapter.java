@@ -2,6 +2,7 @@ package com.goodmeal.adapters;
 
 import com.goodmeal.repositories.IRepository;
 import io.crnk.core.queryspec.QuerySpec;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 
 public interface SiteToEntityAdapter<Site, Entity> {
     public Entity transform(Site siteEntity);
+
 
     public static <RepoKeyEntity, RepoValueEntity, IdClass> RepoKeyEntity find(
             Class<RepoKeyEntity> entityClass,
@@ -38,7 +40,6 @@ public interface SiteToEntityAdapter<Site, Entity> {
 
         return null;
     }
-
 
 
     public static <RepoKeyEntity, RepoValueEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(

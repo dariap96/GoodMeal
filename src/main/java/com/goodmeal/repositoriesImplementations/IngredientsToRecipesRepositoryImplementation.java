@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class IngredientsToRecipesRepositoryImplementation extends JpaEntityRepositoryBase<IngredientsToRecipes, IngredientsToRecipesKey> implements IRepository<IngredientsToRecipes, IngredientsToRecipesKey> {
+public class IngredientsToRecipesRepositoryImplementation extends IRepository<IngredientsToRecipes, IngredientsToRecipesKey> {
 
     public IngredientsToRecipesRepositoryImplementation() {
         super(IngredientsToRecipes.class);

@@ -13,7 +13,7 @@ import java.util.Map;
 
 @JsonApiResource(type = "ingredient")
 @Component
-public class IngredientsRepositoryImplementation extends JpaEntityRepositoryBase<Ingredient,Long> implements IRepository<Ingredient,Long> {
+public class IngredientsRepositoryImplementation extends IRepository<Ingredient,Long> {
 
     public IngredientsRepositoryImplementation() {
         super(Ingredient.class);

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @JsonApiResource(type="recipe")
-public class RecipesRepositoryImplementation extends JpaEntityRepositoryBase<Recipe, Long> implements IRepository<Recipe,Long> {
+public class RecipesRepositoryImplementation extends IRepository<Recipe,Long> {
 
     public RecipesRepositoryImplementation() {
         super(Recipe.class);

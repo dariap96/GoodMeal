@@ -40,12 +40,13 @@ public class TestDataLoader {
     private HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
     @Autowired
     private IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
-/*
+
 
     @PostConstruct
     @Transactional
     public void setup() {
 
+/*
         entityManager.createQuery("DELETE FROM User").executeUpdate();
 
         User u1 = new User("user1", "1234", "name1", "surname1", "email1@mail.ru", new Date(1, 1, 2000), null);
@@ -53,23 +54,19 @@ public class TestDataLoader {
         entityManager.persist(u1);
         entityManager.persist(u2);
         entityManager.flush();
-
-       // recipesRepository.save(new Recipe())
-
 */
-/*        SiteRecipeBase siteRecipeBase = new EdamRecipeRequest(
+
+        // recipesRepository.save(new Recipe())
+
+
+        SiteRecipeBase siteRecipeBase = new EdamRecipeRequest(
                 "86eec527",
                 "15ab7f74aaa32f92d53df79c9ecdc948",
                 "chicken",
                 0,
                 100)
                 .sendRequest();
-        recipesRepository.create(
-                new Recipe(
 
-                ));
-
-/*
         Recipe recipe = new SiteToEntityRecipeAdapter(
                 recipesRepository,
                 ingredientsRepository,
@@ -80,13 +77,10 @@ public class TestDataLoader {
                 hdLabelTypesRepository,
                 ingredientsToRecipesRepository
         ).transform(siteRecipeBase.getRecipes().get(0));
-*//*
-
-
 
     }
-*/
 
+/*
     @Autowired
     private TransactionRunner transactionRunner;
 
@@ -110,5 +104,7 @@ public class TestDataLoader {
             }
         });
     }
+
+ */
 
 }

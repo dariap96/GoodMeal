@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Component
 @JsonApiResource(type ="user")
-public class UsersRepositoryImplementation extends JpaEntityRepositoryBase<User,Long> implements IRepository<User,Long> {
+public class UsersRepositoryImplementation extends IRepository<User,Long> {
 
     public UsersRepositoryImplementation() {
         super(User.class);

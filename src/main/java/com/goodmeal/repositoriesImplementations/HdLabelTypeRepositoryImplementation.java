@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 @JsonApiResource(type = "hd_label_type")
 @Component
 public class HdLabelTypeRepositoryImplementation
-    extends JpaEntityRepositoryBase<HdLabelType, Long>
-        implements IRepository<HdLabelType,Long> {
+    extends IRepository<HdLabelType,Long> {
 
     public HdLabelTypeRepositoryImplementation() {
         super(HdLabelType.class);

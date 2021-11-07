@@ -16,7 +16,7 @@ import java.util.Map;
 
 @JsonApiResource(type = "dish")
 @Component
-public class DishesRepositoryImplementation extends JpaEntityRepositoryBase<Dish, Long> implements IRepository<Dish, Long> {
+public class DishesRepositoryImplementation extends IRepository<Dish, Long> {
 
     public DishesRepositoryImplementation() {
         super(Dish.class);

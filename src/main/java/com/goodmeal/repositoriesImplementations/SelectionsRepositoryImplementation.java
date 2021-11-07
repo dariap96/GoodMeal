@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Component
 @JsonApiResource(type="selection")
-public class SelectionsRepositoryImplementation extends JpaEntityRepositoryBase<Selection,Long> implements IRepository<Selection,Long> {
+public class SelectionsRepositoryImplementation extends IRepository<Selection,Long> {
 
     public SelectionsRepositoryImplementation() {
         super(Selection.class);
