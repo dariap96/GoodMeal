@@ -12,11 +12,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@JsonApiResource(type="selection")
 public class SelectionsRepositoryImplementation extends IRepository<Selection,Long> {
 
     public SelectionsRepositoryImplementation() {
         super(Selection.class);
     }
-
 }
