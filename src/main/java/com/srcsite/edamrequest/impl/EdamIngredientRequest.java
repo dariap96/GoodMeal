@@ -11,7 +11,7 @@ public class EdamIngredientRequest extends EdamRequest {
 
     public EdamIngredientRequest(String appId, String appKey, String ingredient) {
         super(appId, appKey, BASE);
-        if(ingredient.isEmpty() || ingredient == null)
+        if(ingredient.isBlank())
             ingredient = DEFAULT_INGREDIENT;
 
         this.ingredient = ingredient;

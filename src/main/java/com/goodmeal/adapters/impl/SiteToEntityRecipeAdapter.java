@@ -250,7 +250,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         return SiteToEntityAdapter.findOrCreate(
                 Recipe.class,
                 siteRecipe.getOriginalId(),
-                new RecipesRepositoryImplementation(),
+                recipesRepository,
                 Recipe::getOriginalId,
                 this::createRecipe,
                 siteRecipe);
