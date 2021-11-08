@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service("jpaIngredientsToRecipesService")
 @Repository
 @Transactional
 public class IngredientsToRecipesService implements IService<IngredientsToRecipes> {
