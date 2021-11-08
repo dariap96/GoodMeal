@@ -6,7 +6,6 @@ import com.goodmeal.repositoriesImplementations.*;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
-import javax.persistence.EntityManager;
 import java.util.LinkedList;
 import java.util.List;
 

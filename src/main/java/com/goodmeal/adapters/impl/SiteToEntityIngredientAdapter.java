@@ -6,9 +6,6 @@ import com.goodmeal.repositoriesImplementations.IngredientsRepositoryImplementat
 import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Nutrients;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
 public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, Ingredient> {
     private final IngredientsRepositoryImplementation ingredientsRepository;
 
