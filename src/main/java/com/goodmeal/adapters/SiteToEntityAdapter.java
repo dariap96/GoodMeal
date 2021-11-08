@@ -1,6 +1,6 @@
 package com.goodmeal.adapters;
 
-import com.goodmeal.repositories.IRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.function.Function;
 
@@ -11,7 +11,7 @@ public interface SiteToEntityAdapter<Site, Entity> {
     public static <RepoKeyEntity, RepoValueEntity, IdClass> RepoKeyEntity find(
             Class<RepoKeyEntity> entityClass,
             IdClass id,
-            IRepository<RepoKeyEntity, RepoValueEntity> repository,
+            CrudRepository<RepoKeyEntity, RepoValueEntity> repository,
             Function<RepoKeyEntity, IdClass> function
     ){
         Iterable<RepoKeyEntity> entities = repository
@@ -38,7 +38,7 @@ public interface SiteToEntityAdapter<Site, Entity> {
     public static <RepoKeyEntity, RepoValueEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(
             Class<RepoKeyEntity> entityClass,
             IdClass id,
-            IRepository<RepoKeyEntity, RepoValueEntity> repository,
+            CrudRepository<RepoKeyEntity, RepoValueEntity> repository,
             Function<RepoKeyEntity, IdClass> function,
             Function<SourceEntity, RepoKeyEntity> creator,
             SourceEntity source

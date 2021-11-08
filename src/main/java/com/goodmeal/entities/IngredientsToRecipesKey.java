@@ -11,10 +11,10 @@ import java.util.Objects;
 @Getter
 public class IngredientsToRecipesKey implements Serializable {
 
-    @Column(name = "recipe_id")
+    @Column //(name = "recipe_id")
     private Long recipeId;
 
-    @Column(name = "ingredient_id")
+    @Column //(name = "ingredient_id")
     private Long ingredientId;
 
     @Override

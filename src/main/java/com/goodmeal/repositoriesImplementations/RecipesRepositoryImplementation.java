@@ -1,10 +1,12 @@
 package com.goodmeal.repositoriesImplementations;
 
 import com.goodmeal.entities.Recipe;
-import com.goodmeal.repositories.IRepository;
+import io.crnk.core.resource.annotations.JsonApiResource;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
+
 @Component
-public interface RecipesRepositoryImplementation
-        extends IRepository<Recipe, Long> {
+@JsonApiResource(type="recipe")
+public interface RecipesRepositoryImplementation extends CrudRepository<Recipe, Long> {
 }

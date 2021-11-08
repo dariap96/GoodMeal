@@ -243,7 +243,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
     @Override
     public Recipe transform(SiteRecipe siteRecipe) {
-        return SiteToEntityAdapter.findOrCreate(
+        return (Recipe) SiteToEntityAdapter.findOrCreate(
                 Recipe.class,
                 siteRecipe.getOriginalId(),
                 recipesRepository,

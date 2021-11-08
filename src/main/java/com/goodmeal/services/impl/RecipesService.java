@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Transactional
-@Service
+@Service("jpaRecipesService")
 @Repository
 public class RecipesService implements IService<Recipe>{
 

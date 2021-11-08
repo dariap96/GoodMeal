@@ -12,7 +12,7 @@ import java.util.Set;
 
 @JsonApiResource(type = "meal")
 @Entity
-@Table(name = "Meals", schema = "goodmeal")
+@Table(name = "Meals", schema="goodmeal")
 @Getter
 public class Meal {
 
