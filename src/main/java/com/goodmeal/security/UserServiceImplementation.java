@@ -2,12 +2,11 @@ package com.goodmeal.security;
 
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
-import com.goodmeal.repositories.UserRepository;
+import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +14,7 @@ import java.util.Set;
 public class UserServiceImplementation implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UsersRepositoryImplementation userRepository;
 
 //    @Autowired
 //    PasswordEncoder passwordEncoder;

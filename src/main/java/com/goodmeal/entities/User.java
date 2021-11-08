@@ -3,15 +3,17 @@ package com.goodmeal.entities;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @JsonApiResource(type = "user")
 @Entity
-@Table(name = "Users", schema = "goodmeal")
+@Table(name = "Users")
 @Getter
 public class User {
 
@@ -38,6 +40,7 @@ public class User {
     @Column
     private Date bday;
 
+
     @ManyToMany
     @JoinTable(name = "Users_Roles",
                joinColumns = @JoinColumn(name = "id_users"),
@@ -49,15 +52,9 @@ public class User {
 
     public Set<Role> getRole() { return roleSet; }
 
-    public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
+     public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
 
-    public String getLogin() { return login; }
-
-    public String getPassword() { return password; }
-
-    public void setPassword(String password) { this.password = password; }
-
-    public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet) {
+    public User(String login, String password, String name, String surname, String email, Date bday/*, Set<Role> roleSet*/, Set<Selection> selectionSet) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -65,6 +62,7 @@ public class User {
         this.email = email;
         this.bday = bday;
         this.roleSet = roleSet;
+        this.selectionSet = selectionSet;
     }
 
     public User() {}

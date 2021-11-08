@@ -7,7 +7,6 @@ import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Hint;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 
-import javax.persistence.EntityManager;
 import java.util.LinkedList;
 import java.util.List;
 
