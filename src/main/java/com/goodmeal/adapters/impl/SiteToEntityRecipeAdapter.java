@@ -64,7 +64,8 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // result
         return ingredients
                 .stream()
-                .filter(ingredient -> siteIngredient.getOriginalId().equals(ingredient.getOriginalId()))
+                .filter(ingredient ->
+                        siteIngredient.getOriginalId().equals(ingredient.getOriginalId()))
                 .collect(Collectors.toList()).get(0);
     }
 

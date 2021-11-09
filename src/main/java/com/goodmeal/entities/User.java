@@ -40,6 +40,7 @@ public class User {
     @Column
     private Date bday;
 
+
     @ManyToMany
     @JoinTable(name = "Users_Roles",
                joinColumns = @JoinColumn(name = "id_users"),
@@ -59,7 +60,7 @@ public class User {
 
     public Set<Role> getRole() { return roleSet; }
 
-     public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
+    public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
 
     public User(String login, String password, String name, String surname, String email, Date bday/*, Set<Role> roleSet*/, Set<Selection> selectionSet) {
         this.login = login;

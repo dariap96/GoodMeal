@@ -24,7 +24,9 @@ public class SiteToEntityIngredientBaseAdapter implements SiteToEntityAdapter<Si
         List<Ingredient> ingredientBase = new LinkedList<>();
         for (Hint siteIngredient : siteIngredientBase.getHints()) {
             Food food = siteIngredient.getFood();
-            ingredientBase.add(new SiteToEntityIngredientAdapter(ingredientsRepository).transform(food));
+            ingredientBase.add(
+                    new SiteToEntityIngredientAdapter(ingredientsRepository)
+                            .transform(food));
         }
         return ingredientBase;
     }

@@ -8,5 +8,4 @@ import org.springframework.stereotype.Component;
 @Component
 @JsonApiResource(type = "meal")
 public interface MealsRepositoryImplementation extends CrudRepository<Meal,Long> {
-
 }

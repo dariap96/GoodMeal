@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-
 @Transactional
 @Service("jpaRecipesService")
 @Repository
@@ -39,6 +38,4 @@ public class RecipesService implements IService<Recipe>{
         return (recipesRepository.existsById(id));
 
     }
-
-
 }

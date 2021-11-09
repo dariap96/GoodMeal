@@ -37,6 +37,4 @@ public class IngredientsToRecipesService implements IService<IngredientsToRecipe
     public boolean existsById(Long id) {
         return false;
     }
-
-
 }
