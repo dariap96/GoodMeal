@@ -1,11 +1,12 @@
 package com.goodmeal.services;
 
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
-import java.util.List;
+public interface IService <T>  {
 
-public interface IService <T> {
-    public Iterable<T> findAll();
+    public abstract Iterable<T> findAll();
+    public abstract void create(T t);
+    public Optional<T> findById(Long id);
+    public boolean existsById(Long id);
+
 }
