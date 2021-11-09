@@ -44,15 +44,13 @@ public class GoodMealApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GoodMealApplication.class, args);
-
 	}
 
-
+	/*
 	@EventListener(ApplicationReadyEvent.class)
 	public void testJpaMethods(){
 		 recipesService.findAll().forEach(it->System.out.println(it.getName()));
-
-
 	}
+	 */
 
 }
