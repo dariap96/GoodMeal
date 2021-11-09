@@ -28,10 +28,9 @@ public class SelectionsService implements IService<Selection> {
     }
 
     @Override
-    public void save(Selection selection) {
+    public void create(Selection selection) {
         selectionRepository.save(selection);
     }
-
 
     @Override
     public Optional<Selection> findById(Long id) {
