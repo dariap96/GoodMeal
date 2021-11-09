@@ -40,7 +40,6 @@ public class User {
     @Column
     private Date bday;
 
-
     @ManyToMany
     @JoinTable(name = "Users_Roles",
                joinColumns = @JoinColumn(name = "id_users"),
@@ -49,6 +48,10 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private Set<Selection> selectionSet = new HashSet<>();
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public Set<Selection> getSelectionSet() { return selectionSet; }
 
