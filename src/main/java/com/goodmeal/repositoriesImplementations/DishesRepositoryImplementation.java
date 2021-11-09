@@ -1,29 +1,9 @@
 package com.goodmeal.repositoriesImplementations;
 
-import com.goodmeal.entities.Cuisine;
 import com.goodmeal.entities.Dish;
-import com.goodmeal.repositories.IRepository;
-import io.crnk.core.queryspec.QuerySpec;
-import io.crnk.core.repository.ResourceRepository;
-import io.crnk.core.repository.ResourceRepositoryBase;
-import io.crnk.core.resource.list.ResourceList;
-import io.crnk.data.jpa.JpaEntityRepositoryBase;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
-public class DishesRepositoryImplementation extends JpaEntityRepositoryBase<Dish, Long> implements IRepository<Dish, Long> {
-
-    private Map<Long, Dish> dishes= new HashMap<>();
-
-    public DishesRepositoryImplementation() {
-        super(Dish.class);
-    }
-
-    @Override
-    public ResourceList<Dish> findAll(QuerySpec querySpec) {
-        return querySpec.apply(dishes.values());
-    }
+public interface DishesRepositoryImplementation extends CrudRepository<Dish, Long> {
 }

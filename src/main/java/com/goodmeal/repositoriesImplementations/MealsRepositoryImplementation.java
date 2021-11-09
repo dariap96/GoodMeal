@@ -1,26 +1,11 @@
 package com.goodmeal.repositoriesImplementations;
 
 import com.goodmeal.entities.Meal;
-import com.goodmeal.repositories.IRepository;
-import io.crnk.core.queryspec.QuerySpec;
-import io.crnk.core.resource.list.ResourceList;
-import io.crnk.data.jpa.JpaEntityRepositoryBase;
+import io.crnk.core.resource.annotations.JsonApiResource;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
-public class MealsRepositoryImplementation extends JpaEntityRepositoryBase<Meal,Long> implements IRepository<Meal,Long> {
-
-    private Map<Long, Meal> meals = new HashMap<>();
-
-    public MealsRepositoryImplementation() {
-        super(Meal.class);
-    }
-
-    @Override
-    public ResourceList<Meal> findAll(QuerySpec querySpec) {
-        return querySpec.apply(meals.values());
-    }
+@JsonApiResource(type = "meal")
+public interface MealsRepositoryImplementation extends CrudRepository<Meal,Long> {
 }

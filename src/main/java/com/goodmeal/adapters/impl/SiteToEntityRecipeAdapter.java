@@ -7,24 +7,45 @@ import com.goodmeal.entities.*;
 import com.goodmeal.repositoriesImplementations.*;
 
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
-import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
-import com.srcsite.siteDataBase.siteIngredientDataBase.Hint;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
-import io.crnk.core.queryspec.QuerySpec;
 
-import javax.persistence.EntityManager;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe, Recipe> {
-    private final EntityManager entityManager;
 
-    public SiteToEntityRecipeAdapter(EntityManager entityManager){
-        this.entityManager = entityManager;
+    private final RecipesRepositoryImplementation recipesRepository;
+    private final IngredientsRepositoryImplementation ingredientsRepository;
+    private final CuisinesRepositoryImplementation cuisinesRepository;
+    private final DishesRepositoryImplementation dishesRepository;
+    private final MealsRepositoryImplementation mealsRepository;
+    private final HealthDietLabelRepositoryImplementation hdLabelsRepository;
+    private final HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
+    private final IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+
+
+    public SiteToEntityRecipeAdapter(
+            RecipesRepositoryImplementation recipesRepo,
+            IngredientsRepositoryImplementation ingredientsRepo,
+            CuisinesRepositoryImplementation cuisinesRepo,
+            DishesRepositoryImplementation dishesRepo,
+            MealsRepositoryImplementation mealsRepo,
+            HealthDietLabelRepositoryImplementation hdLabelsRepo,
+            HdLabelTypeRepositoryImplementation hdLabelTypesRepo,
+            IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepo
+    ){
+        this.recipesRepository = recipesRepo;
+        this.ingredientsRepository = ingredientsRepo;
+        this.cuisinesRepository = cuisinesRepo;
+        this.dishesRepository = dishesRepo;
+        this.mealsRepository = mealsRepo;
+        this.hdLabelsRepository = hdLabelsRepo;
+        this.hdLabelTypesRepository = hdLabelTypesRepo;
+        this.ingredientsToRecipesRepository = ingredientsToRecipesRepo;
     }
 
     private Ingredient createIngredient(SiteIngredient siteIngredient){
@@ -37,7 +58,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =
-                new SiteToEntityIngredientBaseAdapter(entityManager)
+                new SiteToEntityIngredientBaseAdapter(ingredientsRepository)
                         .transform(siteIngredientBase);
 
         // result
@@ -51,8 +72,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // creating cuisine
         Cuisine cuisineEntity = new Cuisine(cuisine);
 
-        entityManager.persist(cuisineEntity);
-        entityManager.flush();
+        cuisinesRepository.save(cuisineEntity);
 
         // result
         return cuisineEntity;
@@ -61,8 +81,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // create dish
         Dish dishEntity = new Dish(dish);
 
-        entityManager.persist(dishEntity);
-        entityManager.flush();
+        dishesRepository.save(dishEntity);
 
         // result
         return dishEntity;
@@ -71,8 +90,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // create meal
         Meal mealEntity = new Meal(meal);
 
-        entityManager.persist(mealEntity);
-        entityManager.flush();
+        mealsRepository.save(mealEntity);
 
         // result
         return mealEntity;
@@ -82,14 +100,13 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         HdLabelType hdLabelTypeEntity = SiteToEntityAdapter.findOrCreate(
                 HdLabelType.class,
                 hdLabelType,
-                new HdLabelTypeRepositoryImplementation(),
+                hdLabelTypesRepository,
                 HdLabelType::getType,
                 this::createHDLabelType,
                 hdLabelType
         );
         HealthDietLabel healthDietLabel = new HealthDietLabel(hdLabel, hdLabelTypeEntity);
-        entityManager.persist(healthDietLabel);
-        entityManager.flush();
+        hdLabelsRepository.save(healthDietLabel);
 
         // result
         return healthDietLabel;
@@ -97,16 +114,14 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private HdLabelType createHDLabelType(String hdLabelType){
         // create hd label type
         HdLabelType hdLabelTypeEntity = new HdLabelType(hdLabelType);
-        entityManager.persist(hdLabelTypeEntity);
-        entityManager.flush();
+        hdLabelTypesRepository.save(hdLabelTypeEntity);
 
         // result
         return hdLabelTypeEntity;
     }
     private IngredientsToRecipes createIngredientToRecipe(IngredientsToRecipes ingredientsToRecipes){
         // create ingredient to recipe
-        entityManager.persist(ingredientsToRecipes);
-        entityManager.flush();
+        ingredientsToRecipesRepository.save(ingredientsToRecipes);
 
         // result
         return ingredientsToRecipes;
@@ -117,7 +132,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         Cuisine cuisine = SiteToEntityAdapter.findOrCreate(
                 Cuisine.class,
                 siteRecipe.getCuisines().get(0),
-                new CuisinesRepositoryImplementation(),
+                cuisinesRepository,
                 Cuisine::getType,
                 this::createCuisine,
                 siteRecipe.getCuisines().get(0)
@@ -127,7 +142,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         Dish dish = SiteToEntityAdapter.findOrCreate(
                 Dish.class,
                 siteRecipe.getDishes().get(0),
-                new DishesRepositoryImplementation(),
+                dishesRepository,
                 Dish::getType,
                 this::createDish,
                 siteRecipe.getDishes().get(0)
@@ -137,7 +152,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         Meal meal = SiteToEntityAdapter.findOrCreate(
                 Meal.class,
                 siteRecipe.getMeals().get(0),
-                new MealsRepositoryImplementation(),
+                mealsRepository,
                 Meal::getType,
                 this::createMeal,
                 siteRecipe.getMeals().get(0)
@@ -149,7 +164,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     HealthDietLabel.class,
                     label,
-                    new HealthDietLabelRepositoryImplementation(),
+                    hdLabelsRepository,
                     HealthDietLabel::getLabel,
                     (str -> createHealthDietLabel(str, "healths")),
                     label
@@ -160,7 +175,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     HealthDietLabel.class,
                     label,
-                    new HealthDietLabelRepositoryImplementation(),
+                    hdLabelsRepository,
                     HealthDietLabel::getLabel,
                     (str -> createHealthDietLabel(str, "cautions")),
                     label
@@ -171,7 +186,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     HealthDietLabel.class,
                     label,
-                    new HealthDietLabelRepositoryImplementation(),
+                    hdLabelsRepository,
                     HealthDietLabel::getLabel,
                     (str -> createHealthDietLabel(str, "diets")),
                     label
@@ -189,15 +204,14 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                 dish,
                 siteRecipe.getOriginalId()
         );
-        entityManager.persist(recipe);
-        entityManager.flush();
+        recipesRepository.save(recipe);
 
         // creating ingredients to recipes
         for(SiteIngredient siteIngredient : siteRecipe.getSiteIngredients()){
             Ingredient ingredient = SiteToEntityAdapter.findOrCreate(
                     Ingredient.class,
                     siteIngredient.getOriginalId(),
-                    new IngredientsRepositoryImplementation(),
+                    ingredientsRepository,
                     Ingredient::getOriginalId,
                     this::createIngredient,
                     siteIngredient
@@ -215,7 +229,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                     IngredientsToRecipes.class,
                     ingredientsToRecipes.getRecipe().getOriginalId()
                             + ingredientsToRecipes.getIngredient().getOriginalId(),
-                    new IngredientsToRecipesRepositoryImplementation(),
+                    ingredientsToRecipesRepository,
                     (ingredientsToRecipesLambda -> ingredientsToRecipesLambda.getRecipe().getOriginalId()
                             + ingredientsToRecipesLambda.getIngredient().getOriginalId()),
                     this::createIngredientToRecipe,
@@ -229,10 +243,10 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
     @Override
     public Recipe transform(SiteRecipe siteRecipe) {
-        return SiteToEntityAdapter.findOrCreate(
+        return (Recipe) SiteToEntityAdapter.findOrCreate(
                 Recipe.class,
                 siteRecipe.getOriginalId(),
-                new RecipesRepositoryImplementation(),
+                recipesRepository,
                 Recipe::getOriginalId,
                 this::createRecipe,
                 siteRecipe);

@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
+
 @JsonApiResource(type = "role")
 @Entity
 @Table(name = "Roles", schema = "goodmeal")
@@ -22,10 +24,11 @@ public class Role {
     @Column
     private String role;
 
+    // ------ CAUSES ERROR ------ щас должно работать
     @ManyToMany(mappedBy = "roleSet")
     private Set<User> userSet = new HashSet<>();
 
-    public Set<User> getUserSet() { return userSet; }
+     public Set<User> getUserSet() { return userSet; }
 
     public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
 
