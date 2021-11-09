@@ -18,17 +18,17 @@ export class RegistrationComponent implements OnInit {
     ngOnInit() {}
 
     public onAddUser(addForm: NgForm): void {
-        document.getElementById('add-user-form').click();
-        this.service.addUser(addForm.value).subscribe(
-          (response: User[]) => {
-            console.log(response);
-            //this.getEmployees();
-            //addForm.reset();
-          },
-          (error: HttpErrorResponse) => {
-            alert(error.message);
-            addForm.reset();
-          }
-        );
-      }
+      document.getElementById('add-user-form').click();
+      this.service.addUser(addForm.value).subscribe(
+        (response: User[]) => {
+           this.router.navigate(["/login"])
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+          addForm.reset();
+        }
+      );
+    }
+
+    
 }
