@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service("jpaUserServiceImplementation")
+@Repository
 public class UserServiceImplementation implements UserDetailsService {
 
     @Autowired
@@ -42,5 +45,8 @@ public class UserServiceImplementation implements UserDetailsService {
 
         return new UserDetailsImplementation(user);
     }
+
+
+
 
 }

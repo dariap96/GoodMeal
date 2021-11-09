@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service("jpaCuisinesService")
 @Repository
 @Transactional
@@ -20,7 +22,20 @@ public class CuisinesService implements IService<Cuisine> {
         return cuisinesRepository.findAll();
     }
 
+    @Override
+    public void create(Cuisine cuisine) {
+        cuisinesRepository.save(cuisine);
+    }
 
+    @Override
+    public Optional<Cuisine> findById(Long id) {
+        return cuisinesRepository.findById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return (cuisinesRepository.existsById(id));
+    }
 
 
 }
