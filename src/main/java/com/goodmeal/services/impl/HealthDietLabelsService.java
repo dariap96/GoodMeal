@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service("jpaHealthDietLabelsService")
 @Transactional
 @Repository
@@ -20,4 +22,18 @@ public class HealthDietLabelsService implements IService<HealthDietLabel>{
         return  hdLabelRepository.findAll();
     }
 
+    @Override
+    public void create(HealthDietLabel healthDietLabel) {
+        hdLabelRepository.save(healthDietLabel);
+    }
+
+    @Override
+    public Optional<HealthDietLabel> findById(Long id) {
+        return hdLabelRepository.findById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return (hdLabelRepository.existsById(id));
+    }
 }

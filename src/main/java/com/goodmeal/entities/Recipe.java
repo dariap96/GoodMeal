@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @JsonApiResource(type = "recipe")
 @Entity
 @Table(name = "Recipes", schema="goodmeal")

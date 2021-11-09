@@ -38,9 +38,19 @@ public class TestDataLoader {
     private HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
     @Autowired
     private IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+    @Autowired
+    private RecipesService recipesService;
+
+/*
+    @Autowired
+    private TransactionRunner transactionRunner;
+
+    @Autowired
+    @PersistenceContext
+    private EntityManager entityManager;
+*/
 
 
-    @PostConstruct
     @Transactional
     public void setup() {
 /*
@@ -87,13 +97,4 @@ public class TestDataLoader {
         });
 */
     }
-
-/*
-    @Autowired
-    private TransactionRunner transactionRunner;
-
-    @Autowired
-    @PersistenceContext
-    private EntityManager entityManager;
-*/
 }

@@ -7,8 +7,6 @@ import com.goodmeal.entities.*;
 import com.goodmeal.repositoriesImplementations.*;
 
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
-import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
-import com.srcsite.siteDataBase.siteIngredientDataBase.Hint;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;

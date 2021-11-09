@@ -50,9 +50,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Selection> selectionSet = new HashSet<>();
 
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public Set<Selection> getSelectionSet() { return selectionSet; }
+
+    public void setSelectionSet(Set<Selection> selectionSet) { this.selectionSet = selectionSet; }
+
     public Set<Role> getRole() { return roleSet; }
 
-     public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
+    public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
 
     public User(String login, String password, String name, String surname, String email, Date bday/*, Set<Role> roleSet*/, Set<Selection> selectionSet) {
         this.login = login;

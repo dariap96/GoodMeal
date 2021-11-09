@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service("jpaIngredientsService")
 @Repository
 @Transactional
@@ -19,5 +21,20 @@ public class IngredientsService implements IService<Ingredient> {
     @Override
     public Iterable<Ingredient> findAll() {
         return ingredientsRepository.findAll();
+    }
+
+    @Override
+    public void create(Ingredient ingredient) {
+
+    }
+
+    @Override
+    public Optional<Ingredient> findById(Long id) {
+        return ingredientsRepository.findById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return (ingredientsRepository.existsById(id));
     }
 }

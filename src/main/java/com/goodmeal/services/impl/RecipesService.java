@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 
 @Transactional
 @Service("jpaRecipesService")
@@ -21,5 +22,21 @@ public class RecipesService implements IService<Recipe>{
     @Override
     public Iterable<Recipe> findAll() {
         return recipesRepository.findAll();
+    }
+
+    @Override
+    public void create(Recipe recipe) {
+        recipesRepository.save(recipe);
+    }
+
+    @Override
+    public Optional<Recipe> findById(Long id) {
+        return recipesRepository.findById(id);
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return (recipesRepository.existsById(id));
+
     }
 }

@@ -1,49 +1,38 @@
 package com.goodmeal;
-import com.goodmeal.testDataLoader.TestDataLoader;
+import com.goodmeal.entities.User;
+import com.goodmeal.security.UserServiceImplementation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Configuration
 @RestController
 @SpringBootApplication
 @CrossOrigin(origins = "*")
-@Import({TestDataLoader.class})
 public class GoodMealApplication {
+
+	@Autowired
+	UserServiceImplementation userService;
 
 	@GetMapping("/")
 	public String login() {
 		return "authenticated successfully";
 	}
 
-	/*
-	@GetMapping("/home")
-	public String getUsers() {
-		return "get users page";
+	@PostMapping("/register")
+	public boolean register(@RequestBody User user) {
+		System.out.println(user.getLogin());
+
+		if(!userService.saveUser(user)) { return false; }
+
+		return true;
 	}
-	 */
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(GoodMealApplication.class, args);
 		 // ?
 	}
-
-	/*
-	public static void dataLoader() {
-		System.out.println(new EdamRecipeRequest(
-				"86eec527",
-				"15ab7f74aaa32f92d53df79c9ecdc948",
-				"chicken",
-				0,
-				100)
-				.sendRequest().getRecipes().get(0).getIngredientLines().size());
-	}
-	 */
 }

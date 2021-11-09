@@ -24,8 +24,8 @@ public interface SiteToEntityAdapter<Site, Entity> {
                 .filter(entity -> id.equals(idFunction.apply(entity)))
                 .collect(Collectors.toList());
 
-        if(entities.size() != 0) {
-            return entities.get(0);
+        if(entities.iterator().hasNext()) {
+            return entities.iterator().next();
         }
 
         return null;
