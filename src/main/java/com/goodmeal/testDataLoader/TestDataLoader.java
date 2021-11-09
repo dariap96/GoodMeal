@@ -40,25 +40,19 @@ public class TestDataLoader {
     private IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
 
 
-    //@PostConstruct
+    @PostConstruct
     @Transactional
     public void setup() {
+/*
+        entityManager.createQuery("DELETE FROM User").executeUpdate();
 
-
-
-
-//        entityManager.createQuery("DELETE FROM User").executeUpdate();
-//
-//        User u1 = new User("user1", "1234", "name1", "surname1", "email1@mail.ru", new Date(1, 1, 2000), null);
-//        User u2 = new User("user2", "4321", "name2", "surname2", "email2@mail.ru", new Date(1, 1, 2000), null);
-//        entityManager.persist(u1);
-//        entityManager.persist(u2);
-//        entityManager.flush();
-//
-//
-        // recipesRepository.save(new Recipe())
-
-
+        User u1 = new User("user1", "1234", "name1", "surname1", "email1@mail.ru", new Date(1, 1, 2000), null);
+        User u2 = new User("user2", "4321", "name2", "surname2", "email2@mail.ru", new Date(1, 1, 2000), null);
+        entityManager.persist(u1);
+        entityManager.persist(u2);
+        entityManager.flush();
+*/
+/*
         SiteRecipeBase siteRecipeBase = new EdamRecipeRequest(
                 "86eec527",
                 "15ab7f74aaa32f92d53df79c9ecdc948",
@@ -77,10 +71,8 @@ public class TestDataLoader {
                 hdLabelTypesRepository,
                 ingredientsToRecipesRepository
         ).transform(siteRecipeBase.getRecipes().get(0));
-
-
-
-
+*/
+/*
         transactionRunner.doInTransaction(new Callable<Object>() {
             @Override
             public Object call() throws Exception {
@@ -93,16 +85,15 @@ public class TestDataLoader {
                 return null;
             }
         });
-
+*/
     }
 
-//
+/*
     @Autowired
     private TransactionRunner transactionRunner;
 
     @Autowired
     @PersistenceContext
     private EntityManager entityManager;
-
-
+*/
 }

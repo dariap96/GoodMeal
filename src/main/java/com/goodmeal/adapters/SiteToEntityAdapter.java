@@ -2,7 +2,10 @@ package com.goodmeal.adapters;
 
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public interface SiteToEntityAdapter<Site, Entity> {
     public Entity transform(Site siteEntity);
@@ -12,23 +15,17 @@ public interface SiteToEntityAdapter<Site, Entity> {
             Class<RepoKeyEntity> entityClass,
             IdClass id,
             CrudRepository<RepoKeyEntity, RepoValueEntity> repository,
-            Function<RepoKeyEntity, IdClass> function
+            Function<RepoKeyEntity, IdClass> idFunction
     ){
-        Iterable<RepoKeyEntity> entities = repository
-                .findAll();
-        entities.forEach(entity -> id.equals(function.apply(entity)));
+        List<RepoKeyEntity> entities = new LinkedList<>();
+        repository.findAll().forEach(entities::add);
 
-        System.out.println("++++++++++++++++++++++++++++++++++++++++");
-        for(RepoKeyEntity entity : repository.findAll()) {
-            System.out.println(id.toString());
-            System.out.println(function.apply(entity));
-            System.out.println(id.equals(function.apply(entity)));
-            System.out.println("=====================================");
-        }
-        System.out.println("++++++++++++++++++++++++++++++++++++++++\n\n");
+        entities = entities.stream()
+                .filter(entity -> id.equals(idFunction.apply(entity)))
+                .collect(Collectors.toList());
 
-        if(entities.iterator().hasNext()) {
-            return entities.iterator().next();
+        if(entities.size() != 0) {
+            return entities.get(0);
         }
 
         return null;
