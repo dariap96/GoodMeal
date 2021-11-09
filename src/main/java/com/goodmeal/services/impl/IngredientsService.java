@@ -25,7 +25,7 @@ public class IngredientsService implements IService<Ingredient> {
 
     @Override
     public void create(Ingredient ingredient) {
-
+           ingredientsRepository.save(ingredient);
     }
 
     @Override
