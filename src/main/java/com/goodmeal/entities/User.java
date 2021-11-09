@@ -47,6 +47,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Selection> selectionSet = new HashSet<>();
 
+    public Set<Selection> getSelectionSet() { return selectionSet; }
+
+    public void setSelectionSet(Set<Selection> selectionSet) { this.selectionSet = selectionSet; }
+
     public Set<Role> getRole() { return roleSet; }
 
     public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }

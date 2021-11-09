@@ -50,7 +50,9 @@ public class UserServiceImplementation implements UserDetailsService {
             return false;
         }
 
-        user.setRole(forceRoleSetup());
+        user.setRole(null);
+        user.setSelectionSet(null);
+        //user.setRole(forceRoleSetup());
         userRepository.save(user);
         return true;
     }

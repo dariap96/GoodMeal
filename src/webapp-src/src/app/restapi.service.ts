@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { User } from './model/User'
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -29,11 +30,7 @@ export class RestapiService {
         return  this.http.get("http://localhost:4200/api/ingredient",{headers, responseType: 'text' as 'json'});
     }
 
-    register(username: string, email: string, password: string): Observable<any> {
-        return this.http.post(AUTH_API + 'signup', {
-          username,
-          email,
-          password
-        }, httpOptions);
-      }
+    addUser(user: User) {
+        return this.http.post<User[]>('http://localhost:4200/register', user);
+    }
 }

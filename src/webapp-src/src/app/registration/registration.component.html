@@ -1,0 +1,44 @@
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addUserModalLabel">Register</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
+            <div class="form-group">
+               <label for="login">Your login</label>
+               <input type="text" ngModel name="login" class="form-control" id="login" placeholder="Login" required>
+            </div>
+            <div class="form-group">
+               <label for="password">Your password</label>
+               <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+               <label for="name">Your name</label>
+               <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+            </div>
+            <div class="form-group">
+               <label for="surname">Your surname</label>
+               <input type="text" ngModel name="surname" class="form-control" id="surname" placeholder="Surname" required>
+            </div>
+            <div class="form-group">
+               <label for="email">Your Email Address</label>
+               <input type="text" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+               <label for="bday">Your birthday date</label>
+               <input type="date" ngModel name="bday" class="form-control" id="bday" placeholder="Birthday" required>
+            </div>
+            <div class="modal-footer">
+               <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Register!</button>
+            </div>
+            </form>
+         </div>
+      </div>
+    </div>
+    </div>

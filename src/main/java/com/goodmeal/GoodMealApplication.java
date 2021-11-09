@@ -26,8 +26,14 @@ public class GoodMealApplication {
 		return "authenticated successfully";
 	}
 
-	@PostMapping("/registration")
-	public boolean register(@RequestBody User user) { if(!userService.saveUser(user)) { return false; } return true; }
+	@PostMapping("/register")
+	public boolean register(@RequestBody User user) {
+		System.out.println(user.getLogin());
+
+		if(!userService.saveUser(user)) { return false; }
+
+		return true;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(GoodMealApplication.class, args);
