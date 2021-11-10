@@ -3,6 +3,7 @@ package com.goodmeal.security;
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
+import com.goodmeal.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +15,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class UserServiceImplementation implements UserDetailsService {
+public class UserServiceImplementation implements UserDetailsService{
+
 
     @Autowired
     private UsersRepositoryImplementation userRepository;
@@ -63,5 +65,4 @@ public class UserServiceImplementation implements UserDetailsService {
         set.add(r);
         return set;
     }
-
 }
