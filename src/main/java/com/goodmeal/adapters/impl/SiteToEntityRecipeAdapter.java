@@ -7,11 +7,14 @@ import com.goodmeal.entities.*;
 import com.goodmeal.repositoriesImplementations.*;
 
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
+import com.srcsite.edamrequest.impl.EdamRecipeRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
+import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +29,6 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private final HealthDietLabelRepositoryImplementation hdLabelsRepository;
     private final HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
     private final IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
-
 
     public SiteToEntityRecipeAdapter(
             RecipesRepositoryImplementation recipesRepo,
@@ -48,13 +50,40 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         this.ingredientsToRecipesRepository = ingredientsToRecipesRepo;
     }
 
+    private String getFirstOrSetDefault(String def, List<String> list){
+        if(list != null && list.size() != 0){
+            return list.get(0);
+        }
+        return def;
+    }
+
+    private SiteIngredientBase loadIngredients(
+            String name
+    ) {
+        try {
+            return new EdamIngredientRequest(
+                    "184d0a52",
+                    "f291617da6961a97b11fc48b33f6845d",
+                    name).sendRequest();
+        } catch (Exception exception) {
+            System.out.println("======IngredientInterruption=====");
+            System.out.println(exception.getMessage());
+            System.out.println("=================================");
+            try
+            {
+                Thread.sleep(60_000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+            return loadIngredients(name);
+        }
+    }
+
     private Ingredient createIngredient(SiteIngredient siteIngredient){
         // getting new site ingredients
-        SiteIngredientBase siteIngredientBase =
-                new EdamIngredientRequest(
-                        "184d0a52",
-                        "f291617da6961a97b11fc48b33f6845d",
-                        siteIngredient.getName()).sendRequest();
+        SiteIngredientBase siteIngredientBase = loadIngredients(siteIngredient.getName());
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =
@@ -62,11 +91,24 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                         .transform(siteIngredientBase);
 
         // result
-        return ingredients
+        List<Ingredient> soughtIngredient = ingredients
                 .stream()
                 .filter(ingredient ->
                         siteIngredient.getOriginalId().equals(ingredient.getOriginalId()))
-                .collect(Collectors.toList()).get(0);
+                .collect(Collectors.toList());
+
+        if(soughtIngredient.size() == 0){
+            soughtIngredient = ingredients
+                    .stream()
+                    .filter(ingredient ->
+                            siteIngredient.getName().equals(ingredient.getName()))
+                    .collect(Collectors.toList());
+            if(soughtIngredient.size() == 0) {
+                soughtIngredient = ingredients;
+            }
+        }
+
+        return soughtIngredient.get(0);
     }
 
     private Cuisine createCuisine(String cuisine){
@@ -130,26 +172,32 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
     private Recipe createRecipe(SiteRecipe siteRecipe) {
         // getting cuisine
+        String cuisineName =
+                getFirstOrSetDefault(Cuisine.DEFAULT_NAME, siteRecipe.getCuisines());
         Cuisine cuisine = SiteToEntityAdapter.findOrCreate(
                 Cuisine.class,
-                siteRecipe.getCuisines().get(0),
+                cuisineName,
                 cuisinesRepository,
                 Cuisine::getType,
                 this::createCuisine,
-                siteRecipe.getCuisines().get(0)
+                cuisineName
         );
 
         // getting dish
+        String dishName =
+                getFirstOrSetDefault(Dish.DEFAULT_NAME, siteRecipe.getDishes());
         Dish dish = SiteToEntityAdapter.findOrCreate(
                 Dish.class,
-                siteRecipe.getDishes().get(0),
+                dishName,
                 dishesRepository,
                 Dish::getType,
                 this::createDish,
-                siteRecipe.getDishes().get(0)
+                dishName
         );
 
         // getting meal
+        String mealName =
+                getFirstOrSetDefault(Meal.DEFAULT_NAME, siteRecipe.getMeals());
         Meal meal = SiteToEntityAdapter.findOrCreate(
                 Meal.class,
                 siteRecipe.getMeals().get(0),
@@ -171,6 +219,9 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                     label
             ));
         }
+        if(siteRecipe.getHealths().size() == 0){
+            healthDietLabels.add(createHealthDietLabel(HealthDietLabel.DEFAULT_HEALTHS_NAME, "healths"));
+        }
 
         for (String label : siteRecipe.getCautions()){
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
@@ -181,6 +232,9 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                     (str -> createHealthDietLabel(str, "cautions")),
                     label
             ));
+        }
+        if(siteRecipe.getCautions().size() == 0){
+            healthDietLabels.add(createHealthDietLabel(HealthDietLabel.DEFAULT_CAUTIONS_NAME, "cautious"));
         }
 
         for (String label : siteRecipe.getDiets()){
@@ -193,6 +247,9 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                     label
             ));
         }
+        if(siteRecipe.getDiets().size() == 0){
+            healthDietLabels.add(createHealthDietLabel(HealthDietLabel.DEFAULT_DIET_NAME, "diets"));
+        }
 
         // creating recipe
         Recipe recipe = new Recipe(
@@ -203,7 +260,8 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
                 cuisine,
                 meal,
                 dish,
-                siteRecipe.getOriginalId()
+                siteRecipe.getOriginalId(),
+                healthDietLabels
         );
         recipesRepository.save(recipe);
 

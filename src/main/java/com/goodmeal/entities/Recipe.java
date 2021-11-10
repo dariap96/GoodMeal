@@ -45,6 +45,7 @@ public class Recipe {
 
     @ManyToMany
     @JoinTable(name = "Labels_Recipes",
+               schema = "goodmeal",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "label_id"))
     private Set<HealthDietLabel> labelsSet = new HashSet<>();
@@ -65,7 +66,8 @@ public class Recipe {
             Cuisine cuisine,
             Meal meal,
             Dish dish,
-            String originalId
+            String originalId,
+            Set<HealthDietLabel> labels
     ) {
         this.name = name;
         this.time = time;
@@ -75,5 +77,6 @@ public class Recipe {
         this.meal = meal;
         this.dish = dish;
         this.originalId = originalId;
+        this.labelsSet = labels;
     }
 }

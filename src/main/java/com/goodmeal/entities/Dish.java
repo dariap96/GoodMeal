@@ -15,6 +15,7 @@ import java.util.Set;
 @Table(name = "Dishes", schema = "goodmeal")
 @Getter
 public class Dish {
+    public static final String DEFAULT_NAME = "No dish type";
 
     @Id
     @JsonApiId

@@ -4,6 +4,7 @@ import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 
 public class EdamIngredientRequest extends EdamRequest {
+
     public static final String DEFAULT_INGREDIENT = "apple";
     private static final String BASE = "https://api.edamam.com/api/food-database/v2/parser?";
 

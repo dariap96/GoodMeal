@@ -8,7 +8,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Getter
 public class SiteRecipeBase {
+
+    @JsonProperty("count")
+    private int count;
+
+    @JsonProperty("from")
+    private int from;
+
+    @JsonProperty("to")
+    private int to;
+
     @JsonProperty("hits")
     private List<Hit> hits;
 

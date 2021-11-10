@@ -20,6 +20,15 @@ public abstract class EdamRequest {
     protected abstract String getURI();
 
     protected <SiteBase> SiteBase sendRequest(Class<SiteBase> siteBaseClass) {
+        try
+        {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException ex)
+        {
+            System.out.println("sendingRequest interruption");
+            Thread.currentThread().interrupt();
+        }
         return new RestTemplate().getForObject(getURI(), siteBaseClass);
     }
 }

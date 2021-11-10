@@ -13,6 +13,9 @@ import java.util.Set;
 @Table(name = "Health_Diet_Labels", schema = "goodmeal")
 @Getter
 public class HealthDietLabel {
+    public static final String DEFAULT_HEALTHS_NAME = "No healths label";
+    public static final String DEFAULT_CAUTIONS_NAME = "No cautions label";
+    public static final String DEFAULT_DIET_NAME = "No diet label";
 
     @Id
     @JsonApiId
