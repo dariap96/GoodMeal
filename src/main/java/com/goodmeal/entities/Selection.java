@@ -28,7 +28,7 @@ public class Selection {
     private User user;
 
     @ManyToMany
-    @JoinTable(name = "Ingredients_Selections",
+    @JoinTable(name = "Ingredients_Selections", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "selection_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredientSet = new HashSet<>();

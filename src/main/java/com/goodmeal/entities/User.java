@@ -39,7 +39,7 @@ public class User {
     private Date bday;
 
     @ManyToMany
-    @JoinTable(name = "Users_Roles",
+    @JoinTable(name = "Users_Roles", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roleSet = new HashSet<>();
