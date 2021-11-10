@@ -1,5 +1,6 @@
 package com.goodmeal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Selection {
     @Column(name="selection_name")
     private String selectionName;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_Users")
     private User user;
@@ -34,7 +36,7 @@ public class Selection {
     private Set<Ingredient> ingredientSet = new HashSet<>();
 
     @ManyToMany
-    @JoinTable(name = "Recipes_Selections",
+    @JoinTable(name = "Recipes_Selections", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "selection_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipeSet = new HashSet<>();

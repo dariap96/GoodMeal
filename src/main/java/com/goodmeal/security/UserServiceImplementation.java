@@ -37,6 +37,7 @@ public class UserServiceImplementation implements UserDetailsService{
 
         user.setRole(forceRoleSetup());
 
+        // if you need to add users to database manually uncomment following
         String oldPass = user.getPassword();
         user.setPassword(passwordEncoder.encode(oldPass));
 
@@ -52,9 +53,12 @@ public class UserServiceImplementation implements UserDetailsService{
             return false;
         }
 
+        // if you need to add users to database manually comment line below
+        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         user.setRole(null);
         user.setSelectionSet(null);
-        //user.setRole(forceRoleSetup());
+
         userRepository.save(user);
         return true;
     }

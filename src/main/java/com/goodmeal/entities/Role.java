@@ -1,5 +1,6 @@
 package com.goodmeal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
@@ -25,10 +26,11 @@ public class Role {
     private String role;
 
     // ------ CAUSES ERROR ------ щас должно работать
-    @ManyToMany(mappedBy = "roleSet")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "roleSet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<User> userSet = new HashSet<>();
 
-     public Set<User> getUserSet() { return userSet; }
+    public Set<User> getUserSet() { return userSet; }
 
     public void setUserSet(Set<User> userSet) { this.userSet = userSet; }
 

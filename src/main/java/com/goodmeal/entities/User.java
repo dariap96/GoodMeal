@@ -1,5 +1,6 @@
 package com.goodmeal.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
@@ -38,13 +39,15 @@ public class User {
     @Column
     private Date bday;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "Users_Roles", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roleSet = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
 
     public Set<Selection> getSelectionSet() { return selectionSet; }
