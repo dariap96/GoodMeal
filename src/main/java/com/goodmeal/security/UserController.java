@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.concurrent.ExecutionException;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class UserController {
@@ -27,17 +31,14 @@ public class UserController {
         return true;
     }
 
-    // -------- NEED TO IMPLEMENT --------
-    //
-    // -----------------------------------
-    @GetMapping("/get_userdetails")
-    public ResponseEntity<UserDetails> getUserDetails(@RequestBody String username) {
-        return (ResponseEntity<UserDetails>) userService.loadUserByUsername(username);
-    }
+    @RequestMapping(value = "/userdata", method = RequestMethod.GET)
+    @ResponseBody
+    public UserDetails getUserDetails(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        String login = principal.getName();
 
-    @GetMapping("/get_credentials")
-    public String getUserCredentials() {
-        return "USER";
+        UserDetails user = userService.loadUserByUsername(login);
+        return user;
     }
 
 }
