@@ -6,5 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface MealsRepositoryImplementation extends CrudRepository<Meal,Long> {
+public interface MealsRepositoryImplementation
+        extends CrudRepository<Meal,Long> {
+    public Meal getByType(String type);
 }

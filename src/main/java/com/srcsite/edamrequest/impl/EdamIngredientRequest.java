@@ -1,5 +1,6 @@
 package com.srcsite.edamrequest.impl;
 
+import com.srcsite.edamrequest.APIKeys;
 import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 
@@ -10,8 +11,8 @@ public class EdamIngredientRequest extends EdamRequest {
 
     private final String ingredient;
 
-    public EdamIngredientRequest(String appId, String appKey, String ingredient) {
-        super(appId, appKey, BASE);
+    public EdamIngredientRequest(String ingredient) {
+        super(APIKeys.APP_FOOD_ID, APIKeys.APP_FOOD_KEY, BASE);
         if(ingredient.isBlank())
             ingredient = DEFAULT_INGREDIENT;
 

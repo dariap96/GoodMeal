@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface DishesRepositoryImplementation extends CrudRepository<Dish, Long> {
+public interface DishesRepositoryImplementation
+        extends CrudRepository<Dish, Long> {
+    public Dish getByType(String type);
 }

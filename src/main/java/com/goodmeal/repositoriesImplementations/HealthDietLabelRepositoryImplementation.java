@@ -7,6 +7,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface HealthDietLabelRepositoryImplementation
         extends CrudRepository<HealthDietLabel,Long> {
-
-
+    public HealthDietLabel getByLabel(String label);
 }

@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Component
-public interface CuisinesRepositoryImplementation extends CrudRepository<Cuisine, Long> {
+public interface CuisinesRepositoryImplementation
+        extends CrudRepository<Cuisine, Long> {
+    public Cuisine getByType(String type);
 }

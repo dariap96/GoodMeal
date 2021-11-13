@@ -7,4 +7,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface HdLabelTypeRepositoryImplementation
     extends CrudRepository<HdLabelType,Long> {
+    public HdLabelType getByType(String type);
 }
