@@ -15,42 +15,12 @@ import org.springframework.context.event.EventListener;
 import org.springframework.web.bind.annotation.*;
 
 @Configuration
-@RestController
 @SpringBootApplication
-@CrossOrigin(origins = "*")
 @Import({TestDataLoader.class})
 public class GoodMealApplication {
-
-	@Autowired
-	RecipesService recipesService;
-
-	@Autowired
-	UserServiceImplementation userService;
-
-	@GetMapping("/")
-	public String login() {
-		return "authenticated successfully";
-	}
-
-	@PostMapping("/register")
-	public boolean register(@RequestBody User user) {
-		System.out.println(user.getLogin());
-
-		if(!userService.saveUser(user)) { return false; }
-
-		return true;
-	}
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(GoodMealApplication.class, args);
 	}
-
-	/*
-	@EventListener(ApplicationReadyEvent.class)
-	public void testJpaMethods(){
-		 recipesService.findAll().forEach(it->System.out.println(it.getName()));
-	}
-	 */
 
 }

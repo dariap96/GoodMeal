@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
+import { currentUser, User } from '../model/User';
 
 @Component({
     selector: 'app-home',
@@ -8,10 +9,15 @@ import { RestapiService } from '../restapi.service';
 
 export class HomeComponent implements OnInit {
 
-    users:any;
-    constructor(private service:RestapiService) { }
+    users : any;
+    message : any;
+    currUser : any;
+    constructor(private service : RestapiService) { }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.currUser = this.service.getUser(currentUser.login);
+        this.currUser.userCredentials = this.service.getCredentials();
+    }
 
     getUsers(){
         let resp=this.service.getUsers();
