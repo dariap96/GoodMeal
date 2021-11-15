@@ -48,4 +48,17 @@ export class RestapiService {
     addUser(user: User) {
         return this.http.post<User[]>('http://localhost:4200/register', user);
     }
+
+    getRecipes() {
+        let headers = this.authHeader;
+
+        return this.http.get("http://localhost:8080/api/recipe", {headers, responseType: 'text' as 'json'});
+    }
+
+    getRecipesFilteredByMeal() {
+        let headers = this.authHeader;
+
+        // 2 is tmp, just for example
+        return this.http.get("http://localhost:8080/api/meal/2/recipes", {headers, responseType: 'text' as 'json'});
+    }
 }
