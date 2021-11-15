@@ -72,9 +72,9 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             }
             catch(InterruptedException ex)
             {
-                System.out.println("Ingredients loader interruption");
+                System.out.println("=Ingredients loader interruption=");
+                System.out.println("=================================");
                 Thread.currentThread().interrupt();
-                System.out.println("===============================");
             }
             return loadIngredients(name);
         }
@@ -204,36 +204,51 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     label,
                     hdLabelsRepository::getByLabel,
-                    (str -> createHealthDietLabel(str, "healths")),
+                    (str -> createHealthDietLabel(str, HdLabelType.HEALTHS)),
                     label
             ));
         }
         if(siteRecipe.getHealths().size() == 0){
-            healthDietLabels.add(createHealthDietLabel(HealthDietLabel.DEFAULT_HEALTHS_NAME, "healths"));
+            healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
+                    HealthDietLabel.DEFAULT_HEALTHS_NAME,
+                    hdLabelsRepository::getByLabel,
+                    (str -> createHealthDietLabel(str, HdLabelType.HEALTHS)),
+                    HealthDietLabel.DEFAULT_HEALTHS_NAME
+            ));
         }
 
         for (String label : siteRecipe.getCautions()){
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     label,
                     hdLabelsRepository::getByLabel,
-                    (str -> createHealthDietLabel(str, "cautions")),
+                    (str -> createHealthDietLabel(str, HdLabelType.CAUTIONS)),
                     label
             ));
         }
         if(siteRecipe.getCautions().size() == 0){
-            healthDietLabels.add(createHealthDietLabel(HealthDietLabel.DEFAULT_CAUTIONS_NAME, "cautious"));
+            healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
+                    HealthDietLabel.DEFAULT_CAUTIONS_NAME,
+                    hdLabelsRepository::getByLabel,
+                    (str -> createHealthDietLabel(str, HdLabelType.CAUTIONS)),
+                    HealthDietLabel.DEFAULT_CAUTIONS_NAME
+            ));
         }
 
         for (String label : siteRecipe.getDiets()){
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     label,
                     hdLabelsRepository::getByLabel,
-                    (str -> createHealthDietLabel(str, "diets")),
+                    (str -> createHealthDietLabel(str, HdLabelType.DIETS)),
                     label
             ));
         }
         if(siteRecipe.getDiets().size() == 0){
-            healthDietLabels.add(createHealthDietLabel(HealthDietLabel.DEFAULT_DIET_NAME, "diets"));
+            healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
+                    HealthDietLabel.DEFAULT_DIET_NAME,
+                    hdLabelsRepository::getByLabel,
+                    (str -> createHealthDietLabel(str, HdLabelType.DIETS)),
+                    HealthDietLabel.DEFAULT_DIET_NAME
+            ));
         }
 
         // creating recipe
