@@ -17,4 +17,8 @@ public class Food {
     private String categoryLabel;
     @JsonProperty("image")
     private String imageURI;
+
+    public String getName() {
+        return name.toLowerCase();
+    }
 }

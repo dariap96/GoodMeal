@@ -34,10 +34,8 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
     @Override
     public Ingredient transform(Food food) {
         return SiteToEntityAdapter.findOrCreate(
-                Ingredient.class,
-                food.getFoodId(),
-                ingredientsRepository,
-                Ingredient::getOriginalId,
+                food.getName(),
+                ingredientsRepository::getByName,
                 this::createIngredient,
                 food);
     }

@@ -22,7 +22,7 @@ public abstract class EdamRequest {
     protected <SiteBase> SiteBase sendRequest(Class<SiteBase> siteBaseClass) {
         try
         {
-            Thread.sleep(1000);
+            Thread.sleep(5);
         }
         catch(InterruptedException ex)
         {

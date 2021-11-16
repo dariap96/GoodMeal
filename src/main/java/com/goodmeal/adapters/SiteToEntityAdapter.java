@@ -1,46 +1,17 @@
 package com.goodmeal.adapters;
 
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.LinkedList;
-import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public interface SiteToEntityAdapter<Site, Entity> {
     public Entity transform(Site siteEntity);
 
-
-    public static <RepoKeyEntity, RepoValueEntity, IdClass> RepoKeyEntity find(
-            Class<RepoKeyEntity> entityClass,
+    public static <RepoKeyEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(
             IdClass id,
-            CrudRepository<RepoKeyEntity, RepoValueEntity> repository,
-            Function<RepoKeyEntity, IdClass> idFunction
-    ){
-        List<RepoKeyEntity> entities = new LinkedList<>();
-        repository.findAll().forEach(entities::add);
-
-        entities = entities.stream()
-                .filter(entity -> id.equals(idFunction.apply(entity)))
-                .collect(Collectors.toList());
-
-        if(entities.iterator().hasNext()) {
-            return entities.iterator().next();
-        }
-
-        return null;
-    }
-
-
-    public static <RepoKeyEntity, RepoValueEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(
-            Class<RepoKeyEntity> entityClass,
-            IdClass id,
-            CrudRepository<RepoKeyEntity, RepoValueEntity> repository,
-            Function<RepoKeyEntity, IdClass> function,
+            Function<IdClass, RepoKeyEntity> finder,
             Function<SourceEntity, RepoKeyEntity> creator,
             SourceEntity source
     ) {
-        RepoKeyEntity repoKeyEntity = find(entityClass, id, repository, function);
+        RepoKeyEntity repoKeyEntity = finder.apply(id);
         if (repoKeyEntity == null) {
             repoKeyEntity = creator.apply(source);
         }
