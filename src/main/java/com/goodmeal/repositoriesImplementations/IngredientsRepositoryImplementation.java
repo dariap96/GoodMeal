@@ -4,8 +4,10 @@ import com.goodmeal.entities.Ingredient;
 import org.springframework.stereotype.Component;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 @Component
 public interface IngredientsRepositoryImplementation
         extends CrudRepository<Ingredient,Long> {
-    public Ingredient getByOriginalId(String originalId);
+    public Ingredient getByName(String name);
 }

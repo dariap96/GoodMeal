@@ -7,14 +7,11 @@ import com.goodmeal.entities.*;
 import com.goodmeal.repositoriesImplementations.*;
 
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
-import com.srcsite.edamrequest.impl.EdamRecipeRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
-import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -63,17 +60,17 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         try {
             return new EdamIngredientRequest(name).sendRequest();
         } catch (Exception exception) {
-            System.out.println("======IngredientInterruption=====");
-            System.out.println(exception.getMessage());
-            System.out.println("=================================");
+//            System.out.println("======IngredientInterruption=====");
+//            System.out.println(exception.getMessage());
+//            System.out.println("=================================");
             try
             {
                 Thread.sleep(60_000);
             }
             catch(InterruptedException ex)
             {
-                System.out.println("=Ingredients loader interruption=");
-                System.out.println("=================================");
+//                System.out.println("=Ingredients loader interruption=");
+//                System.out.println("=================================");
                 Thread.currentThread().interrupt();
             }
             return loadIngredients(name);
@@ -268,8 +265,8 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         // creating ingredients to recipes
         for(SiteIngredient siteIngredient : siteRecipe.getSiteIngredients()){
             Ingredient ingredient = SiteToEntityAdapter.findOrCreate(
-                    siteIngredient.getOriginalId(),
-                    ingredientsRepository::getByOriginalId,
+                    siteIngredient.getName(),
+                    ingredientsRepository::getByName,
                     this::createIngredient,
                     siteIngredient
             );

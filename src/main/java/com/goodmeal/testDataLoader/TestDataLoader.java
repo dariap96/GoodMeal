@@ -69,18 +69,18 @@ public class TestDataLoader {
                 }
             }
         } catch (Exception exception) {
-            System.out.println("======RecipeInterruption=====");
-            System.out.println(exception.getMessage());
-            System.out.println("=============================");
+//            System.out.println("======RecipeInterruption=====");
+//            System.out.println(exception.getMessage());
+//            System.out.println("=============================");
             try
             {
                 Thread.sleep(60_000);
             }
             catch(InterruptedException ex)
             {
-                System.out.println("Dataloader interruption");
+//                System.out.println("Dataloader interruption");
+//                System.out.println("=======================");
                 Thread.currentThread().interrupt();
-                System.out.println("=======================");
             }
             loadData(recipeBaseAdapter, i, j);
         }
@@ -99,6 +99,7 @@ public class TestDataLoader {
         entityManager.flush();
 */
 /*
+
         SiteToEntityRecipeBaseAdapter recipeBaseAdapter = new SiteToEntityRecipeBaseAdapter(
                 recipesRepository,
                 ingredientsRepository,
@@ -113,6 +114,7 @@ public class TestDataLoader {
         SiteRecipeBase siteRecipeBase = new EdamRecipeRequest("apple").sendRequest();
         recipeBaseAdapter.transform(siteRecipeBase);
         loadData(recipeBaseAdapter, 0, 0);
+
 */
 /*
         List<Recipe> recipes = new LinkedList<>();
