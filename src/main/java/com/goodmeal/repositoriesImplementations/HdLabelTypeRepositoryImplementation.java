@@ -8,4 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface HdLabelTypeRepositoryImplementation
     extends JpaRepository<HdLabelType,Long> {
+
+    HdLabelType getByType(String s);
 }

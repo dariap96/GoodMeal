@@ -8,4 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface DishesRepositoryImplementation
         extends JpaRepository<Dish, Long> {
+
+
+    Dish getByType(String s);
 }

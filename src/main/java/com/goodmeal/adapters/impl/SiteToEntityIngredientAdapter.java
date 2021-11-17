@@ -33,7 +33,7 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
 
     @Override
     public Ingredient transform(Food food) {
-        return SiteToEntityAdapter.findOrCreate(
+        return (Ingredient) SiteToEntityAdapter.findOrCreate(
                 food.getName(),
                 ingredientsRepository::getByName,
                 this::createIngredient,

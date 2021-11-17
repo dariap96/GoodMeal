@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface IngredientsToRecipesRepositoryImplementation extends JpaRepository<IngredientsToRecipes, IngredientsToRecipesKey> {
+    IngredientsToRecipes getByRecipe_IdAndIngredient_Id(Long id, Long id1);
 }

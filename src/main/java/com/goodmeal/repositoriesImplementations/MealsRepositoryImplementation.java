@@ -8,4 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface MealsRepositoryImplementation extends JpaRepository<Meal,Long> {
+
+
+    Meal getByType(String s);
 }

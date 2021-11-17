@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Component
 public interface CuisinesRepositoryImplementation extends JpaRepository<Cuisine, Long> {
+
+
+    Cuisine getByType(String s);
 }
