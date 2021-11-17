@@ -2,8 +2,11 @@ package com.goodmeal.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
+import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "Users", schema = "goodmeal")
 @Getter
+@Setter
 public class User {
 
     @Id
@@ -39,30 +43,17 @@ public class User {
     @Column
     private Date bday;
 
-    @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "Users_Roles", schema = "goodmeal",
+    @JoinTable(name = "users_roles", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<Role> roleSet = new HashSet<>();
 
-    @JsonIgnore
+    @JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
 
-    public Set<Selection> getSelectionSet() { return selectionSet; }
-
-    public void setSelectionSet(Set<Selection> selectionSet) { this.selectionSet = selectionSet; }
-
-    public Set<Role> getRole() { return roleSet; }
-
-    public void setRole(Set<Role> roleSet) { this.roleSet = roleSet; }
-
-    public String getLogin() { return login; }
-
-    public String getPassword() { return password; }
-
-    public void setPassword(String password) { this.password = password; }
 
     public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
         this.login = login;

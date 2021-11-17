@@ -13,4 +13,5 @@ import java.util.Set;
 
 @Component
 public interface UsersRepositoryImplementation extends JpaRepository<User,Long> {
+    User getUserByLogin(String login);
 }

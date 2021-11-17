@@ -2,7 +2,9 @@ package com.goodmeal.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
+import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,28 +16,32 @@ import java.util.Set;
 @Entity
 @Table(name = "Selections", schema = "goodmeal")
 @Getter
+@Setter
 public class Selection {
 
     @Id
     @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "selection_id")
     private Long id;
 
     @Column(name="selection_name")
     private String selectionName;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_Users")
+    @JsonApiRelation(idField = "id", serialize = SerializeType.ONLY_ID)
     private User user;
 
-    @ManyToMany
+    @JsonApiRelation(serialize = SerializeType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "Ingredients_Selections", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "selection_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredientSet = new HashSet<>();
 
-    @ManyToMany
+    @JsonApiRelation(serialize = SerializeType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "Recipes_Selections", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "selection_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
@@ -47,6 +53,10 @@ public class Selection {
         this.ingredientSet = ingredientSet;
         this.recipeSet = recipeSet;
     }
+
+     public Selection(String selectionName) {
+        this.selectionName = selectionName;
+     }
 
     public Selection() {
     }
