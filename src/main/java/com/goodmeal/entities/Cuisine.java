@@ -1,8 +1,10 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "Cuisine", schema = "goodmeal")
 @Getter
+@Setter
 public class Cuisine {
     public static final String DEFAULT_NAME = "No cuisine type";
 
@@ -21,8 +24,10 @@ public class Cuisine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column
     private String type;
+
 
     @OneToMany(mappedBy = "cuisine")
     private Set<Recipe> recipes;

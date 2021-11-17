@@ -1,8 +1,11 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
+import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name = "Recipes", schema="goodmeal")
 @Getter
+@Setter
 public class Recipe {
 
     @Id
@@ -43,18 +47,20 @@ public class Recipe {
     @ManyToOne
     private Dish dish;
 
-    @ManyToMany
+    //@JsonApiRelation(serialize = SerializeType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Labels_Recipes",
                schema = "goodmeal",
                joinColumns = @JoinColumn(name = "recipe_id"),
                inverseJoinColumns = @JoinColumn(name = "label_id"))
-    private Set<HealthDietLabel> labelsSet = new HashSet<>();
+    private Set<HealthDietLabel> labelsSet;
 
     @OneToMany(mappedBy = "recipe")
-    private Set<IngredientsToRecipes> ingredientsSet = new HashSet<>();
+    private Set<IngredientsToRecipes> ingredientsSet;
 
-    @ManyToMany(mappedBy = "recipeSet")
-    private Set<Selection> recipeSet = new HashSet<>();
+    @JsonApiRelation
+    @ManyToMany(mappedBy = "recipeSet", fetch = FetchType.LAZY)
+    private Set<Selection> selectionSet;
 
     public Recipe() {}
 

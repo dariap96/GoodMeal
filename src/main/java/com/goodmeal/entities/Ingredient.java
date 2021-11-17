@@ -1,8 +1,10 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
+import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -15,6 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name="Ingredients", schema = "goodmeal")
 @Getter
+@Setter
 public class Ingredient implements Serializable {
 
     @Id
@@ -46,12 +49,13 @@ public class Ingredient implements Serializable {
     @Column
     private String originalId;
 
+
     @OneToMany(mappedBy = "ingredient")
-    private Set<IngredientsToRecipes> ingredientsSet = new HashSet<>();
+    private Set<IngredientsToRecipes> ingredientsSet;
 
+    @JsonApiRelation
     @ManyToMany(mappedBy = "ingredientSet")
-
-    private Set<Selection> selectionSet = new HashSet<>();
+    private Set<Selection> selectionSet;
 
     public Ingredient() {}
 

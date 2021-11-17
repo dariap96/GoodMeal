@@ -1,6 +1,7 @@
 package com.goodmeal.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.Objects;
 @Entity
 @Table (name = "Ingredients_Recipes", schema = "goodmeal")
 @Getter
+@Setter
 public class IngredientsToRecipes {
 
     @EmbeddedId

@@ -1,6 +1,7 @@
 package com.goodmeal.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 @Embeddable
 @Getter
+@Setter
 public class IngredientsToRecipesKey implements Serializable {
 
     @Column //(name = "recipe_id")
