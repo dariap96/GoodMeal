@@ -24,7 +24,7 @@ public class UserDetailsImplementation implements UserDetails {
 
         this.grantedAuthorityList = new LinkedList<>();
         List<Role> rolesList = new LinkedList<Role>();
-        rolesList.addAll(user.getRole());
+        rolesList.addAll(user.getRoleSet());
 
         for (Role role : rolesList) {
             System.out.println("----- ROLES: ");
