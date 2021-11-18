@@ -1,43 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {box-sizing: border-box;}
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #e9e9e9;
+        }
+
+        .topnav a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .topnav .search-container {
+            float: right;
+        }
+
+        .topnav input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+
+        .topnav .search-container button {
+            float: right;
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 8px;
+            background: #ddd;
+            font-size: 17px;
+            border: none;
+            cursor: default;
+        }
+
+        .topnav .search-container button:hover {
+            background: #ccc;
+        }
+
+        @media screen and (max-width: 600px) {
+            .topnav .search-container {
+                float: right;
+            }
+            .topnav a, .topnav input[type=text], .topnav .search-container button {
+                float: right;
+                display: block;
+                text-align: right;
+                width: 100%;
+                margin: 0;
+                padding: 14px;
+            }
+            .topnav input[type=text] {
+                border: 1px solid #ccc;
+            }
+        }
+        body {
+            background: white;
+            color: black;
+            text-align: left;
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .big {
+            font-size: 1.0em;
+        }
+
+
+        /* Custom dropdown */
+        .custom-dropdown {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 3px; /* demo only */
+        }
+
+        .custom-dropdown select {
+            cursor:pointer;
+            background-color: #2196F3;
+            color: #fff;
+            font-size: inherit;
+            padding: .5em;
+            padding-right: 1em;
+            border: 0;
+            margin: 0;
+            border-radius: 2px;
+            text-indent: 0.01px;
+            text-overflow: '';
+            -webkit-appearance: button; /* hide default arrow in chrome OSX */
+        }
+
+        /*.custom-dropdown::before,*/
+        /*.custom-dropdown::after {*/
+        /*    content: "";*/
+        /*    position: absolute;*/
+        /*    pointer-events: none;*/
+        /*}*/
+
+        /*.custom-dropdown::after { !*  Custom dropdown arrow *!*/
+        /*    content: "\25BC";*/
+        /*    height: 1em;*/
+        /*    font-size: .625em;*/
+        /*    line-height: 1;*/
+        /*    right: 1.2em;*/
+        /*    top: 10%;*/
+        /*    margin-top:-.5em;*/
+        /*}*/
+
+        /*.custom-dropdown::before { !*  Custom dropdown arrow cover *!*/
+        /*    width: 2em;*/
+        /*    right: 0;*/
+        /*    top: 0;*/
+        /*    bottom: 0;*/
+        /*    border-radius: 0 3px 3px 0;*/
+        /*}*/
+
+        /*.custom-dropdown select[disabled] {*/
+        /*    color: rgba(0,0,0,.3);*/
+        /*}*/
+
+        /*.custom-dropdown select[disabled]::after {*/
+        /*    color: rgba(0,0,0,.1);*/
+        /*}*/
+
+        /*.custom-dropdown::before {*/
+        /*    background-color: rgba(0,0,0,.15);*/
+        /*}*/
+
+        /*.custom-dropdown::after {*/
+        /*    color: rgba(0,0,0,.4);*/
+        /*}*/
+         input[type=submit] {
+            background-color:  #2196F3;
+            border: none;
+            border-radius: 2px;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+    </style>
+
+<title></title>
 </head>
-
 <body>
+<div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <input type="text" placeholder="search your fav recipe...">
+</div>
+<div style="padding-left:10px">
 
-    <div class="container">
-        <button type="button" class="btn btn-primary" (click)="getUsers()">FindUsers</button>
-    </div>
+    <h2>Recipe search</h2>
+    <p>You are able to choose as many values for each filter as you want</p>
 
-    <div class="container">
-         <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td>{{user.id}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>{{user.mobile}}</td>
-                </tr>
+</div>
 
-            </tbody>
-        </table>
-    </div>
+<div style="padding-left:10px">
+
+
+<span class="custom-dropdown big">
+    Meal:  <select (change)="selectChangeHandler($event)" name="Meal" id="Meal">
+    <option value=""></option>
+    <option value="Breakfast">Breakfast</option>
+    <option value="Lunch">Lunch</option>
+    <option value="Dinner">Dinner</option>
+    <option value="Brunch">Brunch</option>
+    <option value="Teatime">Teatime</option>
+    <option value="Snack">Snack</option>
+</select>
+
+    <p><span>You've selected: </span>{{selectedMeal}}</p>
+
+    Dish: <select (change)="selectChangeHandler1($event)" name="Dish" id="Dish">
+    <option value=""></option>
+    <option value="Main course">Main course</option>
+    <option value="Salad">Salad</option>
+    <option value="Soup">Soup</option>
+    <option value="Starter">Starter</option>
+    <option value="Egg">Egg</option>
+    <option value="Sandwich">Sandwich</option>
+    <option value="Dessert">Dessert</option>
+    <option value="Pancakes">Pancakes</option>
+    <option value="Biscuits and cookies">Biscuits and cookies</option>
+    <option value="Cereals">Cereals</option>
+    <option value="Bread">Bread</option>
+    <option value="Condiments and sauces">Condiments and sauces</option>
+    <option value="Preps">Preps</option>
+    <option value="Preserve">Preserve</option>
+    <option value="Christmas">Christmas</option>
+    <option value="Halloween">Halloween</option>
+    <option value="Drinks">Drinks</option>
+    <option value="No dish type">No dish type</option>
+</select>
+    <p><span>You've selected: </span>{{selectedDish}}</p>
+ </span>
+
+    <form [formGroup]="form">
+    Dish: <select formControlName="dish" name="cuisine" id="cuisine">
+    <option *ngFor = "let dish of dishes" [ngValue] = "dish">{{dish.attributes.type}}</option>
+</select>
+
+    <br><br>
+
+    <input type="submit" value="Submit">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    </form>
+</div>
+
 </body>
-
 </html>
