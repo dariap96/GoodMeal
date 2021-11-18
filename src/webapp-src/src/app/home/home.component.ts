@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import { currentUser, User } from '../model/User';
 import {FormControl, FormGroup} from "@angular/forms";
+import { Convert, Dishes } from '../model/Dishes';
 
-
+/*
 class Dish {
     id : String;
     type : String;
 }
-
+*/
 
 @Component({
     selector: 'app-home',
@@ -16,13 +17,30 @@ class Dish {
 })
 
 
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+    /*
     selectedMeal: string = '';
     selectedDish: string ='';
-    dishess =this.service.getDishes();
+    */
+
+    dishesList : Dishes;
+    constructor(private service : RestapiService) {}
+
+    ngOnInit() {
+        this.service.getDishes().subscribe( data => {
+            this.dishesList = Convert.toDishes(data.toString());
+
+            // пример доступа к id и к имени dish-a
+            console.log(this.dishesList.data[0].id);
+            console.log(this.dishesList.data[0].attributes.type);
+        });
+    }
 
 
+    //dishess =this.service.getDishes();
 
+
+    /*
     dishes = [{
         "id": "1",
         "type": "dish",
@@ -72,6 +90,7 @@ export class HomeComponent implements OnInit{
     get dish(): string {
         return this.form ? this.form.get('dish').value : '';
     }
+    
 
 
     selectChangeHandler (event: any) {
@@ -80,10 +99,5 @@ export class HomeComponent implements OnInit{
     selectChangeHandler1(event:any){
         this.selectedDish = event.target.value;
     }
-
-
-    ngOnInit(): void {
-
-    }
-
+    */
 }
