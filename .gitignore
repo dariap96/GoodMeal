@@ -2,3 +2,4 @@
 target
 GoodMeal.iml
 /src/main/resources/application.properties
+/src/webapp-src/node_modules
