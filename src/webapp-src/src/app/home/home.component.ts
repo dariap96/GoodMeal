@@ -20,24 +20,28 @@ class Dish {
 
 
 export class HomeComponent implements OnInit {
-    /*
+
     selectedMeal: string = '';
     selectedDish: string ='';
-    */
+
 
     dishesList : Dishes;
     mealsList : Meals;
     cuisinesList : Cuisines;
     userdata : User;
 
-    constructor(private service : RestapiService) {}
+    selected = "----"
+
+    update(e){
+        this.selected = e.target.value
+    }
 
     ngOnInit() {
         this.service.getUserdata().subscribe( data => {
             this.userdata = ConvertUser.toUser(data.toString());
         });
 
-        this.service.getDishes().subscribe( data => {
+        this.service.getDishes().subscribe(data => {
             this.dishesList = ConvertDishes.toDishes(data.toString());
 
             // пример доступа к id и к имени dish-a
@@ -63,7 +67,7 @@ export class HomeComponent implements OnInit {
     }
 
 
-    //dishess =this.service.getDishes();
+
 
 
     /*
@@ -104,7 +108,7 @@ export class HomeComponent implements OnInit {
             }
         }];
 
-
+    */
     form: FormGroup;
 
     constructor(private service: RestapiService) {
@@ -125,5 +129,5 @@ export class HomeComponent implements OnInit {
     selectChangeHandler1(event:any){
         this.selectedDish = event.target.value;
     }
-    */
+
 }
