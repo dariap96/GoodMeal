@@ -67,6 +67,10 @@ export class RestapiService {
     getAllMealRecipe(mealId:number ) {
         return '/meal/${mealId}/recipes'
     }
+    getFilteredRecipe(cuisineId:number){
+        let headers=this.authHeader;
+        return this.http.get("http://localhost:4200/api/recipe?filter[cuisine.id]=${cuisineId}",{headers, responseType: 'text' as 'json'});
+    }
 
 
 }

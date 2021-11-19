@@ -17,18 +17,21 @@ export class HomeComponent implements OnInit {
     cuisinesList : Cuisines;
     userdata : User;
 
-    selectedMeal = "    "
+    selectedMeal = ""
     selectedDish = "    "
-    selectedCuisine = "    "
+    selectedCuisine = null
 
     selectChangeHandlerMeal(e) {
-        this.selectedMeal = e.target.value;    //не работает :)))))) выдает Object
+        this.selectedMeal = e.target.value;
     }
     selectChangeHandlerDish(e){
-        this.selectedDish = e.target.value;    //не работает :)))))) выдает Object
+        this.selectedDish = e.target.value;
     }
     selectChangeHandlerCuisine(e){
-        this.selectedCuisine = e.target.value;    //не работает :)))))) выдает Object
+        this.selectedCuisine = e.target.value;
+    }
+    selectClickHandlerRecipe(){
+     return this.service.getFilteredRecipe(this.selectedCuisine)
     }
 
     ngOnInit() {
