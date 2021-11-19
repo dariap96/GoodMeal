@@ -224,7 +224,8 @@
 
     <form [formGroup]="form">
     Dish: <select formControlName="dish" name="cuisine" id="cuisine">
-    <option *ngFor = "let dish of dishes" [ngValue] = "dish">{{dish.attributes.type}}</option>
+    <option>{{ this.dishesList.data[0].attributes.type}}</option>
+     <!--надо как-то передавать в опшн не только 1 элемент =)))))))))  -->
 </select>
 
     <br><br>
