@@ -34,6 +34,12 @@ export class RestapiService {
     //         ))
     // }
 
+    getUserdata() {
+        let headers = this.authHeader
+
+        return this.http.get("http://localhost:4200/userdata", {headers, responseType: 'text' as 'json'});
+    }
+
     addUser(user: User) {
         return this.http.post<User[]>('http://localhost:4200/register', user);
     }
