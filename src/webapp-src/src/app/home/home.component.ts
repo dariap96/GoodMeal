@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
-import { currentUser, User } from '../model/User';
 import {FormControl, FormGroup} from "@angular/forms";
 import { ConvertDishes, Dishes } from '../model/Dishes';
 import { ConvertMeals, Meals} from "../model/Meals";
 import { ConvertCuisines, Cuisines } from "../model/Cuisines";
+import { ConvertUser, User } from "../model/User";
 
 /*
 class Dish {
@@ -28,10 +28,15 @@ export class HomeComponent implements OnInit {
     dishesList : Dishes;
     mealsList : Meals;
     cuisinesList : Cuisines;
+    userdata : User;
 
     constructor(private service : RestapiService) {}
 
     ngOnInit() {
+        this.service.getUserdata().subscribe( data => {
+            this.userdata = ConvertUser.toUser(data.toString());
+        });
+
         this.service.getDishes().subscribe( data => {
             this.dishesList = ConvertDishes.toDishes(data.toString());
 

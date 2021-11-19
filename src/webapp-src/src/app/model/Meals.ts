@@ -1,35 +1,35 @@
 export interface Meals {
-    data:  Datum[];
-    links: DatumLinks;
+    data :  Datum[];
+    links : DatumLinks;
 }
 
 export interface Datum {
-    id:            number;
-    type:          Type;
-    links:         DatumLinks;
-    attributes:    Attributes;
-    relationships: Relationships;
+    id :            number;
+    type :          Type;
+    links :         DatumLinks;
+    attributes :    Attributes;
+    relationships : Relationships;
 }
 
 export interface Attributes {
-    type: string;
+    type : string;
 }
 
 export interface DatumLinks {
-    self: string;
+    self : string;
 }
 
 export interface Relationships {
-    recipes: Recipes;
+    recipes : Recipes;
 }
 
 export interface Recipes {
-    links: RecipesLinks;
+    links : RecipesLinks;
 }
 
 export interface RecipesLinks {
-    self:    string;
-    related: string;
+    self :    string;
+    related : string;
 }
 
 export enum Type {
@@ -37,11 +37,11 @@ export enum Type {
 }
 
 export class ConvertMeals {
-    public static toMeals(json: string): Meals {
+    public static toMeals(json : string) : Meals {
         return JSON.parse(json);
     }
 
-    public static mealsToJson(value: Meals): string {
+    public static mealsToJson(value : Meals) : string {
         return JSON.stringify(value);
     }
 }

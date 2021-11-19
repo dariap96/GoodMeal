@@ -1,11 +1,23 @@
-export class User {
-    login : String;
-    password : String;
-    name : String;
-    surname : String;
-    email : String;
-    bday : String;
-    userCredentials? : String;
+export interface User {
+    enabled :               boolean;
+    authorities :           Authority[];
+    accountNonExpired :     boolean;
+    accountNonLocked :      boolean;
+    credentialsNonExpired : boolean;
+    username :              string;
+    password :              string;
 }
 
-export let currentUser = new User();
+export interface Authority {
+    authority : string;
+}
+
+export class ConvertUser {
+    public static toUser(json : string) : User {
+        return JSON.parse(json);
+    }
+
+    public static userToJson(value : User) : string {
+        return JSON.stringify(value);
+    }
+}
