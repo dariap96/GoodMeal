@@ -188,26 +188,26 @@
 
  Meal:  <select #meal (change)="selectChangeHandlerMeal($event)" name="meal">
         <option value="default">  </option>
-        <option *ngFor="let meal of mealsList.data" [value]="meal">{{meal.attributes.type}}</option>
+        <option *ngFor="let meal of mealsList.data" [value]="meal.attributes.type">{{meal.attributes.type}}</option>
         </select>
 <p> You've selected: {{selectedMeal}}</p>  <!--выдает объект типа object-->
 
 
  Dish: <select #dish (change)="selectChangeHandlerDish($event)" name="dish">
            <option value="default">  </option>
-           <option *ngFor="let dish of dishesList.data" [value]="dish">{{dish.attributes.type}}</option>
+           <option *ngFor="let dish of dishesList.data" [value]="dish.attributes.type">{{dish.attributes.type}}</option>
        </select>
  <p> You've selected: {{selectedDish}}</p> <!--выдает объект типа object-->
 
  Cuisine: <select #cuisine (change)="selectChangeHandlerCuisine($event)" name="cuisine">
            <option value="default">  </option>
-           <option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine">{{cuisine.attributes.type}}</option>
+           <option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.id">{{cuisine.attributes.type}}</option>
        </select>
  <p> You've selected: {{selectedCuisine}}</p> <!--выдает объект типа object-->
 
 </span>
 <br><br>
-<input type="submit" value="Submit">
+<input (click)="selectClickHandlerRecipe" type="submit" value="Submit">
 </div>
 
 
