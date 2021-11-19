@@ -220,21 +220,19 @@
     <option value="No dish type">No dish type</option>
 </select>
     <p><span>You've selected: </span>{{selectedDish}}</p>
- </span>
 
-    <form [formGroup]="form">
-    Dish: <select #dish (change)="update($event)" formControlName="dish" name="cuisine" id="cuisine">
-    <option value="default">----</option>
-    <option *ngFor="let dish of dishesList.data" [value]="dish">{{dish.attributes.type}}</option>
-     <!-- <option>{{ this.dishesList.data[0].attributes.type}}</option>  -->
-</select>
 
+<!--<form [formGroup]="form">-->
+ Dish: <select #dish (change)="update($event)" formControlName="dish" name="cuisine" id="cuisine">
+           <option value="default">     </option>
+           <option *ngFor="let dish of dishesList.data" [value]="dish">{{dish.attributes.type}}</option>
+       </select>
+  </span>
     <br><br>
 
     <input type="submit" value="Submit">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
-    </form>
 </div>
 
 </body>
