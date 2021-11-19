@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { User } from './model/User'
+import {ConvertUser, User} from './model/User'
 import { map } from 'rxjs/operators';
+import {ConvertRecipes} from "./model/Recipes";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -67,9 +68,19 @@ export class RestapiService {
     getAllMealRecipe(mealId:number ) {
         return '/meal/${mealId}/recipes'
     }
+
     getFilteredRecipe(cuisineId:number){
         let headers=this.authHeader;
-        return this.http.get("http://localhost:4200/api/recipe?filter[cuisine.id]=${cuisineId}",{headers, responseType: 'text' as 'json'});
+        console.log("http://localhost:4200/api/recipe?filter[cuisine.id]=" + cuisineId.toString())
+        let name = "";
+        this.http.get(
+            "http://localhost:4200/api/recipe?filter[cuisine.id]=" + cuisineId.toString(),
+            {headers, responseType: 'text' as 'json'})
+            .subscribe(data => {
+                console.log(data);
+                name = ConvertRecipes.toRecipes(data.toString()).data[0].attributes.name;
+            });
+        return name;
     }
 
 

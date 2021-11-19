@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
         this.selectedCuisine = e.target.value;
     }
     selectClickHandlerRecipe(){
-     return this.service.getFilteredRecipe(this.selectedCuisine)
+        console.log(this.service.getFilteredRecipe(this.selectedCuisine));
     }
 
     ngOnInit() {
