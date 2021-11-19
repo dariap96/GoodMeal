@@ -21,3 +21,5 @@ export class ConvertUser {
         return JSON.stringify(value);
     }
 }
+
+export var currentUser : User;
