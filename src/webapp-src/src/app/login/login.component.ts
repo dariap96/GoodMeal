@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import { Router } from '@angular/router';
-import { currentUser } from '../model/User';
 
 @Component({
     selector: 'app-login',
@@ -23,8 +22,6 @@ export class LoginComponent implements OnInit {
         let resp = this.service.login(this.username, this.password);
         
         resp.subscribe(data => {
-            this.message = data;
-            currentUser.login = this.username;
             this.router.navigate(["/home"])
         });
     }
