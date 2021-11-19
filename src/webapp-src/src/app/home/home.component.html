@@ -223,9 +223,10 @@
  </span>
 
     <form [formGroup]="form">
-    Dish: <select formControlName="dish" name="cuisine" id="cuisine">
-    <option>{{ this.dishesList.data[0].attributes.type}}</option>
-     <!--надо как-то передавать в опшн не только 1 элемент =)))))))))  -->
+    Dish: <select #dish (change)="update($event)" formControlName="dish" name="cuisine" id="cuisine">
+    <option value="default">----</option>
+    <option *ngFor="let dish of dishesList.data" [value]="dish">{{dish.attributes.type}}</option>
+     <!-- <option>{{ this.dishesList.data[0].attributes.type}}</option>  -->
 </select>
 
     <br><br>
