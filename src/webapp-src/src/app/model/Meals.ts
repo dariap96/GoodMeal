@@ -1,4 +1,4 @@
-export interface Dishes {
+export interface Meals {
     data:  Datum[];
     links: DatumLinks;
 }
@@ -33,15 +33,15 @@ export interface RecipesLinks {
 }
 
 export enum Type {
-    Dish = "dish",
+    Meal = "meal",
 }
 
-export class ConvertDishes {
-    public static toDishes(json: string): Dishes {
+export class ConvertMeals {
+    public static toMeals(json: string): Meals {
         return JSON.parse(json);
     }
 
-    public static dishesToJson(value: Dishes): string {
+    public static mealsToJson(value: Meals): string {
         return JSON.stringify(value);
     }
 }

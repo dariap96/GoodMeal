@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import { currentUser, User } from '../model/User';
 import {FormControl, FormGroup} from "@angular/forms";
-import { Convert, Dishes } from '../model/Dishes';
+import { ConvertDishes, Dishes } from '../model/Dishes';
+import { ConvertMeals, Meals} from "../model/Meals";
+import { ConvertCuisines, Cuisines } from "../model/Cuisines";
 
 /*
 class Dish {
@@ -24,15 +26,34 @@ export class HomeComponent implements OnInit {
     */
 
     dishesList : Dishes;
+    mealsList : Meals;
+    cuisinesList : Cuisines;
+
     constructor(private service : RestapiService) {}
 
     ngOnInit() {
         this.service.getDishes().subscribe( data => {
-            this.dishesList = Convert.toDishes(data.toString());
+            this.dishesList = ConvertDishes.toDishes(data.toString());
 
             // пример доступа к id и к имени dish-a
             console.log(this.dishesList.data[0].id);
             console.log(this.dishesList.data[0].attributes.type);
+        });
+
+        this.service.getMeals().subscribe( data => {
+            this.mealsList = ConvertMeals.toMeals(data.toString());
+
+            // пример доступа к id и к имени meal-a
+            console.log(this.mealsList.data[0].id);
+            console.log(this.mealsList.data[0].attributes.type);
+        });
+
+        this.service.getCuisines().subscribe( data => {
+            this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
+
+            // пример доступа к id и к имени cuisine
+            console.log(this.cuisinesList.data[0].id);
+            console.log(this.cuisinesList.data[0].attributes.type);
         });
     }
 
