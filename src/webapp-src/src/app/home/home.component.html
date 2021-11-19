@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
+<style>
         * {box-sizing: border-box;}
 
         body {
@@ -164,76 +164,52 @@
             cursor: pointer;
         }
 
-    </style>
+</style>
 
 <title></title>
 </head>
+
 <body>
+
 <div class="topnav">
     <a class="active" href="#home">Home</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <input type="text" placeholder="search your fav recipe...">
 </div>
-<div style="padding-left:10px">
 
+<div style="padding-left:10px">
     <h2>Recipe search</h2>
     <p>You are able to choose as many values for each filter as you want</p>
-
 </div>
 
 <div style="padding-left:10px">
+<span class="custom-dropdown big"> <!--надо сделать их все одного размера-->
+
+ Meal:  <select #meal (change)="selectChangeHandlerMeal($event)" name="meal">
+        <option value="default">  </option>
+        <option *ngFor="let meal of mealsList.data" [value]="meal">{{meal.attributes.type}}</option>
+        </select>
+<p> You've selected: {{selectedMeal}}</p>  <!--выдает объект типа object-->
 
 
-<span class="custom-dropdown big">
-    Meal:  <select (change)="selectChangeHandler($event)" name="Meal" id="Meal">
-    <option value=""></option>
-    <option value="Breakfast">Breakfast</option>
-    <option value="Lunch">Lunch</option>
-    <option value="Dinner">Dinner</option>
-    <option value="Brunch">Brunch</option>
-    <option value="Teatime">Teatime</option>
-    <option value="Snack">Snack</option>
-</select>
-
-    <p><span>You've selected: </span>{{selectedMeal}}</p>
-
-    Dish: <select (change)="selectChangeHandler1($event)" name="Dish" id="Dish">
-    <option value=""></option>
-    <option value="Main course">Main course</option>
-    <option value="Salad">Salad</option>
-    <option value="Soup">Soup</option>
-    <option value="Starter">Starter</option>
-    <option value="Egg">Egg</option>
-    <option value="Sandwich">Sandwich</option>
-    <option value="Dessert">Dessert</option>
-    <option value="Pancakes">Pancakes</option>
-    <option value="Biscuits and cookies">Biscuits and cookies</option>
-    <option value="Cereals">Cereals</option>
-    <option value="Bread">Bread</option>
-    <option value="Condiments and sauces">Condiments and sauces</option>
-    <option value="Preps">Preps</option>
-    <option value="Preserve">Preserve</option>
-    <option value="Christmas">Christmas</option>
-    <option value="Halloween">Halloween</option>
-    <option value="Drinks">Drinks</option>
-    <option value="No dish type">No dish type</option>
-</select>
-    <p><span>You've selected: </span>{{selectedDish}}</p>
-
-
-<!--<form [formGroup]="form">-->
- Dish: <select #dish (change)="update($event)" formControlName="dish" name="cuisine" id="cuisine">
-           <option value="default">     </option>
+ Dish: <select #dish (change)="selectChangeHandlerDish($event)" name="dish">
+           <option value="default">  </option>
            <option *ngFor="let dish of dishesList.data" [value]="dish">{{dish.attributes.type}}</option>
        </select>
-  </span>
-    <br><br>
+ <p> You've selected: {{selectedDish}}</p> <!--выдает объект типа object-->
 
-    <input type="submit" value="Submit">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ Cuisine: <select #cuisine (change)="selectChangeHandlerCuisine($event)" name="cuisine">
+           <option value="default">  </option>
+           <option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine">{{cuisine.attributes.type}}</option>
+       </select>
+ <p> You've selected: {{selectedCuisine}}</p> <!--выдает объект типа object-->
 
+</span>
+<br><br>
+<input type="submit" value="Submit">
 </div>
+
 
 </body>
 </html>
