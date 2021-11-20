@@ -187,15 +187,15 @@
 <span class="custom-dropdown big"> <!--надо сделать их все одного размера-->
 
  Meal:  <select #meal (change)="selectChangeHandlerMeal($event)" name="meal">
-        <option value="default">  </option>
-        <option *ngFor="let meal of mealsList.data" [value]="meal.attributes.type">{{meal.attributes.type}}</option>
+            <option value="default">  </option>
+            <option *ngFor="let meal of mealsList.data" [value]="meal.id">{{meal.attributes.type}}</option>
         </select>
 <p> You've selected: {{selectedMeal}}</p>  <!--выдает объект типа object-->
 
 
  Dish: <select #dish (change)="selectChangeHandlerDish($event)" name="dish">
            <option value="default">  </option>
-           <option *ngFor="let dish of dishesList.data" [value]="dish.attributes.type">{{dish.attributes.type}}</option>
+           <option *ngFor="let dish of dishesList.data" [value]="dish.id">{{dish.attributes.type}}</option>
        </select>
  <p> You've selected: {{selectedDish}}</p> <!--выдает объект типа object-->
 
@@ -210,6 +210,26 @@
     <input type="submit" name="Submit" value="Submit" (click)="selectClickHandlerRecipe()">
 </div>
 
+<div class="card my-5">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+              <!--  <th scope="col">Email</th> -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recipe of visibleRecipes.data">
+                <td>{{ recipe.id }}</td>
+                <td>{{ recipe.attributes.name }}</td>
+              <!--  <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td> -->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

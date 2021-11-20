@@ -1,6 +1,6 @@
-import {Meals} from "./Meals";
-import {Dishes} from "./Dishes";
-import {Cuisines} from "./Cuisines";
+import { Meals } from "./Meals";
+import { Dishes } from "./Dishes";
+import { Cuisines } from "./Cuisines";
 
 export interface Recipes {
     data :  Datum[];

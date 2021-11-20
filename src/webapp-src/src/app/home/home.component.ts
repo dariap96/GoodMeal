@@ -4,6 +4,7 @@ import { ConvertDishes, Dishes } from '../model/Dishes';
 import { ConvertMeals, Meals} from "../model/Meals";
 import { ConvertCuisines, Cuisines } from "../model/Cuisines";
 import { ConvertUser, User } from "../model/User";
+import { ConvertRecipes, Recipes } from "../model/Recipes";
 
 @Component({
     selector: 'app-home',
@@ -16,10 +17,11 @@ export class HomeComponent implements OnInit {
     mealsList : Meals;
     cuisinesList : Cuisines;
     userdata : User;
+    visibleRecipes : Recipes;
 
-    selectedMeal = ""
-    selectedDish = "    "
-    selectedCuisine = null
+    selectedMeal = null;
+    selectedDish = null;
+    selectedCuisine = null;
 
     selectChangeHandlerMeal(e) {
         this.selectedMeal = e.target.value;
@@ -30,8 +32,37 @@ export class HomeComponent implements OnInit {
     selectChangeHandlerCuisine(e){
         this.selectedCuisine = e.target.value;
     }
+
     selectClickHandlerRecipe(){
-        console.log(this.service.getFilteredRecipe(this.selectedCuisine));
+        let base = 'http://localhost:4200/api/recipe';
+        let counter = 0;
+
+        if(this.selectedMeal != null && this.selectedMeal != 'default') {
+            base = base + '?filter[meal.id]=' + this.selectedMeal;
+            counter++;
+        }
+        if(this.selectedDish != null && this.selectedDish != 'default') {
+            if(counter > 0) {
+                base = base + '&filter[dish.id]=' + this.selectedDish;
+            } else {
+                base = base + '?filter[dish.id]=' + this.selectedDish;
+                counter++;
+            }
+        }
+        if(this.selectedCuisine != null && this.selectedCuisine != 'default') {
+            if(counter > 0) {
+                base = base + '&filter[cuisine.id]=' + this.selectedCuisine;
+            } else {
+                base = base + '?filter[cuisine.id]=' + this.selectedCuisine;
+            }
+        }
+
+        console.log(base);
+
+        this.service.getFilteredRecipes(base).subscribe( data => {
+            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
+        });
+
     }
 
     ngOnInit() {
@@ -41,8 +72,6 @@ export class HomeComponent implements OnInit {
 
         this.service.getDishes().subscribe(data => {
             this.dishesList = ConvertDishes.toDishes(data.toString());
-            // пример доступа к к имени dish-a
-            //console.log(this.dishesList.data[0].attributes.type);
         });
 
         this.service.getMeals().subscribe( data => {
@@ -54,7 +83,9 @@ export class HomeComponent implements OnInit {
             this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
         });
 
-        this.service.getRecipesFilteredByDish()
+        this.service.getAllRecipes().subscribe( data => {
+            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
+        });
     }
 
     constructor(private service: RestapiService) {}
