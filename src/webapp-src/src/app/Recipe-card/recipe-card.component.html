@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="recipe-card">
+        <img *ngFor="let recipe of selectedRecipe.data" src="{{ recipe.attributes.image }}" alt="no alt" class="user-img" />
+        <h4 *ngFor="let recipe of selectedRecipe.data"> {{ recipe.attributes.name }} </h4>
+        <p *ngFor="let recipe of selectedRecipe.data"> {{ recipe.attributes.time }} </p>
+    </div>
+</body>
+</html>

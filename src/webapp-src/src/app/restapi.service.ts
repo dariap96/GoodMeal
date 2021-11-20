@@ -56,4 +56,9 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(req, {headers, responseType: 'text' as 'json'});
     }
+
+    getRecipeById(id: number) {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/api/recipe/' + id, {headers, responseType: 'text' as 'json'});
+    }
 }

@@ -23,6 +23,31 @@ export class HomeComponent implements OnInit {
     selectedDish = null;
     selectedCuisine = null;
 
+    constructor(private service: RestapiService) {}
+
+    ngOnInit() {
+        this.service.getUserdata().subscribe( data => {
+            this.userdata = ConvertUser.toUser(data.toString());
+        });
+
+        this.service.getDishes().subscribe(data => {
+            this.dishesList = ConvertDishes.toDishes(data.toString());
+        });
+
+        this.service.getMeals().subscribe( data => {
+            this.mealsList = ConvertMeals.toMeals(data.toString());
+
+        });
+
+        this.service.getCuisines().subscribe( data => {
+            this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
+        });
+
+        this.service.getAllRecipes().subscribe( data => {
+            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
+        });
+    }
+
     selectChangeHandlerMeal(e) {
         this.selectedMeal = e.target.value;
     }
@@ -62,32 +87,5 @@ export class HomeComponent implements OnInit {
         this.service.getFilteredRecipes(base).subscribe( data => {
             this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
         });
-
     }
-
-    ngOnInit() {
-        this.service.getUserdata().subscribe( data => {
-            this.userdata = ConvertUser.toUser(data.toString());
-        });
-
-        this.service.getDishes().subscribe(data => {
-            this.dishesList = ConvertDishes.toDishes(data.toString());
-        });
-
-        this.service.getMeals().subscribe( data => {
-            this.mealsList = ConvertMeals.toMeals(data.toString());
-
-        });
-
-        this.service.getCuisines().subscribe( data => {
-            this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
-        });
-
-        this.service.getAllRecipes().subscribe( data => {
-            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
-        });
-    }
-
-    constructor(private service: RestapiService) {}
-
 }
