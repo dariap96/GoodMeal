@@ -223,7 +223,7 @@
             <tbody>
             <tr *ngFor="let recipe of visibleRecipes.data">
                 <td>{{ recipe.id }}</td>
-                <td>{{ recipe.attributes.name }}</td>
+                <td><a href="http://localhost:4200/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}</a></td>
               <!--  <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td> -->
             </tr>
             </tbody>

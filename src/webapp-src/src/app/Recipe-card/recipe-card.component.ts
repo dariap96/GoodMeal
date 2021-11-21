@@ -13,6 +13,9 @@ export class RecipeCardComponent implements OnInit {
 
     recipeId : number;
     selectedRecipe : Recipes;
+    recipeName : string = 'Loading...';
+    recipeCookTime : string = 'Loading...';
+    recipeImg : string = 'Loading...';
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
 
