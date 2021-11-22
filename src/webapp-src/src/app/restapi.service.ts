@@ -12,11 +12,13 @@ const httpOptions = {
 
 export class RestapiService {
 
-    authHeader : HttpHeaders;
-    constructor(private http:HttpClient) {}
+    authHeader: HttpHeaders;
 
-    login(username: string, password: string){
-        this.authHeader = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
+    constructor(private http: HttpClient) {
+    }
+
+    login(username: string, password: string) {
+        this.authHeader = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
         let headers = this.authHeader;
         headers.append('Access-Control-Allow-Origin', 'localhost:8080');
 
@@ -38,10 +40,12 @@ export class RestapiService {
 
         return this.http.get("http://localhost:4200/api/dish", {headers, responseType: 'text' as 'json'});
     }
+
     getMeals() {
         let headers = this.authHeader;
         return this.http.get("http://localhost:4200/api/meal", {headers, responseType: 'text' as 'json'});
     }
+
     getCuisines() {
         let headers = this.authHeader;
         return this.http.get("http://localhost:4200/api/cuisine", {headers, responseType: 'text' as 'json'});
@@ -65,5 +69,10 @@ export class RestapiService {
     getIngredientsByRecipeId(id: number) {
         let headers = this.authHeader;
         return this.http.get('http://localhost:4200/api/ingredient?filter[ingredientsSet.recipe.id]=' + id, {headers, responseType: 'text' as 'json'});
+    }
+
+    getIngredientById(id: number) {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/api/ingredient/' + id, {headers, responseType: 'text' as 'json'});
     }
 }

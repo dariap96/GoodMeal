@@ -6,7 +6,7 @@
 <body>
     <div class="recipe-card">
         <h1>{{ recipeName }}</h1>
-        <img src="{{ recipeImg }}" alt="no alt" class="user-img" />
+        <img src="{{ recipeImg }}" class="user-img" />
         <p>Cook time: {{ recipeCookTime }} min.</p>
         <p>Description: {{ recipeDescr }}</p>
     </div>
@@ -23,7 +23,7 @@
                 <tbody>
                 <tr *ngFor="let ingr of relatedIngredients.data">
                     <td>{{ ingr.id }}</td>
-                    <td>{{ ingr.attributes.name }}</td>
+                    <td><a href="http://localhost:4200/ingredient-card/{{ingr.id}}">{{ ingr.attributes.name }}</a></td>
                 </tr>
                 </tbody>
             </table>
