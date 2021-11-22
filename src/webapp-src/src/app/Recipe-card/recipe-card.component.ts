@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
-import { ConvertRecipes, Recipes } from "../model/Recipes";
+import { ConvertRecipe, Recipe } from "../model/Recipe";
 
 @Component({
     selector: 'app-recipe-card',
@@ -12,19 +12,20 @@ import { ConvertRecipes, Recipes } from "../model/Recipes";
 export class RecipeCardComponent implements OnInit {
 
     recipeId : number;
-    selectedRecipe : Recipes;
+    selectedRecipe : Recipe;
     recipeName : string = 'Loading...';
-    recipeCookTime : string = 'Loading...';
+    recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
 
     ngOnInit() {
-        this.selectedRecipe.data = [];
         this.service.getRecipeById(this.recipeId).subscribe( data => {
-            this.selectedRecipe = ConvertRecipes.toRecipes(data.toString());
+            this.selectedRecipe = ConvertRecipe.toRecipe(data.toString());
 
-            console.log(this.selectedRecipe);
+            this.recipeName = this.selectedRecipe.data.attributes.name;
+            this.recipeCookTime = this.selectedRecipe.data.attributes.time;
+            this.recipeImg = this.selectedRecipe.data.attributes.image;
         });
     }
 }
