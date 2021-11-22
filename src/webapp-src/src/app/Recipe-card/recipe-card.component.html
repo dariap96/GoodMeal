@@ -5,9 +5,10 @@
 </head>
 <body>
     <div class="recipe-card">
+        <h1>{{ recipeName }}</h1>
         <img src="{{ recipeImg }}" alt="no alt" class="user-img" />
-        <h4> {{ recipeName }} </h4>
-        <p> {{ recipeCookTime }} </p>
+        <p>Cook time: {{ recipeCookTime }} </p>
+        <p>Description: {{ recipeDescr }}</p>
     </div>
 </body>
 </html>
