@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="recipe-card">
+        <h1>{{ recipeName }}</h1>
+        <img src="{{ recipeImg }}" class="user-img" />
+        <p>Cook time: {{ recipeCookTime }} min.</p>
+        <p>Description: {{ recipeDescr }}</p>
+    </div>
+
+    <div class="ingridients">
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let ingr of relatedIngredients.data">
+                    <td>{{ ingr.id }}</td>
+                    <td><a href="http://localhost:4200/ingredient-card/{{ingr.id}}">{{ ingr.attributes.name }}</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

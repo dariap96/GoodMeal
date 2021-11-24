@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component'
 import { RestapiService } from './restapi.service';
 import { RecipeCardComponent } from "./Recipe-card/recipe-card.component";
+import {IngredientCardComponent} from "./ingredient-card/ingredient-card.component";
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { RecipeCardComponent } from "./Recipe-card/recipe-card.component";
         LoginComponent,
         HomeComponent,
         RegistrationComponent,
-        RecipeCardComponent
+        RecipeCardComponent,
+        IngredientCardComponent
     ],
     imports: [
         BrowserModule,
