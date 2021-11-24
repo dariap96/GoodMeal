@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name="Ingredients", schema = "goodmeal")
 @Getter
 @Setter
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     @Id
     @JsonApiId
@@ -51,7 +51,7 @@ public class Ingredient {
 
 
     @OneToMany(mappedBy = "ingredient")
-    private Set<IngredientsToRecipes> recipesSet;
+    private Set<IngredientsToRecipes> ingredientsSet;
 
     @JsonApiRelation
     @ManyToMany(mappedBy = "ingredientSet")
