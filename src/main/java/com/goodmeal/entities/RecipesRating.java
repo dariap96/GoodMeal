@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Objects;
 
+//@JsonApiResource(type = "recipe_rating")
 @Entity
 @Table(name = "Recipes_Rating", schema = "goodmeal")
 @Getter
