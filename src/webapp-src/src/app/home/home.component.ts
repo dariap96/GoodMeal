@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
             this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
         });
 
-        this.service.getAllRecipes().subscribe( data => {
+        this.service.getFirstHundredRecipes().subscribe( data => {
             this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
         });
     }

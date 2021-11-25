@@ -1,4 +1,4 @@
-package com.goodmeal.security;
+package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;

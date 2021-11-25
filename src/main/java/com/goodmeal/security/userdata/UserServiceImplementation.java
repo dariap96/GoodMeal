@@ -1,9 +1,8 @@
-package com.goodmeal.security;
+package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
-import com.goodmeal.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

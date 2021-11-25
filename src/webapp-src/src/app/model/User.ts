@@ -23,7 +23,23 @@ export class ConvertUser {
 }
 
 export interface UserInfo {
-
+    name:    string;
+    surname: string;
+    login:   string;
+    email:   string;
+    bday:    Date;
+    roles:   string[];
 }
+
+export class ConvertUserInfo {
+    public static toUserInfo(json: string): UserInfo {
+        return JSON.parse(json);
+    }
+
+    public static userInfoToJson(value: UserInfo): string {
+        return JSON.stringify(value);
+    }
+}
+
 
 export var currentUser : User;
