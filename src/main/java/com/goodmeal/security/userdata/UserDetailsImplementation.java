@@ -30,10 +30,14 @@ public class UserDetailsImplementation implements UserDetails {
 
         for (String role : rolesList) {
             System.out.println("----- ROLES: ");
-            GrantedAuthority grAuth = new SimpleGrantedAuthority(role);
+            GrantedAuthority grAuth = roleFormatter(role);
             System.out.println(grAuth.getAuthority());
             this.grantedAuthorityList.add(grAuth);
         }
+    }
+
+    private SimpleGrantedAuthority roleFormatter(String role) {
+        return new SimpleGrantedAuthority("ROLE_" + role);
     }
 
     @Override
