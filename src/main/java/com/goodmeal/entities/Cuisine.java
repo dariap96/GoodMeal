@@ -24,10 +24,8 @@ public class Cuisine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column
     private String type;
-
 
     @OneToMany(mappedBy = "cuisine")
     private Set<Recipe> recipes;
@@ -35,5 +33,6 @@ public class Cuisine {
     public Cuisine(String type) {
         this.type = type;
     }
+
     public Cuisine(){}
 }

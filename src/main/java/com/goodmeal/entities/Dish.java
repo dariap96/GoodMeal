@@ -28,7 +28,6 @@ public class Dish {
     @Column
     private String type;
 
-
     @OneToMany(mappedBy = "dish")
     private Set<Recipe> recipes = new HashSet<>();
 
