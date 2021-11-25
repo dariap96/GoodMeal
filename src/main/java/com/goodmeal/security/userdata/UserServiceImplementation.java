@@ -34,8 +34,6 @@ public class UserServiceImplementation implements UserDetailsService{
         System.out.println("----- USER: ");
         System.out.println("login: " + user.getLogin());
 
-        user.setRoleSet(forceRoleSetup());
-
         // if you need to add users to database manually uncomment following
         String oldPass = user.getPassword();
         user.setPassword(passwordEncoder.encode(oldPass));
@@ -60,12 +58,5 @@ public class UserServiceImplementation implements UserDetailsService{
 
         userRepository.save(user);
         return true;
-    }
-
-    public Set<Role> forceRoleSetup() {
-        Role r = new Role("USER", null);
-        Set<Role> set = new HashSet<>();
-        set.add(r);
-        return set;
     }
 }

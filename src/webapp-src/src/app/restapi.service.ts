@@ -82,4 +82,9 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get('http://localhost:4200/userinfo', {headers, responseType: 'text' as 'json'});
     }
+
+    getAllUsers() {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/api/user', {headers, responseType: 'text' as 'json'});
+    }
 }

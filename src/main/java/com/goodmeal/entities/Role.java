@@ -29,7 +29,7 @@ public class Role {
     @Column
     private String role;
 
-    @ManyToMany(mappedBy = "roleSet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "roleSet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<User> userSet = new HashSet<>();
 
