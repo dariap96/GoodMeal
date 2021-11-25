@@ -27,7 +27,6 @@ export class RestapiService {
 
     getUserdata() {
         let headers = this.authHeader
-
         return this.http.get("http://localhost:4200/userdata", {headers, responseType: 'text' as 'json'});
     }
 
@@ -37,7 +36,6 @@ export class RestapiService {
 
     getDishes() {
         let headers = this.authHeader;
-
         return this.http.get("http://localhost:4200/api/dish", {headers, responseType: 'text' as 'json'});
     }
 

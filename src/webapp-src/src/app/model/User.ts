@@ -22,4 +22,8 @@ export class ConvertUser {
     }
 }
 
+export interface UserInfo {
+
+}
+
 export var currentUser : User;

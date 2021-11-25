@@ -29,6 +29,7 @@ public class User {
     private String login;
 
     @Column
+    @JsonIgnore
     private String password;
 
     @Column
@@ -45,8 +46,8 @@ public class User {
 
     @ManyToMany
     @JoinTable(name = "users_roles", schema = "goodmeal",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(table = "user_roles", name = "user_id"),
+            inverseJoinColumns = @JoinColumn(table = "user_roles", name = "role_id"))
     @JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<Role> roleSet = new HashSet<>();
 
