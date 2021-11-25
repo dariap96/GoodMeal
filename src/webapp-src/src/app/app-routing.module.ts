@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component'
 import { RecipeCardComponent } from "./Recipe-card/recipe-card.component";
 import { IngredientCardComponent } from "./ingredient-card/ingredient-card.component";
+import {UserProfileComponent} from "./user-profile/user-profile.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch:"full" },
@@ -12,7 +13,8 @@ const routes: Routes = [
     { path: "home", component: HomeComponent },
     { path: "registration", component: RegistrationComponent },
     { path: "recipe-card/:id", component: RecipeCardComponent },
-    { path: "ingredient-card/:id", component: IngredientCardComponent }
+    { path: "ingredient-card/:id", component: IngredientCardComponent },
+    { path: "user-profile", component: UserProfileComponent }
 ];
 
 @NgModule({
