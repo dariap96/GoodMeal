@@ -1,4 +1,4 @@
-package com.goodmeal.security;
+package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toSet;
 
 public class UserDetailsImplementation implements UserDetails {
 
@@ -23,15 +25,19 @@ public class UserDetailsImplementation implements UserDetails {
         this.isActive = true;
 
         this.grantedAuthorityList = new LinkedList<>();
-        List<Role> rolesList = new LinkedList<Role>();
-        rolesList.addAll(user.getRoleSet());
+        List<String> rolesList = new LinkedList<String>();
+        rolesList.addAll(user.getRoleSet().stream().map(Role::getRole).collect(toSet()));
 
-        for (Role role : rolesList) {
+        for (String role : rolesList) {
             System.out.println("----- ROLES: ");
-            GrantedAuthority grAuth = new SimpleGrantedAuthority(role.getRole());
+            GrantedAuthority grAuth = roleFormatter(role);
             System.out.println(grAuth.getAuthority());
             this.grantedAuthorityList.add(grAuth);
         }
+    }
+
+    private SimpleGrantedAuthority roleFormatter(String role) {
+        return new SimpleGrantedAuthority("ROLE_" + role);
     }
 
     @Override

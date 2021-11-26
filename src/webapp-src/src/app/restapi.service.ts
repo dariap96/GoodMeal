@@ -14,8 +14,7 @@ export class RestapiService {
 
     authHeader: HttpHeaders;
 
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     login(username: string, password: string) {
         this.authHeader = new HttpHeaders({Authorization: 'Basic ' + btoa(username + ':' + password)});
@@ -54,6 +53,11 @@ export class RestapiService {
         return this.http.get('http://localhost:4200/api/recipe', {headers, responseType: 'text' as 'json'});
     }
 
+    getFirstHundredRecipes() {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/api/recipe?filter[id][LE]=100', {headers, responseType: 'text' as 'json'});
+    }
+
     getFilteredRecipes(req: string) {
         let headers = this.authHeader;
         return this.http.get(req, {headers, responseType: 'text' as 'json'});
@@ -83,4 +87,13 @@ export class RestapiService {
         return this.http.post<User[]>('http://localhost:4200/register', user);
     }
 
+    getUserInfo() {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/userinfo', {headers, responseType: 'text' as 'json'});
+    }
+
+    getAllUsers() {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/api/user', {headers, responseType: 'text' as 'json'});
+    }
 }
