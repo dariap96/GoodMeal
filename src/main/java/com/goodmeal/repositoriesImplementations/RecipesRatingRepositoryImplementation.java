@@ -12,4 +12,5 @@ public interface RecipesRatingRepositoryImplementation
         extends JpaRepository<RecipesRating, RecipesRatingKey> {
     List<RecipesRating> getAllByRecipe_Id(Long recipeId);
     List<RecipesRating> getAllByUser_Id(Long userId);
+    RecipesRating getRecipesRatingByRecipe_IdAndUser_Id(Long recipeId, Long userId);
 }
