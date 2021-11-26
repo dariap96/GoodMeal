@@ -7,6 +7,7 @@ import io.crnk.core.resource.annotations.JsonApiResource;
 import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -44,17 +45,16 @@ public class User {
     @Column
     private Date bday;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles", schema = "goodmeal",
-            joinColumns = @JoinColumn(table = "user_roles", name = "user_id"),
-            inverseJoinColumns = @JoinColumn(table = "user_roles", name = "role_id"))
-    @JsonApiRelation(serialize = SerializeType.ONLY_ID)
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    //@JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<Role> roleSet = new HashSet<>();
 
     @JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
-
 
     public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
         this.login = login;

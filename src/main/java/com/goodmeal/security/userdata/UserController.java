@@ -1,8 +1,7 @@
-package com.goodmeal.security;
+package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
-import com.goodmeal.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +12,8 @@ import java.security.Principal;
 @RestController
 @CrossOrigin(origins = "*")
 public class UserController {
+
+    private UserDtoMapper userDtoMapper = new UserDtoMapper();
 
     @Autowired
     UserServiceImplementation userService;
@@ -36,12 +37,13 @@ public class UserController {
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
     @ResponseBody
-    public User getUserInfo(HttpServletRequest request) {
+    public UserDTO getUserInfo(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         String login = principal.getName();
 
         User user = usersRepository.getUserByLogin(login);
-        return user;
+
+        return userDtoMapper.toDTO(user);
     }
 
     @RequestMapping(value = "/userdata", method = RequestMethod.GET)
