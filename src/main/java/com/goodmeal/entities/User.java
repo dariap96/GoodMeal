@@ -30,7 +30,6 @@ public class User {
     private String login;
 
     @Column
-    @JsonIgnore
     private String password;
 
     @Column
