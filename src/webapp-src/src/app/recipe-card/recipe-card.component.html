@@ -4,6 +4,20 @@
     <title></title>
 </head>
 <body>
+
+    <div class="topnav">
+        <a class="active" href="http://localhost:4200/home">Home</a>
+        <a href="#about">About </a>
+        <a href="#contact">Contact</a>
+        <a href="http://localhost:4200/user-profile">Profile</a>
+        <div class="search-container">
+            <form autocomplete="off" action="/action_page.php">
+                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="search your fav recipe..." name="myRecipe">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+
     <div class="recipe-card">
         <h1>{{ recipeName }}</h1>
         <img src="{{ recipeImg }}" class="user-img" />
