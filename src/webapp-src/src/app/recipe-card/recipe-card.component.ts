@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
 import { ConvertRecipe, Recipe } from "../model/Recipe";
 import { ConvertIngredients, Ingredients } from "../model/Ingredients";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-recipe-card',
@@ -40,16 +41,14 @@ export class RecipeCardComponent implements OnInit {
         this.service.getRecipeRatingById(this.recipeId).subscribe(
             data => {
                 this.rating = data.toString();
-                console.log(data)
-            }
-        )
+            });
     }
 
     PrintRating() {
-        if (this.rating == null) {
+        if (this.rating == '') {
             return 'Not rated';
         }
 
-        return 'Rating: ' + this.rating.toString();
+        return 'Rating: ' + this.rating;
     }
 }
