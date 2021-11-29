@@ -81,14 +81,12 @@ export class RestapiService {
 
     getRecipeRatingById(id: number) {
         let headers = this.authHeader;
-        return this.http.get('http://localhost:4200/recipe_review/' + id, {headers, responseType: 'text' as 'json'});
+        return this.http.get('http://localhost:4200/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
     }
 
     addRating(rating: RecipeRating) {
-        console.log("1")
-        console.log(rating)
         return this.http.post<RecipeRating[]>(
-            'http://localhost:4200/recipe_review/new_recipe_review', rating);
+            'http://localhost:4200/recipe_rating/new', rating);
     }
 
     getUserInfo() {

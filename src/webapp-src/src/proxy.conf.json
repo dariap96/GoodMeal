@@ -21,7 +21,7 @@
     "logLevel": "debug"
   },
 
-  "/recipe_review/new_recipe_review": {
+  "/recipe_rating/new": {
     "target": "http://localhost:8080",
     "secure": false,
     "logLevel": "debug"

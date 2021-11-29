@@ -14,24 +14,22 @@ import {RecipeRating} from "../model/RecipeRating";
 
 export class ReviewComponent implements OnInit {
     recipeId : number;
-    userData : User;
+    userLogin : string;
 
-    constructor(private route : ActivatedRoute, private service : RestapiService) {
+    constructor(private route : ActivatedRoute, private service : RestapiService, private router : Router) {
         this.recipeId = route.snapshot.params['id'];
     }
 
     ngOnInit() {
         this.service.getUserdata().subscribe( data => {
-            this.userData = ConvertUser.toUser(data.toString());
+            this.userLogin = ConvertUser.toUser(data.toString()).username;
         });
     }
 
     public addReview(addForm: NgForm): void {
-        document.getElementById('add-review').click();
-        console.log(addForm.value);
         this.service.addRating(addForm.value).subscribe(
             (response: RecipeRating[]) => {
-
+                this.Close();
             }
             ,
             (error: HttpErrorResponse) => {
@@ -40,5 +38,7 @@ export class ReviewComponent implements OnInit {
         ;
     }
 
-
+    Close() {
+        this.router.navigate(['/recipe-card/' + this.recipeId.toString()]);
+    }
 }

@@ -47,6 +47,9 @@ public class UsersService implements IService<User> {
          return this.userRepository.getUserByLogin(login).getSelectionSet();
     }
 
+    public User getUserByLogin(String login){
+        return userRepository.getUserByLogin(login);
+    }
 //    public boolean newSelection(String login) {
 //         return this.selectionsRepository.new);
 //    }
