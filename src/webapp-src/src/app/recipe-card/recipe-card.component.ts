@@ -44,4 +44,12 @@ export class RecipeCardComponent implements OnInit {
             }
         )
     }
+
+    PrintRating() {
+        if (this.rating == null) {
+            return 'Not rated';
+        }
+
+        return 'Rating: ' + this.rating.toString();
+    }
 }

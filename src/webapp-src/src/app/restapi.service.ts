@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {ConvertUser, User} from './model/User'
+import {RecipeRating} from "./model/RecipeRating";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -80,11 +81,14 @@ export class RestapiService {
 
     getRecipeRatingById(id: number) {
         let headers = this.authHeader;
-        return this.http.get('http://localhost:4200/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
+        return this.http.get('http://localhost:4200/recipe_review/' + id, {headers, responseType: 'text' as 'json'});
     }
 
-    addRating(user: User) {
-        return this.http.post<User[]>('http://localhost:4200/register', user);
+    addRating(rating: RecipeRating) {
+        console.log("1")
+        console.log(rating)
+        return this.http.post<RecipeRating[]>(
+            'http://localhost:4200/recipe_review/new_recipe_review', rating);
     }
 
     getUserInfo() {

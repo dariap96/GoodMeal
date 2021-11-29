@@ -1,75 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>GoodMeal - Home Page</title>
-    </head>
-
-    <body>
-
-        <div class="topnav">
-            <a class="active" href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <input type="text" placeholder="search your fav recipe...">
-        </div>
-
-        <div style="padding-left:10px">
-            <h2>Recipe search</h2>
-            <p>You are able to choose as many values for each filter as you want</p>
-        </div>
-
-        <div style="padding-left:10px">
-        <span class="custom-dropdown big"> <!--надо сделать их все одного размера-->
-
-         Meal:  <select #meal (change)="selectChangeHandlerMeal($event)" name="meal">
-                    <option value="default">  </option>
-                    <option *ngFor="let meal of mealsList.data" [value]="meal.id">{{meal.attributes.type}}</option>
-                </select>
-        <p> You've selected: {{selectedMeal}}</p>  <!--выдает объект типа object-->
-
-
-         Dish: <select #dish (change)="selectChangeHandlerDish($event)" name="dish">
-                   <option value="default">  </option>
-                   <option *ngFor="let dish of dishesList.data" [value]="dish.id">{{dish.attributes.type}}</option>
-               </select>
-         <p> You've selected: {{selectedDish}}</p> <!--выдает объект типа object-->
-
-         Cuisine: <select #cuisine (change)="selectChangeHandlerCuisine($event)" name="cuisine">
-                   <option value="default">  </option>
-                   <option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.id">{{cuisine.attributes.type}}</option>
-               </select>
-         <p> You've selected: {{selectedCuisine}}</p> <!--выдает объект типа object-->
-
-        </span>
-        <br><br>
-            <input type="submit" name="Submit" value="Submit" (click)="selectClickHandlerRecipe()">
-        </div>
-
-        <div class="card my-5">
-            <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                      <!--  <th scope="col">Email</th> -->
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let recipe of visibleRecipes.data">
-                        <td>{{ recipe.id }}</td>
-                        <td><a href="http://localhost:4200/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}</a></td>
-                      <!--  <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td> -->
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </body>
-=======
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -150,5 +80,4 @@
 </div>
 
 </body>
->>>>>>> angular
 </html>

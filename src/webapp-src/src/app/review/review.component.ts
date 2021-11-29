@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
 import {ConvertUser, User} from '../model/User'
 import { HttpErrorResponse } from '@angular/common/http';
+import {RecipeRating} from "../model/RecipeRating";
 
 @Component({
     selector: 'app-review',
@@ -27,6 +28,16 @@ export class ReviewComponent implements OnInit {
 
     public addReview(addForm: NgForm): void {
         document.getElementById('add-review').click();
+        console.log(addForm.value);
+        this.service.addRating(addForm.value).subscribe(
+            (response: RecipeRating[]) => {
+
+            }
+            ,
+            (error: HttpErrorResponse) => {
+                console.log(error)
+            })
+        ;
     }
 
 

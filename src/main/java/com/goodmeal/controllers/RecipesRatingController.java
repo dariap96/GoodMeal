@@ -21,9 +21,9 @@ public class RecipesRatingController {
         return recipesService.findById(recipeId.longValue()).get().getRating();
     }
 
-    @PostMapping("/new_recipe_review/{recipeId}")
-    public boolean newRating(@PathVariable Long recipeId, @RequestBody RecipesRating rating) {
-        boolean is_exists = ratingService.getRating(recipeId, rating.getUser().getId()) != null;
+    @PostMapping("/new_recipe_review")
+    public boolean newRating(@RequestBody RecipesRating rating) {
+        boolean is_exists = ratingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;
         ratingService.update(rating);
         return is_exists;
     }

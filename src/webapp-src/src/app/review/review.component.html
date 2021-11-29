@@ -15,10 +15,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form #addForm="ngForm" (ngSubmit)="addReview(addForm)">
+                    <form #addForm="ngForm">
                         <div class="form-group">
                             <label for="rating">Rating</label>
-                            <input type="number" ngModel name="rating" class="form-control" id="rating" placeholder="Rating" required>
+                            <select ngModel name="rating" class="form-control" id="rating" required>
+                                <option [value]="1">1</option>
+                                <option [value]="2">2</option>
+                                <option [value]="3">3</option>
+                                <option [value]="4">4</option>
+                                <option [value]="5">5</option>
+                                <option [value]="6">6</option>
+                                <option [value]="7">7</option>
+                                <option [value]="8">8</option>
+                                <option [value]="9">9</option>
+                                <option [value]="10">10</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="review">Review</label>
@@ -26,7 +37,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="add-review" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Post!</button>
+                            <button [disabled]="addForm.invalid" class="btn btn-primary" (click)="addReview(addForm)">Post!</button>
                         </div>
                     </form>
                 </div>

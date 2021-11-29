@@ -25,8 +25,8 @@
         <img src="{{ recipeImg }}" class="user-img" />
         <p>Cook time: {{ recipeCookTime }} min.</p>
         <p>Description: {{ recipeDescr }}</p>
-        <p>{{ rating }}</p>
-        <a href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
+        <p>{{ PrintRating() }}</p>
+        <a id="recipe_review" href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
     </div>
 
     <div class="ingridients">
