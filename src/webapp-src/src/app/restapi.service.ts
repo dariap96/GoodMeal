@@ -78,6 +78,15 @@ export class RestapiService {
         return this.http.get('http://localhost:4200/api/ingredient/' + id, {headers, responseType: 'text' as 'json'});
     }
 
+    getRecipeRatingById(id: number) {
+        let headers = this.authHeader;
+        return this.http.get('http://localhost:4200/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
+    }
+
+    addRating(user: User) {
+        return this.http.post<User[]>('http://localhost:4200/register', user);
+    }
+
     getUserInfo() {
         let headers = this.authHeader;
         return this.http.get('http://localhost:4200/userinfo', {headers, responseType: 'text' as 'json'});

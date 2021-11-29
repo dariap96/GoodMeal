@@ -9,9 +9,10 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component'
 import { RestapiService } from './restapi.service';
-import { RecipeCardComponent } from "./Recipe-card/recipe-card.component";
+import { RecipeCardComponent } from "./recipe-card/recipe-card.component";
 import {IngredientCardComponent} from "./ingredient-card/ingredient-card.component";
 import {UserProfileComponent} from "./user-profile/user-profile.component";
+import {ReviewComponent} from "./review/review.component";
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {UserProfileComponent} from "./user-profile/user-profile.component";
         RegistrationComponent,
         RecipeCardComponent,
         IngredientCardComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        ReviewComponent
     ],
     imports: [
         BrowserModule,

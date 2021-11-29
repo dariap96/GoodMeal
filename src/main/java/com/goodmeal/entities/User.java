@@ -55,6 +55,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
 
+    @OneToMany(mappedBy = "user")
+    private Set<RecipesRating> userGradingsSet;
+
     public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
         this.login = login;
         this.password = password;
