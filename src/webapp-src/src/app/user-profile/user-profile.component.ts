@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
+import { Selections, ConvertSelections } from "../model/Selections";
 
 @Component({
     selector: 'app-user-profile',
@@ -12,6 +13,7 @@ export class UserProfileComponent implements OnInit {
 
     activeUser : UserInfo;
     usersList : Users;
+    userSelections : Selections;
     adminAccess : boolean = false;
     showPasswordUpdateMenu : boolean = false;
     newPassword : string;
@@ -41,7 +43,9 @@ export class UserProfileComponent implements OnInit {
                 });
             }
 
-            console.log(this.adminAccess);
+            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
+                this.userSelections = ConvertSelections.toSelections(data.toString());
+            });
         });
     }
 

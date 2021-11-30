@@ -102,4 +102,9 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.put(baseUrl + '/update-password/' + login, newPass, {headers, responseType: 'text' as 'json'});
     }
+
+    getUserSelections(login: string) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/api/selection?filter[user.login]=' + login, {headers, responseType: 'text' as 'json'});
+    }
 }

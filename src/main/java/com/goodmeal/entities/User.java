@@ -51,7 +51,7 @@ public class User {
     //@JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<Role> roleSet = new HashSet<>();
 
-    @JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
+    //@JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
 
