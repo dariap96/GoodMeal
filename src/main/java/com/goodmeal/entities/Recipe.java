@@ -59,7 +59,7 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private Set<IngredientsToRecipes> ingredientsSet;
 
-    @JsonApiRelation
+    //@JsonApiRelation(serialize = SerializeType.LAZY)
     @ManyToMany(mappedBy = "recipeSet", fetch = FetchType.LAZY)
     private Set<Selection> selectionSet;
 

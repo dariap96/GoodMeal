@@ -32,6 +32,25 @@
     <input type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">
 </div>
 
+<div class="user-selections">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let selection of userSelections.data">
+                <td>{{ selection.id }}</td>
+                <td><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <div class="users-list" *ngIf="adminAccess">
     <div class="card-body">
         <table class="table table-bordered table-striped">
