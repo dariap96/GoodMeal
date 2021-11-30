@@ -44,7 +44,7 @@
             <tbody>
             <tr *ngFor="let selection of userSelections.data">
                 <td>{{ selection.id }}</td>
-                <td>{{ selection.attributes.selectionName }}</td>
+                <td><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
             </tr>
             </tbody>
         </table>

@@ -3,7 +3,6 @@ import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
 import { ConvertRecipe, Recipe } from "../model/Recipe";
 import { ConvertIngredients, Ingredients } from "../model/Ingredients";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
     selector: 'app-recipe-card',

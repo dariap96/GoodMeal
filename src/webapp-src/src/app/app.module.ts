@@ -10,9 +10,10 @@ import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component'
 import { RestapiService } from './restapi.service';
 import { RecipeCardComponent } from "./recipe-card/recipe-card.component";
-import {IngredientCardComponent} from "./ingredient-card/ingredient-card.component";
-import {UserProfileComponent} from "./user-profile/user-profile.component";
-import {ReviewComponent} from "./review/review.component";
+import { IngredientCardComponent } from "./ingredient-card/ingredient-card.component";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
+import { ReviewComponent } from "./review/review.component";
+import { SelectionCardComponent } from "./selection-card/selection-card.component";
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {ReviewComponent} from "./review/review.component";
         RegistrationComponent,
         RecipeCardComponent,
         IngredientCardComponent,
+        SelectionCardComponent,
         UserProfileComponent,
         ReviewComponent
     ],
