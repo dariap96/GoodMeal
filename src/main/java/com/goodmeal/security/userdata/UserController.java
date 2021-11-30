@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -56,4 +57,11 @@ public class UserController {
         return user;
     }
 
+    @RequestMapping(value = "/update-password/{login}", method = RequestMethod.PUT)
+    public boolean updateUserPassword(@PathVariable String login, @RequestBody String newPassword) {
+        User user = usersRepository.getUserByLogin(login);
+        user.setPassword(newPassword);
+        usersRepository.save(user);
+        return true;
+    }
 }

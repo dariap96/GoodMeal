@@ -13,6 +13,8 @@ export class UserProfileComponent implements OnInit {
     activeUser : UserInfo;
     usersList : Users;
     adminAccess : boolean = false;
+    showPasswordUpdateMenu : boolean = false;
+    newPassword : string;
     activeUserBdayDay : number;
     activeUserBdayMonth : number;
     activeUserBdayYear : number;
@@ -40,6 +42,17 @@ export class UserProfileComponent implements OnInit {
             }
 
             console.log(this.adminAccess);
+        });
+    }
+
+    showPassUpdMenu() {
+        this.showPasswordUpdateMenu = true;
+    }
+
+    hidePassUpdMenu() {
+        console.log(this.newPassword);
+        this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
+            this.showPasswordUpdateMenu = true;
         });
     }
 }

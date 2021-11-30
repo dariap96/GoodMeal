@@ -148,4 +148,7 @@ body {
     color: rgba(0,0,0,.4);
 }
 
-
+a[href] {
+    color: #2196F3;
+    text-decoration: none;
+}

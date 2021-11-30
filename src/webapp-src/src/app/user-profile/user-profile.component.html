@@ -24,6 +24,12 @@
     <h1>{{ activeUser.name }} {{ activeUser.surname }}</h1>
     <p>Mail: {{ activeUser.email }}</p>
     <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear }}</p>
+    <input type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">
+</div>
+
+<div class="password-update-menu" *ngIf="showPasswordUpdateMenu">
+    <input type="password" id="password-placeholder" placeholder="Input new password" [(ngModel)]="newPassword">
+    <input type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">
 </div>
 
 <div class="users-list" *ngIf="adminAccess">
