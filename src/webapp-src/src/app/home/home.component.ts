@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { baseUrl } from "../configuration";
 import { RestapiService } from '../restapi.service';
 import { ConvertDishes, Dishes } from '../model/Dishes';
 import { ConvertMeals, Meals} from "../model/Meals";
@@ -60,7 +61,7 @@ export class HomeComponent implements OnInit {
     }
 
     selectClickHandlerRecipe(){
-        let base = 'http://localhost:4200/api/recipe';
+        let base = baseUrl + '/api/recipe';
         let counter = 0;
 
         if(this.selectedMeal != null && this.selectedMeal != 'default') {
@@ -82,8 +83,6 @@ export class HomeComponent implements OnInit {
                 base = base + '?filter[cuisine.id]=' + this.selectedCuisine;
             }
         }
-
-        console.log(base);
 
         this.service.getFilteredRecipes(base).subscribe( data => {
             this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
