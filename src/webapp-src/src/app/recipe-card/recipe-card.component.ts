@@ -59,6 +59,12 @@ export class RecipeCardComponent implements OnInit {
         this.showAddToSelection = true;
     }
 
+    addToSelection(id: string) {
+        this.service.addRecipeToSelectionById(id, this.recipeId).subscribe( data => {
+            this.showAddToSelection = false;
+        });
+    }
+
     PrintRating() {
         if (this.rating == '') {
             return 'Not rated';

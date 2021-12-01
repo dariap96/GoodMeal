@@ -42,7 +42,7 @@
                 <tbody>
                 <tr *ngFor="let selection of userSelections.data">
                     <td>{{ selection.id }}</td>
-                    <td>{{ selection.attributes.selectionName }}</td>
+                    <td><input type="add" name="add" value="Add to: {{ selection.attributes.selectionName }}" (click)="addToSelection(selection.id)"></td>
                 </tr>
                 </tbody>
             </table>
