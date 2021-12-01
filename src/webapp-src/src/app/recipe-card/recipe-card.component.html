@@ -29,6 +29,26 @@
         <a id="recipe_review" href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
     </div>
 
+    <div class="add-to-selection">
+        <input type="submit" name="Submit" value="Save to selection" (click)="showAddToSelectionMenu()">
+        <div class="selection-selector" *ngIf="showAddToSelection">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let selection of userSelections.data">
+                    <td>{{ selection.id }}</td>
+                    <td><input type="add" name="add" value="Add to: {{ selection.attributes.selectionName }}" (click)="addToSelection(selection.id)"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <div class="ingridients">
         <div class="card-body">
             <table class="table table-bordered table-striped">

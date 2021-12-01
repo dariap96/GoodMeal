@@ -117,4 +117,9 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/selection/' + id + '/recipeSet', {headers, responseType: 'text' as 'json'});
     }
+
+    addRecipeToSelectionById(selectionId: string, recipeId: number) {
+        let headers = this.authHeader;
+        return this.http.post(baseUrl + '/add-to-selection/' + selectionId, recipeId, {headers, responseType: 'text' as 'json'});
+    }
 }

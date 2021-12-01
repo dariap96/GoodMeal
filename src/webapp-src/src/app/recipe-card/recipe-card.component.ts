@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
 import { ConvertRecipe, Recipe } from "../model/Recipe";
 import { ConvertIngredients, Ingredients } from "../model/Ingredients";
+import { UserInfo, ConvertUserInfo } from "../model/User";
+import { Selections, ConvertSelections } from "../model/Selections";
 
 @Component({
     selector: 'app-recipe-card',
@@ -12,9 +14,12 @@ import { ConvertIngredients, Ingredients } from "../model/Ingredients";
 
 export class RecipeCardComponent implements OnInit {
 
+    activeUser : UserInfo;
+    userSelections : Selections;
     recipeId : number;
     selectedRecipe : Recipe;
     relatedIngredients : Ingredients;
+    showAddToSelection : boolean = false
     rating : string;
     recipeName : string = 'Loading...';
     recipeCookTime : number = -1;
@@ -37,10 +42,27 @@ export class RecipeCardComponent implements OnInit {
             this.relatedIngredients = ConvertIngredients.toIngredients(data.toString());
         });
 
-        this.service.getRecipeRatingById(this.recipeId).subscribe(
-            data => {
+        this.service.getRecipeRatingById(this.recipeId).subscribe(data => {
                 this.rating = data.toString();
+        });
+
+        this.service.getUserInfo().subscribe( data => {
+            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+
+            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
+                this.userSelections = ConvertSelections.toSelections(data.toString());
             });
+        });
+    }
+
+    showAddToSelectionMenu() {
+        this.showAddToSelection = true;
+    }
+
+    addToSelection(id: string) {
+        this.service.addRecipeToSelectionById(id, this.recipeId).subscribe( data => {
+            this.showAddToSelection = false;
+        });
     }
 
     PrintRating() {
