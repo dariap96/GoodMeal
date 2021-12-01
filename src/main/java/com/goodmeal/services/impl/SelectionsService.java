@@ -41,4 +41,6 @@ public class SelectionsService implements IService<Selection> {
     public boolean existsById(Long id) {
         return (selectionRepository.existsById(id));
     }
+
+    public Selection getSelectionById(Long id) {return (selectionRepository.getSelectionById(id));}
 }

@@ -39,4 +39,6 @@ public class RecipesService implements IService<Recipe>{
         return (recipesRepository.existsById(id));
 
     }
+
+    public Recipe getRecipeById(Long id) {return recipesRepository.getRecipeById(id);}
 }

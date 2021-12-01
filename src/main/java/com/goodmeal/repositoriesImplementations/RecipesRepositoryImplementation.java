@@ -8,4 +8,6 @@ import org.springframework.stereotype.Component;
 public interface RecipesRepositoryImplementation extends JpaRepository<Recipe, Long> {
 
     Recipe getByOriginalId(String s);
+
+    Recipe getRecipeById(Long id);
 }
