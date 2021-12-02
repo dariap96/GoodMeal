@@ -32,12 +32,14 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Remove</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let recipe of recipeSet.data">
                 <td>{{ recipe.id }}</td>
                 <td><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
+                <td><input type="add" name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)"></td>
             </tr>
             </tbody>
         </table>

@@ -127,4 +127,14 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.post(baseUrl + '/edit-selections/new-selection/' + selectionName, login, {headers, responseType: 'text' as 'json'});
     }
+
+    removeRecipeFromSelection(recipeId: number, selectionId: number) {
+        let headers = this.authHeader;
+        return this.http.post(baseUrl + '/edit-selections/remove-item/' + recipeId, selectionId, {headers, responseType: 'text' as 'json'});
+    }
+
+    removeSelection(selectionId: number) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/edit-selections/delete/' + selectionId, {headers, responseType: 'text' as 'json'});
+    }
 }

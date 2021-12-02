@@ -34,12 +34,14 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Remove</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let selection of userSelections.data">
                 <td>{{ selection.id }}</td>
                 <td><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
+                <td><input type="add" name="add" value="Delete selection" (click)="removeSelection(selection.id)"></td>
             </tr>
             </tbody>
         </table>

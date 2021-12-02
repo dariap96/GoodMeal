@@ -33,4 +33,7 @@ export class SelectionsPageComponent implements OnInit {
         });
     }
 
+    removeSelection(selectionId: string) {
+        this.service.removeSelection(parseInt(selectionId, 10)).subscribe( data => {});
+    }
 }
