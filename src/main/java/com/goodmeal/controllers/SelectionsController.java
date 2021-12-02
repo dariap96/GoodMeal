@@ -35,9 +35,6 @@ public class SelectionsController {
         String selectionOwner = selection.getUser().getLogin();
         Recipe recipe = recipesRepository.getRecipeById(Long.parseLong(recipeId, 10));
 
-        System.out.println(selectionOwner);
-        System.out.println(login);
-
         if (!login.equals(selectionOwner)) {
             return false;
         }

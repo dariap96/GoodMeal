@@ -30,7 +30,10 @@
 
 <div class="password-update-menu" *ngIf="showPasswordUpdateMenu">
     <input type="password" id="password-placeholder" placeholder="Input new password" [(ngModel)]="newPassword">
+    <input type="password" id="password-retype-placeholder" placeholder="Input one more time" [(ngModel)]="newPasswordVerificatiion">
     <input type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">
+
+    <p *ngIf="showDifferentPasswordsLabel">Different passwords!</p>
 </div>
 
 <div class="user-selections">
