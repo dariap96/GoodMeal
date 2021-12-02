@@ -27,6 +27,8 @@ export class ReviewComponent implements OnInit {
     }
 
     public addReview(addForm: NgForm): void {
+        addForm.controls['recipeId'].setValue(this.recipeId)
+        addForm.controls['userLogin'].setValue(this.userLogin);
         this.service.addRating(addForm.value).subscribe(
             (response: RecipeRating[]) => {
                 this.Close();
