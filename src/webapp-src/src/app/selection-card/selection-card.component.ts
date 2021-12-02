@@ -26,4 +26,8 @@ export class SelectionCardComponent implements OnInit {
             this.recipeSet = ConvertRecipes.toRecipes(data.toString());
         });
     }
+
+    deleteFromSelection(recipeId: number, selectionId: number) {
+        this.service.removeRecipeFromSelection(recipeId, selectionId).subscribe( data => {});
+    }
 }

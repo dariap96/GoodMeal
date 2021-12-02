@@ -21,58 +21,32 @@
     </div>
 </div>
 
-<div class="user-profile-body">
-    <h1>{{ activeUser.name }} {{ activeUser.surname }}</h1>
-    <p>Mail: {{ activeUser.email }}</p>
-    <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear }}</p>
-    <input type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">
+<div class="selection-page-body">
+    <h1>Your selections</h1>
+    <input type="text" id="new-selection-name-placeholder" placeholder="New selection name" [(ngModel)]="newSelectionName">
+    <input type="submit" name="Submit" value="Submit" (click)="createNewSelection()">
 </div>
 
-<div class="password-update-menu" *ngIf="showPasswordUpdateMenu">
-    <input type="password" id="password-placeholder" placeholder="Input new password" [(ngModel)]="newPassword">
-    <input type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">
-</div>
-
-<div class="user-selections">
+<div class="user-selections-page-body">
     <div class="card-body">
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Remove</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let selection of userSelections.data">
                 <td>{{ selection.id }}</td>
                 <td><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
+                <td><input type="add" name="add" value="Delete selection" (click)="removeSelection(selection.id)"></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<div class="users-list" *ngIf="adminAccess">
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Login</th>
-                <th scope="col">Name</th>
-                <th scope="col">Surname</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let user of usersList.data">
-                <td>{{ user.id }}</td>
-                <td>{{ user.attributes.login }}</td>
-                <td>{{ user.attributes.name }}</td>
-                <td>{{ user.attributes.surname }}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 </body>
 </html>

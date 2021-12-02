@@ -12,6 +12,7 @@
     <a href="#about">About </a>
     <a href="#contact">Contact</a>
     <a href="http://localhost:4200/user-profile">Profile</a>
+    <a href="http://localhost:4200/selections">Selections</a>
     <div class="search-container">
         <form autocomplete="off" action="/action_page.php">
             <input type="text" id="myInput" onkeyup="myFunction()" placeholder="search your fav recipe..." name="myRecipe">
@@ -31,12 +32,14 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Remove</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let recipe of recipeSet.data">
                 <td>{{ recipe.id }}</td>
                 <td><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
+                <td><input type="add" name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)"></td>
             </tr>
             </tbody>
         </table>

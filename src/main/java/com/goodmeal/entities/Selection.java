@@ -34,14 +34,14 @@ public class Selection {
     private User user;
 
     //@JsonApiRelation(serialize = SerializeType.LAZY)
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(name = "Ingredients_Selections", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "selection_id"),
             inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private Set<Ingredient> ingredientSet = new HashSet<>();
 
     //@JsonApiRelation(serialize = SerializeType.LAZY)
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JoinTable(name = "Recipes_Selections", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "selection_id"),
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))

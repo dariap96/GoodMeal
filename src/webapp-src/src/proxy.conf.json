@@ -41,7 +41,7 @@
     "logLevel": "debug"
   },
 
-  "/add-to-selection/*": {
+  "/edit-selections/*": {
     "target": "http://localhost:8080",
     "secure": false,
     "logLevel": "debug"

@@ -11,6 +11,7 @@ import { RegistrationComponent } from './registration/registration.component'
 import { RestapiService } from './restapi.service';
 import { RecipeCardComponent } from "./recipe-card/recipe-card.component";
 import { IngredientCardComponent } from "./ingredient-card/ingredient-card.component";
+import { SelectionsPageComponent } from "./selections-page/selections-page.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { ReviewComponent } from "./review/review.component";
 import { SelectionCardComponent } from "./selection-card/selection-card.component";
@@ -23,6 +24,7 @@ import { SelectionCardComponent } from "./selection-card/selection-card.componen
         RegistrationComponent,
         RecipeCardComponent,
         IngredientCardComponent,
+        SelectionsPageComponent,
         SelectionCardComponent,
         UserProfileComponent,
         ReviewComponent
