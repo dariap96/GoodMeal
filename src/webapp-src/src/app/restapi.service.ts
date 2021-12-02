@@ -120,6 +120,11 @@ export class RestapiService {
 
     addRecipeToSelectionById(selectionId: string, recipeId: number) {
         let headers = this.authHeader;
-        return this.http.post(baseUrl + '/add-to-selection/' + selectionId, recipeId, {headers, responseType: 'text' as 'json'});
+        return this.http.post(baseUrl + '/edit-selections/add-to-selection/' + selectionId, recipeId, {headers, responseType: 'text' as 'json'});
+    }
+
+    addNewSelection(selectionName: string, login: string) {
+        let headers = this.authHeader;
+        return this.http.post(baseUrl + '/edit-selections/new-selection/' + selectionName, login, {headers, responseType: 'text' as 'json'});
     }
 }

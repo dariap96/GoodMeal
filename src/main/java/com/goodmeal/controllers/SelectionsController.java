@@ -5,21 +5,17 @@ import com.goodmeal.entities.Selection;
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.RecipesRepositoryImplementation;
 import com.goodmeal.repositoriesImplementations.SelectionsRepositoryImplementation;
-import com.goodmeal.services.impl.RecipesService;
-import com.goodmeal.services.impl.SelectionsService;
 import com.goodmeal.services.impl.UsersService;
-import io.crnk.core.engine.transaction.TransactionRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/edit-selections")
 public class SelectionsController {
 
     @Autowired
@@ -43,13 +39,33 @@ public class SelectionsController {
         System.out.println(selectionOwner);
         System.out.println(login);
 
-//        if(login != selectionOwner) {
-//            return false;
-//        }
+        if (!login.equals(selectionOwner)) {
+            return false;
+        }
 
         Set<Recipe> recipeSet = selection.getRecipeSet();
         recipeSet.add(recipe);
         selection.setRecipeSet(recipeSet);
+        selectionsRepository.save(selection);
+
+        return true;
+    }
+
+    @RequestMapping(value = "/new-selection/{selectionName}", method = RequestMethod.POST)
+    private boolean createNewSelection(HttpServletRequest request, @PathVariable String selectionName, @RequestBody String login) {
+        Principal principal = request.getUserPrincipal();
+        String loginFromCookies = principal.getName();
+
+        if(!login.equals(loginFromCookies)) {
+            return false;
+        }
+
+        Selection selection = new Selection(selectionName);
+        User user = usersService.getUserByLogin(login);
+
+        selection.setUser(user);
+        selection.setRecipeSet(new HashSet<>());
+        selection.setIngredientSet(new HashSet<>());
         selectionsRepository.save(selection);
 
         return true;
