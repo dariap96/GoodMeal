@@ -19,12 +19,13 @@ export class RecipeCardComponent implements OnInit {
     recipeId : number;
     selectedRecipe : Recipe;
     relatedIngredients : Ingredients;
-    showAddToSelection : boolean = false
     rating : string;
     recipeName : string = 'Loading...';
     recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
     recipeDescr : string = 'Loading...';
+
+    selectedSelection = null;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
 
@@ -55,14 +56,14 @@ export class RecipeCardComponent implements OnInit {
         });
     }
 
-    showAddToSelectionMenu() {
-        this.showAddToSelection = true;
+    selectChangeHandlerSelection(e) {
+        this.selectedSelection = e.target.value;
     }
 
-    addToSelection(id: string) {
-        this.service.addRecipeToSelectionById(id, this.recipeId).subscribe( data => {
-            this.showAddToSelection = false;
-        });
+    addToSelection() {
+        if (this.selectedSelection != 'Select selection to save' && this.selectedSelection != null) {
+            this.service.addRecipeToSelectionById(this.selectedSelection, this.recipeId).subscribe( data => {});
+        }
     }
 
     PrintRating() {

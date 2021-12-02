@@ -31,23 +31,11 @@
     </div>
 
     <div class="add-to-selection">
-        <input type="submit" name="Submit" value="Save to selection" (click)="showAddToSelectionMenu()">
-        <div class="selection-selector" *ngIf="showAddToSelection">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let selection of userSelections.data">
-                    <td>{{ selection.id }}</td>
-                    <td><input type="add" name="add" value="Add to: {{ selection.attributes.selectionName }}" (click)="addToSelection(selection.id)"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <select #selection (change)="selectChangeHandlerSelection($event)" name="selection">
+            <option value="Select selection to save"></option>
+            <option *ngFor="let selection of userSelections.data" [value]="selection.id">{{selection.attributes.selectionName}}</option>
+        </select>
+        <input type="submit" name="Submit" value="Save" (click)="addToSelection()">
     </div>
 
     <div class="ingridients">
