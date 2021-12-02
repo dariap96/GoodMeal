@@ -5,6 +5,7 @@ import { ConvertRecipe, Recipe } from "../model/Recipe";
 import { ConvertIngredients, Ingredients } from "../model/Ingredients";
 import { UserInfo, ConvertUserInfo } from "../model/User";
 import { Selections, ConvertSelections } from "../model/Selections";
+import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
 
 @Component({
     selector: 'app-recipe-card',
@@ -21,6 +22,7 @@ export class RecipeCardComponent implements OnInit {
     relatedIngredients : Ingredients;
     showAddToSelection : boolean = false
     rating : string;
+    reviews : RecipeRatingInfo[];
     recipeName : string = 'Loading...';
     recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
@@ -53,6 +55,12 @@ export class RecipeCardComponent implements OnInit {
                 this.userSelections = ConvertSelections.toSelections(data.toString());
             });
         });
+
+        this.service.getReviews(this.recipeId).subscribe(
+            data => {
+                this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString());
+            }
+        );
     }
 
     showAddToSelectionMenu() {

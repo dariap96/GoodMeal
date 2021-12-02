@@ -157,3 +157,13 @@ a[href] {
 #recipe_review {
     color: #008000;
 }
+
+#users_review {
+    border-radius: 20px;
+    border-color: #2196F3;
+    border-style: solid;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 300px;
+}

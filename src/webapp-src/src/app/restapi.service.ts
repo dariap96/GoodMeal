@@ -78,14 +78,19 @@ export class RestapiService {
         return this.http.get(baseUrl + '/api/ingredient/' + id, {headers, responseType: 'text' as 'json'});
     }
 
-    getRecipeRatingById(id: number) {
+    getRecipeRatingById(recipeId: number) {
         let headers = this.authHeader;
-        return this.http.get(baseUrl + '/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + '/recipe_rating/' + recipeId, {headers, responseType: 'text' as 'json'});
     }
 
     addRating(rating: RecipeRating) {
         return this.http.post<RecipeRating[]>(
             baseUrl + '/recipe_rating/new', rating);
+    }
+
+    getReviews(recipeId: number){
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
     }
 
     getUserInfo() {

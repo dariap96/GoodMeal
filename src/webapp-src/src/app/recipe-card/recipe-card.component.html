@@ -28,6 +28,17 @@
         <p>Description: {{ recipeDescr }}</p>
         <p>{{ PrintRating() }}</p>
         <a id="recipe_review" href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
+        <p>Reviews</p>
+        <tbody>
+            <tr *ngFor="let review of reviews">
+                <td id="users_review">
+                    User: {{review.userLogin}}<br>
+                    Rating: {{ review.rating }}<br>
+                    {{ review.review }}
+                </td>
+            </tr>
+        </tbody>
+
     </div>
 
     <div class="add-to-selection">

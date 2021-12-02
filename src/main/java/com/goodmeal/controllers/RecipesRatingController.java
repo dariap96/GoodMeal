@@ -9,10 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping(value = "/recipe_rating")
 @CrossOrigin(origins = "*")
 public class RecipesRatingController {
+    public static final int MAX_REVIEWS = 20;
+
     @Autowired
     RecipesService recipesService;
 
@@ -23,17 +29,16 @@ public class RecipesRatingController {
     RecipesRatingService recipesRatingService;
 
     @GetMapping(value = "/{recipeId}")
-    public Double rating(@PathVariable Integer recipeId) {
-        return recipesService.findById(recipeId.longValue()).get().getRating();
+    public Double rating(@PathVariable Long recipeId) {
+        return recipesService.findById(recipeId).get().getRating();
     }
 
     @PostMapping("/new")
     public boolean newRating(@RequestBody RecipesRatingDTO ratingDTO) {
-        RecipesRating rating = new RecipesRating(
-                recipesService.findById(ratingDTO.getRecipeId()).get(),
-                usersService.getUserByLogin(ratingDTO.getUserLogin()),
-                ratingDTO.getRating(),
-                ratingDTO.getReview()
+        RecipesRating rating = RecipesRatingDTO.toRecipesRating(
+                recipesService,
+                usersService,
+                ratingDTO
         );
 
         boolean is_exists = recipesRatingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;
@@ -43,5 +48,17 @@ public class RecipesRatingController {
             recipesRatingService.create(rating);
         }
         return is_exists;
+    }
+
+    @GetMapping(value = "/{recipeId}/reviews")
+    public List<RecipesRatingDTO> getReviews(@PathVariable Long recipeId) {
+        List<RecipesRatingDTO> ratingDTOS =
+                recipesRatingService
+                    .getAllByRecipeId(recipeId)
+                    .stream()
+                    .map(RecipesRatingDTO::toRecipesRatingDTO)
+                    .collect(Collectors.toList());
+        Collections.shuffle(ratingDTOS);
+        return ratingDTOS.subList(0, Math.min(20, ratingDTOS.size()));
     }
 }
