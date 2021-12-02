@@ -29,15 +29,11 @@ public class SelectionsController {
 
     @RequestMapping(value = "/add-to-selection/{selectionId}", method = RequestMethod.POST)
     private boolean addToSelection(HttpServletRequest request, @PathVariable Long selectionId, @RequestBody String recipeId) {
-        Principal principal = request.getUserPrincipal();
-        String login = principal.getName();
+        String login = getLoginFromPrincipal(request);
 
         Selection selection = selectionsRepository.getSelectionById(selectionId);
         String selectionOwner = selection.getUser().getLogin();
         Recipe recipe = recipesRepository.getRecipeById(Long.parseLong(recipeId, 10));
-
-        System.out.println(selectionOwner);
-        System.out.println(login);
 
         if (!login.equals(selectionOwner)) {
             return false;
@@ -53,8 +49,7 @@ public class SelectionsController {
 
     @RequestMapping(value = "/new-selection/{selectionName}", method = RequestMethod.POST)
     private boolean createNewSelection(HttpServletRequest request, @PathVariable String selectionName, @RequestBody String login) {
-        Principal principal = request.getUserPrincipal();
-        String loginFromCookies = principal.getName();
+        String loginFromCookies = getLoginFromPrincipal(request);
 
         if(!login.equals(loginFromCookies)) {
             return false;
@@ -69,5 +64,47 @@ public class SelectionsController {
         selectionsRepository.save(selection);
 
         return true;
+    }
+
+    @RequestMapping(value = "/remove-item/{itemId}", method = RequestMethod.POST)
+    private boolean removeItemFromSelecion(HttpServletRequest request, @PathVariable String itemId, @RequestBody String selectionId) {
+        String login = getLoginFromPrincipal(request);
+
+        Selection selection = selectionsRepository.getSelectionById(Long.parseLong(selectionId, 10));
+        String selectionOwner = selection.getUser().getLogin();
+        Recipe recipe = recipesRepository.getRecipeById(Long.parseLong(itemId, 10));
+
+        if (!login.equals(selectionOwner)) {
+            return false;
+        }
+
+        Set<Recipe> recipeSet = selection.getRecipeSet();
+        recipeSet.remove(recipe);
+        selection.setRecipeSet(recipeSet);
+        selectionsRepository.save(selection);
+
+        return true;
+    }
+
+    @RequestMapping(value = "/delete/{selectionId}", method = RequestMethod.GET)
+    private boolean deleteSelection(HttpServletRequest request, @PathVariable String selectionId) {
+        String login = getLoginFromPrincipal(request);
+
+        Selection selection = selectionsRepository.getSelectionById(Long.parseLong(selectionId, 10));
+        String selectionOwner = selection.getUser().getLogin();
+
+        if (!login.equals(selectionOwner)) {
+            return false;
+        }
+
+        selectionsRepository.deleteById(Long.parseLong(selectionId, 10));
+        return true;
+    }
+
+    private String getLoginFromPrincipal(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        String login = principal.getName();
+
+        return login;
     }
 }
