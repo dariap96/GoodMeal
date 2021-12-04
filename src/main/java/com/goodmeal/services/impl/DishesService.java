@@ -37,4 +37,8 @@ public class DishesService implements IService<Dish> {
     public boolean existsById(Long id) {
         return (dishesRepository.existsById(id));
     }
+
+    public void deleteDish(){};
+
+    public void listAllDishes(){};
 }

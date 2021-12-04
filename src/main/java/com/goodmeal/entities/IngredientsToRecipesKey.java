@@ -36,9 +36,9 @@ public class IngredientsToRecipesKey implements Serializable {
                 Objects.equals(ingredientId, that.ingredientId);
     }
 
-    public IngredientsToRecipesKey(Long ingredientId, Long recipeId) {
-        this.ingredientId = ingredientId;
+    public IngredientsToRecipesKey(Long recipeId, Long ingredientId) {
         this.recipeId = recipeId;
+        this.ingredientId = ingredientId;
     }
 
     public IngredientsToRecipesKey() {

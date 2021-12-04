@@ -1,5 +1,7 @@
 package com.goodmeal.services.impl;
 
+import com.goodmeal.entities.Ingredient;
+import com.goodmeal.entities.Recipe;
 import com.goodmeal.entities.Selection;
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.SelectionsRepositoryImplementation;
@@ -22,6 +24,8 @@ public class UsersService implements IService<User> {
     private UsersRepositoryImplementation userRepository;
     @Autowired
     private SelectionsRepositoryImplementation selectionsRepository;
+
+
 
     @Override
     public Iterable<User> findAll() {
@@ -47,9 +51,6 @@ public class UsersService implements IService<User> {
          return this.userRepository.getUserByLogin(login).getSelectionSet();
     }
 
-    public User getUserByLogin(String login){
-        return userRepository.getUserByLogin(login);
-    }
 //    public boolean newSelection(String login) {
 //         return this.selectionsRepository.new);
 //    }

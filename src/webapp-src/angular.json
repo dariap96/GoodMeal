@@ -14,9 +14,20 @@
               "main": "src/main.ts",
               "polyfills": "src/polyfills.ts",
               "tsConfig": "tsconfig.json",
-              "aot": true
+              "aot": true,
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+            ]
             }
           },
+          "styles": [
+            "styles.css",
+            "css/spinner.css",
+            "css/bootstrap.min.css",
+            "css/font-awesome.min.css",
+            "~@ng-select/ng-select/themes/default.theme.css"
+
+          ],
           "serve": {
             "builder": "@angular-devkit/build-angular:dev-server",
             "options": {

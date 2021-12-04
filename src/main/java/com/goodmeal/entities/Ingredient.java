@@ -3,7 +3,6 @@ package com.goodmeal.entities;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
-import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,7 +53,7 @@ public class Ingredient implements Serializable {
     @OneToMany(mappedBy = "ingredient")
     private Set<IngredientsToRecipes> ingredientsSet;
 
-    //@JsonApiRelation(serialize = SerializeType.LAZY)
+    @JsonApiRelation
     @ManyToMany(mappedBy = "ingredientSet")
     private Set<Selection> selectionSet;
 

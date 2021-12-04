@@ -36,4 +36,9 @@ public class CuisinesService implements IService<Cuisine> {
     public boolean existsById(Long id) {
         return (cuisinesRepository.existsById(id));
     }
+
+    public void deleteCuisine(){};
+
+    public void listAllCuisines(){};
+
 }

@@ -1,72 +1,115 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .navig{
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+            position: sticky;
+            position: -webkit-sticky; /* For macOS/iOS Safari */
+            top: 0; /* Sets the sticky toolbar to be on top */
+            z-index: 2000;
+            background-color: #FFFFFF;
+            padding: 7px;
+        }
+        .logo {
+            font-size: 25px;
+            padding: 7px;
+            align-items: center;
+            -webkit-align-items: center;
+
+        }
+        .a:hover{
+            background-color: whitesmoke;
+
+        }
+        .component-page-header {
+            font-size: 7px;
+            background-attachment: scroll;
+            color: #FFFFFF ;
+            font-weight: 200;
+            margin: 0;
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+
+
+
+            background-color: rgb(63, 81, 181);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+
+
+        }
+        .h1 {
+            padding:0;
+            color: #e9e9e9;
+            font-size: 17px;
+            margin-left: 30px;
+            position: relative;
+        }
+        .slide-in-blurred-right {
+            animation: slide-in-blurred-right 0.6s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+        }
+
+        @keyframes slide-in-blurred-right {
+            0% {
+                transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+                transform-origin: 0% 50%;
+                filter: blur(40px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0) scaleY(1) scaleX(1);
+                transform-origin: 50% 50%;
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+
+    </style>
     <title></title>
 </head>
 <body>
 
-    <div class="topnav">
-        <a class="active" href="http://localhost:4200/home">Home</a>
-        <a href="#about">About </a>
-        <a href="#contact">Contact</a>
-        <a href="http://localhost:4200/user-profile">Profile</a>
-        <a href="http://localhost:4200/selections">Selections</a>
-        <div class="search-container">
-            <form autocomplete="off" action="/action_page.php">
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="search your fav recipe..." name="myRecipe">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
-
-    <div class="recipe-card">
-        <h1>{{ recipeName }}</h1>
-        <img src="{{ recipeImg }}" class="user-img" />
-        <p>Cook time: {{ recipeCookTime }} min.</p>
-        <p>Description: {{ recipeDescr }}</p>
-        <p>{{ PrintRating() }}</p>
-        <a id="recipe_review" href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
-    </div>
-
-    <div class="add-to-selection">
-        <input type="submit" name="Submit" value="Save to selection" (click)="showAddToSelectionMenu()">
-        <div class="selection-selector" *ngIf="showAddToSelection">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let selection of userSelections.data">
-                    <td>{{ selection.id }}</td>
-                    <td><input type="add" name="add" value="Add to: {{ selection.attributes.selectionName }}" (click)="addToSelection(selection.id)"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+<nav mat-tab-nav-bar class="navig" [backgroundColor]=background mat-align-tabs="end">
+    <div style= "text-align: center" class="logo">GOOD MEAL</div>
+    <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
+</nav>
+<header _ngcontent-ugx-c129="" class="docs-primary-header component-page-header">
+    <h1 class="h1" _ngcontent-ugx-c129=""  >{{recipeName}}</h1>
+</header>
+<mat-card class="slide-in-blurred-right" style="display:flex;width:80%;margin-left:100px;padding:70px;margin-top: 60px" tabindex="0">
+    <div class="recipe-card slide-in-blurred-right" style=" width: 500px; margin-left: 50px" >
+         
+        <img mat-card-xl-image src="{{ recipeImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px" />
+        <mat-card-content style="margin-top: 20px">Cook time: {{ recipeCookTime }} min.</mat-card-content>
+        <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
     </div>
 
     <div class="ingridients">
-        <div class="card-body">
-            <table class="table table-bordered table-striped">
+        <div class="card-body slide-in-blurred-right" style="display: flex">
+            <table class="w3-table w3-bordered mat-table" style="font-family: Roboto,sans-serif; text-align: right;width:400px;margin-left: 150px ">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col" class="mat-headline" style="font-size: 17px">Ingredients</th>
+                    <th scope="col" class="mat-headline" style="font-size: 17px">#</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let ingr of relatedIngredients.data">
+
+                <tr *ngFor="let ingr of relatedIngredients.data" style="">
+
+                         <td><a class="mat-option" href="http://localhost:4200/ingredient-card/{{ingr.id}}">{{ ingr.attributes.name }}</a></td>
+
+
                     <td>{{ ingr.id }}</td>
-                    <td><a href="http://localhost:4200/ingredient-card/{{ingr.id}}">{{ ingr.attributes.name }}</a></td>
                 </tr>
+
                 </tbody>
             </table>
         </div>
-    </div>
+        </div>
+    </mat-card>
 </body>
 </html>

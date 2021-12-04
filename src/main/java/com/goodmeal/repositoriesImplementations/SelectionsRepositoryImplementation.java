@@ -9,5 +9,5 @@ import java.util.Set;
 
 @Component
 public interface SelectionsRepositoryImplementation extends JpaRepository<Selection, Long> {
-    Selection getSelectionById(Long id);
+
 }

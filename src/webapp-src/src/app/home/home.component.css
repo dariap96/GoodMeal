@@ -1,3 +1,5 @@
+
+
 * {box-sizing: border-box;}
 
 body {
@@ -147,8 +149,29 @@ body {
 .custom-dropdown::after {
     color: rgba(0,0,0,.4);
 }
-
-a[href] {
-    color: #2196F3;
-    text-decoration: none;
+li {
+    list-style-type: none;
 }
+.search-result li a {
+    border-bottom: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+    padding: .5rem;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+}
+
+.search-result li a:hover {
+    background-color: #435A60;
+    color: white;
+}
+
+ul.search-result {
+    margin-top: 0;
+    padding-left: 0;
+}
+

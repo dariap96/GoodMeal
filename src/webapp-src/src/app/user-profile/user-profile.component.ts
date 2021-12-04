@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
-import { Selections, ConvertSelections } from "../model/Selections";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
     selector: 'app-user-profile',
@@ -13,13 +13,11 @@ export class UserProfileComponent implements OnInit {
 
     activeUser : UserInfo;
     usersList : Users;
-    userSelections : Selections;
     adminAccess : boolean = false;
-    showPasswordUpdateMenu : boolean = false;
-    newPassword : string;
     activeUserBdayDay : number;
     activeUserBdayMonth : number;
     activeUserBdayYear : number;
+    background: ThemePalette = undefined;
 
     constructor(private service : RestapiService) {}
 
@@ -43,20 +41,7 @@ export class UserProfileComponent implements OnInit {
                 });
             }
 
-            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-                this.userSelections = ConvertSelections.toSelections(data.toString());
-            });
-        });
-    }
-
-    showPassUpdMenu() {
-        this.showPasswordUpdateMenu = true;
-    }
-
-    hidePassUpdMenu() {
-        console.log(this.newPassword);
-        this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
-            this.showPasswordUpdateMenu = true;
+            console.log(this.adminAccess);
         });
     }
 }

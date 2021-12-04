@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Transactional
 @Service("jpaRecipesService")
@@ -40,5 +41,5 @@ public class RecipesService implements IService<Recipe>{
 
     }
 
-    public Recipe getRecipeById(Long id) {return recipesRepository.getRecipeById(id);}
+
 }
