@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class HomeResolver {\n  constructor(service) {\n    this.service = service;\n  }\n\n  resolve(route, state) {\n    return this.service.getRecipes();\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

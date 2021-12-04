@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class ConvertIngredient {\n  static toIngredient(json) {\n    return JSON.parse(json);\n  }\n\n  static ingredientToJson(value) {\n    return JSON.stringify(value);\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
