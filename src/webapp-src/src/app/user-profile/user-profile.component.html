@@ -111,20 +111,25 @@
 
 </style>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title></title>
 </head>
 <body>
+
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
     <div style= "text-align: center" class="logo">GOOD MEAL</div>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
     <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
 </nav>
 <div  class="gradient-hor bg-pan-left">
-<header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
-    <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px"></div>
-</header>
+    <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
+        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px"></div>
+    </header>
+
 
     <mat-card  class="mat-elevation-z4 text-focus-in " style="text-align: center;vertical-align: middle;
   margin-left:300px; margin-top:180px;width:50%;position:center;border-radius:20px;padding:80px;box-shadow: #d4d4d4">
@@ -132,8 +137,33 @@
         <div class="example-container " style="text-align: center;">
             <p> Mail: {{ activeUser.email }}</p>
             <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear}}</p>
-             </div>
+            <input type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">
+        </div>
     </mat-card>
+
+<div class="password-update-menu" *ngIf="showPasswordUpdateMenu">
+    <input type="password" id="password-placeholder" placeholder="Input new password" [(ngModel)]="newPassword">
+    <input type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">
+</div>
+
+<div class="user-selections">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let selection of userSelections.data">
+                <td>{{ selection.id }}</td>
+                <td><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <div class="users-list" *ngIf="adminAccess">
     <div class="card-body">
@@ -158,6 +188,5 @@
     </div>
 </div>
 </div>
-
 </body>
 </html>

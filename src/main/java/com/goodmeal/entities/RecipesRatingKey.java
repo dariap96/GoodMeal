@@ -11,17 +11,17 @@ import java.util.Objects;
 @Embeddable
 @Getter
 @Setter
-public class IngredientsToRecipesKey implements Serializable {
+public class RecipesRatingKey implements Serializable {
 
-    @Column //(name = "recipe_id")
+    @Column
     private Long recipeId;
 
-    @Column //(name = "ingredient_id")
-    private Long ingredientId;
+    @Column
+    private Long userId;
 
     @Override
     public int hashCode() {
-        return Objects.hash(recipeId, ingredientId);
+        return Objects.hash(recipeId, userId);
     }
 
     @Override
@@ -31,16 +31,16 @@ public class IngredientsToRecipesKey implements Serializable {
         if (o == null || getClass() != o.getClass())
             return false;
 
-        IngredientsToRecipesKey that = (IngredientsToRecipesKey) o;
+        RecipesRatingKey that = (RecipesRatingKey) o;
         return Objects.equals(recipeId, that.recipeId) &&
-                Objects.equals(ingredientId, that.ingredientId);
+                Objects.equals(userId, that.userId);
     }
 
-    public IngredientsToRecipesKey(Long ingredientId, Long recipeId) {
-        this.ingredientId = ingredientId;
+    public RecipesRatingKey(Long recipeId, Long userId) {
         this.recipeId = recipeId;
+        this.userId = userId;
     }
 
-    public IngredientsToRecipesKey() {
+    public RecipesRatingKey() {
     }
 }

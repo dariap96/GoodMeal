@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @JsonApiResource(type = "recipe")
 @Entity
@@ -58,9 +59,12 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private Set<IngredientsToRecipes> ingredientsSet;
 
-    @JsonApiRelation
+    //@JsonApiRelation(serialize = SerializeType.LAZY)
     @ManyToMany(mappedBy = "recipeSet", fetch = FetchType.LAZY)
     private Set<Selection> selectionSet;
+
+    @OneToMany(mappedBy = "recipe")
+    private Set<RecipesRating> ratingSet;
 
     public Recipe() {}
 
@@ -84,5 +88,13 @@ public class Recipe {
         this.dish = dish;
         this.originalId = originalId;
         this.labelsSet = labels;
+    }
+
+    public Double getRating(){
+        if(ratingSet.size() == 0){
+            return null;
+        }
+
+        return ratingSet.stream().collect(Collectors.averagingInt(RecipesRating::getRating));
     }
 }

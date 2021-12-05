@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title></title>
+</head>
+<body>
+
+<div class="topnav">
+    <a class="active" href="http://localhost:4200/home">Home</a>
+    <a href="#about">About </a>
+    <a href="#contact">Contact</a>
+    <a href="http://localhost:4200/user-profile">Profile</a>
+    <a href="http://localhost:4200/selections">Selections</a>
+    <div class="search-container">
+        <form autocomplete="off" action="/action_page.php">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="search your fav recipe..." name="myRecipe">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="selection-card-body">
+    <h1>{{ selectedSelection.data.attributes.selectionName }}</h1>
+</div>
+
+<div class="recipes-list">
+    <div class="card-body">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recipe of recipeSet.data">
+                <td>{{ recipe.id }}</td>
+                <td><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
+                <td><input type="add" name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

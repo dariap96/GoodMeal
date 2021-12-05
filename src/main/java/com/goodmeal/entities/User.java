@@ -30,7 +30,6 @@ public class User {
     private String login;
 
     @Column
-    @JsonIgnore
     private String password;
 
     @Column
@@ -52,9 +51,12 @@ public class User {
     //@JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<Role> roleSet = new HashSet<>();
 
-    @JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
+    //@JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<RecipesRating> userGradingsSet;
 
     public User(String login, String password, String name, String surname, String email, Date bday, Set<Role> roleSet, Set<Selection> selectionSet) {
         this.login = login;

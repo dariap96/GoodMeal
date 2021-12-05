@@ -14,8 +14,7 @@
       ],
       "lib": [
         "es2018",
-        "dom",
-        "scripthost"
+        "dom"
       ]
     },
       "files": [
@@ -24,8 +23,5 @@
       ],
       "include": [
           "src/**/*.d.ts"
-      ],
-     "map": {
-    "@ng-select/ng-select": "node_modules/@ng-select/ng-select/bundles/ng-select.umd.js",
-  }
+      ]
   }

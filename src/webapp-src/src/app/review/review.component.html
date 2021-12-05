@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review</title>
+</head>
+<body>
+    <div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addReviewModalLabel">Review</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="Close()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #addForm="ngForm">
+                        <div class="form-group" hidden>
+                            <input ngModel name="recipeId">
+                        </div>
+                        <div class="form-group" hidden>
+                            <input ngModel name="userLogin">
+                        </div>
+                        <div class="form-group">
+                            <label for="rating">Rating</label>
+                            <input type="number" min="1" max="10" ngModel name="rating" class="form-control" id="rating" placeholder="Rating" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="review">Review</label>
+                            <input type="text" ngModel name="review" class="form-control" id="review" placeholder="Review" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="add-review" class="btn btn-secondary" data-dismiss="modal" (click)="Close()">Close</button>
+                            <button [disabled]="addForm.invalid" class="btn btn-primary" (click)="addReview(addForm)">Post!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

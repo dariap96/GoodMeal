@@ -4,17 +4,44 @@
       "secure": false,
       "logLevel": "debug"
   },
+
   "/register": {
       "target": "http://localhost:8080",
       "secure": false,
       "logLevel": "debug"
   },
+
   "/userdata": {
       "target": "http://localhost:8080",
       "secure": false,
       "logLevel": "debug"
   },
+
+  "/recipe_rating/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+
+  "/recipe_rating/new": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+
   "/userinfo": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+
+  "/update-password/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  },
+
+  "/edit-selections/*": {
     "target": "http://localhost:8080",
     "secure": false,
     "logLevel": "debug"
