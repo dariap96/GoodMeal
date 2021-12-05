@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
         let resp = this.service.login(this.username, this.password);
         
         resp.subscribe(data => {
-            this.message = data;
             this.router.navigate(["/home"]) },
             error => { this.error = error;
             this.er = true;})
