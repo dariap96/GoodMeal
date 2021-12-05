@@ -36,7 +36,4 @@ public class HealthDietLabelsService implements IService<HealthDietLabel>{
     public boolean existsById(Long id) {
         return (hdLabelRepository.existsById(id));
     }
-
-    public void deleteDish(){};
-    public void listAllDishes(){};
 }

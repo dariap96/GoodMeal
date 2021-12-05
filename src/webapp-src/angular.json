@@ -2,9 +2,6 @@
     "version": 1,
     "projects": {
       "goodmeal-webapp": {
-        "projectType": "application",
-        "root": "",
-        "sourceRoot": "src",
         "architect": {
           "build": {
             "builder": "@angular-devkit/build-angular:browser",
@@ -15,9 +12,9 @@
               "polyfills": "src/polyfills.ts",
               "tsConfig": "tsconfig.json",
               "aot": true,
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
-            ]
+              "styles": [
+                "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              ]
             }
           },
           "styles": [
@@ -26,7 +23,6 @@
             "css/bootstrap.min.css",
             "css/font-awesome.min.css",
             "~@ng-select/ng-select/themes/default.theme.css"
-
           ],
           "serve": {
             "builder": "@angular-devkit/build-angular:dev-server",
@@ -35,7 +31,10 @@
               "proxyConfig": "src/proxy.conf.json"
             }
           }
-        }
+        },
+        "projectType": "application",
+        "root": "",
+        "sourceRoot": "src"
       }},
     "defaultProject": "goodmeal-webapp"
   }
