@@ -1,6 +1,5 @@
 package com.goodmeal.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
@@ -58,6 +57,5 @@ public class Selection {
         this.selectionName = selectionName;
      }
 
-    public Selection() {
-    }
+    public Selection() {}
 }

@@ -1,13 +1,11 @@
 package com.goodmeal.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.crnk.core.resource.annotations.JsonApiId;
 import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -48,7 +46,6 @@ public class User {
     @JoinTable(name = "users_roles", schema = "goodmeal",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    //@JsonApiRelation(serialize = SerializeType.ONLY_ID)
     private Set<Role> roleSet = new HashSet<>();
 
     //@JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
