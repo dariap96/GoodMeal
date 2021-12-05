@@ -24,11 +24,11 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.7.6</version>
+                <version>1.12.0</version>
                 <configuration>
                     <workingDirectory>./</workingDirectory>
-                    <nodeVersion>v10.16.0</nodeVersion>
-                    <npmVersion>6.10.2</npmVersion>
+                    <nodeVersion>v17.0.1</nodeVersion>
+                    <npmVersion>8.1.0</npmVersion>
                 </configuration>
                 <executions>
                     <execution>
