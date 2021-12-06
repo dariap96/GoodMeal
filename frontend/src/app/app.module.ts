@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,6 +14,23 @@ import { SelectionsPageComponent } from "./selections-page/selections-page.compo
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { ReviewComponent } from "./review/review.component";
 import { SelectionCardComponent } from "./selection-card/selection-card.component";
+import {NgSelectModule} from "@ng-select/ng-select";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule, MatRippleModule} from "@angular/material/core";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
+import {MatSelectModule} from "@angular/material/select";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
     declarations: [
@@ -33,7 +49,27 @@ import { SelectionCardComponent } from "./selection-card/selection-card.componen
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        MatSliderModule,
+        BrowserAnimationsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        MatNativeDateModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatTabsModule,
+        MatCardModule,
+        MatListModule,
+        MatSelectModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatIconModule,
+        MatRadioModule,
+        MatProgressSpinnerModule,
+        MatDatepickerModule,
     ],
     providers: [RestapiService],
     bootstrap: [AppComponent]

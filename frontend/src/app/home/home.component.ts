@@ -6,24 +6,35 @@ import { ConvertMeals, Meals} from "../model/Meals";
 import { ConvertCuisines, Cuisines } from "../model/Cuisines";
 import { ConvertUser, User } from "../model/User";
 import { ConvertRecipes, Recipes } from "../model/Recipes";
+import {ConvertLabels, Labels} from "../model/Labels";
+import {ConvertIngredients, Ingredients} from "../model/Ingredients";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
     selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    templateUrl: './home.component.html'
 })
 
 export class HomeComponent implements OnInit {
-
+    labelsList : Labels;
     dishesList : Dishes;
     mealsList : Meals;
     cuisinesList : Cuisines;
     userdata : User;
     visibleRecipes : Recipes;
 
+    ingredientsList: Ingredients;
+    visibleIng: Ingredients;
+    selectedLabel = null;
+
     selectedMeal = null;
     selectedDish = null;
     selectedCuisine = null;
+    searchBoxInput = null;
+    includeIng = null;
+    excludeIng = null;
+    background: ThemePalette = undefined;
+    loading: boolean= true;
 
     constructor(private service: RestapiService) {}
 
@@ -41,6 +52,16 @@ export class HomeComponent implements OnInit {
 
         });
 
+        this.service.getLabels().subscribe(  data => {
+            this.labelsList = ConvertLabels.toLabels(data.toString());
+        });
+        this.service.getIngredients().subscribe(data => {
+            this.ingredientsList = ConvertIngredients.toIngredients(data.toString());
+        });
+        this.service.getFirstTenIng().subscribe( data => {
+            this.visibleIng = ConvertIngredients.toIngredients(data.toString());
+        });
+
         this.service.getCuisines().subscribe( data => {
             this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
         });
@@ -50,14 +71,33 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    selectIncludeIng(e){
+        this.includeIng = e.option.value;
+    }
+    selectExcludeIng(e){
+        this.excludeIng = e.option.value;
+    }
+    selectChangeHandlerSearchBox(e){
+        this.searchBoxInput = e.target.value;
+    }
+
     selectChangeHandlerMeal(e) {
-        this.selectedMeal = e.target.value;
+        this.selectedMeal = e.value;
     }
     selectChangeHandlerDish(e){
-        this.selectedDish = e.target.value;
+        this.selectedDish = e.value;
     }
     selectChangeHandlerCuisine(e){
-        this.selectedCuisine = e.target.value;
+        this.selectedCuisine = e.value;
+    }
+    selectChangeHandlerIncludeIng(e){
+        this.includeIng = e.value;
+    }
+    selectChangeHandlerExcludeIng(e){
+        this.excludeIng = e.value;
+    }
+    selectChangeHandlerLabel(e){
+        this.selectedLabel = e.value;
     }
 
     selectClickHandlerRecipe(){
@@ -83,8 +123,39 @@ export class HomeComponent implements OnInit {
                 base = base + '?filter[cuisine.id]=' + this.selectedCuisine;
             }
         }
+        if(this.includeIng != null && this.includeIng != 'default') {
+            if(counter > 0) {
 
-        this.service.getFilteredRecipes(base).subscribe( data => {
+                base = base +  '&filter[ingredientsSet.ingredient.id]=' + this.includeIng + '%25%22}}';
+            } else {
+
+                base = base + '?filter[ingredientsSet.ingredient.id]=' + this.includeIng + '%25%22}}';
+            }
+        }
+        if(this.excludeIng != null && this.excludeIng != 'default') {
+            if (counter > 0) {
+                base = base + '&filter[ingredientsSet.ingredient.id][NEQ]=' + this.includeIng + '%25%22}}';
+            } else {
+                base = base + '?filter[ingredientsSet.ingredient.id][NEQ]=' + this.includeIng + '%25%22}}';
+            }
+        }
+            if(this.selectedLabel != null && this.selectedLabel != 'default') {
+                if (counter > 0) {
+                    base = base + '&filter[labelsSet.id]=' + this.selectedLabel;
+                } else {
+                    base = base + '?filter[labelsSet.id]=' + this.selectedLabel;
+                }
+            }
+        if (this.searchBoxInput!= null ) {
+            if (counter >0) {
+                base = base + '&filter={%20%22LIKE%22%3A{%22name%22%3A%22%25' + this.searchBoxInput + '%25%22}}';
+            } else {
+                base = base + '?filter={%20%22LIKE%22%3A{%22name%22%3A%22%25' + this.searchBoxInput + '%25%22}}';
+            }
+        }
+        console.log(base);
+
+            this.service.getFilteredRecipes(base).subscribe( data => {
             this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
         });
     }

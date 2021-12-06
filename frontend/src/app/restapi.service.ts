@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseUrl, backendUrl } from './configuration';
-import { User } from './model/User'
+import { ConvertUser,User } from './model/User'
 import { RecipeRating } from "./model/RecipeRating";
+import {BehaviorSubject, Observable, of} from "rxjs";
 
 const httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +14,7 @@ const httpOptions = {
 })
 
 export class RestapiService {
-
+    public status: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     authHeader: HttpHeaders;
 
     constructor(private http: HttpClient) {}
@@ -42,6 +43,15 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(baseUrl + "/api/meal", {headers, responseType: 'text' as 'json'});
     }
+    getLabels(){
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + "/api/healthDietLabel", {headers, responseType: 'text' as 'json'});
+    }
+    searchRecipes(term: string)  {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + "/api/recipe?filter[name][EQ]=${term}", {headers, responseType: 'text' as 'json'})
+    }
+
 
     getCuisines() {
         let headers = this.authHeader;
@@ -77,20 +87,27 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/ingredient/' + id, {headers, responseType: 'text' as 'json'});
     }
-
-    getRecipeRatingById(recipeId: number) {
+    getIngredientByName(name : string) {
         let headers = this.authHeader;
-        return this.http.get(baseUrl + '/recipe_rating/' + recipeId, {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + '/api/ingredient?filter[ingredient.name]=' + name, {headers, responseType: 'text' as 'json'});
+    }
+    getIngredients() {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/api/ingredient', {headers, responseType: 'text' as 'json'});
+    }
+    getFirstTenIng() {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/api/ingredient?filter[id][LE]=10', {headers, responseType: 'text' as 'json'});
+    }
+
+    getRecipeRatingById(id: number) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
     }
 
     addRating(rating: RecipeRating) {
         return this.http.post<RecipeRating[]>(
             baseUrl + '/recipe_rating/new', rating);
-    }
-
-    getReviews(recipeId: number){
-        let headers = this.authHeader;
-        return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
     }
 
     getUserInfo() {

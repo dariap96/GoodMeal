@@ -9,7 +9,9 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { ReviewComponent } from "./review/review.component";
 import { SelectionCardComponent } from "./selection-card/selection-card.component";
 import { SelectionsPageComponent } from "./selections-page/selections-page.component";
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
+import {AppComponent} from "./app.component";
 const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "home", component: HomeComponent },
@@ -28,3 +30,9 @@ const routes: Routes = [
 })
 
 export class AppRoutingModule {}
+
+NgModule({
+    imports: [NgSelectModule, FormsModule],
+    bootstrap: [AppComponent]
+})
+export class AppModule {}

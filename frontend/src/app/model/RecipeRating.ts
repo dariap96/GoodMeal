@@ -11,7 +11,7 @@ export interface Datum {
 
 export interface Attributes {
     recipeId :  number;
-    userLogin :    string;
+    userId :    number;
     rating :    number;
     review :    string;
 }

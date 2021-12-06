@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import { Selections, ConvertSelections } from "../model/Selections";
+import {ThemePalette} from "@angular/material/core";
+
 
 @Component({
     selector: 'app-user-profile',
@@ -22,8 +24,11 @@ export class UserProfileComponent implements OnInit {
     activeUserBdayDay : number;
     activeUserBdayMonth : number;
     activeUserBdayYear : number;
+    background: ThemePalette = undefined;
 
-    constructor(private service : RestapiService) {}
+    constructor(private service : RestapiService ) {}
+
+
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
@@ -56,6 +61,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     hidePassUpdMenu() {
+
         if (!((this.newPassword || this.newPasswordVerificatiion) == '' || (this.newPassword || this.newPasswordVerificatiion) == null)) {
 
             if (this.newPassword != this.newPasswordVerificatiion) {

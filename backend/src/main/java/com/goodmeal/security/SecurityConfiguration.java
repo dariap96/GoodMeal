@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
-                .authorizeRequests().antMatchers("/register", "/*.js", "/login", "/").permitAll()
+                .authorizeRequests().antMatchers("/register", "/*.js", "/*.css", "/login", "/").permitAll()
                 .antMatchers("/api/user/**").hasRole("ADMIN")
                 .anyRequest().authenticated().and().logout().invalidateHttpSession(true).logoutUrl("/logout").permitAll()
                 .and().httpBasic();

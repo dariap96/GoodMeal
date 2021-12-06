@@ -5,8 +5,7 @@ import { ConvertRecipe, Recipe } from "../model/Recipe";
 import { ConvertIngredients, Ingredients } from "../model/Ingredients";
 import { UserInfo, ConvertUserInfo } from "../model/User";
 import { Selections, ConvertSelections } from "../model/Selections";
-import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
-
+import {ThemePalette} from "@angular/material/core";
 @Component({
     selector: 'app-recipe-card',
     templateUrl: './recipe-card.component.html',
@@ -20,14 +19,13 @@ export class RecipeCardComponent implements OnInit {
     recipeId : number;
     selectedRecipe : Recipe;
     relatedIngredients : Ingredients;
+    showAddToSelection : boolean = false
     rating : string;
-    reviews : RecipeRatingInfo[];
     recipeName : string = 'Loading...';
     recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
     recipeDescr : string = 'Loading...';
-
-    selectedSelection = null;
+    background: ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
 
@@ -56,22 +54,16 @@ export class RecipeCardComponent implements OnInit {
                 this.userSelections = ConvertSelections.toSelections(data.toString());
             });
         });
-
-        this.service.getReviews(this.recipeId).subscribe(
-            data => {
-                this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString());
-            }
-        );
     }
 
-    selectChangeHandlerSelection(e) {
-        this.selectedSelection = e.target.value;
+    showAddToSelectionMenu() {
+        this.showAddToSelection = true;
     }
 
-    addToSelection() {
-        if (this.selectedSelection != 'Select selection to save' && this.selectedSelection != null) {
-            this.service.addRecipeToSelectionById(this.selectedSelection, this.recipeId).subscribe( data => {});
-        }
+    addToSelection(id: string) {
+        this.service.addRecipeToSelectionById(id, this.recipeId).subscribe( data => {
+            this.showAddToSelection = false;
+        });
     }
 
     PrintRating() {
