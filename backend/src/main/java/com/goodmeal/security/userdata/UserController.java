@@ -22,11 +22,6 @@ public class UserController {
     @Autowired
     UsersRepositoryImplementation usersRepository;
 
-    @GetMapping("/")
-    public String login() {
-        return "authenticated successfully";
-    }
-
     @PostMapping("/register")
     public boolean register(@RequestBody User user) {
         System.out.println(user.getLogin());

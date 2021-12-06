@@ -1,5 +1,9 @@
 .idea
 target
 GoodMeal.iml
-/src/main/resources/application.properties
-/src/webapp-src/node_modules
+/frontend/dist
+/frontend/node
+/frontend/node_modules
+/frontend/package-lock.json
+/frontend/target
+/backend/target

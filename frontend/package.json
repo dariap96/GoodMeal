@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; ng build"
+    "build": "ng build"
   },
   "dependencies": {
     "@angular/common": "~12.0.0",
