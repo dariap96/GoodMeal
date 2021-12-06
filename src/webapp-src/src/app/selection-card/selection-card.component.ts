@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
 import { Selection, ConvertSelection } from "../model/Selection";
 import { Recipes, ConvertRecipes } from "../model/Recipes";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
     selector: 'app-selection-card',
@@ -14,6 +15,7 @@ export class SelectionCardComponent implements OnInit {
     selectionId : number;
     selectedSelection : Selection;
     recipeSet : Recipes;
+    background: ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.selectionId = route.snapshot.params['id']; }
 

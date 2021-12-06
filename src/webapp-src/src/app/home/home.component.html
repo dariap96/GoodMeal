@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <style>
-        @import "~@angular/material/_theming.scss";
-        @import "~@angular/core/testing";
-        @import"~@angular/material/divider";
-        @import "~@angular/material";
+<style>
+    @import "~@ng-select/ng-select/themes/default.theme.css";
+    @import "~@angular/material/_theming.scss";
+    @import "~@angular/core/testing";
+    @import"~@angular/material/divider";
+    @import  url(https://fonts.googleapis.com/css?family=Montserrat);
+
+    * {box-sizing: border-box;}
+    .example-form {
+        min-width: 150px;
+        max-width: 500px;
+        width: 100%;
+        padding-bottom:20px;
+        z-index: 2000;
+    }
+
+    .example-full-width {
+        width: 100%;
+    }
 
 
-        * {box-sizing: border-box;}
-        .example-form {
-            min-width: 150px;
-            max-width: 500px;
-            width: 100%;
-            padding-bottom:20px;
-        }
-
-        .example-full-width {
-            width: 100%;
-        }
-
-
-        body {
-            margin: 0;
-            font-family:"Courier New",monospace;
-        }
 
 
 
@@ -50,7 +47,7 @@
 
 
 
-        .topnav input[type=text] {
+         .topnav input[type=text] {
             padding: 6px;
             margin-top: 8px;
             font-size: 17px;
@@ -86,7 +83,6 @@
         }
 
 
-
         .custom-dropdown select,ng-form {
             position: center;
             display: inline-block;
@@ -110,160 +106,172 @@
         }
 
 
+         input[type=submit] {
+            background-color:  #2196F3;
+            border: none;
+            border-radius: 2px;
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+
 
         .nav-links a {
             color: white;
         }
 
-        .logo {
-            font-size: 25px;
-            padding: 7px;
-            align-items: center;
-            -webkit-align-items: center;
+    .logo {
+        font-size: 25px;
+        padding: 7px;
+        position: relative;
+        margin-right: 370px;
 
-        }
-
-
-        .component-page-header {
-            font-size: 7px;
-            background-attachment: scroll;
-            font-weight: 200;
-            margin: 0;
-            font-family: Roboto, "Helvetica Neue", sans-serif;
-            background-color: whitesmoke;
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    }
 
 
-        }
-        .navig{
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
-            position: sticky;
-            position: -webkit-sticky;
-            top: 0;
-            z-index: 2000;
-            background-color: #FFFFFF;
-            padding: 7px;
-        }
-        .h1 {
-            padding-left: 50px;
-            padding-top: 6px;
-            color: black;
-            font-size: 17px;
-            position: relative;
-        }
-        .a:hover{
-            background-color: whitesmoke;
+    .component-page-header {
+        font-size: 7px;
+        background-attachment: scroll;
+        font-weight: 200;
+        margin: 0;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        background-color: whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
 
-        }
-        mat-divider {
-            border-width: 0;
-            border-style: solid;
-            border-top: 0;
-        }
 
-        body {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            font-family: Montserrat,serif;
-            background: #FFFFFF;
-        }
+    }
+    .navig{
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+        z-index: 2000;
+        background-color: #FFFFFF;
+        padding: 7px;
+    }
+    .h1 {
+        padding-left: 50px;
+        padding-top: 6px;
+        color: black;
+        font-size: 17px;
+        position: relative;
+    }
+    .a:hover{
+        background-color: whitesmoke;
 
-        .wrap {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+    }
+    mat-divider {
+        border-width: 0;
+        border-style: solid;
+        border-top: 0;
+    }
 
-        .text {
-            color: #fbae17;
-            display: inline-block;
-            margin-left: 5px;
-        }
+    body {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        font-family: Montserrat,serif;
+        background: #FFFFFF;
+    }
 
-        .bounceball {
-            position: relative;
-            display: inline-block;
-            height: 37px;
-            width: 15px;
-            animation-iteration-count: 5;
+    .wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .text {
+        color: #fbae17;
+        display: inline-block;
+        margin-left: 5px;
+    }
+
+    .bounceball {
+        position: relative;
+        display: inline-block;
+        height: 37px;
+        width: 15px;
+        animation-iteration-count: 5;
+    }
+    .bounceball:before {
+         position: absolute;
+         content: '';
+         display: block;
+         top: 0;
+         width: 15px;
+         height: 15px;
+         border-radius: 50%;
+         background-color: #fbae17;
+         transform-origin: 50%;
+         animation: bounce 500ms alternate infinite ease;
+     }
+
+
+    @keyframes bounce {
+        0% {
+            top: 30px;
+            height: 5px;
+            border-radius: 60px 60px 20px 20px;
+            transform: scaleX(2);
         }
-        .bounceball:before {
-            position: absolute;
-            content: '';
-            display: block;
-            top: 0;
-            width: 15px;
+        35% {
             height: 15px;
             border-radius: 50%;
-            background-color: #fbae17;
-            transform-origin: 50%;
-            animation: bounce 500ms alternate infinite ease;
+            transform: scaleX(1);
         }
-
-
-        @keyframes bounce {
-            0% {
-                top: 30px;
-                height: 5px;
-                border-radius: 60px 60px 20px 20px;
-                transform: scaleX(2);
-            }
-            35% {
-                height: 15px;
-                border-radius: 50%;
-                transform: scaleX(1);
-            }
-            100% {
-                top: 0;
-            }
-        }
-        .bg-pan-left {
-            -webkit-animation: bg-pan-left 10s infinite both;
-            animation: bg-pan-left 10s infinite both;
-        }
-
-        @-webkit-keyframes bg-pan-left {
-            0% {
-                background-position: 80% 50%;
-            }
-            100% {
-                background-position: 0 60%;
-            }
-        }
-        @keyframes bg-pan-left {
-            0% {
-                background-position: 90% 50%;
-            }
-            100% {
-                background-position: 0 50%;
-            }
-        }
-        .gradient-hor {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+        100% {
             top: 0;
-            left: 0;
-            background-size: 600% 100%;
-            background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
-        //animation: bg-pan-left;
         }
+    }
+    /*
+    .bg-pan-left {
+        -webkit-animation: bg-pan-left 10s infinite both;
+        animation: bg-pan-left 10s infinite both;
+    }
+
+    @-webkit-keyframes bg-pan-left {
+        0% {
+            background-position: 80% 50%;
+        }
+        100% {
+            background-position: 0 60%;
+        }
+    }
+    @keyframes bg-pan-left {
+        0% {
+            background-position: 90% 50%;
+        }
+        100% {
+            background-position: 0 50%;
+        }
+    }
+    .gradient-hor {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        background-size: 600% 100%;
+        background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
+    //animation: bg-pan-left;
+    }
+    */
 
 
 
-    </style>
-    <title></title>
+
+</style>
+<title></title>
 </head>
 <body>
 
 <div class="wrap" >
-    <div class="loading"   style="background:whitesmoke">
-        <div class="bounceball"></div>
-        <div class="text">NOW LOADING</div>
-    </div>
+
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
@@ -282,112 +290,112 @@
 
 
 
-    <div style="display:flex;flex-wrap: nowrap" >
-        <div style="margin-left: 50px; padding-top: 20px; width:800px;">
+<div style="display:flex;flex-wrap: nowrap" >
+<div style="margin-left: 50px; padding-top: 20px; width:800px;">
 
-            <mat-form-field appearance="outline" style="color: whitesmoke;">
-                <mat-label>Select meal</mat-label>
-                <mat-select  panelClass="example-panel-" (selectionChange)="selectChangeHandlerMeal($event)" style="max-width:170px;">
-                    <mat-option value="default" hidden></mat-option>
-                    <mat-option *ngFor="let meal of mealsList.data" [value]="meal.id">{{meal.attributes.type}}<mat-divider></mat-divider></mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
+<mat-form-field appearance="outline" style="color: whitesmoke;background-color: #d4d4d480 ">
+     <mat-label>Select meal</mat-label>
+     <mat-select  panelClass="example-panel-" (selectionChange)="selectChangeHandlerMeal($event)" style="max-width:170px;opacity: 0.7">
+       <mat-option value="default" hidden></mat-option>
+       <mat-option *ngFor="let meal of mealsList.data" [value]="meal.id">{{meal.attributes.type}}<mat-divider></mat-divider></mat-option>
+     </mat-select>
+</mat-form-field>
+<br>
 
-            <br>
-            <mat-form-field style="padding-bottom:20px" appearance="outline">
-                <mat-label>Select dish</mat-label>
-                <mat-select #dish (selectionChange)="selectChangeHandlerDish($event)">
-                    <mat-option value="default" hidden></mat-option>
-                    <mat-option *ngFor="let dish of dishesList.data" [value]="dish.id">{{dish.attributes.type}}<mat-divider></mat-divider></mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
+<br>
+<mat-form-field style="padding-bottom:20px" appearance="outline">
+     <mat-label>Select dish</mat-label>
+     <mat-select #dish (selectionChange)="selectChangeHandlerDish($event)">
+       <mat-option value="default" hidden></mat-option>
+       <mat-option *ngFor="let dish of dishesList.data" [value]="dish.id">{{dish.attributes.type}}<mat-divider></mat-divider></mat-option>
+     </mat-select>
+</mat-form-field>
+<br>
 
-            <mat-form-field style="padding-bottom:20px" appearance="outline">
-                <mat-label>Select cuisine</mat-label>
-                <mat-select #cuisine (selectionChange)="selectChangeHandlerCuisine($event)">
-                    <mat-option value="default" hidden></mat-option>
-                    <mat-option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.id">{{cuisine.attributes.type}}<mat-divider></mat-divider></mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-            <mat-form-field style="padding-bottom:20px" appearance="outline">
-                <mat-label>Select label</mat-label>
-                <mat-select #label (selectionChange)="selectChangeHandlerLabel($event)">
-                    <mat-option value="default" hidden></mat-option>
-                    <mat-option *ngFor="let label of labelsList.data" [value]="label.id" >{{label.attributes.label}} <mat-divider></mat-divider></mat-option>
-                </mat-select>
-            </mat-form-field>
-            <br>
-            <mat-form-field appearance="outline" style="padding-bottom:20px">
-                <mat-label>Search by recipe name</mat-label>
-                <input (change)= "selectChangeHandlerSearchBox($event)" matInput>
-            </mat-form-field>
+<mat-form-field style="padding-bottom:20px" appearance="outline">
+    <mat-label>Select cuisine</mat-label>
+    <mat-select #cuisine (selectionChange)="selectChangeHandlerCuisine($event)">
+       <mat-option value="default" hidden></mat-option>
+       <mat-option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.id">{{cuisine.attributes.type}}<mat-divider></mat-divider></mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field style="padding-bottom:20px" appearance="outline">
+    <mat-label>Select label</mat-label>
+    <mat-select #label (selectionChange)="selectChangeHandlerLabel($event)">
+        <mat-option value="default" hidden></mat-option>
+        <mat-option *ngFor="let label of labelsList.data" [value]="label.id" >{{label.attributes.label}} <mat-divider></mat-divider></mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<mat-form-field appearance="outline" style="padding-bottom:20px">
+     <mat-label>Search by recipe name</mat-label>
+     <input (change)= "selectChangeHandlerSearchBox($event)" matInput>
+</mat-form-field>
 
 
-            <!--сделать поиск по выпадающему списку -->
-            <form class="example-form">
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Ingredient to include</mat-label>
-                    <input type="text"
-                           placeholder="Pick one"
-                           aria-label=" "
-                           matInput
-                           [matAutocomplete]="auto"
-                    >
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectIncludeIng($event)" >
-                        <mat-option value="default" hidden >  </mat-option>
-                        <mat-option *ngFor="
+    <!--сделать поиск по выпадающему списку -->
+    <form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Ingredient to include</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label=" "
+           matInput
+           [matAutocomplete]="auto"
+            >
+     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectIncludeIng($event)" >
+    <mat-option value="default" hidden >  </mat-option>
+    <mat-option *ngFor="
 let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </form>
-            <form class="example-form" >
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>Ingredient to exclude</mat-label>
-                    <input type="text"
-                           placeholder="Pick one"
-                           aria-label=" "
-                           matInput
-                           [matAutocomplete]="auto"
-                    >
-                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectExcludeIng($event)" >
-                        <mat-option value="default" hidden >  </mat-option>
-                        <mat-option *ngFor="
+</mat-autocomplete>
+      </mat-form-field>
+</form>
+  <form class="example-form" >
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Ingredient to exclude</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label=" "
+           matInput
+           [matAutocomplete]="auto"
+    >
+     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectExcludeIng($event)" >
+    <mat-option value="default" hidden >  </mat-option>
+    <mat-option *ngFor="
 let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </form>
-            <button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>
+</mat-autocomplete>
+</mat-form-field>
+</form>
+<button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>
 
-        </div>
+</div>
 
-        <mat-divider vertical style="margin-left: 100px"></mat-divider>
+<mat-divider vertical style="margin-left: 100px"></mat-divider>
 
-        <div class="card my-5" style="text-align: right;margin-left: 170px;">
-            <div class="w3-container" style="text-align: right; margin-right:50px">
-                <table style="font-family: Roboto,sans-serif;text-align: right; margin-right:50px;background: transparent " class="w3-table  mat-table">
-                    <thead class="thead-dark">
-                    <tr>
+<div class="card my-5" style="text-align: right;margin-left: 170px;">
+    <div class="w3-container" style="text-align: right; margin-right:50px">
+        <table style="font-family: Roboto,sans-serif;text-align: right; margin-right:50px;background: transparent " class="w3-table  mat-table">
+            <thead class="thead-dark">
+            <tr>
 
-                        <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">Name</th>
-                        <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">#</th>
+                <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">Name</th>
+                <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">#</th>
 
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let recipe of visibleRecipes.data">
-                        <td class="w3-right-align mat-option" ><a href="http://localhost:4200/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}<mat-divider></mat-divider></a> </td>
-                        <td class="w3-right-align ">{{ recipe.id }}</td >
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let recipe of visibleRecipes.data">
+                <td class="w3-right-align mat-option" ><a href="http://localhost:4200/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}<mat-divider></mat-divider></a> </td>
+                <td class="w3-right-align ">{{ recipe.id }}</td >
+            </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+
+
+</div>
 </div>
 </body>
 </html>

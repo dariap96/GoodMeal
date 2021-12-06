@@ -30,6 +30,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
         MatIconModule,
         MatRadioModule,
         MatProgressSpinnerModule,
+        MatDatepickerModule,
     ],
     providers: [RestapiService],
     bootstrap: [AppComponent]

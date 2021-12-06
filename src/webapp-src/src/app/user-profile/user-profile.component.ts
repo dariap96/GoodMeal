@@ -4,6 +4,7 @@ import { RestapiService } from "../restapi.service";
 import { Selections, ConvertSelections } from "../model/Selections";
 import {ThemePalette} from "@angular/material/core";
 
+
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
@@ -17,13 +18,17 @@ export class UserProfileComponent implements OnInit {
     userSelections : Selections;
     adminAccess : boolean = false;
     showPasswordUpdateMenu : boolean = false;
+    showDifferentPasswordsLabel : boolean = false;
     newPassword : string;
+    newPasswordVerificatiion : string;
     activeUserBdayDay : number;
     activeUserBdayMonth : number;
     activeUserBdayYear : number;
     background: ThemePalette = undefined;
 
-    constructor(private service : RestapiService) {}
+    constructor(private service : RestapiService ) {}
+
+
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
@@ -56,9 +61,17 @@ export class UserProfileComponent implements OnInit {
     }
 
     hidePassUpdMenu() {
-        console.log(this.newPassword);
-        this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
-            this.showPasswordUpdateMenu = true;
-        });
+
+        if (!((this.newPassword || this.newPasswordVerificatiion) == '' || (this.newPassword || this.newPasswordVerificatiion) == null)) {
+
+            if (this.newPassword != this.newPasswordVerificatiion) {
+                this.showDifferentPasswordsLabel = true;
+                this.newPassword = this.newPasswordVerificatiion = '';
+            } else {
+                this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
+                    this.showPasswordUpdateMenu = false;
+                });
+            }
+        }
     }
 }
