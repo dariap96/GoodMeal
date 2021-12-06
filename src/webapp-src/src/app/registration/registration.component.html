@@ -1,44 +1,150 @@
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="addUserModalLabel">Register</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
-            <div class="form-group">
-               <label for="login">Your login</label>
-               <input type="text" ngModel name="login" class="form-control" id="login" placeholder="Login" required>
-            </div>
-            <div class="form-group">
-               <label for="password">Your password</label>
-               <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
-            </div>
-            <div class="form-group">
-               <label for="name">Your name</label>
-               <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
-            </div>
-            <div class="form-group">
-               <label for="surname">Your surname</label>
-               <input type="text" ngModel name="surname" class="form-control" id="surname" placeholder="Surname" required>
-            </div>
-            <div class="form-group">
-               <label for="email">Your Email Address</label>
-               <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
-            </div>
-            <div class="form-group">
-               <label for="bday">Your birthday date</label>
-               <input type="date" ngModel name="bday" class="form-control" id="bday" placeholder="Birthday" required>
-            </div>
-            <div class="modal-footer">
-               <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Register!</button>
-            </div>
-            </form>
-         </div>
-      </div>
-    </div>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <style>
+      .example-container {
+         margin-left: 8px;
+      }
+
+      .text-focus-in {
+         -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+         animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+      }
+
+      @-webkit-keyframes text-focus-in {
+         0% {
+            -webkit-filter: blur(12px);
+            filter: blur(12px);
+            opacity: 0;
+         }
+         100% {
+            -webkit-filter: blur(0px);
+            filter: blur(0px);
+            opacity: 1;
+         }
+      }
+      @keyframes text-focus-in {
+         0% {
+            -webkit-filter: blur(12px);
+            filter: blur(12px);
+            opacity: 0;
+         }
+         100% {
+            -webkit-filter: blur(0px);
+            filter: blur(0px);
+            opacity: 1;
+         }
+      }
+      .bg-pan-left {
+         -webkit-animation: bg-pan-left 10s infinite both;
+         animation: bg-pan-left 10s infinite both;
+      }
+
+      @-webkit-keyframes bg-pan-left {
+         0% {
+            background-position: 80% 50%;
+         }
+         100% {
+            background-position: 0 60%;
+         }
+      }
+      @keyframes bg-pan-left {
+         0% {
+            background-position: 90% 50%;
+         }
+         100% {
+            background-position: 0 50%;
+         }
+      }
+
+      body  {
+         position: absolute;
+         width: 100%;
+         height: 100vh;
+         font-family: Roboto, "Helvetica Neue", sans-serif;
+         color: #FFFFFF;
+         margin: 0;
+      }
+
+
+      .gradient-hor {
+         position: absolute;
+         width: 100%;
+         height: max-content;
+         top: 0;
+         left: 0;
+         background-size: 600% 100%;
+         background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
+      //animation: bg-pan-left;
+      }
+
+      input {
+         font-size: 16px;
+         font-family: Roboto, "Helvetica Neue", sans-serif;
+         text-align: center;
+      }
+
+
+   </style>
+   <title></title>
+
+</head>
+<body   class="bg-pan-left gradient-hor" >
+<form  id="addUserModal" #addForm="ngForm" (ngSubmit)="onAddUser(addForm)" style="text-align: center;position: center">
+<mat-card  class="mat-elevation-z4 text-focus-in " style="text-align: center;vertical-align:center;position: center;
+  margin-left:520px; margin-bottom:100px;margin-top:100px;width:25%;border-radius:20px;padding:20px;box-shadow: #d4d4d4;size: inherit">
+   <h1 mat-card-title class="text-focus-in" >Register</h1>
+   <div class="example-container " style="text-align: center;">
+      <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
+         <mat-label>Enter your login</mat-label>
+         <input matInput ngModel class="form-control" name="login" id="login" required>
+         <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px" >
+         <mat-label>Enter your password</mat-label>
+         <input  matInput ngModel class="form-control" name="password" id="password" [type]="hide ? 'password' : 'text'" type="password" required>
+         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+         </button>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
+         <mat-label>Enter your name</mat-label>
+         <input matInput ngModel class="form-control"  name="name" id="name" required>
+         <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
+         <mat-label>Enter your surname</mat-label>
+         <input matInput ngModel class="form-control"  name="surname" id="surname" required>
+         <mat-icon matSuffix>face</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
+         <mat-label>Enter your email address</mat-label>
+         <input matInput ngModel class="form-control"  name="email" id="email" required>
+         <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"  class="form-group" style="margin-top: 5px">
+         <mat-label>Enter your birthday date</mat-label>
+         <input matInput [matDatepicker]="picker">
+         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+   </div>
+
+   <button [disabled]="addForm.invalid" style="text-align: center;position: center;margin-top: 5px;" mat-stroked-button type="submit" class="mat-elevation-z1" value="Register" >Register!</button>
+   <a id="add-user-form" style="position: center;margin-top: 5px;margin-left:10px " mat-stroked-button type="button" class="mat-elevation-z1"  href = "http://localhost:4200/login">Go back</a>
+
+
+</mat-card>
+</form>
+
+
+
+
+</body>
+</html>
