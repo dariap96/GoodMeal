@@ -2,6 +2,7 @@ package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
+import com.goodmeal.repositoriesImplementations.RolesRepositoryImplementation;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,9 +17,11 @@ import java.util.Set;
 @Service
 public class UserServiceImplementation implements UserDetailsService{
 
-
     @Autowired
     private UsersRepositoryImplementation userRepository;
+
+    @Autowired
+    private RolesRepositoryImplementation rolesRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -31,14 +34,9 @@ public class UserServiceImplementation implements UserDetailsService{
             throw new UsernameNotFoundException("Could not find user");
         }
 
-        System.out.println("----- USER: ");
-        System.out.println("login: " + user.getLogin());
-
         // if you need to add users to database manually uncomment following
         String oldPass = user.getPassword();
         user.setPassword(passwordEncoder.encode(oldPass));
-
-        System.out.println("password: " + user.getPassword());
 
         return new UserDetailsImplementation(user);
     }
@@ -53,7 +51,11 @@ public class UserServiceImplementation implements UserDetailsService{
         // if you need to add users to database manually comment line below
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        user.setRoleSet(null);
+        Role userRole = rolesRepository.getRoleByRole("USER");
+        Set<Role> roleSet = new HashSet<>();
+        roleSet.add(userRole);
+
+        user.setRoleSet(roleSet);
         user.setSelectionSet(null);
 
         userRepository.save(user);

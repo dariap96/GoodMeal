@@ -3,6 +3,7 @@ package com.goodmeal.adapters;
 import java.util.function.Function;
 
 public interface SiteToEntityAdapter<Site, Entity> {
+
     public Entity transform(Site siteEntity);
 
     public static <RepoKeyEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(

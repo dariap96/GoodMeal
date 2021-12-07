@@ -29,9 +29,7 @@ public class UserDetailsImplementation implements UserDetails {
         rolesList.addAll(user.getRoleSet().stream().map(Role::getRole).collect(toSet()));
 
         for (String role : rolesList) {
-            System.out.println("----- ROLES: ");
             GrantedAuthority grAuth = roleFormatter(role);
-            System.out.println(grAuth.getAuthority());
             this.grantedAuthorityList.add(grAuth);
         }
     }

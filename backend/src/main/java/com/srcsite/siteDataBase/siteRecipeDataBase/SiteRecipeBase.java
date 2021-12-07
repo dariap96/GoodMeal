@@ -30,6 +30,7 @@ public class SiteRecipeBase {
 
 @Getter
 class Hit {
+
     @JsonProperty("recipe")
     private SiteRecipe recipe;
 }

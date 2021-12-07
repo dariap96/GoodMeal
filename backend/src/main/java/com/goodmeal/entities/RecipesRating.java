@@ -1,17 +1,15 @@
 package com.goodmeal.entities;
 
-import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-//@JsonApiResource(type = "recipe_rating")
 @Entity
-@Table(name = "Recipes_Rating", schema = "goodmeal")
 @Getter
 @Setter
+@Table(name = "Recipes_Rating", schema = "goodmeal")
 public class RecipesRating {
 
     @EmbeddedId
@@ -46,10 +44,7 @@ public class RecipesRating {
         this.review = review;
     }
 
-
-    public RecipesRating() {
-
-    }
+    public RecipesRating() {}
 
     @Override
     public boolean equals(Object o) {

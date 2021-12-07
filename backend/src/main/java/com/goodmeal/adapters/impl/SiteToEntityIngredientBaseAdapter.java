@@ -18,7 +18,6 @@ public class SiteToEntityIngredientBaseAdapter implements SiteToEntityAdapter<Si
         this.ingredientsRepository = repo;
     }
 
-
     @Override
     public List<Ingredient> transform(SiteIngredientBase siteIngredientBase) {
         List<Ingredient> ingredientBase = new LinkedList<>();

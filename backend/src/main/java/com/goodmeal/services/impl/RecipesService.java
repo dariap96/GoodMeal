@@ -1,6 +1,5 @@
 package com.goodmeal.services.impl;
 
-import com.goodmeal.entities.Meal;
 import com.goodmeal.entities.Recipe;
 import com.goodmeal.repositoriesImplementations.RecipesRepositoryImplementation;
 import com.goodmeal.services.IService;

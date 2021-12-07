@@ -1,7 +1,6 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
-import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,13 +8,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-
-
-@JsonApiResource(type = "hd_label_type")
 @Entity
-@Table(name = "HD_Label_Types", schema = "goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "hd_label_type")
+@Table(name = "HD_Label_Types", schema = "goodmeal")
 public class HdLabelType {
 
     public static final String CAUTIONS = "cautions";
@@ -30,7 +27,6 @@ public class HdLabelType {
     @Column
     private String type;
 
-
     @OneToMany(mappedBy = "hdLabelType")
     private Set<HealthDietLabel> labelsSet;
 
@@ -38,5 +34,5 @@ public class HdLabelType {
         this.type = type;
     }
 
-    public HdLabelType(){};
+    public HdLabelType() {};
 }

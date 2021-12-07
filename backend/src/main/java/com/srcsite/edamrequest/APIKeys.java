@@ -1,6 +1,7 @@
 package com.srcsite.edamrequest;
 
 public class APIKeys {
+
     public static final String APP_RECIPE_ID = "516b471f";
     public static final String APP_RECIPE_KEY = "fe85d48c8454d2d94ca5bc39d50bab7c";
 

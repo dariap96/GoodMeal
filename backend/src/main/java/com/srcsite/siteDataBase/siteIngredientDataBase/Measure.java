@@ -5,8 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class Measure {
+
     @JsonProperty("label")
     private String label;
+
     @JsonProperty("weight")
     private double weight;
 }

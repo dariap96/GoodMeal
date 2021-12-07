@@ -1,12 +1,10 @@
 package com.goodmeal.controllers;
 
 import com.goodmeal.entities.RecipesRating;
-import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.RecipesRatingService;
 import com.goodmeal.services.impl.RecipesService;
 import com.goodmeal.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -17,6 +15,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/recipe_rating")
 @CrossOrigin(origins = "*")
 public class RecipesRatingController {
+
     public static final int MAX_REVIEWS = 20;
 
     @Autowired

@@ -6,9 +6,11 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class SiteIngredientBase{
+public class SiteIngredientBase {
+
     @JsonProperty("text")
     private String text;
+
     @JsonProperty("hints")
     private List<Hint> hints;
 }

@@ -6,5 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface UsersRepositoryImplementation extends JpaRepository<User,Long> {
+
     User getUserByLogin(String login);
 }

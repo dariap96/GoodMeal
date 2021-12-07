@@ -1,7 +1,6 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
-import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +8,13 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-
-
-@JsonApiResource(type = "cuisine")
 @Entity
-@Table(name = "Cuisine", schema = "goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "cuisine")
+@Table(name = "Cuisine", schema = "goodmeal")
 public class Cuisine {
+
     public static final String DEFAULT_NAME = "No cuisine type";
 
     @Id
@@ -34,5 +32,5 @@ public class Cuisine {
         this.type = type;
     }
 
-    public Cuisine(){}
+    public Cuisine() {}
 }

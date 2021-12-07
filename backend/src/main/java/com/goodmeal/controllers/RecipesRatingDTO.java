@@ -1,7 +1,6 @@
 package com.goodmeal.controllers;
 
 import com.goodmeal.entities.RecipesRating;
-import com.goodmeal.services.impl.RecipesRatingService;
 import com.goodmeal.services.impl.RecipesService;
 import com.goodmeal.services.impl.UsersService;
 import io.crnk.core.resource.annotations.JsonApiResource;
@@ -12,12 +11,13 @@ import lombok.Data;
 @AllArgsConstructor
 @JsonApiResource(type="recipes_rating")
 public class RecipesRatingDTO {
+
     private Long recipeId;
     private String userLogin;
     private int rating;
     private String review;
 
-    public static RecipesRatingDTO toRecipesRatingDTO(RecipesRating rating){
+    public static RecipesRatingDTO toRecipesRatingDTO(RecipesRating rating) {
         return new RecipesRatingDTO(
                 rating.getRecipe().getId(),
                 rating.getUser().getLogin(),

@@ -7,8 +7,10 @@ import java.util.List;
 
 @Getter
 public class Hint {
+
     @JsonProperty("food")
     private Food food;
+
     @JsonProperty("measures")
     private List<Measure> measures;
 }

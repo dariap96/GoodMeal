@@ -1,9 +1,7 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
-import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
-import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,11 +10,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@JsonApiResource(type = "user")
 @Entity
-@Table(name = "Users", schema = "goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "user")
+@Table(name = "Users", schema = "goodmeal")
 public class User {
 
     @Id
@@ -48,7 +46,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roleSet = new HashSet<>();
 
-    //@JsonApiRelation(mappedBy = "user", serialize = SerializeType.ONLY_ID)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Selection> selectionSet = new HashSet<>();
 

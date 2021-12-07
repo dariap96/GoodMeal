@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class SiteToEntityRecipeBaseAdapter implements SiteToEntityAdapter<SiteRecipeBase, List<Recipe>> {
+
     private final RecipesRepositoryImplementation recipesRepository;
     private final IngredientsRepositoryImplementation ingredientsRepository;
     private final CuisinesRepositoryImplementation cuisinesRepository;
@@ -43,7 +44,7 @@ public class SiteToEntityRecipeBaseAdapter implements SiteToEntityAdapter<SiteRe
     @Override
     public List<Recipe> transform(SiteRecipeBase siteRecipeBase) {
         List<Recipe> recipeBase = new LinkedList<>();
-        for (SiteRecipe siteRecipe : siteRecipeBase.getRecipes()){
+        for (SiteRecipe siteRecipe : siteRecipeBase.getRecipes()) {
             recipeBase.add(new SiteToEntityRecipeAdapter(
                     recipesRepository,
                     ingredientsRepository,

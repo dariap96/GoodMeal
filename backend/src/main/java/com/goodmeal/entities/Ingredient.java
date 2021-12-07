@@ -1,24 +1,20 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
-import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
-import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
-
-@JsonApiResource(type = "ingredient")
 @Entity
-@Table(name="Ingredients", schema = "goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "ingredient")
+@Table(name="Ingredients", schema = "goodmeal")
 public class Ingredient implements Serializable {
 
     @Id
@@ -50,11 +46,9 @@ public class Ingredient implements Serializable {
     @Column
     private String originalId;
 
-
     @OneToMany(mappedBy = "ingredient")
     private Set<IngredientsToRecipes> ingredientsSet;
 
-    //@JsonApiRelation(serialize = SerializeType.LAZY)
     @ManyToMany(mappedBy = "ingredientSet")
     private Set<Selection> selectionSet;
 

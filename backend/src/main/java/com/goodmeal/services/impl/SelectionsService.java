@@ -1,11 +1,7 @@
 package com.goodmeal.services.impl;
 
-import com.goodmeal.entities.Meal;
-import com.goodmeal.entities.Recipe;
 import com.goodmeal.entities.Selection;
-import com.goodmeal.repositoriesImplementations.RecipesRepositoryImplementation;
 import com.goodmeal.repositoriesImplementations.SelectionsRepositoryImplementation;
-import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
 import com.goodmeal.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

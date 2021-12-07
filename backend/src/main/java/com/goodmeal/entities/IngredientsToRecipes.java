@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table (name = "Ingredients_Recipes", schema = "goodmeal")
 @Getter
 @Setter
+@Table (name = "Ingredients_Recipes", schema = "goodmeal")
 public class IngredientsToRecipes {
 
     @EmbeddedId
@@ -39,10 +39,7 @@ public class IngredientsToRecipes {
         this.measure = measure;
     }
 
-
-    public IngredientsToRecipes() {
-
-    }
+    public IngredientsToRecipes() {}
 
     @Override
     public boolean equals(Object o) {

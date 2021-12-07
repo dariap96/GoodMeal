@@ -7,6 +7,7 @@ import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Nutrients;
 
 public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, Ingredient> {
+
     private final IngredientsRepositoryImplementation ingredientsRepository;
 
     public SiteToEntityIngredientAdapter(IngredientsRepositoryImplementation repo){

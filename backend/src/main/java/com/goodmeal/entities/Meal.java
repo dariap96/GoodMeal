@@ -6,15 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
-@JsonApiResource(type = "meal")
 @Entity
-@Table(name = "Meals", schema="goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "meal")
+@Table(name = "Meals", schema="goodmeal")
 public class Meal {
+
     public static final String DEFAULT_NAME = "No meal type";
 
     @Id
@@ -32,5 +32,5 @@ public class Meal {
         this.type = type;
     }
 
-    public Meal(){};
+    public Meal() {};
 }

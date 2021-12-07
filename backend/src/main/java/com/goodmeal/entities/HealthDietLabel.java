@@ -7,15 +7,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
-@JsonApiResource(type = "healthDietLabel")
 @Entity
-@Table(name = "Health_Diet_Labels", schema = "goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "healthDietLabel")
+@Table(name = "Health_Diet_Labels", schema = "goodmeal")
 public class HealthDietLabel {
+
     public static final String DEFAULT_HEALTHS_NAME = "No healths label";
     public static final String DEFAULT_CAUTIONS_NAME = "No cautions label";
     public static final String DEFAULT_DIET_NAME = "No diet label";
@@ -42,6 +42,5 @@ public class HealthDietLabel {
         this.hdLabelType = hdLabelType;
     }
 
-    public HealthDietLabel() {
-    }
+    public HealthDietLabel() {}
 }

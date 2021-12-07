@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.concurrent.ExecutionException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,10 +23,7 @@ public class UserController {
 
     @PostMapping("/register")
     public boolean register(@RequestBody User user) {
-        System.out.println(user.getLogin());
-
         if(!userService.saveUser(user)) { return false; }
-
         return true;
     }
 
@@ -38,7 +34,6 @@ public class UserController {
         String login = principal.getName();
 
         User user = usersRepository.getUserByLogin(login);
-
         return userDtoMapper.toDTO(user);
     }
 
@@ -56,6 +51,7 @@ public class UserController {
     public boolean updateUserPassword(@PathVariable String login, @RequestBody String newPassword) {
         User user = usersRepository.getUserByLogin(login);
         user.setPassword(newPassword);
+
         usersRepository.save(user);
         return true;
     }

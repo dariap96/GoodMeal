@@ -8,9 +8,9 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Embeddable
 @Getter
 @Setter
+@Embeddable
 public class RecipesRatingKey implements Serializable {
 
     @Column
@@ -41,6 +41,5 @@ public class RecipesRatingKey implements Serializable {
         this.userId = userId;
     }
 
-    public RecipesRatingKey() {
-    }
+    public RecipesRatingKey() {}
 }

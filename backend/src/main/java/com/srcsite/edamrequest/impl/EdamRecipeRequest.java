@@ -6,6 +6,7 @@ import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 public class EdamRecipeRequest extends EdamRequest {
+
     public static final int MIN_FROM = 0;
     public static final int MAX_FROM = 7000;
     public static final int MIN_TO = 0;

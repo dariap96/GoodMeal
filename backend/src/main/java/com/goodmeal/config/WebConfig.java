@@ -10,7 +10,6 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 
 import java.io.IOException;
 
-
 @EnableWebMvc
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

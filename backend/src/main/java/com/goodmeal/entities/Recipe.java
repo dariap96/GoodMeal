@@ -1,22 +1,19 @@
 package com.goodmeal.entities;
 
 import io.crnk.core.resource.annotations.JsonApiId;
-import io.crnk.core.resource.annotations.JsonApiRelation;
 import io.crnk.core.resource.annotations.JsonApiResource;
-import io.crnk.core.resource.annotations.SerializeType;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@JsonApiResource(type = "recipe")
 @Entity
-@Table(name = "Recipes", schema="goodmeal")
 @Getter
 @Setter
+@JsonApiResource(type = "recipe")
+@Table(name = "Recipes", schema="goodmeal")
 public class Recipe {
 
     @Id
@@ -48,7 +45,6 @@ public class Recipe {
     @ManyToOne
     private Dish dish;
 
-    //@JsonApiRelation(serialize = SerializeType.EAGER)
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Labels_Recipes",
                schema = "goodmeal",
@@ -59,7 +55,6 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe")
     private Set<IngredientsToRecipes> ingredientsSet;
 
-    //@JsonApiRelation(serialize = SerializeType.LAZY)
     @ManyToMany(mappedBy = "recipeSet", fetch = FetchType.LAZY)
     private Set<Selection> selectionSet;
 

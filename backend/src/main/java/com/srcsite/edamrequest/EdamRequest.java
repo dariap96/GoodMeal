@@ -5,6 +5,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Getter
 public abstract class EdamRequest {
+
     public static final String SEP = "&";
 
     protected final String base;

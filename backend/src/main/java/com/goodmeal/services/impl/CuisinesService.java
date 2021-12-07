@@ -14,6 +14,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public class CuisinesService implements IService<Cuisine> {
+
     @Autowired
     private CuisinesRepositoryImplementation cuisinesRepository;
 
