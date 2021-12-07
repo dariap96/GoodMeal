@@ -1,0 +1,84 @@
+.example-container {
+    margin-left: 8px;
+}
+
+.text-focus-in {
+    -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+
+.bg-pan-left {
+    -webkit-animation: bg-pan-left 10s infinite both;
+    animation: bg-pan-left 10s infinite both;
+}
+
+@-webkit-keyframes bg-pan-left {
+    0% {
+        background-position: 80% 50%;
+    }
+    100% {
+        background-position: 0 60%;
+    }
+}
+
+@keyframes bg-pan-left {
+    0% {
+        background-position: 90% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+body  {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.gradient-hor {
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    top: 0;
+    left: 0;
+    background-size: 600% 100%;
+    background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
+//animation: bg-pan-left;
+}
+
+input {
+    font-size: 16px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    text-align: center;
+}
+

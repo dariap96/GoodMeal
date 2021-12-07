@@ -3,32 +3,48 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style> @import "~@ng-select/ng-select/themes/default.theme.css";
+    @import "~@angular/material/_theming.scss";
+    @import "~@angular/core/testing";
+    @import"~@angular/material/divider";
+    @import  url(https://fonts.googleapis.com/css?family=Montserrat);
+    </style>
     <title></title>
+
 </head>
 <body>
+<div class="wrap">
+</div>
 
-    <div class="topnav">
-        <a class="active" href="http://localhost:4200/home">Home</a>
-        <a href="#about">About </a>
-        <a href="#contact">Contact</a>
-        <a href="http://localhost:4200/user-profile">Profile</a>
-        <a href="http://localhost:4200/selections">Selections</a>
-        <div class="search-container">
-            <form autocomplete="off" action="/action_page.php">
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="search your fav recipe..." name="myRecipe">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
+<nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
+    <div style= "margin-top: 5px" class="logo">GOOD MEAL</div>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
+</nav>
+
+<div  class="gradient-hor bg-pan-left">
+    <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
+        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">{{ingredientName}}</div>
+    </header>
+
+    <mat-card class="slide-in-blurred-right" style="display:flex;width:60%;margin-left:300px;padding:60px;margin-top: 160px;height: max-content" tabindex="0">
+        <div class="ingredient-card slide-in-blurred-right" style=" width: 500px; margin-left: 75px;display: flex" >
+    <div class="ingredient-img">
+        <img mat-card-xl-image src="{{ ingredientImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px; margin-top:10px" />
+    </div>
+            <div class="nutritiens" style="margin-left: 100px;font-size: 20px;width: 300px">
+                <mat-card-content style="margin-top: 20px">Nutritional value per 100g.: </mat-card-content>
+                <mat-card-content style="margin-top: 20px">Energy: {{ ingredientEnergy }} kсal. </mat-card-content>
+                <mat-card-content style="margin-top: 20px">Fat: {{ ingredientFat }} g.</mat-card-content>
+                <mat-card-content style="margin-top: 20px">Protein: {{ ingredientProtein }}</mat-card-content>
+                <mat-card-content style="margin-top: 20px">Carbs: {{ ingredientCarbs }} g.</mat-card-content>
+                <mat-card-content style="margin-top: 20px">Fiber: {{ ingredientFiber }} g.</mat-card-content>
+            </div>
         </div>
-    </div>
-
-    <div class="ingredient-card">
-        <h1>{{ ingredientName }}</h1>
-        <img src="{{ ingredientImg }}" class="user-img" />
-        <p>Energy: {{ ingredientEnergy }} kkal.</p>
-        <p>Fat: {{ ingredientFat }}</p>
-        <p>Protein: {{ ingredientProtein }}</p>
-        <p>Carbs: {{ ingredientCarbs }}</p>
-        <p>Fiber: {{ ingredientFiber }}</p>
-    </div>
+    </mat-card>
+</div>
 </body>
 </html>

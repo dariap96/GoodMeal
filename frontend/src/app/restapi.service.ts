@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseUrl, backendUrl } from './configuration';
-import { ConvertUser,User } from './model/User'
+import { User } from './model/User'
 import { RecipeRating } from "./model/RecipeRating";
-import {BehaviorSubject, Observable, of} from "rxjs";
-
-const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -52,7 +48,6 @@ export class RestapiService {
         return this.http.get(baseUrl + "/api/recipe?filter[name][EQ]=${term}", {headers, responseType: 'text' as 'json'})
     }
 
-
     getCuisines() {
         let headers = this.authHeader;
         return this.http.get(baseUrl + "/api/cuisine", {headers, responseType: 'text' as 'json'});
@@ -87,14 +82,17 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/ingredient/' + id, {headers, responseType: 'text' as 'json'});
     }
+
     getIngredientByName(name : string) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/ingredient?filter[ingredient.name]=' + name, {headers, responseType: 'text' as 'json'});
     }
+
     getIngredients() {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/ingredient', {headers, responseType: 'text' as 'json'});
     }
+
     getFirstTenIng() {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/ingredient?filter[id][LE]=10', {headers, responseType: 'text' as 'json'});
@@ -158,5 +156,10 @@ export class RestapiService {
     removeSelection(selectionId: number) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/edit-selections/delete/' + selectionId, {headers, responseType: 'text' as 'json'});
+    }
+
+    getReviews(recipeId: number){
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
     }
 }

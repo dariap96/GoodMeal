@@ -18,13 +18,8 @@ export class RegistrationComponent implements OnInit {
 
     ngOnInit() {}
 
-
-
-
     public onAddUser(addForm: NgForm): void {
-
       document.getElementById('add-user-form').click();
-
             this.service.addUser(addForm.value).subscribe(
                 (response: User[]) => {
                     this.router.navigate(["/login"])
@@ -35,6 +30,4 @@ export class RegistrationComponent implements OnInit {
                 }
             );
         }
-
-    
 }

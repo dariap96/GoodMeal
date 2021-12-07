@@ -1,13 +1,20 @@
+
 * {box-sizing: border-box;}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    padding-bottom:20px;
+    z-index: 2000;
+}
+
+.example-full-width {
+    width: 100%;
+}
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav {
-    overflow: hidden;
-    background-color: #e9e9e9;
+    font-family:"Courier New",monospace;
 }
 
 .topnav a {
@@ -18,21 +25,12 @@ body {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+
 }
 
 .topnav a:hover {
     background-color: #ddd;
     color: black;
-}
-
-.topnav a.active {
-    background-color: #2196F3;
-    color: white;
-}
-
-.topnav .search-container {
-    float: right;
-
 }
 
 .topnav input[type=text] {
@@ -43,52 +41,11 @@ body {
     margin-bottom: 12px;
 }
 
-.search-container-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
-}
-.search-container-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff;
-    border-bottom: 1px solid #d4d4d4;
-}
-.search-container-items div:hover {
-    /*when hovering an item:*/
-    background-color: #e9e9e9;
-}
-.search-container-active {
-    /*when navigating through the items using the arrow keys:*/
-    background-color: DodgerBlue !important;
-    color: #ffffff;
-}
-
-.topnav .search-container button {
-    float: right;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
-
 .topnav .search-container button:hover {
     background: #ccc;
 }
 
 @media screen and (max-width: 600px) {
-    .topnav .search-container {
-        float: none;
-    }
     .topnav a, .topnav input[type=text], .topnav .search-container button {
         float: none;
         display: block;
@@ -107,44 +64,173 @@ body {
     color: black;
     text-align: left;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
-.big {
-    font-size: 1.0em;
-}
-
-
-/* Custom dropdown */
-.custom-dropdown {
-    position: relative;
+.custom-dropdown select,ng-form {
+    position: center;
     display: inline-block;
     vertical-align: middle;
     margin: 3px; /* demo only */
 }
 
-.custom-dropdown select {
-    cursor:pointer;
-    background-color: #2196F3;
-    color: #fff;
+.custom-dropdown select,ng-select {
+    cursor:default;
+    background-color: transparent;
+    color: #2a2a2b;
     font-size: inherit;
-    padding: .5em;
-    padding-right: 1em;
-    border: 0;
+
+    border: #e9e9e9;
     margin: 0;
-    border-radius: 2px;
-    text-indent: 0.01px;
+    border-radius: 0.2px;
+    text-indent: 1px;
     text-overflow: '';
-    -webkit-appearance: button; /* hide default arrow in chrome OSX */
+    -webkit-appearance: button-bevel;
+    size: 1px;
 }
 
-input[type=submit] {
-    background-color:  #2196F3;
-    border: none;
-    border-radius: 2px;
+.nav-links a {
     color: white;
-    padding: 12px 20px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
+}
+
+.logo {
+    font-size: 25px;
+    padding: 7px;
+    position: relative;
+    margin-right: 675px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+}
+
+.component-page-header {
+    font-size: 7px;
+    background-attachment: scroll;
+    font-weight: 200;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+}
+
+.navig {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 2000;
+    background-color: #FFFFFF;
+    padding: 5px;
+}
+
+.h1 {
+    padding-left: 50px;
+    padding-top: 6px;
+    color: black;
+    font-size: 17px;
+    position: relative;
+}
+
+.a:hover {
+    background-color: whitesmoke;
+
+}
+
+mat-divider {
+    border-width: 0;
+    border-style: solid;
+    border-top: 0;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    font-family: Montserrat,serif;
+    background: #FFFFFF;
+}
+
+.wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.text {
+    color: #fbae17;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.bounceball {
+    position: relative;
+    display: inline-block;
+    height: 37px;
+    width: 15px;
+    animation-iteration-count: 5;
+}
+
+.bounceball:before {
+    position: absolute;
+    content: '';
+    display: block;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #fbae17;
+    transform-origin: 50%;
+    animation: bounce 500ms alternate infinite ease;
+}
+
+@keyframes bounce {
+    0% {
+        top: 30px;
+        height: 5px;
+        border-radius: 60px 60px 20px 20px;
+        transform: scaleX(2);
+    }
+    35% {
+        height: 15px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+    100% {
+        top: 0;
+    }
+}
+
+.bg-pan-left {
+    -webkit-animation: bg-pan-left 10s infinite both;
+    animation: bg-pan-left 10s infinite both;
+}
+
+@-webkit-keyframes bg-pan-left {
+    0% {
+        background-position: 80% 50%;
+    }
+    100% {
+        background-position: 0 60%;
+    }
+}
+
+@keyframes bg-pan-left {
+    0% {
+        background-position: 90% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.gradient-hor {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    background-size: 600% 100%;
+    background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
+//animation: bg-pan-left;
 }

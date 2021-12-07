@@ -2,18 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
 import { ConvertIngredient, Ingredient } from "../model/Ingredient";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
     selector: 'app-ingredient-card',
     templateUrl: './ingredient-card.component.html',
-    styleUrls: ['ingredient-card.component.css']
+    styleUrls: ['./ingredient-card.component.css']
 })
 
 export class IngredientCardComponent implements OnInit {
-
     ingredientId : number;
     selectedIngredient : Ingredient;
-
     ingredientName : string;
     ingredientEnergy : number;
     ingredientFat : number;
@@ -21,13 +20,13 @@ export class IngredientCardComponent implements OnInit {
     ingredientCarbs : number;
     ingredientFiber : number;
     ingredientImg : null | string;
+    background: ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.ingredientId = route.snapshot.params['id']; }
 
     ngOnInit() {
         this.service.getIngredientById(this.ingredientId).subscribe( data => {
             this.selectedIngredient = ConvertIngredient.toIngredient(data.toString());
-
             this.ingredientName = this.selectedIngredient.data.attributes.name;
             this.ingredientEnergy = this.selectedIngredient.data.attributes.energy;
             this.ingredientFat = this.selectedIngredient.data.attributes.fat;
@@ -37,5 +36,4 @@ export class IngredientCardComponent implements OnInit {
             this.ingredientImg = this.selectedIngredient.data.attributes.image;
         });
     }
-
 }

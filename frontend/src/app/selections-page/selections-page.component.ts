@@ -11,7 +11,6 @@ import {ThemePalette} from "@angular/material/core";
 })
 
 export class SelectionsPageComponent implements OnInit {
-
     userSelections : Selections;
     activeUser : UserInfo;
     newSelectionName : string;

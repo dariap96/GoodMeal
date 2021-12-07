@@ -4,47 +4,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title></title>
+    <style>
+        @import "~@ng-select/ng-select/themes/default.theme.css";
+        @import "~@angular/material/_theming.scss";
+        @import "~@angular/core/testing";
+        @import"~@angular/material/divider";
+        @import  url(https://fonts.googleapis.com/css?family=Montserrat);
+    </style>
 </head>
 <body>
+<div class="wrap" ></div>
 
-<div class="topnav">
-    <a class="active" href="http://localhost:4200/home">Home</a>
-    <a href="#about">About </a>
-    <a href="#contact">Contact</a>
-    <a href="http://localhost:4200/user-profile">Profile</a>
-    <a href="http://localhost:4200/selections">Selections</a>
-    <div class="search-container">
-        <form autocomplete="off" action="/action_page.php">
-            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="search your fav recipe..." name="myRecipe">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
+<nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end" >
+    <div class="logo">GOOD MEAL</div>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
+</nav>
+
+<div  class="gradient-hor bg-pan-left" style="z-index: 1;text-align: center">
+    <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
+        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px;">{{ selectedSelection.data.attributes.selectionName }}</div>
+    </header>
+    <div class="selection-page-body"></div>
+
+<div class="w3-container" style="position: center;vertical-align: center;margin-top: 50px">
+
+    <table style="font-family: Roboto,sans-serif;text-align: right; margin-right:50px;background: transparent " class="w3-table  mat-table">
+        <thead mat-card-content class="thead-dark">
+        <tr>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">#</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;"  scope="col">Name</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;"   scope="col">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let recipe of recipeSet.data">
+            <td>{{ recipe.id }}</td>
+            <td class="w3-right-align mat-option" ><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
+            <td class="w3-right-align "><button mat-stroked-button  name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)">Remove from selection</button></td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
-
-<div class="selection-card-body">
-    <h1>{{ selectedSelection.data.attributes.selectionName }}</h1>
 </div>
-
-<div class="recipes-list">
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Remove</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let recipe of recipeSet.data">
-                <td>{{ recipe.id }}</td>
-                <td><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
-                <td><input type="add" name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
 </body>
+
 </html>
