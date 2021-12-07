@@ -36,7 +36,7 @@
         <img mat-card-xl-image src="{{ recipeImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px" />
         <mat-card-content style="margin-top: 20px">Cook time: {{ recipeCookTime }} min.</mat-card-content>
         <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
-        <mat-card-content style="width:400px"> <mat-list *ngFor="let la of recipeLables.data">{{la.attributes.label}}, </mat-list></mat-card-content>
+        <mat-card-content style="width:400px"> <mat-list style="display: inline-flex" *ngFor="let la of recipeLables.data">{{la.attributes.label}}, </mat-list></mat-card-content>
         <mat-card-content style="width:400px">Recipe rating: {{ PrintRating() }}</mat-card-content>
         <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:8080/recipe_review/{{ recipeId }}">Rate</a>
     </div>
