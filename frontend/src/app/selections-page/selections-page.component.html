@@ -10,9 +10,9 @@
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end" >
     <div class="logo">GOOD MEAL</div>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
-    <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/home">Home</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:8080/selections">Selections</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
 </nav>
@@ -38,7 +38,7 @@
             <tbody>
             <tr *ngFor="let selection of userSelections.data">
                 <td>{{ selection.id }}</td>
-                <td class="w3-right-align mat-option"><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
+                <td class="w3-right-align mat-option"><a href="http://localhost:8080/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
                 <td class="w3-right-align " style="width: max-content"><button mat-stroked-button type="add" name="add" (click)="removeSelection(selection.id)">Delete selection</button></td>
             </tr>
             </tbody>

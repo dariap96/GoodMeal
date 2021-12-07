@@ -39,10 +39,12 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(baseUrl + "/api/meal", {headers, responseType: 'text' as 'json'});
     }
+
     getLabels(){
         let headers = this.authHeader;
         return this.http.get(baseUrl + "/api/healthDietLabel", {headers, responseType: 'text' as 'json'});
     }
+
     searchRecipes(term: string)  {
         let headers = this.authHeader;
         return this.http.get(baseUrl + "/api/recipe?filter[name][EQ]=${term}", {headers, responseType: 'text' as 'json'})

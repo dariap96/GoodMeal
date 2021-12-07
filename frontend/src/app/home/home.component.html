@@ -19,9 +19,9 @@
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
     <div class="logo">GOOD MEAL</div>
-    <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
+    <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:8080/home">Home</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/selections">Selections</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
 </nav>
@@ -120,7 +120,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let recipe of visibleRecipes.data">
-                <td class="w3-right-align mat-option" ><a href="http://localhost:4200/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}<mat-divider></mat-divider></a> </td>
+                <td class="w3-right-align mat-option" ><a href="http://localhost:8080/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}<mat-divider></mat-divider></a> </td>
                 <td class="w3-right-align ">{{ recipe.id }}</td >
             </tr>
             </tbody>
