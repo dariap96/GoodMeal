@@ -6,6 +6,8 @@ import { ConvertIngredients, Ingredients } from "../model/Ingredients";
 import { UserInfo, ConvertUserInfo } from "../model/User";
 import { Selections, ConvertSelections } from "../model/Selections";
 import {ThemePalette} from "@angular/material/core";
+import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
+
 @Component({
     selector: 'app-recipe-card',
     templateUrl: './recipe-card.component.html',
@@ -13,13 +15,16 @@ import {ThemePalette} from "@angular/material/core";
 })
 
 export class RecipeCardComponent implements OnInit {
+
     activeUser : UserInfo;
     userSelections : Selections;
     recipeId : number;
     selectedRecipe : Recipe;
+    selectedSelection = null;
     relatedIngredients : Ingredients;
     showAddToSelection : boolean = false
     rating : string;
+    reviews : RecipeRatingInfo[];
     recipeName : string = 'Loading...';
     recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
@@ -31,6 +36,7 @@ export class RecipeCardComponent implements OnInit {
     ngOnInit() {
         this.service.getRecipeById(this.recipeId).subscribe( data => {
             this.selectedRecipe = ConvertRecipe.toRecipe(data.toString());
+
             this.recipeName = this.selectedRecipe.data.attributes.name;
             this.recipeCookTime = this.selectedRecipe.data.attributes.time;
             this.recipeImg = this.selectedRecipe.data.attributes.image;
@@ -47,25 +53,34 @@ export class RecipeCardComponent implements OnInit {
 
         this.service.getUserInfo().subscribe( data => {
             this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+
             this.service.getUserSelections(this.activeUser.login).subscribe( data => {
                 this.userSelections = ConvertSelections.toSelections(data.toString());
             });
         });
+
+        this.service.getReviews(this.recipeId).subscribe(
+            data => {
+                this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString());
+            }
+        );
     }
 
-    showAddToSelectionMenu() {
-        this.showAddToSelection = true;
+    selectChangeHandlerSelection(e) {
+        this.selectedSelection = e.target.value;
     }
-    addToSelection(id: string) {
-        this.service.addRecipeToSelectionById(id, this.recipeId).subscribe( data => {
-            this.showAddToSelection = false;
-        });
+
+    addToSelection() {
+        if (this.selectedSelection != 'Select selection to save' && this.selectedSelection != null) {
+            this.service.addRecipeToSelectionById(this.selectedSelection, this.recipeId).subscribe( data => {});
+        }
     }
 
     PrintRating() {
         if (this.rating == '') {
             return 'Not rated';
         }
+
         return 'Rating: ' + this.rating;
     }
 }
