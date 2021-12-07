@@ -4,6 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title></title>
+    <style>
+        @import "~@ng-select/ng-select/themes/default.theme.css";
+        @import "~@angular/material/_theming.scss";
+        @import "~@angular/core/testing";
+        @import"~@angular/material/divider";
+        @import  url(https://fonts.googleapis.com/css?family=Montserrat);
+    </style>
 </head>
 <body>
 <div class="wrap" ></div>
@@ -23,25 +30,25 @@
     </header>
     <div class="selection-page-body"></div>
 
-<div class="recipes-list">
-    <mat-card class="card-body" style="position: center;vertical-align: center;margin-top: 50px">
-    <table mat-table class="mat-table">
+<div class="w3-container" style="position: center;vertical-align: center;margin-top: 50px">
+
+    <table style="font-family: Roboto,sans-serif;text-align: right; margin-right:50px;background: transparent " class="w3-table  mat-table">
         <thead mat-card-content class="thead-dark">
         <tr>
-            <th mat-header-cell scope="col">#</th>
-            <th mat-header-cell  scope="col">Name</th>
-            <th mat-header-cell  scope="col">Remove</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">#</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;"  scope="col">Name</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;"   scope="col">Remove</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let recipe of recipeSet.data">
             <td>{{ recipe.id }}</td>
-            <td><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
-            <td><button mat-stroked-button  name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)">Remove from selection</button>></td>
+            <td class="w3-right-align mat-option" ><a href="http://localhost:4200/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
+            <td class="w3-right-align "><button mat-stroked-button  name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)">Remove from selection</button></td>
         </tr>
         </tbody>
     </table>
-    </mat-card>
+
 </div>
 </div>
 </body>
