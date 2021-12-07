@@ -26,30 +26,31 @@
 
 <div  class="gradient-hor bg-pan-left" style="z-index: 1;text-align: center">
     <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
-        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px;">{{ selectedSelection.data.attributes.selectionName }}</div>
+        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px;"></div>
     </header>
     <div class="selection-page-body"></div>
 
-<div class="w3-container" style="position: center;vertical-align: center;margin-top: 50px">
 
-    <table style="font-family: Roboto,sans-serif;text-align: right; margin-right:50px;background: transparent " class="w3-table  mat-table">
+<mat-card style="margin: auto;width:80%;text-align: center;vertical-align: center;margin-top: 100px;height: max-content">
+    <mat-card-header>{{ selectedSelection.data.attributes.selectionName }}</mat-card-header>
+    <table mat-table style="font-family: Roboto,sans-serif;text-align: right; position:relative;margin-right:50%;background: transparent " class="w3-table  mat-table">
         <thead mat-card-content class="thead-dark">
         <tr>
             <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">#</th>
-            <th class="w3-right-align mat-headline" style="font-size: 17px;"  scope="col">Name</th>
-            <th class="w3-right-align mat-headline" style="font-size: 17px;"   scope="col">Remove</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">Name</th>
+            <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">Remove</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let recipe of recipeSet.data">
             <td>{{ recipe.id }}</td>
             <td class="w3-right-align mat-option" ><a href="http://localhost:8080/recipe-card/{{ recipe.id }}">{{ recipe.attributes.name }}</a></td>
-            <td class="w3-right-align "><button mat-stroked-button  name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)">Remove from selection</button></td>
+            <td style="padding-right: 20px" class="w3-right-align "><button mat-stroked-button  name="add" value="Delete from selection" (click)="deleteFromSelection(recipe.id, selectionId)">Remove from selection</button></td>
         </tr>
         </tbody>
     </table>
+</mat-card>
 
-</div>
 </div>
 </body>
 

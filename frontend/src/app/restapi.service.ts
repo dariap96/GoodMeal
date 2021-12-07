@@ -160,8 +160,13 @@ export class RestapiService {
         return this.http.get(baseUrl + '/edit-selections/delete/' + selectionId, {headers, responseType: 'text' as 'json'});
     }
 
-    getReviews(recipeId: number){
+    getReviews(recipeId: number) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
+    }
+
+    getLabelsByRecipeId(recipeId:number) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/api/recipe/' + recipeId + '/labelsSet',  {headers, responseType: 'text' as 'json'});
     }
 }

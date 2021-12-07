@@ -30,11 +30,13 @@
         <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">{{recipeName}}</div>
     </header>
 
-<mat-card class="slide-in-blurred-right" style="display:flex;width:90%;margin-left:75px;padding:70px;margin-top: 60px;height: max-content" tabindex="0">
+<mat-card class="slide-in-blurred-right" style="width:90%;margin:auto;padding:50px;margin-top: 60px;height: max-content" tabindex="0">
+    <div style="display:flex;">
     <div class="recipe-card slide-in-blurred-right" style=" width: 500px; margin-left: 75px" >
         <img mat-card-xl-image src="{{ recipeImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px" />
         <mat-card-content style="margin-top: 20px">Cook time: {{ recipeCookTime }} min.</mat-card-content>
         <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
+        <mat-card-content style="width:400px"> <mat-list *ngFor="let la of recipeLables.data">{{la.attributes.label}}, </mat-list></mat-card-content>
         <mat-card-content style="width:400px">Recipe rating: {{ PrintRating() }}</mat-card-content>
         <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:8080/recipe_review/{{ recipeId }}">Rate</a>
     </div>
@@ -57,37 +59,17 @@
         </table>
       </div>
     </div>
-</mat-card>
-<br>
-
-     <!-- <div class="add-to-selection"> -->
-        <!-- <br> -->
-        <!-- <button mat-stroked-button type="submit" name="Submit" style="margin-bottom: 40px;margin-top:10px;position:center;margin-left: 600px;background-color: #f5f5f580" (click)="showAddToSelectionMenu()"> save to selection</button> -->
-        <!-- <div class="selection-selector" *ngIf="showAddToSelection"> -->
-            <!-- <table mat-table class="table table-bordered table-striped"> -->
-                <!-- <thead class="thead-dark"> -->
-                <!-- <tr> -->
-                    <!-- <th mat-header-cell scope="col">#</th> -->
-                    <!-- <th mat-header-cell scope="col">Name</th> -->
-                <!-- </tr> -->
-                <!-- </thead> -->
-                <!-- <tbody> -->
-                <!-- <tr *ngFor="let selection of userSelections.data"> -->
-                    <!-- <td>{{ selection.id }}</td> -->
-                    <!-- <td><input matInput type="add" name="add" value="Add to: {{ selection.attributes.selectionName }}" (click)="addToSelection(selection.id)"></td> -->
-                <!-- </tr> -->
-                <!-- </tbody> -->
-            <!-- </table> -->
-        <!-- </div> -->
-     <!-- </div> -->
-
-     <div class="add-to-selection">
-        <select #selection (change)="selectChangeHandlerSelection($event)" name="selection">
-            <option value="Select selection to save"></option>
-            <option *ngFor="let selection of userSelections.data" [value]="selection.id">{{selection.attributes.selectionName}}</option>
-        </select>
-        <input type="submit" name="Submit" value="Save" (click)="addToSelection()">
     </div>
+    <mat-form-field class="add-to-selection" style="position: relative;left:50%;margin-top:20px;text-align:center" appearance="outline">
+        <mat-label>Choose selection</mat-label>
+        <mat-select #selection (change)="selectChangeHandlerSelection($event)" name="selection">
+            <mat-option *ngFor="let selection of userSelections.data" [value]="selection.id">{{selection.attributes.selectionName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-stroked-button style=" position:relative;left:50%;margin-top: 20px" type="submit" name="Submit" value="Save" (click)="addToSelection()">Save</button>
+
+</mat-card>
 
 </div>
 </body>

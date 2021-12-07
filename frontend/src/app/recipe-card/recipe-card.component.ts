@@ -7,6 +7,7 @@ import { UserInfo, ConvertUserInfo } from "../model/User";
 import { Selections, ConvertSelections } from "../model/Selections";
 import {ThemePalette} from "@angular/material/core";
 import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
+import {ConvertLabels, Labels} from "../model/Labels";
 
 @Component({
     selector: 'app-recipe-card',
@@ -29,6 +30,7 @@ export class RecipeCardComponent implements OnInit {
     recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
     recipeDescr : string = 'Loading...';
+    recipeLables : Labels;
     background: ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
@@ -41,6 +43,7 @@ export class RecipeCardComponent implements OnInit {
             this.recipeCookTime = this.selectedRecipe.data.attributes.time;
             this.recipeImg = this.selectedRecipe.data.attributes.image;
             this.recipeDescr = this.selectedRecipe.data.attributes.actionsSequence;
+            this.recipeLables
         });
 
         this.service.getIngredientsByRecipeId(this.recipeId).subscribe( data => {
@@ -50,6 +53,9 @@ export class RecipeCardComponent implements OnInit {
         this.service.getRecipeRatingById(this.recipeId).subscribe(data => {
                 this.rating = data.toString();
         });
+        this.service.getLabelsByRecipeId(this.recipeId).subscribe(data => {
+            this.recipeLables = ConvertLabels.toLabels(data.toString());
+        })
 
         this.service.getUserInfo().subscribe( data => {
             this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
