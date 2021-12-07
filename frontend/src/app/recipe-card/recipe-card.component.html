@@ -128,12 +128,11 @@
         .logo {
             font-size: 25px;
             padding: 7px;
+            position: relative;
+            margin-right: 440px;
+            font-family: Roboto, "Helvetica Neue", sans-serif;
 
-
-              position: relative;
-                   margin-right: 420px;
         }
-
 
         .component-page-header {
             font-size: 7px;
@@ -272,7 +271,7 @@
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
-    <div style= "text-align: center" class="logo">GOOD MEAL</div>
+    <div style= "margin-top: 5px" class="logo">GOOD MEAL</div>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
@@ -282,7 +281,7 @@
 
 <div  class="gradient-hor bg-pan-left">
     <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
-        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">RECIPE SEARCH</div>
+        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">{{recipeName}}</div>
     </header>
 
     <mat-card class="slide-in-blurred-right" style="display:flex;width:90%;margin-left:75px;padding:70px;margin-top: 60px;height: max-content" tabindex="0">
@@ -291,7 +290,7 @@
         <mat-card-content style="margin-top: 20px">Cook time: {{ recipeCookTime }} min.</mat-card-content>
         <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
         <mat-card-content style="width:400px">Recipe rating: {{ PrintRating() }}</mat-card-content>
-        <a mat-card-content  style="width:400px;color:Black" id="recipe_review" href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
+        <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:4200/recipe_review/{{ recipeId }}">Rate</a>
     </div>
 
 

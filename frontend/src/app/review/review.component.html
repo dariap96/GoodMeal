@@ -57,7 +57,7 @@
             height: 100vh;
 
 
-            font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+            font-family: "Roboto", "Helvetica Neue",sans-serif;
         }
         .wrap {
             position: relative;
@@ -143,12 +143,9 @@
 <div  class="gradient-hor bg-pan-left">
 <div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog" aria-labelledby="addReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <mat-card style="width:50%;position:center;text-align: center;margin-left: 500px">
-                <mat-card-header>Leave feedback</mat-card-header>
+            <mat-card style="width:50%;position:center;text-align: center;margin-left: 350px;margin-top: 230px;font-family: Roboto,sans-serif; padding:60px">
+                <mat-card-header style="margin-left:200px; font-size:25px">Leave feedback</mat-card-header>
 
-                    <button mat-stroked-button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="Close()">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 <br>
 
                 <div class="example-container">
@@ -159,19 +156,19 @@
                         <div class="form-group" hidden>
                             <input ngModel name="userLogin">
                         </div>
-                        <div class="form-group">
-                            <label for="rating">Rating</label>
+                        <div class="form-group" style="text-align:center;">
+                            <label style="margin-right:10px" for="rating">Rating</label>
                             <input matInput type="number" min="1" max="10" ngModel name="rating" class="form-control" id="rating" placeholder="Rating" required>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="review">Review</label>
+                        <div class="form-group"  style="text-align:center;margin-right:5px">
+                            <label style="margin-right:10px" for="review">Review</label>
                             <input matInput type="text" ngModel name="review" class="form-control" id="review" placeholder="Review" required>
                         </div>
                         <br>
                         <div class="modal-footer">
                             <button  mat-stroked-button type="button" id="add-review"   data-dismiss="modal" (click)="Close()">Close</button>
-                            <button mat-stroked-button [disabled]="addForm.invalid"  (click)="addReview(addForm)">Post!</button>
+                            <button mat-stroked-button style="margin-left:20px" [disabled]="addForm.invalid"  (click)="addReview(addForm)">Post!</button>
                         </div>
                     </form>
                 </div>

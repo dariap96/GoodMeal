@@ -127,7 +127,8 @@
         font-size: 25px;
         padding: 7px;
         position: relative;
-        margin-right: 370px;
+        margin-right: 440px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
 
     }
 
@@ -227,7 +228,7 @@
             top: 0;
         }
     }
-    /*
+
     .bg-pan-left {
         -webkit-animation: bg-pan-left 10s infinite both;
         animation: bg-pan-left 10s infinite both;
@@ -260,7 +261,6 @@
         background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
     //animation: bg-pan-left;
     }
-    */
 
 
 
@@ -275,7 +275,7 @@
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
-    <div style= "text-align: center" class="logo">GOOD MEAL</div>
+    <div class="logo">GOOD MEAL</div>
     <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
@@ -293,7 +293,7 @@
 <div style="display:flex;flex-wrap: nowrap" >
 <div style="margin-left: 50px; padding-top: 20px; width:800px;">
 
-<mat-form-field appearance="outline" style="color: whitesmoke;background-color: #d4d4d480 ">
+<mat-form-field appearance="outline">
      <mat-label>Select meal</mat-label>
      <mat-select  panelClass="example-panel-" (selectionChange)="selectChangeHandlerMeal($event)" style="max-width:170px;opacity: 0.7">
        <mat-option value="default" hidden></mat-option>

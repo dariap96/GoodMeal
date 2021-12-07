@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
 import { ConvertIngredient, Ingredient } from "../model/Ingredient";
+import {ThemePalette} from "@angular/material/core";
 
 @Component({
     selector: 'app-ingredient-card',
@@ -21,6 +22,7 @@ export class IngredientCardComponent implements OnInit {
     ingredientCarbs : number;
     ingredientFiber : number;
     ingredientImg : null | string;
+    background: ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.ingredientId = route.snapshot.params['id']; }
 
