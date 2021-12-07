@@ -4,15 +4,13 @@ import { RestapiService } from "../restapi.service";
 import { Selections, ConvertSelections } from "../model/Selections";
 import {ThemePalette} from "@angular/material/core";
 
-
 @Component({
     selector: 'app-user-profile',
     templateUrl: './user-profile.component.html',
-    styleUrls: ['user-profile.component.css']
+    styleUrls: ['./user-profile.component.css']
 })
 
 export class UserProfileComponent implements OnInit {
-
     activeUser : UserInfo;
     usersList : Users;
     userSelections : Selections;
@@ -28,12 +26,9 @@ export class UserProfileComponent implements OnInit {
 
     constructor(private service : RestapiService ) {}
 
-
-
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
             this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
-
             this.activeUserBdayDay = new Date(this.activeUser.bday.toString()).getDate();
             this.activeUserBdayMonth = new Date(this.activeUser.bday.toString()).getMonth() + 1; //because january - 0-month etc
             this.activeUserBdayYear = new Date(this.activeUser.bday.toString()).getFullYear();
@@ -61,13 +56,12 @@ export class UserProfileComponent implements OnInit {
     }
 
     hidePassUpdMenu() {
-
         if (!((this.newPassword || this.newPasswordVerificatiion) == '' || (this.newPassword || this.newPasswordVerificatiion) == null)) {
-
             if (this.newPassword != this.newPasswordVerificatiion) {
                 this.showDifferentPasswordsLabel = true;
                 this.newPassword = this.newPasswordVerificatiion = '';
-            } else {
+            }
+            else {
                 this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
                     this.showPasswordUpdateMenu = false;
                 });

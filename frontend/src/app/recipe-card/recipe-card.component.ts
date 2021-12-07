@@ -13,7 +13,6 @@ import {ThemePalette} from "@angular/material/core";
 })
 
 export class RecipeCardComponent implements OnInit {
-
     activeUser : UserInfo;
     userSelections : Selections;
     recipeId : number;
@@ -32,7 +31,6 @@ export class RecipeCardComponent implements OnInit {
     ngOnInit() {
         this.service.getRecipeById(this.recipeId).subscribe( data => {
             this.selectedRecipe = ConvertRecipe.toRecipe(data.toString());
-
             this.recipeName = this.selectedRecipe.data.attributes.name;
             this.recipeCookTime = this.selectedRecipe.data.attributes.time;
             this.recipeImg = this.selectedRecipe.data.attributes.image;
@@ -49,7 +47,6 @@ export class RecipeCardComponent implements OnInit {
 
         this.service.getUserInfo().subscribe( data => {
             this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
-
             this.service.getUserSelections(this.activeUser.login).subscribe( data => {
                 this.userSelections = ConvertSelections.toSelections(data.toString());
             });
@@ -59,7 +56,6 @@ export class RecipeCardComponent implements OnInit {
     showAddToSelectionMenu() {
         this.showAddToSelection = true;
     }
-
     addToSelection(id: string) {
         this.service.addRecipeToSelectionById(id, this.recipeId).subscribe( data => {
             this.showAddToSelection = false;
@@ -70,7 +66,6 @@ export class RecipeCardComponent implements OnInit {
         if (this.rating == '') {
             return 'Not rated';
         }
-
         return 'Rating: ' + this.rating;
     }
 }

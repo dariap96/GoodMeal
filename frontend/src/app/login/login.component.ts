@@ -1,24 +1,21 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import { Router } from '@angular/router';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-
-
+import {FormGroup} from "@angular/forms";
 
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 
 })
 
 export class LoginComponent implements OnInit {
-
     username : string;
     password : string;
     message : any
     hide = true;
-
     loginFormControl: FormGroup;
     loading = false;
     submitted = false;

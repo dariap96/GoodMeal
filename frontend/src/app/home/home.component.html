@@ -4,6 +4,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style> @import "~@ng-select/ng-select/themes/default.theme.css";
+    @import "~@angular/material/_theming.scss";
+    @import "~@angular/core/testing";
+    @import"~@angular/material/divider";
+    @import  url(https://fonts.googleapis.com/css?family=Montserrat);
+    </style>
 <title></title>
 </head>
 <body>
@@ -66,39 +72,36 @@
      <input (change)= "selectChangeHandlerSearchBox($event)" matInput>
 </mat-form-field>
 
-
-    <!--сделать поиск по выпадающему списку -->
- <form class="example-form">
+<form class="example-form">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ingredient to include</mat-label>
     <input type="text"
            placeholder="Pick one"
            aria-label=" "
            matInput
-           [matAutocomplete]="auto"
-            >
+           [matAutocomplete]="auto">
      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectIncludeIng($event)" >
       <mat-option value="default" hidden >  </mat-option>
       <mat-option *ngFor="let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
      </mat-autocomplete>
   </mat-form-field>
 </form>
-  <form class="example-form" >
+
+<form class="example-form" >
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ingredient to exclude</mat-label>
     <input type="text"
            placeholder="Pick one"
            aria-label=" "
            matInput
-           [matAutocomplete]="auto"
-    >
+           [matAutocomplete]="auto">
      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectExcludeIng($event)" >
     <mat-option value="default" hidden >  </mat-option>
-    <mat-option *ngFor="
-let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
-</mat-autocomplete>
-</mat-form-field>
+    <mat-option *ngFor="let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
+     </mat-autocomplete>
+  </mat-form-field>
 </form>
+
 <button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>
 
 </div>
@@ -110,10 +113,8 @@ let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attribute
         <table style="font-family: Roboto,sans-serif;text-align: right; margin-right:50px;background: transparent " class="w3-table  mat-table">
             <thead class="thead-dark">
             <tr>
-
                 <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">Name</th>
                 <th class="w3-right-align mat-headline" style="font-size: 17px;" scope="col">#</th>
-
             </tr>
             </thead>
             <tbody>
@@ -125,7 +126,6 @@ let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attribute
         </table>
     </div>
 </div>
-
 
 </div>
 </div>

@@ -1,8 +1,3 @@
-@import "~@ng-select/ng-select/themes/default.theme.css";
-@import "~@angular/material/_theming.scss";
-@import "~@angular/core/testing";
-@import"~@angular/material/divider";
-@import  url(https://fonts.googleapis.com/css?family=Montserrat);
 
 * {box-sizing: border-box;}
 .example-form {
@@ -17,12 +12,6 @@
     width: 100%;
 }
 
-
-
-
-
-
-
 body {
     background: white;
     color: black;
@@ -30,7 +19,6 @@ body {
 
     font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
-
 
 .custom-dropdown select,ng-form {
     position: center;
@@ -44,7 +32,6 @@ body {
     background-color: transparent;
     color: #2a2a2b;
     font-size: inherit;
-
     border: #e9e9e9;
     margin: 0;
     border-radius: 0.2px;
@@ -54,16 +41,13 @@ body {
     size: 1px;
 }
 
-
 .logo {
     font-size: 25px;
     padding: 7px;
     position: relative;
     margin-right: 675px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-
 }
-
 
 .component-page-header {
     font-size: 7px;
@@ -73,9 +57,8 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     background-color: whitesmoke;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
-
-
 }
+
 .navig{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
     position: sticky;
@@ -85,6 +68,7 @@ body {
     background-color: #FFFFFF;
     padding: 7px;
 }
+
 .h1 {
     padding-left: 50px;
     padding-top: 6px;
@@ -92,10 +76,11 @@ body {
     font-size: 17px;
     position: relative;
 }
+
 .a:hover{
     background-color: whitesmoke;
-
 }
+
 mat-divider {
     border-width: 0;
     border-style: solid;
@@ -123,14 +108,15 @@ body {
     margin-left: 5px;
 }
 
-.bounceball { /* in progress*/
+.bounceball {
     position: relative;
     display: inline-block;
     height: 37px;
     width: 15px;
     animation-iteration-count: 5;
 }
-.bounceball:before {  /* in progress*/
+
+.bounceball:before {
     position: absolute;
     content: '';
     display: block;
@@ -143,8 +129,7 @@ body {
     animation: bounce 500ms alternate infinite ease;
 }
 
-
-@keyframes bounce {  /* in progress*/
+@keyframes bounce {
     0% {
         top: 30px;
         height: 5px;
@@ -174,6 +159,7 @@ body {
         background-position: 0 60%;
     }
 }
+
 @keyframes bg-pan-left {
     0% {
         background-position: 90% 50%;
@@ -182,6 +168,7 @@ body {
         background-position: 0 50%;
     }
 }
+
 .gradient-hor {
     position: absolute;
     width: 100%;

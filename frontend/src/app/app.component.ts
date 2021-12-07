@@ -18,7 +18,6 @@ export class AppComponent {
             if (ev instanceof  NavigationEnd || ev instanceof NavigationCancel ||ev instanceof NavigationError) {
                 this.loading = false;
             }
-
         })
 
     }
