@@ -224,9 +224,10 @@ body {
 .gradient-hor {
     position: absolute;
     width: 100%;
-    height: 100%;
-
+    height: 5000px;
+    max-height: 5000px;
     overflow: hidden;
+
     top: 0;
     left: 0;
     background-size: 600% 100%;

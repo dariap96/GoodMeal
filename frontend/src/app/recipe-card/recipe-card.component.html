@@ -27,7 +27,7 @@
 
 <div  class="gradient-hor bg-pan-left">
     <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
-        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">{{recipeName}}</div>
+        <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px;marging-top: 2px">{{recipeName}}</div>
     </header>
 
 <mat-card class="slide-in-blurred-right" style="width:90%;margin:auto;padding:50px;margin-top: 60px;height: max-content" tabindex="0">
@@ -36,38 +36,38 @@
         <img mat-card-xl-image src="{{ recipeImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px" />
         <mat-card-content style="margin-top: 20px">Cook time: {{ recipeCookTime }} min.</mat-card-content>
         <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
-        <mat-card-content style="width:400px"> <mat-list style="display: inline-flex" *ngFor="let la of recipeLables.data">{{la.attributes.label}}, </mat-list></mat-card-content>
+        <mat-card-content style="width:400px"> <mat-list style="display: inline-flex" *ngFor="let la of recipeLables.data">{{la.attributes.label}},  </mat-list></mat-card-content>
         <mat-card-content style="width:400px">Recipe rating: {{ PrintRating() }}</mat-card-content>
         <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:8080/recipe_review/{{ recipeId }}">Rate</a>
     </div>
 
-    <div class="ingridients">
-      <div class="card-body slide-in-blurred-right" style="display: flex">
-        <table class="w3-table w3-bordered mat-table" style="font-family: Roboto,sans-serif; text-align: right;width:400px;margin-left: 200px ">
+    <div class="card my-5">
+      <div class="card-body slide-in-blurred-right w3-container" style="display: flex">
+        <table class="w3-table w3-bordered mat-table" style="font-family: Roboto,sans-serif; text-align: right;width:300px;margin-left: 200px;">
             <thead class="thead-dark">
             <tr>
-                <th scope="col" class="mat-headline" style="font-size: 17px">Ingredients</th>
-                <th scope="col" class="mat-headline" style="font-size: 17px">#</th>
+                <th scope="col" class="mat-option" style="font-size: 17px">Ingredients</th>
+                <th scope="col" class="mat-option" style="font-size: 17px">#</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody style="position: relative;margin-left:20px">
             <tr *ngFor="let ingr of relatedIngredients.data" style="">
                 <td><a class="mat-option" href="http://localhost:8080/ingredient-card/{{ingr.id}}">{{ ingr.attributes.name }}</a></td>
-                <td>{{ ingr.id }}</td>
+                <td class="mat-option">{{ ingr.id }}</td>
             </tr>
             </tbody>
         </table>
       </div>
     </div>
     </div>
-    <mat-form-field class="add-to-selection" style="position: relative;left:50%;margin-top:20px;text-align:center" appearance="outline">
+    <mat-form-field class="add-to-selection" style="position: relative;left:40%;margin-top:20px;text-align:center" appearance="outline">
         <mat-label>Choose selection</mat-label>
         <mat-select #selection (change)="selectChangeHandlerSelection($event)" name="selection">
             <mat-option *ngFor="let selection of userSelections.data" [value]="selection.id">{{selection.attributes.selectionName}}</mat-option>
         </mat-select>
     </mat-form-field>
     <br>
-    <button mat-stroked-button style=" position:relative;left:50%;margin-top: 20px" type="submit" name="Submit" value="Save" (click)="addToSelection()">Save</button>
+    <button mat-stroked-button style=" position:relative;left:45%;margin-top: 20px" type="submit" name="Submit" value="Save" (click)="addToSelection()">Save</button>
 
 </mat-card>
 
