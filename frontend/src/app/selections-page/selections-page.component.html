@@ -149,7 +149,7 @@
             font-size: 25px;
             padding-top: 12px;
             position: relative;
-            margin-right: 450px;
+            margin-right: 675px;
             font-family: Roboto, "Helvetica Neue", sans-serif;
 
 
@@ -222,7 +222,7 @@
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end" >
-    <div   class="logo">GOOD MEAL</div>
+    <div class="logo">GOOD MEAL</div>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/home">Home</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:4200/user-profile">Profile</a>
     <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:4200/selections">Selections</a>
@@ -264,7 +264,7 @@
 
         <h2 mat-card-title class="text-focus-in" > Your selections</h2>
 
-            <div class="w3-container" style="text-align: center;">
+            <div class="w3-container" style="text-align: center;position:center; vertical-align: middle">
                 <table style="font-family: Roboto,sans-serif;text-align: center; background: transparent " class="w3-table  mat-table">
                     <thead class="thead-dark">
                     <tr>
@@ -278,7 +278,7 @@
                     <tr *ngFor="let selection of userSelections.data">
                         <td>{{ selection.id }}</td>
                         <td class="w3-right-align mat-option"><a href="http://localhost:4200/selection-card/{{ selection.id }}">{{ selection.attributes.selectionName }}</a></td>
-                        <td class="w3-right-align "><input type="add" name="add" value="Delete selection" (click)="removeSelection(selection.id)"></td>
+                        <td class="w3-right-align " style="width: max-content"><button mat-stroked-button type="add" name="add" (click)="removeSelection(selection.id)">Delete selection</button></td>
                     </tr>
                     </tbody>
                 </table>

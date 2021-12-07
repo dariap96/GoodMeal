@@ -3,275 +3,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-<style>
-    @import "~@ng-select/ng-select/themes/default.theme.css";
-    @import "~@angular/material/_theming.scss";
-    @import "~@angular/core/testing";
-    @import"~@angular/material/divider";
-    @import  url(https://fonts.googleapis.com/css?family=Montserrat);
-
-    * {box-sizing: border-box;}
-    .example-form {
-        min-width: 150px;
-        max-width: 500px;
-        width: 100%;
-        padding-bottom:20px;
-        z-index: 2000;
-    }
-
-    .example-full-width {
-        width: 100%;
-    }
-
-
-
-
-
-        .topnav a {
-            float: left;
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-
-        }
-
-        .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-
-
-         .topnav input[type=text] {
-            padding: 6px;
-            margin-top: 8px;
-            font-size: 17px;
-            border: 1px solid #ddd;
-            margin-bottom: 12px;
-        }
-
-
-        .topnav .search-container button:hover {
-            background: #ccc;
-        }
-
-        @media screen and (max-width: 600px) {
-            .topnav a, .topnav input[type=text], .topnav .search-container button {
-                float: none;
-                display: block;
-                text-align: left;
-                width: 100%;
-                margin: 0;
-                padding: 16px;
-            }
-            .topnav input[type=text] {
-                border: 1px solid #ddd;
-            }
-        }
-
-        body {
-            background: white;
-            color: black;
-            text-align: left;
-
-            font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-        }
-
-
-        .custom-dropdown select,ng-form {
-            position: center;
-            display: inline-block;
-            vertical-align: middle;
-            margin: 3px; /* demo only */
-        }
-
-        .custom-dropdown select,ng-select {
-            cursor:default;
-            background-color: transparent;
-            color: #2a2a2b;
-            font-size: inherit;
-
-            border: #e9e9e9;
-            margin: 0;
-            border-radius: 0.2px;
-            text-indent: 1px;
-            text-overflow: '';
-            -webkit-appearance: button-bevel;
-            size: 1px;
-        }
-
-
-         input[type=submit] {
-            background-color:  #2196F3;
-            border: none;
-            border-radius: 2px;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-
-
-
-        .nav-links a {
-            color: white;
-        }
-
-    .logo {
-        font-size: 25px;
-        padding: 7px;
-        position: relative;
-        margin-right: 440px;
-        font-family: Roboto, "Helvetica Neue", sans-serif;
-
-    }
-
-
-    .component-page-header {
-        font-size: 7px;
-        background-attachment: scroll;
-        font-weight: 200;
-        margin: 0;
-        font-family: Roboto, "Helvetica Neue", sans-serif;
-        background-color: whitesmoke;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
-
-
-    }
-    .navig{
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
-        position: sticky;
-        position: -webkit-sticky;
-        top: 0;
-        z-index: 2000;
-        background-color: #FFFFFF;
-        padding: 7px;
-    }
-    .h1 {
-        padding-left: 50px;
-        padding-top: 6px;
-        color: black;
-        font-size: 17px;
-        position: relative;
-    }
-    .a:hover{
-        background-color: whitesmoke;
-
-    }
-    mat-divider {
-        border-width: 0;
-        border-style: solid;
-        border-top: 0;
-    }
-
-    body {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        font-family: Montserrat,serif;
-        background: #FFFFFF;
-    }
-
-    .wrap {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .text {
-        color: #fbae17;
-        display: inline-block;
-        margin-left: 5px;
-    }
-
-    .bounceball {
-        position: relative;
-        display: inline-block;
-        height: 37px;
-        width: 15px;
-        animation-iteration-count: 5;
-    }
-    .bounceball:before {
-         position: absolute;
-         content: '';
-         display: block;
-         top: 0;
-         width: 15px;
-         height: 15px;
-         border-radius: 50%;
-         background-color: #fbae17;
-         transform-origin: 50%;
-         animation: bounce 500ms alternate infinite ease;
-     }
-
-
-    @keyframes bounce {
-        0% {
-            top: 30px;
-            height: 5px;
-            border-radius: 60px 60px 20px 20px;
-            transform: scaleX(2);
-        }
-        35% {
-            height: 15px;
-            border-radius: 50%;
-            transform: scaleX(1);
-        }
-        100% {
-            top: 0;
-        }
-    }
-
-    .bg-pan-left {
-        -webkit-animation: bg-pan-left 10s infinite both;
-        animation: bg-pan-left 10s infinite both;
-    }
-
-    @-webkit-keyframes bg-pan-left {
-        0% {
-            background-position: 80% 50%;
-        }
-        100% {
-            background-position: 0 60%;
-        }
-    }
-    @keyframes bg-pan-left {
-        0% {
-            background-position: 90% 50%;
-        }
-        100% {
-            background-position: 0 50%;
-        }
-    }
-    .gradient-hor {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-        background-size: 600% 100%;
-        background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
-    //animation: bg-pan-left;
-    }
-
-
-
-
-</style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <title></title>
 </head>
 <body>
-
 <div class="wrap" >
-
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
@@ -288,10 +24,8 @@
         <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">RECIPE SEARCH</div>
     </header>
 
-
-
 <div style="display:flex;flex-wrap: nowrap" >
-<div style="margin-left: 50px; padding-top: 20px; width:800px;">
+<div style="margin-left: 50px; padding-top: 20px; width:800px; color:black">
 
 <mat-form-field appearance="outline">
      <mat-label>Select meal</mat-label>
@@ -301,7 +35,6 @@
      </mat-select>
 </mat-form-field>
 <br>
-
 <br>
 <mat-form-field style="padding-bottom:20px" appearance="outline">
      <mat-label>Select dish</mat-label>
@@ -335,7 +68,7 @@
 
 
     <!--сделать поиск по выпадающему списку -->
-    <form class="example-form">
+ <form class="example-form">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ingredient to include</mat-label>
     <input type="text"
@@ -345,11 +78,10 @@
            [matAutocomplete]="auto"
             >
      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectIncludeIng($event)" >
-    <mat-option value="default" hidden >  </mat-option>
-    <mat-option *ngFor="
-let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
-</mat-autocomplete>
-      </mat-form-field>
+      <mat-option value="default" hidden >  </mat-option>
+      <mat-option *ngFor="let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
+     </mat-autocomplete>
+  </mat-form-field>
 </form>
   <form class="example-form" >
   <mat-form-field class="example-full-width" appearance="fill">
