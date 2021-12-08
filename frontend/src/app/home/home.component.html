@@ -73,33 +73,23 @@
      <input (change)= "selectChangeHandlerSearchBox($event)" matInput>
 </mat-form-field>
 
-<form class="example-form">
+<form class="example-form-include">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ingredient to include</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label=" "
-           matInput
-           [matAutocomplete]="auto">
-     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectIncludeIng($event)" >
-      <mat-option value="default" hidden >  </mat-option>
-      <mat-option *ngFor="let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
-     </mat-autocomplete>
+    <mat-select #label (selectionChange)="selectIncludeIng($event)">
+      <mat-option value="default" hidden></mat-option>
+      <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>
+  </mat-select>
   </mat-form-field>
 </form>
 
-<form class="example-form" >
+<form class="example-form-exclude" >
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Ingredient to exclude</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label=" "
-           matInput
-           [matAutocomplete]="auto">
-     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectExcludeIng($event)" >
-    <mat-option value="default" hidden >  </mat-option>
-    <mat-option *ngFor="let ing of ingredientsList.data " [value]="ing.attributes.name" >{{ing.attributes.name}}</mat-option>
-     </mat-autocomplete>
+      <mat-select #label (selectionChange)="selectExcludeIng($event)">
+          <mat-option value="default" hidden></mat-option>
+          <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>
+      </mat-select>
   </mat-form-field>
 </form>
 

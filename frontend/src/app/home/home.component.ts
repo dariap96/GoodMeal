@@ -77,12 +77,12 @@ export class HomeComponent implements OnInit {
 
     selectIncludeIng(e) {
         console.log("111111111111111111111111");
-        this.includeIng = e.option.value;
+        this.includeIng = e.value;
     }
 
     selectExcludeIng(e) {
         console.log("222222222222222222222222");
-        this.excludeIng = e.option.value;
+        this.excludeIng = e.value;
     }
 
     selectChangeHandlerSearchBox(e){
@@ -131,17 +131,17 @@ export class HomeComponent implements OnInit {
         }
         if(this.includeIng != null && this.includeIng != 'default') {
             if(counter > 0) {
-                base = base + '&filter={%20%22LIKE%22%3A{%22name%22%3A%22%25' + this.includeIng + '%25%22}}';
+                base = base + '&filter[ingredientsSet.ingredient.id]=' + this.includeIng;
             } else {
-                base = base + '?filter={%20%22LIKE%22%3A{%22name%22%3A%22%25' + this.includeIng + '%25%22}}';
+                base = base + '?filter[ingredientsSet.ingredient.id]=' + this.includeIng;
                 counter++;
             }
         }
         if(this.excludeIng != null && this.excludeIng != 'default') {
             if (counter > 0) {
-                base = base + '&filter={%20%22NEQ%22%3A{%22name%22%3A%22%25' + this.excludeIng + '%25%22}}';
+                base = base + '&filter[ingredientsSet.ingredient.id][NEQ]=' + this.excludeIng;
             } else {
-                base = base + '?filter={%20%22NEQ%22%3A{%22name%22%3A%22%25' + this.excludeIng + '%25%22}}';
+                base = base + '?filter[ingredientsSet.ingredient.id][NEQ]=' + this.excludeIng;
                 counter++;
             }
         }
