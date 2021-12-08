@@ -9,11 +9,11 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@JsonApiResource(type = "recipe")
 @Entity
+@Table(name = "Recipes", schema="goodmeal")
 @Getter
 @Setter
-@JsonApiResource(type = "recipe")
-@Table(name = "Recipes", schema="goodmeal")
 public class Recipe {
 
     @Id
@@ -47,9 +47,9 @@ public class Recipe {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Labels_Recipes",
-               schema = "goodmeal",
-               joinColumns = @JoinColumn(name = "recipe_id"),
-               inverseJoinColumns = @JoinColumn(name = "label_id"))
+            schema = "goodmeal",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "label_id"))
     private Set<HealthDietLabel> labelsSet;
 
     @OneToMany(mappedBy = "recipe")
@@ -93,3 +93,4 @@ public class Recipe {
         return ratingSet.stream().collect(Collectors.averagingInt(RecipesRating::getRating));
     }
 }
+

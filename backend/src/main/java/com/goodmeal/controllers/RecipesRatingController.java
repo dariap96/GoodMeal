@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/recipe_rating")
 @CrossOrigin(origins = "*")
 public class RecipesRatingController {
-
     public static final int MAX_REVIEWS = 20;
 
     @Autowired
@@ -34,6 +33,7 @@ public class RecipesRatingController {
 
     @PostMapping("/new")
     public boolean newRating(@RequestBody RecipesRatingDTO ratingDTO) {
+
         RecipesRating rating = RecipesRatingDTO.toRecipesRating(
                 recipesService,
                 usersService,
@@ -53,10 +53,10 @@ public class RecipesRatingController {
     public List<RecipesRatingDTO> getReviews(@PathVariable Long recipeId) {
         List<RecipesRatingDTO> ratingDTOS =
                 recipesRatingService
-                    .getAllByRecipeId(recipeId)
-                    .stream()
-                    .map(RecipesRatingDTO::toRecipesRatingDTO)
-                    .collect(Collectors.toList());
+                        .getAllByRecipeId(recipeId)
+                        .stream()
+                        .map(RecipesRatingDTO::toRecipesRatingDTO)
+                        .collect(Collectors.toList());
         Collections.shuffle(ratingDTOS);
         return ratingDTOS.subList(0, Math.min(20, ratingDTOS.size()));
     }
