@@ -37,7 +37,7 @@
         <mat-card-content style="margin-top: 20px">Cook time: {{ recipeCookTime }} min.</mat-card-content>
         <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
         <mat-card-content style="width:400px"> <mat-list style="display: inline-flex" *ngFor="let la of recipeLables.data">{{la.attributes.label}},  </mat-list></mat-card-content>
-        <mat-card-content style="width:400px">Recipe rating: {{ PrintRating() }}</mat-card-content>
+        <mat-card-content style="width:400px"> {{ PrintRating() }}</mat-card-content>
         <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:8080/recipe_review/{{ recipeId }}">Rate</a>
     </div>
 
