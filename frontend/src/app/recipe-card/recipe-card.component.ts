@@ -23,7 +23,6 @@ export class RecipeCardComponent implements OnInit {
     selectedRecipe : Recipe;
     selectedSelection = null;
     relatedIngredients : Ingredients;
-    showAddToSelection : boolean = false
     rating : string;
     reviews : RecipeRatingInfo[];
     recipeName : string = 'Loading...';
@@ -43,7 +42,6 @@ export class RecipeCardComponent implements OnInit {
             this.recipeCookTime = this.selectedRecipe.data.attributes.time;
             this.recipeImg = this.selectedRecipe.data.attributes.image;
             this.recipeDescr = this.selectedRecipe.data.attributes.actionsSequence;
-            this.recipeLables
         });
 
         this.service.getIngredientsByRecipeId(this.recipeId).subscribe( data => {
@@ -53,6 +51,7 @@ export class RecipeCardComponent implements OnInit {
         this.service.getRecipeRatingById(this.recipeId).subscribe(data => {
                 this.rating = data.toString();
         });
+
         this.service.getLabelsByRecipeId(this.recipeId).subscribe(data => {
             this.recipeLables = ConvertLabels.toLabels(data.toString());
         })
@@ -73,7 +72,7 @@ export class RecipeCardComponent implements OnInit {
     }
 
     selectChangeHandlerSelection(e) {
-        this.selectedSelection = e.target.value;
+        this.selectedSelection = e.value;
     }
 
     addToSelection() {

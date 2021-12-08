@@ -62,12 +62,12 @@
     </div>
     <mat-form-field class="add-to-selection" style="position: relative;left:40%;margin-top:20px;text-align:center" appearance="outline">
         <mat-label>Choose selection</mat-label>
-        <mat-select #selection (change)="selectChangeHandlerSelection($event)" name="selection">
+        <mat-select #selection (selectionChange)="selectChangeHandlerSelection($event)" name="selection">
             <mat-option *ngFor="let selection of userSelections.data" [value]="selection.id">{{selection.attributes.selectionName}}</mat-option>
         </mat-select>
     </mat-form-field>
     <br>
-    <button mat-stroked-button style=" position:relative;left:45%;margin-top: 20px" type="submit" name="Submit" value="Save" (click)="addToSelection()">Save</button>
+    <button mat-stroked-button style=" position:relative;left:45%;margin-top: 20px" appearance="legacy" (click)="addToSelection()">Save</button>
 
 </mat-card>
 

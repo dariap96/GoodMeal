@@ -76,12 +76,10 @@ export class HomeComponent implements OnInit {
     }
 
     selectIncludeIng(e) {
-        console.log("111111111111111111111111");
         this.includeIng = e.value;
     }
 
     selectExcludeIng(e) {
-        console.log("222222222222222222222222");
         this.excludeIng = e.value;
     }
 
