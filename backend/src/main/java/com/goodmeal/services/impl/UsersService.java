@@ -20,6 +20,7 @@ public class UsersService implements IService<User> {
 
     @Autowired
     private UsersRepositoryImplementation userRepository;
+
     @Autowired
     private SelectionsRepositoryImplementation selectionsRepository;
 

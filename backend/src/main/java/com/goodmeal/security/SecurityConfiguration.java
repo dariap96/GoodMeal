@@ -34,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
                 .authorizeRequests().antMatchers("/register", "/*.js", "/*.css", "/login", "/", "/favicon.ico").permitAll()
-                .antMatchers("/api/user/**").hasRole("ADMIN")
+                .antMatchers("/api/user/**", "/update-password-by-admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated().and().logout().invalidateHttpSession(true).logoutUrl("/logout").permitAll()
                 .and().httpBasic();
     }

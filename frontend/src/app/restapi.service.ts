@@ -120,9 +120,14 @@ export class RestapiService {
         return this.http.get(baseUrl + '/api/user', {headers, responseType: 'text' as 'json'});
     }
 
-    updatePassword(login: string, newPass: string) {
+    updatePassword(newPass: string) {
         let headers = this.authHeader;
-        return this.http.put(baseUrl + '/update-password/' + login, newPass, {headers, responseType: 'text' as 'json'});
+        return this.http.put(baseUrl + '/update-password', newPass, {headers, responseType: 'text' as 'json'});
+    }
+
+    updatePasswordByAdmin(login: string, newPass: string) {
+        let headers = this.authHeader;
+        return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass, {headers, responseType: 'text' as 'json'});
     }
 
     getUserSelections(login: string) {

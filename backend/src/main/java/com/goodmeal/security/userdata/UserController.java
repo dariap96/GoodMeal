@@ -2,24 +2,29 @@ package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
+import com.goodmeal.services.impl.UsersService;
+import com.goodmeal.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.security.Principal;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class UserController {
 
+    private Utils utils = new Utils();
+
     private UserDtoMapper userDtoMapper = new UserDtoMapper();
 
     @Autowired
-    UserServiceImplementation userService;
+    UsersService usersService;
 
     @Autowired
-    UsersRepositoryImplementation usersRepository;
+    UserServiceImplementation userService;
 
     @PostMapping("/register")
     public boolean register(@RequestBody User user) {
@@ -28,31 +33,38 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
-    @ResponseBody
     public UserDTO getUserInfo(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        String login = principal.getName();
+        String login = utils.getLoginFromPrincipal(request);
 
-        User user = usersRepository.getUserByLogin(login);
+        User user = usersService.getUserByLogin(login);
         return userDtoMapper.toDTO(user);
     }
 
     @RequestMapping(value = "/userdata", method = RequestMethod.GET)
-    @ResponseBody
     public UserDetails getUserDetails(HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        String login = principal.getName();
+        String login = utils.getLoginFromPrincipal(request);
 
         UserDetails user = userService.loadUserByUsername(login);
         return user;
     }
 
-    @RequestMapping(value = "/update-password/{login}", method = RequestMethod.PUT)
-    public boolean updateUserPassword(@PathVariable String login, @RequestBody String newPassword) {
-        User user = usersRepository.getUserByLogin(login);
+    @Transactional
+    @RequestMapping(value = "/update-password", method = RequestMethod.PUT)
+    public boolean updateUserPassword(HttpServletRequest request, @RequestBody String newPassword) {
+        User user = usersService.getUserByLogin(utils.getLoginFromPrincipal(request));
         user.setPassword(newPassword);
 
-        usersRepository.save(user);
+        userService.saveUser(user);
+        return true;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/update-password-by-admin/{login}", method = RequestMethod.PUT)
+    public boolean updateUserPasswordByAdmin(@PathVariable String login, @RequestBody String newPassword) {
+        User user = usersService.getUserByLogin(login);
+        user.setPassword(newPassword);
+
+        userService.saveUser(user);
         return true;
     }
 }
