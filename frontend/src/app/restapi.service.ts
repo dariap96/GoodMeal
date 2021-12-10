@@ -177,4 +177,8 @@ export class RestapiService {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/api/recipe/' + recipeId + '/labelsSet',  {headers, responseType: 'text' as 'json'});
     }
+
+    forceLogout() {
+        return this.http.get(baseUrl + '/logout', {responseType: 'text' as 'json'});
+    }
 }
