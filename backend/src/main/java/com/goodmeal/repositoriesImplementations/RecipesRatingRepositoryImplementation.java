@@ -15,4 +15,6 @@ public interface RecipesRatingRepositoryImplementation extends JpaRepository<Rec
     List<RecipesRating> getAllByUser_Id(Long userId);
 
     RecipesRating getRecipesRatingByRecipe_IdAndUser_Id(Long recipeId, Long userId);
+
+    RecipesRating removeRecipesRatingByRecipe_IdAndUser_Id(Long recipeId, Long userId);
 }

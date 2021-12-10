@@ -62,7 +62,7 @@ export class UserProfileComponent implements OnInit {
                 this.newPassword = this.newPasswordVerificatiion = '';
             }
             else {
-                this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
+                this.service.updatePassword(this.newPassword).subscribe( data => {
                     this.showPasswordUpdateMenu = false;
                 });
             }
