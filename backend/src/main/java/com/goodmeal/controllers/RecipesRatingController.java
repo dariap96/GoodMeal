@@ -1,6 +1,8 @@
 package com.goodmeal.controllers;
 
 import com.goodmeal.entities.RecipesRating;
+import com.goodmeal.entities.Role;
+import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.RecipesRatingService;
 import com.goodmeal.services.impl.RecipesService;
 import com.goodmeal.services.impl.UsersService;
@@ -49,23 +51,21 @@ public class RecipesRatingController {
         return is_exists;
     }
 
-    @PostMapping(value = "/remove-by-admin")
+    @PatchMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
         try{
             RecipesRating rating = recipesRatingService.removeRating(
                     ratingDTO.getRecipeId(),
                     usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
-            if (rating == null) {
-                return false;
-            }
-            return true;
+            return rating != null;
         } catch (Exception ext) {
+            ext.printStackTrace(System.out);
             return false;
         }
     }
 
     @GetMapping(value = "/{recipeId}/reviews")
-    public List<RecipesRatingDTO> getReviews(@PathVariable Long recipeId) {
+    public List<RecipesRatingDTO> getRecipeReviews(@PathVariable Long recipeId) {
         List<RecipesRatingDTO> ratingDTOS =
                 recipesRatingService
                         .getAllByRecipeId(recipeId)
@@ -74,5 +74,19 @@ public class RecipesRatingController {
                         .collect(Collectors.toList());
         Collections.shuffle(ratingDTOS);
         return ratingDTOS.subList(0, Math.min(20, ratingDTOS.size()));
+    }
+
+    @GetMapping(value = "/{userLogin}/reviews")
+    public List<RecipesRatingDTO> getUserReviews(@PathVariable String userLogin) {
+        User user = usersService.getUserByLogin(userLogin);
+        if(!user.getRoleSet().stream().map(Role::getRole).collect(Collectors.toSet()).contains("ADMIN")) {
+            return null;
+        }
+        Long userId = user.getId();
+        return recipesRatingService
+                        .getAllByUserId(userId)
+                        .stream()
+                        .map(RecipesRatingDTO::toRecipesRatingDTO)
+                        .collect(Collectors.toList());
     }
 }

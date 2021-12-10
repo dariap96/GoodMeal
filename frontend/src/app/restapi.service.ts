@@ -4,6 +4,7 @@ import { baseUrl, backendUrl } from './configuration';
 import { User } from './model/User'
 import { RecipeRating } from "./model/RecipeRating";
 import { BehaviorSubject } from "rxjs";
+import {RecipeRatingInfo} from "./model/RecipesRatingsInfo";
 
 @Injectable({
     providedIn: 'root'
@@ -99,7 +100,7 @@ export class RestapiService {
         return this.http.get(baseUrl + '/api/ingredient?filter[id][LE]=10', {headers, responseType: 'text' as 'json'});
     }
 
-    getRecipeRatingById(id: number) {
+    getRecipeRatingsById(id: number) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
     }
@@ -168,9 +169,14 @@ export class RestapiService {
         return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
     }
 
-    removeReviewByAdmin(reviewId: string) {
+    removeReviewByAdmin(rating : RecipeRatingInfo) {
         let headers = this.authHeader;
-        return this.http.get(baseUrl + '/recipe_rating/remove-by-admin/' + reviewId, {headers, responseType: 'text' as 'json'});
+        return this.http.patch(baseUrl + '/recipe_rating/remove-by-admin/', rating);
+    }
+
+    getUserReviews(userLogin : string) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/recipe_rating/' + userLogin + '/reviews', {headers, responseType: 'text' as 'json'});
     }
 
     getLabelsByRecipeId(recipeId:number) {

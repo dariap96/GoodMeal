@@ -5,6 +5,8 @@ import { Selections, ConvertSelections } from "../model/Selections";
 import { ThemePalette } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { baseUrl } from "../configuration";
+import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-user-profile',
@@ -24,7 +26,9 @@ export class UserProfileComponent implements OnInit {
     activeUserBdayDay : number;
     activeUserBdayMonth : number;
     activeUserBdayYear : number;
-    background: ThemePalette = undefined;
+    background : ThemePalette = undefined;
+    usersRatings : RecipeRatingInfo[];
+
 
     constructor(private service : RestapiService, private router : Router ) {}
 
@@ -41,15 +45,14 @@ export class UserProfileComponent implements OnInit {
                 }
             }
 
-            if(this.adminAccess == true) {
+            if(this.adminAccess) {
                 this.service.getAllUsers().subscribe( data => {
                     this.usersList = ConvertUsers.toUsers(data.toString());
                 });
+                this.service.getUserReviews(this.activeUser.login).subscribe(data => {
+                    this.usersRatings = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString())
+                });
             }
-
-            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-                this.userSelections = ConvertSelections.toSelections(data.toString());
-            });
         });
     }
 
@@ -76,5 +79,13 @@ export class UserProfileComponent implements OnInit {
                 });
             }
         }
+    }
+
+    getUserReviews(userLogin : string) {
+        return this.service.getUserReviews(userLogin)
+    }
+
+    removeReview(rating : RecipeRatingInfo) {
+        return this.service.removeReviewByAdmin(rating)
     }
 }

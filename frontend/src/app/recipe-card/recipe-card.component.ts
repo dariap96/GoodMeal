@@ -48,7 +48,7 @@ export class RecipeCardComponent implements OnInit {
             this.relatedIngredients = ConvertIngredients.toIngredients(data.toString());
         });
 
-        this.service.getRecipeRatingById(this.recipeId).subscribe(data => {
+        this.service.getRecipeRatingsById(this.recipeId).subscribe(data => {
                 this.rating = data.toString();
         });
 
