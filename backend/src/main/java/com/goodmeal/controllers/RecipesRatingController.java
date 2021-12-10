@@ -49,12 +49,19 @@ public class RecipesRatingController {
         return is_exists;
     }
 
-    @PostMapping(value = "/remove-by-admin/{reviewId}")
-    public boolean removeReviewByAdmin(@PathVariable Long reviewId) {
-
-        // need to implement
-
-        return false;
+    @PostMapping(value = "/remove-by-admin")
+    public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
+        try{
+            RecipesRating rating = recipesRatingService.removeRating(
+                    ratingDTO.getRecipeId(),
+                    usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
+            if (rating == null) {
+                return false;
+            }
+            return true;
+        } catch (Exception ext) {
+            return false;
+        }
     }
 
     @GetMapping(value = "/{recipeId}/reviews")
