@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import { Selections, ConvertSelections } from "../model/Selections";
-import {ThemePalette} from "@angular/material/core";
+import { ThemePalette } from "@angular/material/core";
+import { Router } from "@angular/router";
+import { baseUrl } from "../configuration";
 
 @Component({
     selector: 'app-user-profile',
@@ -24,7 +26,7 @@ export class UserProfileComponent implements OnInit {
     activeUserBdayYear : number;
     background: ThemePalette = undefined;
 
-    constructor(private service : RestapiService ) {}
+    constructor(private service : RestapiService, private router : Router ) {}
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
@@ -55,6 +57,13 @@ export class UserProfileComponent implements OnInit {
         this.showPasswordUpdateMenu = true;
     }
 
+    logout() {
+        this.service.authHeader = null;
+        window.open(baseUrl + '/logout', '_self');
+    }
+
+    changeUserPassword() {}
+
     hidePassUpdMenu() {
         if (!((this.newPassword || this.newPasswordVerificatiion) == '' || (this.newPassword || this.newPasswordVerificatiion) == null)) {
             if (this.newPassword != this.newPasswordVerificatiion) {
@@ -62,7 +71,7 @@ export class UserProfileComponent implements OnInit {
                 this.newPassword = this.newPasswordVerificatiion = '';
             }
             else {
-                this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
+                this.service.updatePassword(this.newPassword).subscribe( data => {
                     this.showPasswordUpdateMenu = false;
                 });
             }

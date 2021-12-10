@@ -22,8 +22,7 @@ export class RestapiService {
     }
 
     getUserdata() {
-        let headers = this.authHeader
-        return this.http.get(baseUrl + "/userdata", {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + "/userdata", {/*headers,*/ responseType: 'text' as 'json'});
     }
 
     addUser(user: User) {
@@ -111,8 +110,7 @@ export class RestapiService {
     }
 
     getUserInfo() {
-        let headers = this.authHeader;
-        return this.http.get(baseUrl + '/userinfo', {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + '/userinfo', {responseType: 'text' as 'json'});
     }
 
     getAllUsers() {
@@ -168,6 +166,11 @@ export class RestapiService {
     getReviews(recipeId: number) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
+    }
+
+    removeReviewByAdmin(reviewId: string) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/recipe_rating/remove-by-admin/' + reviewId, {headers, responseType: 'text' as 'json'});
     }
 
     getLabelsByRecipeId(recipeId:number) {
