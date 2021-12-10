@@ -49,6 +49,14 @@ public class RecipesRatingController {
         return is_exists;
     }
 
+    @PostMapping(value = "/remove-by-admin/{reviewId}")
+    public boolean removeReviewByAdmin(@PathVariable Long reviewId) {
+
+        // need to implement
+
+        return false;
+    }
+
     @GetMapping(value = "/{recipeId}/reviews")
     public List<RecipesRatingDTO> getReviews(@PathVariable Long recipeId) {
         List<RecipesRatingDTO> ratingDTOS =
