@@ -53,7 +53,6 @@ public class RecipesRatingController {
 
     @PatchMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
-        System.out.println(ratingDTO.toString());
         RecipesRating rating = recipesRatingService.removeRating(ratingDTO.getRecipeId(), usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
         return rating != null;
     }
@@ -72,9 +71,7 @@ public class RecipesRatingController {
 
     @GetMapping(value = "/user-reviews/{userLogin}")
     public List<RecipesRatingDTO> getUserReviews(@PathVariable String userLogin) {
-        System.out.println(userLogin);
         User user = usersService.getUserByLogin(userLogin);
-        System.out.println(user.getRoleSet());
         Long userId = user.getId();
         return recipesRatingService
                         .getAllByUserId(userId)

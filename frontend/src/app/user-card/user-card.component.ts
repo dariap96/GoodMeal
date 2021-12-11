@@ -4,7 +4,6 @@ import { ConvertUserInfo, UserInfo } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRatingsInfo";
 import {ThemePalette} from "@angular/material/core";
-import {baseUrl} from "../configuration";
 
 @Component({
     selector: 'app-user-card',
@@ -41,6 +40,8 @@ export class UserCardComponent implements OnInit {
             if(this.adminAccess) {
                 this.service.getUserByAdmin(this.selectedUserId).subscribe( data => {
                     this.selectedUser = ConvertUserInfo.toUserInfo(data.toString());
+
+                    console.log(this.selectedUser.bday);
 
                     this.service.getUserReviews(this.selectedUser.login).subscribe(data => {
                         this.selectedUsersRatings = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString())

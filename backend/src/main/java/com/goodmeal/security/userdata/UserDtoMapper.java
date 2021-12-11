@@ -19,6 +19,6 @@ public class UserDtoMapper {
         Date bday = user.getBday();
         Set<String> roles = user.getRoleSet().stream().map(Role::getRole).collect(toSet());
 
-        return new UserDTO(name, surname, login, email, bday, roles);
+        return new UserDTO(name, surname, login, email, bday.toString(), roles);
     }
 }
