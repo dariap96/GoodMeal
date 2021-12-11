@@ -40,7 +40,7 @@
         <tbody>
         <tr *ngFor="let user of usersList.data">
             <td>{{ user.id }}</td>
-            <td>{{ user.attributes.login }}</td>
+            <td><a href="http://localhost:8080/user-card/{{user.id}}">{{ user.attributes.login }}</a></td>
             <td>{{ user.attributes.name }}</td>
             <td>{{ user.attributes.surname }}</td>
             <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="changeUserPassword()">Change password</button></td>
@@ -53,7 +53,7 @@
 
 <mat-card  class="mat-elevation-z4 text-focus-in " style="text-align: center;vertical-align: middle;
     width:50%;position:center;margin: auto;margin-top: 180px; border-radius:20px;padding:60px;box-shadow: #d4d4d4;">
-    <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Logout" (click)="logout()">Change password</button>
+    <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Logout" (click)="logout()">Logout</button>
     <h2 mat-card-title class="text-focus-in" > {{ activeUser.name }} {{ activeUser.surname }}</h2>
     <div class="example-container " style="text-align: center;">
         <p> Mail: {{ activeUser.email }}</p>

@@ -11,7 +11,9 @@ import { SelectionCardComponent } from "./selection-card/selection-card.componen
 import { SelectionsPageComponent } from "./selections-page/selections-page.component";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
-import {AppComponent} from "./app.component";
+import { AppComponent } from "./app.component";
+import { UserCardComponent } from "./user-card/user-card.component";
+
 const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: "home", component: HomeComponent },
@@ -21,6 +23,7 @@ const routes: Routes = [
     { path: "selection-card/:id", component: SelectionCardComponent },
     { path: "selections", component: SelectionsPageComponent },
     { path: "user-profile", component: UserProfileComponent },
+    { path: "user-card/:id", component: UserCardComponent },
     { path: "recipe_review/:id", component: ReviewComponent }
 ];
 

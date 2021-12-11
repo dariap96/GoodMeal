@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
-import { Selections, ConvertSelections } from "../model/Selections";
 import { ThemePalette } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { baseUrl } from "../configuration";
-import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
-import { NgForm } from '@angular/forms';
+import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRatingsInfo";
 
 @Component({
     selector: 'app-user-profile',
@@ -15,9 +13,9 @@ import { NgForm } from '@angular/forms';
 })
 
 export class UserProfileComponent implements OnInit {
+
     activeUser : UserInfo;
     usersList : Users;
-    userSelections : Selections;
     adminAccess : boolean = false;
     showPasswordUpdateMenu : boolean = false;
     showDifferentPasswordsLabel : boolean = false;

@@ -18,6 +18,7 @@ import {combineAll} from "rxjs/operators";
 })
 
 export class HomeComponent implements OnInit {
+
     labelsList : Labels;
     dishesList : Dishes;
     mealsList : Meals;

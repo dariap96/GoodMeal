@@ -40,6 +40,12 @@ public class UserController {
         return userDtoMapper.toDTO(user);
     }
 
+    @RequestMapping(value = "/userinfo/{userId}", method = RequestMethod.GET)
+    public UserDTO getUserInfoByAdmin(@PathVariable Long userId) {
+        User user = usersService.getUserById(userId);
+        return userDtoMapper.toDTO(user);
+    }
+
     @RequestMapping(value = "/userdata", method = RequestMethod.GET)
     public UserDetails getUserDetails(HttpServletRequest request) {
         String login = utils.getLoginFromPrincipal(request);

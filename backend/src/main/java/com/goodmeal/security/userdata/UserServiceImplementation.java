@@ -41,6 +41,16 @@ public class UserServiceImplementation implements UserDetailsService{
         return new UserDetailsImplementation(user);
     }
 
+    public UserDetails loadUserById(Long id) {
+        User user = userRepository.getById(id);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Could not find user");
+        }
+
+        return new UserDetailsImplementation(user);
+    }
+
     public boolean saveUser(User user) {
         User userFromDB = userRepository.getUserByLogin(user.getLogin());
 

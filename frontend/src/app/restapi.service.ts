@@ -187,4 +187,8 @@ export class RestapiService {
     forceLogout() {
         return this.http.get(baseUrl + '/logout', {responseType: 'text' as 'json'});
     }
+
+    getUserByAdmin(userId: string) {
+        return this.http.get(baseUrl + '/userinfo/' + userId, {responseType: 'text' as 'json'});
+    }
 }
