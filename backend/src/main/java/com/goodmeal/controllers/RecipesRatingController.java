@@ -76,12 +76,11 @@ public class RecipesRatingController {
         return ratingDTOS.subList(0, Math.min(20, ratingDTOS.size()));
     }
 
-    @GetMapping(value = "/{userLogin}/reviews")
+    @GetMapping(value = "/user-reviews/{userLogin}")
     public List<RecipesRatingDTO> getUserReviews(@PathVariable String userLogin) {
+        System.out.println(userLogin);
         User user = usersService.getUserByLogin(userLogin);
-        if(!user.getRoleSet().stream().map(Role::getRole).collect(Collectors.toSet()).contains("ADMIN")) {
-            return null;
-        }
+        System.out.println(user.getRoleSet());
         Long userId = user.getId();
         return recipesRatingService
                         .getAllByUserId(userId)

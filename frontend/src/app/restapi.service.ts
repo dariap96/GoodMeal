@@ -176,7 +176,7 @@ export class RestapiService {
 
     getUserReviews(userLogin : string) {
         let headers = this.authHeader;
-        return this.http.get(baseUrl + '/recipe_rating/' + userLogin + '/reviews', {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + '/recipe_rating/user-reviews/' + userLogin, {headers, responseType: 'text' as 'json'});
     }
 
     getLabelsByRecipeId(recipeId:number) {
