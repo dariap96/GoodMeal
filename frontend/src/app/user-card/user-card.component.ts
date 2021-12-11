@@ -4,6 +4,7 @@ import { ConvertUserInfo, UserInfo } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRatingsInfo";
 import {ThemePalette} from "@angular/material/core";
+import {baseUrl} from "../configuration";
 
 @Component({
     selector: 'app-user-card',
@@ -18,6 +19,11 @@ export class UserCardComponent implements OnInit {
     selectedUser : UserInfo;
     selectedUserId : string;
     selectedUsersRatings : RecipeRatingInfo[];
+
+    showPasswordUpdateMenu : boolean = false;
+    showDifferentPasswordsLabel : boolean = false;
+    newPassword : string = '';
+    newPasswordVerificatiion : string = '';
     background : ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.selectedUserId = route.snapshot.params['id']; }
@@ -48,4 +54,21 @@ export class UserCardComponent implements OnInit {
         this.service.removeReviewByAdmin(reviewDTO).subscribe( data => {});
     }
 
+    showPassUpdMenu() {
+        this.showPasswordUpdateMenu = true;
+    }
+
+    hidePassUpdMenu() {
+        if (!((this.newPassword || this.newPasswordVerificatiion) == '' || (this.newPassword || this.newPasswordVerificatiion) == null)) {
+            if (this.newPassword != this.newPasswordVerificatiion) {
+                this.showDifferentPasswordsLabel = true;
+                this.newPassword = this.newPasswordVerificatiion = '';
+            }
+            else {
+                this.service.updatePasswordByAdmin(this.selectedUser.login, this.newPassword).subscribe( data => {
+                    this.showPasswordUpdateMenu = false;
+                });
+            }
+        }
+    }
 }

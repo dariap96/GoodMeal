@@ -32,6 +32,17 @@
         <div class="example-container " style="text-align: center;">
             <p> Mail: {{ selectedUser.email }}</p>
             <!--        <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear}}</p>-->
+            <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">Change password</button>
+            <br>
+            <div class="example-container" *ngIf="showPasswordUpdateMenu" style="text-align: center;position:center;margin-top:20px;">
+                <input matInput style="border-radius: 3px;" type="password"  id="password-placeholder"  placeholder="New password"  [(ngModel)]="newPassword">
+                <p></p>
+                <input matInput  type = "password" style="margin-top: 5px;border-radius: 3px;"  id="password-retype-placeholder" placeholder="Confirm password" [(ngModel)]="newPasswordVerificatiion">
+                <p></p>
+                <button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">Submit</button>
+                <p></p>
+                <mat-error style="font-size: 12px;" *ngIf="showDifferentPasswordsLabel">*passwords must match</mat-error>
+            </div>
         </div>
     </mat-card>
 </div>

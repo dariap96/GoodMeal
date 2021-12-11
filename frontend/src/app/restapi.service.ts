@@ -125,8 +125,7 @@ export class RestapiService {
     }
 
     updatePasswordByAdmin(login: string, newPass: string) {
-        let headers = this.authHeader;
-        return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass, {headers, responseType: 'text' as 'json'});
+        return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass, {responseType: 'text' as 'json'});
     }
 
     getUserSelections(login: string) {
