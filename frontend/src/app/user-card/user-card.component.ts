@@ -44,4 +44,8 @@ export class UserCardComponent implements OnInit {
         });
     }
 
+    removeUserReview(reviewDTO: RecipeRatingInfo) {
+        this.service.removeReviewByAdmin(reviewDTO).subscribe( data => {});
+    }
+
 }

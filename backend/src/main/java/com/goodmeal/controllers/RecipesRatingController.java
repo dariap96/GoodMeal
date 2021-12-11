@@ -53,15 +53,9 @@ public class RecipesRatingController {
 
     @PatchMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
-        try{
-            RecipesRating rating = recipesRatingService.removeRating(
-                    ratingDTO.getRecipeId(),
-                    usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
-            return rating != null;
-        } catch (Exception ext) {
-            ext.printStackTrace(System.out);
-            return false;
-        }
+        System.out.println(ratingDTO.toString());
+        RecipesRating rating = recipesRatingService.removeRating(ratingDTO.getRecipeId(), usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
+        return rating != null;
     }
 
     @GetMapping(value = "/{recipeId}/reviews")

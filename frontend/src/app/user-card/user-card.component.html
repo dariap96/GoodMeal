@@ -50,7 +50,7 @@
             <td><a href="http://localhost:8080/recipe-card/{{review.recipeId}}">{{ review.recipeId }}</a></td>
             <td>{{ review.rating }}</td>
             <td>{{ review.review }}</td>
-<!--            <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="changeUserPassword()">Change password</button></td>-->
+            <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="removeUserReview(review)">Remove</button></td>
         </tr>
         </tbody>
     </table>

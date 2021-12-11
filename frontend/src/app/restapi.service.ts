@@ -170,7 +170,6 @@ export class RestapiService {
     }
 
     removeReviewByAdmin(rating : RecipeRatingInfo) {
-        let headers = this.authHeader;
         return this.http.patch(baseUrl + '/recipe_rating/remove-by-admin/', rating);
     }
 
