@@ -14,7 +14,8 @@
 <title></title>
 </head>
 <body>
-<div class="wrap" >
+<div *ngIf="loading" class="wrap" >
+    <mat-spinner></mat-spinner>
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
