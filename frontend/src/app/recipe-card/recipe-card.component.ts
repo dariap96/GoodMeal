@@ -7,6 +7,7 @@ import { UserInfo, ConvertUserInfo } from "../model/User";
 import { Selections, ConvertSelections } from "../model/Selections";
 import {ThemePalette} from "@angular/material/core";
 import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
+import {ConvertLabels, Labels} from "../model/Labels";
 
 @Component({
     selector: 'app-recipe-card',
@@ -22,13 +23,13 @@ export class RecipeCardComponent implements OnInit {
     selectedRecipe : Recipe;
     selectedSelection = null;
     relatedIngredients : Ingredients;
-    showAddToSelection : boolean = false
     rating : string;
     reviews : RecipeRatingInfo[];
     recipeName : string = 'Loading...';
     recipeCookTime : number = -1;
     recipeImg : string = 'Loading...';
     recipeDescr : string = 'Loading...';
+    recipeLables : Labels;
     background: ThemePalette = undefined;
 
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
@@ -47,9 +48,13 @@ export class RecipeCardComponent implements OnInit {
             this.relatedIngredients = ConvertIngredients.toIngredients(data.toString());
         });
 
-        this.service.getRecipeRatingById(this.recipeId).subscribe(data => {
+        this.service.getRecipeRatingsById(this.recipeId).subscribe(data => {
                 this.rating = data.toString();
         });
+
+        this.service.getLabelsByRecipeId(this.recipeId).subscribe(data => {
+            this.recipeLables = ConvertLabels.toLabels(data.toString());
+        })
 
         this.service.getUserInfo().subscribe( data => {
             this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
@@ -67,7 +72,7 @@ export class RecipeCardComponent implements OnInit {
     }
 
     selectChangeHandlerSelection(e) {
-        this.selectedSelection = e.target.value;
+        this.selectedSelection = e.value;
     }
 
     addToSelection() {

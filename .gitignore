@@ -1,9 +1,9 @@
 .idea
-target
-GoodMeal.iml
+*.iml
+*target
 /frontend/dist
 /frontend/node
 /frontend/node_modules
 /frontend/package-lock.json
-/frontend/target
-/backend/target
+/frontend/.angular
+/backend/src/main/resources/application.properties

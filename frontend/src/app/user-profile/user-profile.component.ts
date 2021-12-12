@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
-import { Selections, ConvertSelections } from "../model/Selections";
-import {ThemePalette} from "@angular/material/core";
+import { ThemePalette } from "@angular/material/core";
+import { Router } from "@angular/router";
+import { baseUrl } from "../configuration";
+import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRatingsInfo";
 
 @Component({
     selector: 'app-user-profile',
@@ -11,9 +13,9 @@ import {ThemePalette} from "@angular/material/core";
 })
 
 export class UserProfileComponent implements OnInit {
+
     activeUser : UserInfo;
     usersList : Users;
-    userSelections : Selections;
     adminAccess : boolean = false;
     showPasswordUpdateMenu : boolean = false;
     showDifferentPasswordsLabel : boolean = false;
@@ -22,9 +24,11 @@ export class UserProfileComponent implements OnInit {
     activeUserBdayDay : number;
     activeUserBdayMonth : number;
     activeUserBdayYear : number;
-    background: ThemePalette = undefined;
+    background : ThemePalette = undefined;
+    usersRatings : RecipeRatingInfo[];
 
-    constructor(private service : RestapiService ) {}
+
+    constructor(private service : RestapiService, private router : Router ) {}
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
@@ -39,21 +43,27 @@ export class UserProfileComponent implements OnInit {
                 }
             }
 
-            if(this.adminAccess == true) {
+            if(this.adminAccess) {
                 this.service.getAllUsers().subscribe( data => {
                     this.usersList = ConvertUsers.toUsers(data.toString());
                 });
+                this.service.getUserReviews(this.activeUser.login).subscribe(data => {
+                    this.usersRatings = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString())
+                });
             }
-
-            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-                this.userSelections = ConvertSelections.toSelections(data.toString());
-            });
         });
     }
 
     showPassUpdMenu() {
         this.showPasswordUpdateMenu = true;
     }
+
+    logout() {
+        this.service.authHeader = null;
+        window.open(baseUrl + '/logout', '_self');
+    }
+
+    changeUserPassword() {}
 
     hidePassUpdMenu() {
         if (!((this.newPassword || this.newPasswordVerificatiion) == '' || (this.newPassword || this.newPasswordVerificatiion) == null)) {
@@ -62,10 +72,18 @@ export class UserProfileComponent implements OnInit {
                 this.newPassword = this.newPasswordVerificatiion = '';
             }
             else {
-                this.service.updatePassword(this.activeUser.login, this.newPassword).subscribe( data => {
+                this.service.updatePassword(this.newPassword).subscribe( data => {
                     this.showPasswordUpdateMenu = false;
                 });
             }
         }
+    }
+
+    getUserReviews(userLogin : string) {
+        return this.service.getUserReviews(userLogin)
+    }
+
+    removeReview(rating : RecipeRatingInfo) {
+        return this.service.removeReviewByAdmin(rating)
     }
 }

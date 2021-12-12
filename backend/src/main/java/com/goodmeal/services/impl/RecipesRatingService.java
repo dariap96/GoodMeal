@@ -60,4 +60,8 @@ public class RecipesRatingService implements IService<RecipesRating> {
         }
         recipesRatingRepository.save(rating);
     }
+
+    public RecipesRating removeRating(Long recipeId, Long userId){
+        return recipesRatingRepository.removeRecipesRatingByRecipe_IdAndUser_Id(recipeId, userId);
+    }
 }

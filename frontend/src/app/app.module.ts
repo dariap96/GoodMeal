@@ -31,6 +31,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {UserCardComponent} from "./user-card/user-card.component";
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
         SelectionsPageComponent,
         SelectionCardComponent,
         UserProfileComponent,
+        UserCardComponent,
         ReviewComponent
     ],
     imports: [

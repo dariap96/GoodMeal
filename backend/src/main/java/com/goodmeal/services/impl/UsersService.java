@@ -20,6 +20,7 @@ public class UsersService implements IService<User> {
 
     @Autowired
     private UsersRepositoryImplementation userRepository;
+
     @Autowired
     private SelectionsRepositoryImplementation selectionsRepository;
 
@@ -50,4 +51,6 @@ public class UsersService implements IService<User> {
     public User getUserByLogin(String login){
         return userRepository.getUserByLogin(login);
     }
+
+    public User getUserById(Long id) { return userRepository.getById(id); }
 }

@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     constructor(private service: RestapiService,private router:Router) { }
 
     ngOnInit() {
+        this.service.forceLogout().subscribe( data => {});
         this.er=false;
     }
 

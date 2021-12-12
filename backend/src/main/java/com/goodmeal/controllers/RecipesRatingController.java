@@ -1,6 +1,8 @@
 package com.goodmeal.controllers;
 
 import com.goodmeal.entities.RecipesRating;
+import com.goodmeal.entities.Role;
+import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.RecipesRatingService;
 import com.goodmeal.services.impl.RecipesService;
 import com.goodmeal.services.impl.UsersService;
@@ -15,7 +17,6 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/recipe_rating")
 @CrossOrigin(origins = "*")
 public class RecipesRatingController {
-
     public static final int MAX_REVIEWS = 20;
 
     @Autowired
@@ -34,6 +35,7 @@ public class RecipesRatingController {
 
     @PostMapping("/new")
     public boolean newRating(@RequestBody RecipesRatingDTO ratingDTO) {
+
         RecipesRating rating = RecipesRatingDTO.toRecipesRating(
                 recipesService,
                 usersService,
@@ -49,15 +51,32 @@ public class RecipesRatingController {
         return is_exists;
     }
 
+    @PatchMapping(value = "/remove-by-admin")
+    public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
+        RecipesRating rating = recipesRatingService.removeRating(ratingDTO.getRecipeId(), usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
+        return rating != null;
+    }
+
     @GetMapping(value = "/{recipeId}/reviews")
-    public List<RecipesRatingDTO> getReviews(@PathVariable Long recipeId) {
+    public List<RecipesRatingDTO> getRecipeReviews(@PathVariable Long recipeId) {
         List<RecipesRatingDTO> ratingDTOS =
                 recipesRatingService
-                    .getAllByRecipeId(recipeId)
-                    .stream()
-                    .map(RecipesRatingDTO::toRecipesRatingDTO)
-                    .collect(Collectors.toList());
+                        .getAllByRecipeId(recipeId)
+                        .stream()
+                        .map(RecipesRatingDTO::toRecipesRatingDTO)
+                        .collect(Collectors.toList());
         Collections.shuffle(ratingDTOS);
         return ratingDTOS.subList(0, Math.min(20, ratingDTOS.size()));
+    }
+
+    @GetMapping(value = "/user-reviews/{userLogin}")
+    public List<RecipesRatingDTO> getUserReviews(@PathVariable String userLogin) {
+        User user = usersService.getUserByLogin(userLogin);
+        Long userId = user.getId();
+        return recipesRatingService
+                        .getAllByUserId(userId)
+                        .stream()
+                        .map(RecipesRatingDTO::toRecipesRatingDTO)
+                        .collect(Collectors.toList());
     }
 }

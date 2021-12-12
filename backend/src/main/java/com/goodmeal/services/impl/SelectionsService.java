@@ -39,4 +39,8 @@ public class SelectionsService implements IService<Selection> {
     }
 
     public Selection getSelectionById(Long id) {return (selectionRepository.getSelectionById(id));}
+
+    public void saveSelection(Selection selection) { selectionRepository.save(selection); }
+
+    public void deleteSelectionById(Long id) { selectionRepository.deleteById(id); }
 }

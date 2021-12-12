@@ -11,6 +11,7 @@ import {ThemePalette} from "@angular/material/core";
 })
 
 export class IngredientCardComponent implements OnInit {
+
     ingredientId : number;
     selectedIngredient : Ingredient;
     ingredientName : string;

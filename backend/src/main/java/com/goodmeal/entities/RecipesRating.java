@@ -7,9 +7,9 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "Recipes_Rating", schema = "goodmeal")
 @Getter
 @Setter
-@Table(name = "Recipes_Rating", schema = "goodmeal")
 public class RecipesRating {
 
     @EmbeddedId

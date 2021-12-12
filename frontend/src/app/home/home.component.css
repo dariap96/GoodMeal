@@ -93,6 +93,7 @@ body {
     height: 100vh;
     font-family: Montserrat,serif;
     background: #FFFFFF;
+    overflow: scroll;
 }
 
 .wrap {
@@ -173,12 +174,12 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
+    max-height: 5000px;
     top: 0;
     left: 0;
     background-size: 600% 100%;
     background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
-//animation: bg-pan-left;
 }
 
 

@@ -4,6 +4,7 @@ import { baseUrl, backendUrl } from './configuration';
 import { User } from './model/User'
 import { RecipeRating } from "./model/RecipeRating";
 import { BehaviorSubject } from "rxjs";
+import {RecipeRatingInfo} from "./model/RecipesRatingsInfo";
 
 @Injectable({
     providedIn: 'root'
@@ -22,8 +23,7 @@ export class RestapiService {
     }
 
     getUserdata() {
-        let headers = this.authHeader
-        return this.http.get(baseUrl + "/userdata", {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + "/userdata", {/*headers,*/ responseType: 'text' as 'json'});
     }
 
     addUser(user: User) {
@@ -100,7 +100,7 @@ export class RestapiService {
         return this.http.get(baseUrl + '/api/ingredient?filter[id][LE]=10', {headers, responseType: 'text' as 'json'});
     }
 
-    getRecipeRatingById(id: number) {
+    getRecipeRatingsById(id: number) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/recipe_rating/' + id, {headers, responseType: 'text' as 'json'});
     }
@@ -111,8 +111,7 @@ export class RestapiService {
     }
 
     getUserInfo() {
-        let headers = this.authHeader;
-        return this.http.get(baseUrl + '/userinfo', {headers, responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + '/userinfo', {responseType: 'text' as 'json'});
     }
 
     getAllUsers() {
@@ -120,9 +119,13 @@ export class RestapiService {
         return this.http.get(baseUrl + '/api/user', {headers, responseType: 'text' as 'json'});
     }
 
-    updatePassword(login: string, newPass: string) {
+    updatePassword(newPass: string) {
         let headers = this.authHeader;
-        return this.http.put(baseUrl + '/update-password/' + login, newPass, {headers, responseType: 'text' as 'json'});
+        return this.http.put(baseUrl + '/update-password', newPass, {headers, responseType: 'text' as 'json'});
+    }
+
+    updatePasswordByAdmin(login: string, newPass: string) {
+        return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass, {responseType: 'text' as 'json'});
     }
 
     getUserSelections(login: string) {
@@ -160,8 +163,30 @@ export class RestapiService {
         return this.http.get(baseUrl + '/edit-selections/delete/' + selectionId, {headers, responseType: 'text' as 'json'});
     }
 
-    getReviews(recipeId: number){
+    getReviews(recipeId: number) {
         let headers = this.authHeader;
         return this.http.get(baseUrl + '/recipe_rating/' + recipeId + '/reviews', {headers, responseType: 'text' as 'json'});
+    }
+
+    removeReviewByAdmin(rating : RecipeRatingInfo) {
+        return this.http.patch(baseUrl + '/recipe_rating/remove-by-admin/', rating);
+    }
+
+    getUserReviews(userLogin : string) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/recipe_rating/user-reviews/' + userLogin, {headers, responseType: 'text' as 'json'});
+    }
+
+    getLabelsByRecipeId(recipeId:number) {
+        let headers = this.authHeader;
+        return this.http.get(baseUrl + '/api/recipe/' + recipeId + '/labelsSet',  {headers, responseType: 'text' as 'json'});
+    }
+
+    forceLogout() {
+        return this.http.get(baseUrl + '/logout', {responseType: 'text' as 'json'});
+    }
+
+    getUserByAdmin(userId: string) {
+        return this.http.get(baseUrl + '/userinfo/' + userId, {responseType: 'text' as 'json'});
     }
 }

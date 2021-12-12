@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonApiResource(type = "user")
 @Entity
+@Table(name = "Users", schema = "goodmeal")
 @Getter
 @Setter
-@JsonApiResource(type = "user")
-@Table(name = "Users", schema = "goodmeal")
 public class User {
 
     @Id
