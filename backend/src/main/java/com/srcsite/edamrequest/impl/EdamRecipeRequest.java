@@ -2,17 +2,10 @@ package com.srcsite.edamrequest.impl;
 
 import com.srcsite.edamrequest.APIKeys;
 import com.srcsite.edamrequest.EdamRequest;
-
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 public class EdamRecipeRequest extends EdamRequest {
 
-    public static final int MIN_FROM = 0;
-    public static final int MAX_FROM = 7000;
-    public static final int MIN_TO = 0;
-    public static final int MAX_TO = 7000;
-    public static final int DEFAULT_FROM = 0;
-    public static final int DEFAULT_TO = 100;
     public static final String DEFAULT_Q = "*";
     private static final String BASE = "https://api.edamam.com/api/recipes/v2?type=public";
 

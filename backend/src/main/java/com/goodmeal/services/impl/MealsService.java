@@ -3,6 +3,7 @@ package com.goodmeal.services.impl;
 import com.goodmeal.entities.Meal;
 import com.goodmeal.repositoriesImplementations.MealsRepositoryImplementation;
 import com.goodmeal.services.IService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;

@@ -4,6 +4,7 @@ import com.goodmeal.entities.RecipesRating;
 import com.goodmeal.entities.RecipesRatingKey;
 import com.goodmeal.repositoriesImplementations.RecipesRatingRepositoryImplementation;
 import com.goodmeal.services.IService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;

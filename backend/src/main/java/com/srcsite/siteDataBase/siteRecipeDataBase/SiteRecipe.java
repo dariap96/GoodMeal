@@ -35,22 +35,17 @@ public class SiteRecipe {
     @JsonProperty("healthLabels")
     private List<String> healths;
 
-    @JsonProperty("cautions")
     private List<String> cautions;
 
-    @JsonProperty("ingredientLines")
     private List<String> ingredientLines;
 
     @JsonProperty("ingredients")
     private List<SiteIngredient> siteIngredients;
 
-    @JsonProperty("calories")
     private double calories;
 
-    @JsonProperty("totalWeight")
     private double totalWeight;
 
-    @JsonProperty("totalTime")
     private double cookTime;
 
     @JsonProperty("cuisineType")
