@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
@@ -17,18 +17,21 @@
 <div *ngIf="loading" class="wrap" >
     <mat-spinner></mat-spinner>
 </div>
-
-<nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
+<div class="navig">
     <div class="logo">GOOD MEAL</div>
+    <div>
+<nav mat-tab-nav-bar [backgroundColor]="background"  style="align-items: flex-end">
+
     <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:8080/home">Home</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/user-profile">Profile</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/selections">Selections</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
     <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
 </nav>
-
-<div  class="gradient-hor bg-pan-left">
-    <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
+    </div>
+</div>
+<div class="gradient-hor ">
+<header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
         <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">RECIPE SEARCH</div>
     </header>
 
