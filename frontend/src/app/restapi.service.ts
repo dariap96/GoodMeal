@@ -169,7 +169,7 @@ export class RestapiService {
     }
 
     removeReviewByAdmin(rating : RecipeRatingInfo) {
-        return this.http.patch(baseUrl + '/recipe_rating/remove-by-admin/', rating);
+        return this.http.post(baseUrl + '/recipe_rating/remove-by-admin/', rating);
     }
 
     getUserReviews(userLogin : string) {

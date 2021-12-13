@@ -51,10 +51,14 @@ public class RecipesRatingController {
         return is_exists;
     }
 
-    @PatchMapping(value = "/remove-by-admin")
+    @PostMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
-        RecipesRating rating = recipesRatingService.removeRating(ratingDTO.getRecipeId(), usersService.getUserByLogin(ratingDTO.getUserLogin()).getId());
-        return rating != null;
+        Long userId = usersService.getUserByLogin(ratingDTO.getUserLogin()).getId();
+        Long recipeId = ratingDTO.getRecipeId();
+
+        RecipesRating rating = recipesRatingService.getRating(recipeId, userId);
+        recipesRatingService.deleteReviewByEntity(rating);
+        return true;
     }
 
     @GetMapping(value = "/{recipeId}/reviews")
