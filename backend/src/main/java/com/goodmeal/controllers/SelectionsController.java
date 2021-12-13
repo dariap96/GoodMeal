@@ -20,8 +20,6 @@ import java.util.Set;
 @RequestMapping("/edit-selections")
 public class SelectionsController {
 
-    private Utils utils = new Utils();
-
     @Autowired
     SelectionsService selectionsService;
 
@@ -33,7 +31,7 @@ public class SelectionsController {
 
     @RequestMapping(value = "/add-to-selection/{selectionId}", method = RequestMethod.POST)
     private boolean addToSelection(HttpServletRequest request, @PathVariable Long selectionId, @RequestBody String recipeId) {
-        String login = utils.getLoginFromPrincipal(request);
+        String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = selectionsService.getSelectionById(selectionId);
         String selectionOwner = selection.getUser().getLogin();
@@ -53,7 +51,7 @@ public class SelectionsController {
 
     @RequestMapping(value = "/new-selection/{selectionName}", method = RequestMethod.POST)
     private boolean createNewSelection(HttpServletRequest request, @PathVariable String selectionName) {
-        String login = utils.getLoginFromPrincipal(request);
+        String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = new Selection(selectionName);
         User user = usersService.getUserByLogin(login);
@@ -68,7 +66,7 @@ public class SelectionsController {
 
     @RequestMapping(value = "/remove-item/{itemId}", method = RequestMethod.POST)
     private boolean removeItemFromSelecion(HttpServletRequest request, @PathVariable String itemId, @RequestBody String selectionId) {
-        String login = utils.getLoginFromPrincipal(request);
+        String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = selectionsService.getSelectionById(Long.parseLong(selectionId, 10));
         String selectionOwner = selection.getUser().getLogin();
@@ -88,7 +86,7 @@ public class SelectionsController {
 
     @RequestMapping(value = "/delete/{selectionId}", method = RequestMethod.GET)
     private boolean deleteSelection(HttpServletRequest request, @PathVariable String selectionId) {
-        String login = utils.getLoginFromPrincipal(request);
+        String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = selectionsService.getSelectionById(Long.parseLong(selectionId, 10));
         String selectionOwner = selection.getUser().getLogin();

@@ -4,6 +4,7 @@ import com.goodmeal.adapters.SiteToEntityAdapter;
 import com.goodmeal.entities.*;
 import com.goodmeal.repositoriesImplementations.*;
 
+import com.goodmeal.utils.DataLoader;
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
@@ -52,26 +53,9 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
         return def;
     }
 
-    private SiteIngredientBase loadIngredients(
-            String name
-    ) {
-        try {
-            return new EdamIngredientRequest(name).sendRequest();
-        } catch (Exception exception) {
-
-            try {
-                Thread.sleep(60_000);
-            }
-            catch(InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            return loadIngredients(name);
-        }
-    }
-
     private Ingredient createIngredient(SiteIngredient siteIngredient) {
         // getting new site ingredients
-        SiteIngredientBase siteIngredientBase = loadIngredients(siteIngredient.getName());
+        SiteIngredientBase siteIngredientBase = DataLoader.loadIngredients(siteIngredient.getName());
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =

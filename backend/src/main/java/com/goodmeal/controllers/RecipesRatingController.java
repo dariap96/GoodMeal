@@ -1,23 +1,25 @@
 package com.goodmeal.controllers;
 
 import com.goodmeal.entities.RecipesRating;
-import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.RecipesRatingService;
 import com.goodmeal.services.impl.RecipesService;
 import com.goodmeal.services.impl.UsersService;
+import com.goodmeal.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/recipe_rating")
 @CrossOrigin(origins = "*")
 public class RecipesRatingController {
-    public static final int MAX_REVIEWS = 20;
+    public static final int MAX_REVIEWS = 30;
 
     @Autowired
     RecipesService recipesService;
@@ -34,21 +36,27 @@ public class RecipesRatingController {
     }
 
     @PostMapping("/new")
-    public boolean newRating(@RequestBody RecipesRatingDTO ratingDTO) {
+    public boolean newRating(HttpServletRequest request, @RequestBody RecipesRatingDTO ratingDTO) {
 
-        RecipesRating rating = RecipesRatingDTO.toRecipesRating(
-                recipesService,
-                usersService,
-                ratingDTO
-        );
+        String userLogin = Utils.getLoginFromPrincipal(request);
 
-        boolean is_exists = recipesRatingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;
-        if (is_exists) {
+        if (!Objects.equals(userLogin, ratingDTO.getUserLogin())){
+            return false;
+        }
+
+        RecipesRating rating =
+                recipesRatingService.getRating(
+                        usersService.getUserByLogin(userLogin).getId(),
+                        ratingDTO.getRecipeId()
+                );
+
+        boolean exists = recipesRatingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;
+        if (exists) {
             recipesRatingService.update(rating);
         } else {
             recipesRatingService.create(rating);
         }
-        return is_exists;
+        return exists;
     }
 
     @PostMapping(value = "/remove-by-admin")
@@ -70,7 +78,7 @@ public class RecipesRatingController {
                         .map(RecipesRatingDTO::toRecipesRatingDTO)
                         .collect(Collectors.toList());
         Collections.shuffle(ratingDTOS);
-        return ratingDTOS.subList(0, Math.min(20, ratingDTOS.size()));
+        return ratingDTOS.subList(0, Math.min(MAX_REVIEWS, ratingDTOS.size()));
     }
 
     @GetMapping(value = "/user-reviews/{userLogin}")

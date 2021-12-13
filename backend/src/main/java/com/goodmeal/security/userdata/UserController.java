@@ -16,8 +16,6 @@ import java.security.Principal;
 @CrossOrigin(origins = "*")
 public class UserController {
 
-    private Utils utils = new Utils();
-
     private UserDtoMapper userDtoMapper = new UserDtoMapper();
 
     @Autowired
@@ -34,7 +32,7 @@ public class UserController {
 
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
     public UserDTO getUserInfo(HttpServletRequest request) {
-        String login = utils.getLoginFromPrincipal(request);
+        String login = Utils.getLoginFromPrincipal(request);
 
         User user = usersService.getUserByLogin(login);
         return userDtoMapper.toDTO(user);
@@ -48,7 +46,7 @@ public class UserController {
 
     @RequestMapping(value = "/userdata", method = RequestMethod.GET)
     public UserDetails getUserDetails(HttpServletRequest request) {
-        String login = utils.getLoginFromPrincipal(request);
+        String login = Utils.getLoginFromPrincipal(request);
 
         UserDetails user = userService.loadUserByUsername(login);
         return user;
@@ -57,7 +55,7 @@ public class UserController {
     @Transactional
     @RequestMapping(value = "/update-password", method = RequestMethod.PUT)
     public boolean updateUserPassword(HttpServletRequest request, @RequestBody String newPassword) {
-        User user = usersService.getUserByLogin(utils.getLoginFromPrincipal(request));
+        User user = usersService.getUserByLogin(Utils.getLoginFromPrincipal(request));
         user.setPassword(newPassword);
 
         userService.saveUser(user);
