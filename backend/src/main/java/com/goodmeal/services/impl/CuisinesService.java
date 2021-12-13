@@ -27,8 +27,6 @@ public class CuisinesService implements IService<Cuisine> {
         this.cuisinesRepository = cuisinesRepository;
     }
 
-
-
     @Override
     public Iterable<Cuisine> findAll() {
         return cuisinesRepository.findAll();

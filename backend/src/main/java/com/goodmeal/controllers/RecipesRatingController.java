@@ -36,7 +36,7 @@ public class RecipesRatingController {
         return recipesService.findById(recipeId).get().getRating();
     }
 
-    @Transactional
+
     @PostMapping("/new")
     public boolean newRating(HttpServletRequest request, @RequestBody RecipesRatingDTO ratingDTO) {
 
@@ -61,7 +61,7 @@ public class RecipesRatingController {
         return exists;
     }
 
-    @Transactional
+
     @PostMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
         Long userId = usersService.getUserByLogin(ratingDTO.getUserLogin()).getId();

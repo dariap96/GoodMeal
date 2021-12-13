@@ -5,8 +5,6 @@ import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 import lombok.AllArgsConstructor;
 
-import javax.transaction.Transactional;
-
 public class EdamRecipeRequest extends EdamRequest {
 
     public static final String DEFAULT_Q = "*";
@@ -66,7 +64,7 @@ public class EdamRecipeRequest extends EdamRequest {
         return request.append(SEP).append("random=true").toString();
     }
 
-    @Transactional
+
     public SiteRecipeBase sendRequest() {
         return super.sendRequest(SiteRecipeBase.class);
     }

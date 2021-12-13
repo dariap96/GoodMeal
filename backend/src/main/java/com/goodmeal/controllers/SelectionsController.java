@@ -30,7 +30,7 @@ public class SelectionsController {
     @Autowired
     UsersService usersService;
 
-    @Transactional
+    //@Transactional;  метод  в сервисе который сцепляет с рецептами
     @RequestMapping(value = "/add-to-selection/{selectionId}", method = RequestMethod.POST)
     public boolean addToSelection(HttpServletRequest request, @PathVariable Long selectionId, @RequestBody String recipeId) {
         String login = Utils.getLoginFromPrincipal(request);
@@ -51,7 +51,7 @@ public class SelectionsController {
         return true;
     }
 
-    @Transactional
+
     @RequestMapping(value = "/new-selection/{selectionName}", method = RequestMethod.POST)
     public boolean createNewSelection(HttpServletRequest request, @PathVariable String selectionName) {
         String login = Utils.getLoginFromPrincipal(request);
@@ -67,7 +67,7 @@ public class SelectionsController {
         return true;
     }
 
-    @Transactional
+
     @RequestMapping(value = "/remove-item/{itemId}", method = RequestMethod.POST)
     public boolean removeItemFromSelecion(HttpServletRequest request, @PathVariable String itemId, @RequestBody String selectionId) {
         String login = Utils.getLoginFromPrincipal(request);
@@ -88,7 +88,7 @@ public class SelectionsController {
         return true;
     }
 
-    @Transactional
+
     @RequestMapping(value = "/delete/{selectionId}", method = RequestMethod.GET)
     public boolean deleteSelection(HttpServletRequest request, @PathVariable String selectionId) {
         String login = Utils.getLoginFromPrincipal(request);

@@ -22,7 +22,7 @@ public abstract class EdamRequest {
 
     protected abstract String getURI();
 
-    @Transactional
+
     protected <SiteBase> SiteBase sendRequest(Class<SiteBase> siteBaseClass) {
         return new RestTemplate().getForObject(getURI(), siteBaseClass);
     }
