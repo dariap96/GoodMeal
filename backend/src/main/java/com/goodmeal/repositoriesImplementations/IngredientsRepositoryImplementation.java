@@ -8,4 +8,5 @@ import org.springframework.stereotype.Component;
 public interface IngredientsRepositoryImplementation extends JpaRepository<Ingredient,Long> {
 
     Ingredient getByName(String s);
+
 }

@@ -14,8 +14,12 @@ import java.util.Optional;
 @Transactional
 public class CuisinesService implements IService<Cuisine> {
 
+    private final CuisinesRepositoryImplementation cuisinesRepository;
+
     @Autowired
-    private CuisinesRepositoryImplementation cuisinesRepository;
+    public CuisinesService(CuisinesRepositoryImplementation cuisinesRepository) {
+        this.cuisinesRepository = cuisinesRepository;
+    }
 
     @Override
     public Iterable<Cuisine> findAll() {

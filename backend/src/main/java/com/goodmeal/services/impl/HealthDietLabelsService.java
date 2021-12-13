@@ -14,8 +14,12 @@ import java.util.Optional;
 @Transactional
 public class HealthDietLabelsService implements IService<HealthDietLabel>{
 
+    private final HealthDietLabelRepositoryImplementation hdLabelRepository;
+
     @Autowired
-    private HealthDietLabelRepositoryImplementation hdLabelRepository;
+    public HealthDietLabelsService(HealthDietLabelRepositoryImplementation hdLabelRepository) {
+        this.hdLabelRepository = hdLabelRepository;
+    }
 
     @Override
     public Iterable<HealthDietLabel> findAll() {

@@ -14,8 +14,12 @@ import java.util.Optional;
 @Transactional
 public class HdLabelTypesService implements IService<HdLabelType> {
 
+    private final HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
+
     @Autowired
-    private HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
+    public HdLabelTypesService(HdLabelTypeRepositoryImplementation hdLabelTypesRepository) {
+        this.hdLabelTypesRepository = hdLabelTypesRepository;
+    }
 
     @Override
     public Iterable<HdLabelType> findAll() {

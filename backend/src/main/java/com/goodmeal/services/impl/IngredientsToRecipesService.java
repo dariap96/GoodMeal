@@ -14,8 +14,12 @@ import java.util.Optional;
 @Transactional
 public class IngredientsToRecipesService implements IService<IngredientsToRecipes> {
 
+    private final IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+
     @Autowired
-    private IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+    public IngredientsToRecipesService(IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository) {
+        this.ingredientsToRecipesRepository = ingredientsToRecipesRepository;
+    }
 
     @Override
     public Iterable<IngredientsToRecipes> findAll() {

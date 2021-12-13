@@ -6,7 +6,6 @@ import com.goodmeal.repositoriesImplementations.RecipesRatingRepositoryImplement
 import com.goodmeal.services.IService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,11 +14,14 @@ import java.util.Optional;
 
 @Transactional
 @Service("jpaRecipesRatingService")
-@Repository
 public class RecipesRatingService implements IService<RecipesRating> {
 
+    private final RecipesRatingRepositoryImplementation recipesRatingRepository;
+
     @Autowired
-    private RecipesRatingRepositoryImplementation recipesRatingRepository;
+    public RecipesRatingService(RecipesRatingRepositoryImplementation recipesRatingRepository) {
+        this.recipesRatingRepository = recipesRatingRepository;
+    }
 
     @Override
     public Iterable<RecipesRating> findAll() {

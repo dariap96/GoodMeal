@@ -14,8 +14,12 @@ import java.util.Optional;
 @Transactional
 public class DishesService implements IService<Dish> {
 
+    private final DishesRepositoryImplementation dishesRepository;
+
     @Autowired
-    private DishesRepositoryImplementation dishesRepository;
+    public DishesService(DishesRepositoryImplementation dishesRepository) {
+        this.dishesRepository = dishesRepository;
+    }
 
     @Override
     public Iterable<Dish> findAll() {
