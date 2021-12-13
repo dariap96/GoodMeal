@@ -4,7 +4,6 @@ import com.goodmeal.entities.Dish;
 import com.goodmeal.repositoriesImplementations.DishesRepositoryImplementation;
 import com.goodmeal.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,12 @@ import java.util.Optional;
 @Transactional
 public class DishesService implements IService<Dish> {
 
+    private final DishesRepositoryImplementation dishesRepository;
+
     @Autowired
-    private DishesRepositoryImplementation dishesRepository;
+    public DishesService(DishesRepositoryImplementation dishesRepository) {
+        this.dishesRepository = dishesRepository;
+    }
 
     @Override
     public Iterable<Dish> findAll() {

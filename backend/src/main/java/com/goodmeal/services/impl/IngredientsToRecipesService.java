@@ -4,7 +4,6 @@ import com.goodmeal.entities.IngredientsToRecipes;
 import com.goodmeal.repositoriesImplementations.IngredientsToRecipesRepositoryImplementation;
 import com.goodmeal.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,12 @@ import java.util.Optional;
 @Transactional
 public class IngredientsToRecipesService implements IService<IngredientsToRecipes> {
 
+    private final IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+
     @Autowired
-    private IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
+    public IngredientsToRecipesService(IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository) {
+        this.ingredientsToRecipesRepository = ingredientsToRecipesRepository;
+    }
 
     @Override
     public Iterable<IngredientsToRecipes> findAll() {

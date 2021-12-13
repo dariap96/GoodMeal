@@ -4,7 +4,6 @@ import com.goodmeal.entities.Selection;
 import com.goodmeal.repositoriesImplementations.SelectionsRepositoryImplementation;
 import com.goodmeal.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,12 @@ import java.util.Optional;
 @Service("jpaSelectionsService")
 public class SelectionsService implements IService<Selection> {
 
+    private final SelectionsRepositoryImplementation selectionRepository;
+
     @Autowired
-    private SelectionsRepositoryImplementation selectionRepository;
+    public SelectionsService(SelectionsRepositoryImplementation selectionRepository) {
+        this.selectionRepository = selectionRepository;
+    }
 
     @Override
     public Iterable<Selection> findAll() {

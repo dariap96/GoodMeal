@@ -4,7 +4,6 @@ import com.goodmeal.entities.HdLabelType;
 import com.goodmeal.repositoriesImplementations.HdLabelTypeRepositoryImplementation;
 import com.goodmeal.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,12 @@ import java.util.Optional;
 @Transactional
 public class HdLabelTypesService implements IService<HdLabelType> {
 
+    private final HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
+
     @Autowired
-    private HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
+    public HdLabelTypesService(HdLabelTypeRepositoryImplementation hdLabelTypesRepository) {
+        this.hdLabelTypesRepository = hdLabelTypesRepository;
+    }
 
     @Override
     public Iterable<HdLabelType> findAll() {

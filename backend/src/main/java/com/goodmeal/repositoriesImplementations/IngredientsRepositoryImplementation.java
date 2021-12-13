@@ -1,6 +1,7 @@
 package com.goodmeal.repositoriesImplementations;
 
 import com.goodmeal.entities.Ingredient;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -8,4 +9,5 @@ import org.springframework.stereotype.Component;
 public interface IngredientsRepositoryImplementation extends JpaRepository<Ingredient,Long> {
 
     Ingredient getByName(String s);
+
 }

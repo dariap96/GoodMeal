@@ -4,7 +4,6 @@ import com.goodmeal.entities.Recipe;
 import com.goodmeal.repositoriesImplementations.RecipesRepositoryImplementation;
 import com.goodmeal.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +13,12 @@ import java.util.Optional;
 @Service("jpaRecipesService")
 public class RecipesService implements IService<Recipe>{
 
+    private final RecipesRepositoryImplementation recipesRepository;
+
     @Autowired
-    RecipesRepositoryImplementation recipesRepository;
+    public RecipesService(RecipesRepositoryImplementation recipesRepository) {
+        this.recipesRepository = recipesRepository;
+    }
 
     @Override
     public Iterable<Recipe> findAll() {
@@ -37,6 +40,4 @@ public class RecipesService implements IService<Recipe>{
         return (recipesRepository.existsById(id));
 
     }
-
-    public Recipe getRecipeById(Long id) {return recipesRepository.getRecipeById(id);}
 }
