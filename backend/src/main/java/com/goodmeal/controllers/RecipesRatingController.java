@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -35,6 +36,7 @@ public class RecipesRatingController {
         return recipesService.findById(recipeId).get().getRating();
     }
 
+    @Transactional
     @PostMapping("/new")
     public boolean newRating(HttpServletRequest request, @RequestBody RecipesRatingDTO ratingDTO) {
 
@@ -59,6 +61,7 @@ public class RecipesRatingController {
         return exists;
     }
 
+    @Transactional
     @PostMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
         Long userId = usersService.getUserByLogin(ratingDTO.getUserLogin()).getId();

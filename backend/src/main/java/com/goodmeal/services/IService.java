@@ -1,5 +1,4 @@
 package com.goodmeal.services;
-
 import java.util.Optional;
 
 public interface IService <T> {

@@ -16,6 +16,10 @@ public class HealthDietLabelsService implements IService<HealthDietLabel>{
 
     private final HealthDietLabelRepositoryImplementation hdLabelRepository;
 
+    public HealthDietLabelRepositoryImplementation getHdLabelRepository() {
+        return hdLabelRepository;
+    }
+
     @Autowired
     public HealthDietLabelsService(HealthDietLabelRepositoryImplementation hdLabelRepository) {
         this.hdLabelRepository = hdLabelRepository;

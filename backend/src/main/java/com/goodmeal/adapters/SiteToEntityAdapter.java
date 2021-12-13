@@ -4,9 +4,9 @@ import java.util.function.Function;
 
 public interface SiteToEntityAdapter<Site, Entity> {
 
-    public Entity transform(Site siteEntity);
+    Entity transform(Site siteEntity);
 
-    public static <RepoKeyEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(
+    static <RepoKeyEntity, IdClass, SourceEntity> RepoKeyEntity findOrCreate(
             IdClass id,
             Function<IdClass, RepoKeyEntity> finder,
             Function<SourceEntity, RepoKeyEntity> creator,

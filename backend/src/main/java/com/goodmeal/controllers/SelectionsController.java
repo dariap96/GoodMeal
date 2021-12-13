@@ -11,6 +11,7 @@ import com.goodmeal.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,8 +30,9 @@ public class SelectionsController {
     @Autowired
     UsersService usersService;
 
+    @Transactional
     @RequestMapping(value = "/add-to-selection/{selectionId}", method = RequestMethod.POST)
-    private boolean addToSelection(HttpServletRequest request, @PathVariable Long selectionId, @RequestBody String recipeId) {
+    public boolean addToSelection(HttpServletRequest request, @PathVariable Long selectionId, @RequestBody String recipeId) {
         String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = selectionsService.getSelectionById(selectionId);
@@ -49,8 +51,9 @@ public class SelectionsController {
         return true;
     }
 
+    @Transactional
     @RequestMapping(value = "/new-selection/{selectionName}", method = RequestMethod.POST)
-    private boolean createNewSelection(HttpServletRequest request, @PathVariable String selectionName) {
+    public boolean createNewSelection(HttpServletRequest request, @PathVariable String selectionName) {
         String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = new Selection(selectionName);
@@ -64,8 +67,9 @@ public class SelectionsController {
         return true;
     }
 
+    @Transactional
     @RequestMapping(value = "/remove-item/{itemId}", method = RequestMethod.POST)
-    private boolean removeItemFromSelecion(HttpServletRequest request, @PathVariable String itemId, @RequestBody String selectionId) {
+    public boolean removeItemFromSelecion(HttpServletRequest request, @PathVariable String itemId, @RequestBody String selectionId) {
         String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = selectionsService.getSelectionById(Long.parseLong(selectionId, 10));
@@ -84,8 +88,9 @@ public class SelectionsController {
         return true;
     }
 
+    @Transactional
     @RequestMapping(value = "/delete/{selectionId}", method = RequestMethod.GET)
-    private boolean deleteSelection(HttpServletRequest request, @PathVariable String selectionId) {
+    public boolean deleteSelection(HttpServletRequest request, @PathVariable String selectionId) {
         String login = Utils.getLoginFromPrincipal(request);
 
         Selection selection = selectionsService.getSelectionById(Long.parseLong(selectionId, 10));

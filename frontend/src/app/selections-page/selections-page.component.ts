@@ -3,6 +3,7 @@ import { ConvertSelections, Selections } from "../model/Selections";
 import { ConvertUserInfo, UserInfo } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import {ThemePalette} from "@angular/material/core";
+import {forkJoin} from "rxjs";
 
 @Component({
     selector: 'app-selections-page',
@@ -19,13 +20,17 @@ export class SelectionsPageComponent implements OnInit {
     constructor(private service : RestapiService) {}
 
     ngOnInit() {
-        this.service.getUserInfo().subscribe( data => {
-            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+        forkJoin(this.service.getUserInfo(),this.service.getUserSelections).subscribe(([userInfo,userSelections]) => {
+            this.activeUser = ConvertUserInfo.toUserInfo(userInfo.toString());
+            this.userSelections = ConvertSelections.toSelections(userSelections.toString());
+        })
+        // this.service.getUserInfo().subscribe( data => {
+        //     this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+        //
+        //     this.service.getUserSelections(this.activeUser.login).subscribe( data => {
+        //         this.userSelections = ConvertSelections.toSelections(data.toString());
+        //     });
 
-            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-                this.userSelections = ConvertSelections.toSelections(data.toString());
-            });
-        });
     }
 
     createNewSelection() {

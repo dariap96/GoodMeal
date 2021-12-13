@@ -16,6 +16,10 @@ public class HdLabelTypesService implements IService<HdLabelType> {
 
     private final HdLabelTypeRepositoryImplementation hdLabelTypesRepository;
 
+    public HdLabelTypeRepositoryImplementation getHdLabelTypesRepository() {
+        return hdLabelTypesRepository;
+    }
+
     @Autowired
     public HdLabelTypesService(HdLabelTypeRepositoryImplementation hdLabelTypesRepository) {
         this.hdLabelTypesRepository = hdLabelTypesRepository;

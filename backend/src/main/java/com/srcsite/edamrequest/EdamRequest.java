@@ -3,6 +3,8 @@ package com.srcsite.edamrequest;
 import lombok.Getter;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
+
 @Getter
 public abstract class EdamRequest {
 
@@ -20,6 +22,7 @@ public abstract class EdamRequest {
 
     protected abstract String getURI();
 
+    @Transactional
     protected <SiteBase> SiteBase sendRequest(Class<SiteBase> siteBaseClass) {
         return new RestTemplate().getForObject(getURI(), siteBaseClass);
     }
