@@ -4,10 +4,13 @@ import com.srcsite.edamrequest.APIKeys;
 import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 
+import javax.transaction.Transactional;
+
 public class EdamIngredientRequest extends EdamRequest {
 
     public static final String DEFAULT_INGREDIENT = "apple";
     private static final String BASE = "https://api.edamam.com/api/food-database/v2/parser?";
+
 
     private final String ingredient;
 
@@ -30,6 +33,7 @@ public class EdamIngredientRequest extends EdamRequest {
                 + "ingr=" + ingredient;
     }
 
+    @Transactional
     public SiteIngredientBase sendRequest() {
         return super.sendRequest(SiteIngredientBase.class);
     }

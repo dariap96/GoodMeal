@@ -7,10 +7,6 @@
     animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
-.nav-links a {
-    color: white;
-}
-
 @-webkit-keyframes text-focus-in {
     0% {
         -webkit-filter: blur(12px);
@@ -37,28 +33,6 @@
     }
 }
 
-.bg-pan-left {
-    -webkit-animation: bg-pan-left 10s infinite both;
-    animation: bg-pan-left 10s infinite both;
-}
-
-@-webkit-keyframes bg-pan-left {
-    0% {
-        background-position: 80% 50%;
-    }
-    100% {
-        background-position: 0 60%;
-    }
-}
-
-@keyframes bg-pan-left {
-    0% {
-        background-position: 90% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
-}
 
 @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text], .topnav .search-container button {
@@ -107,9 +81,7 @@ body {
     size: 1px;
 }
 
-.nav-links a {
-    color: white;
-}
+
 
 .component-page-header {
     max-height: 80px;
@@ -123,31 +95,39 @@ body {
 
 .navig{
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
-    position: fixed;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
     z-index: 2000;
     background-color: #FFFFFF;
-    padding: 5px;
-    width: 100%;
-    top: 0;
-    margin: 0;
-    left:0;
-
+    padding: 7px;
+    width:100%;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    vertical-align: center;
 }
 
 .logo {
     font-size: 25px;
-    padding-top: 12px;
+    padding: 7px;
     position: relative;
-    margin-right: 675px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin-left:30px;
 }
 
 h1 {
     padding:0;
-    font-size: 14px;
+    font-size: 2px;
     color: white;
     position: relative;
 
+}
+.wrap {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .a:hover{

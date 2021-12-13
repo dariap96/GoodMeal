@@ -19,6 +19,8 @@ public class HdLabelType {
     public static final String DIETS = "diets";
     public static final String HEALTHS = "healths";
 
+
+
     @Id
     @JsonApiId
     @GeneratedValue(strategy = GenerationType.IDENTITY)

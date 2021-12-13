@@ -14,6 +14,10 @@ import java.util.Optional;
 @Transactional
 public class IngredientsService implements IService<Ingredient> {
 
+    public IngredientsRepositoryImplementation getIngredientsRepository() {
+        return ingredientsRepository;
+    }
+
     private final IngredientsRepositoryImplementation ingredientsRepository;
 
     @Autowired

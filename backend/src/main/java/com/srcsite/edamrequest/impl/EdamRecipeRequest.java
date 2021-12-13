@@ -4,6 +4,8 @@ import com.srcsite.edamrequest.APIKeys;
 import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
+import javax.transaction.Transactional;
+
 public class EdamRecipeRequest extends EdamRequest {
 
     public static final String DEFAULT_Q = "*";
@@ -33,6 +35,7 @@ public class EdamRecipeRequest extends EdamRequest {
                 + "random=true";
     }
 
+    @Transactional
     public SiteRecipeBase sendRequest() {
         return super.sendRequest(SiteRecipeBase.class);
     }

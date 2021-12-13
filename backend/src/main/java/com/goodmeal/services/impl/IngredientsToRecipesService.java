@@ -16,6 +16,10 @@ public class IngredientsToRecipesService implements IService<IngredientsToRecipe
 
     private final IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository;
 
+    public IngredientsToRecipesRepositoryImplementation getIngredientsToRecipesRepository() {
+        return ingredientsToRecipesRepository;
+    }
+
     @Autowired
     public IngredientsToRecipesService(IngredientsToRecipesRepositoryImplementation ingredientsToRecipesRepository) {
         this.ingredientsToRecipesRepository = ingredientsToRecipesRepository;

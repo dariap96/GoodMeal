@@ -16,6 +16,10 @@ public class DishesService implements IService<Dish> {
 
     private final DishesRepositoryImplementation dishesRepository;
 
+    public DishesRepositoryImplementation getDishesRepository() {
+        return dishesRepository;
+    }
+
     @Autowired
     public DishesService(DishesRepositoryImplementation dishesRepository) {
         this.dishesRepository = dishesRepository;

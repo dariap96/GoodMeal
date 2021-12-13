@@ -16,6 +16,10 @@ public class UsersService implements IService<User> {
 
     private final UsersRepositoryImplementation userRepository;
 
+    public UsersRepositoryImplementation getUserRepository() {
+        return userRepository;
+    }
+
     @Autowired
     public UsersService(UsersRepositoryImplementation userRepository) {
         this.userRepository = userRepository;

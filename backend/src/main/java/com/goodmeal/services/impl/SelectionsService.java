@@ -16,6 +16,10 @@ public class SelectionsService implements IService<Selection> {
 
     private final SelectionsRepositoryImplementation selectionRepository;
 
+    public SelectionsRepositoryImplementation getSelectionRepository() {
+        return selectionRepository;
+    }
+
     @Autowired
     public SelectionsService(SelectionsRepositoryImplementation selectionRepository) {
         this.selectionRepository = selectionRepository;

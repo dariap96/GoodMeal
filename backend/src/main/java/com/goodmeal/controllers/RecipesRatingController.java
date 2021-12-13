@@ -9,6 +9,7 @@ import com.goodmeal.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,7 @@ public class RecipesRatingController {
         return recipesService.findById(recipeId).get().getRating();
     }
 
+    @Transactional
     @PostMapping("/new")
     public boolean newRating(@RequestBody RecipesRatingDTO ratingDTO) {
 
@@ -51,6 +53,7 @@ public class RecipesRatingController {
         return is_exists;
     }
 
+    @Transactional
     @PostMapping(value = "/remove-by-admin")
     public boolean removeReviewByAdmin(@RequestBody RecipesRatingDTO ratingDTO) {
         Long userId = usersService.getUserByLogin(ratingDTO.getUserLogin()).getId();

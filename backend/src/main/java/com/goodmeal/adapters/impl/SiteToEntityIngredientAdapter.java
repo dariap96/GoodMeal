@@ -2,16 +2,15 @@ package com.goodmeal.adapters.impl;
 
 import com.goodmeal.adapters.SiteToEntityAdapter;
 import com.goodmeal.entities.Ingredient;
-import com.goodmeal.repositoriesImplementations.IngredientsRepositoryImplementation;
+import com.goodmeal.services.impl.IngredientsService;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Food;
 import com.srcsite.siteDataBase.siteIngredientDataBase.Nutrients;
 
 public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, Ingredient> {
 
-    private final IngredientsRepositoryImplementation ingredientsRepository;
-
-    public SiteToEntityIngredientAdapter(IngredientsRepositoryImplementation repo){
-        this.ingredientsRepository = repo;
+    private  final IngredientsService ingredientsService;
+    public SiteToEntityIngredientAdapter(IngredientsService ingredientsService){
+        this.ingredientsService = ingredientsService;
     }
 
     private Ingredient createIngredient(Food food) {
@@ -27,16 +26,16 @@ public class SiteToEntityIngredientAdapter implements SiteToEntityAdapter<Food, 
                         food.getImageURI(),
                         food.getFoodId());
 
-        ingredientsRepository.save(ingredient);
+        ingredientsService.getIngredientsRepository().save(ingredient);
 
         return ingredient;
     }
 
     @Override
     public Ingredient transform(Food food) {
-        return (Ingredient) SiteToEntityAdapter.findOrCreate(
+        return SiteToEntityAdapter.findOrCreate(
                 food.getName(),
-                ingredientsRepository::getByName,
+                ingredientsService.getIngredientsRepository()::getByName,
                 this::createIngredient,
                 food);
     }
