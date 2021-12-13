@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Service("jpaHealthDietLabelsService")
 @Transactional
-@Repository
 public class HealthDietLabelsService implements IService<HealthDietLabel>{
 
     @Autowired

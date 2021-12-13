@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service("jpaHdLabelTypesService")
-@Repository
 @Transactional
 public class HdLabelTypesService implements IService<HdLabelType> {
 

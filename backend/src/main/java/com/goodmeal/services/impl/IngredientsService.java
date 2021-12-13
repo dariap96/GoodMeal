@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service("jpaIngredientsService")
-@Repository
 @Transactional
 public class IngredientsService implements IService<Ingredient> {
 

@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Transactional
 @Service("jpaSelectionsService")
-@Repository
 public class SelectionsService implements IService<Selection> {
 
     @Autowired

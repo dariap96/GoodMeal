@@ -15,7 +15,6 @@ import java.util.Set;
 
 @Transactional
 @Service("jpaUsersService")
-@Repository
 public class UsersService implements IService<User> {
 
     @Autowired

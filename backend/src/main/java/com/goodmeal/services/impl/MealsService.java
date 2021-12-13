@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Transactional
 @Service("jpaMealsService")
-@Repository
 public class MealsService implements IService<Meal> {
 
     @Autowired

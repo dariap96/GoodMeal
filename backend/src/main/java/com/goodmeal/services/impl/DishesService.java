@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service("jpaDishesService")
-@Repository
 @Transactional
 public class DishesService implements IService<Dish> {
 
