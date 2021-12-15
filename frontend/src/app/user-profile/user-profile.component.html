@@ -29,28 +29,28 @@
         <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px"></div>
     </header>
 
-<mat-card  class="mat-elevation-z4 text-focus-in " style="text-align: center;vertical-align: middle;
+    <mat-card  class="mat-elevation-z4 text-focus-in " style="text-align: center;vertical-align: middle;
     width:50%;position:center;margin: auto;margin-top: 180px; border-radius:20px;padding:60px;box-shadow: #d4d4d4;">
 
-    <h2 mat-card-title class="text-focus-in" > {{ activeUser.name }} {{ activeUser.surname }}</h2>
-    <div class="example-container " style="text-align: center;">
-        <p> Mail: {{ activeUser.email }}</p>
-        <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear}}</p>
-        <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">Change password</button>
+        <h2 mat-card-title class="text-focus-in" > {{ activeUser.name }} {{ activeUser.surname }}</h2>
+        <div class="example-container " style="text-align: center;">
+            <p> Mail: {{ activeUser.email }}</p>
+            <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear}}</p>
+            <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">Change password</button>
+            <br>
+            <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Logout" (click)="logout()">Logout</button>
+        </div>
         <br>
-        <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Logout" (click)="logout()">Logout</button>
-    </div>
-    <br>
-    <div class="example-container" *ngIf="showPasswordUpdateMenu" style="text-align: center;position:center;margin-top:20px;">
-        <input matInput style="border-radius: 3px;" type="password"  id="password-placeholder"  placeholder="New password"  [(ngModel)]="newPassword">
-        <p></p>
-        <input matInput  type = "password" style="margin-top: 5px;border-radius: 3px;"  id="password-retype-placeholder" placeholder="Confirm password" [(ngModel)]="newPasswordVerificatiion">
-        <p></p>
-        <button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">Submit</button>
-        <p></p>
-        <mat-error style="font-size: 12px;" *ngIf="showDifferentPasswordsLabel">*passwords must match</mat-error>
-    </div>
-</mat-card>
+        <div class="example-container" *ngIf="showPasswordUpdateMenu" style="text-align: center;position:center;margin-top:20px;">
+            <input matInput style="border-radius: 3px;" type="password"  id="password-placeholder"  placeholder="New password"  [(ngModel)]="newPassword">
+            <p></p>
+            <input matInput  type = "password" style="margin-top: 5px;border-radius: 3px;"  id="password-retype-placeholder" placeholder="Confirm password" [(ngModel)]="newPasswordVerificatiion">
+            <p></p>
+            <button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Submit" (click)="hidePassUpdMenu()">Submit</button>
+            <p></p>
+            <mat-error style="font-size: 12px;" *ngIf="showDifferentPasswordsLabel">*passwords must match</mat-error>
+        </div>
+    </mat-card>
 
     <div style="display:flex;flex-wrap: nowrap;margin-left: 40px">
         <div class="users-list" *ngIf="adminAccess" style="margin-top:30px">
@@ -77,6 +77,13 @@
             </div>
         </div>
     </div>
+
+    <div style="display:flex;flex-wrap: nowrap;margin-left: 40px">
+        <div class="update" *ngIf="adminAccess" style="margin-top:30px">
+            <a href="http://localhost:8080/recipe-update-page">Update Data</a>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>

@@ -9,7 +9,7 @@ import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 public interface DataLoader {
     int SLEEP_MS = 60_000;
 
-    static void loadRecipes(
+    static int loadRecipes(
             SiteToEntityRecipeBaseAdapter recipeBaseAdapter,
             String query,
             String meal,
@@ -27,16 +27,19 @@ public interface DataLoader {
                         new EdamRecipeRequest(query, meal, dish, cuisine).sendRequest();
                 recipeBaseAdapter.transform(recipeBase);
             }
+            return recipeBase.getCount();
+
         } catch (Exception exception) {
             try
             {
+                //API cool down
                 Thread.sleep(SLEEP_MS);
             }
             catch(InterruptedException ex)
             {
                 Thread.currentThread().interrupt();
             }
-            loadRecipes(recipeBaseAdapter, query, meal, dish, cuisine, j);
+            return loadRecipes(recipeBaseAdapter, query, meal, dish, cuisine, j);
         }
     }
 
@@ -48,6 +51,7 @@ public interface DataLoader {
         } catch (Exception exception) {
 
             try {
+                //API cool down
                 Thread.sleep(SLEEP_MS);
             }
             catch(InterruptedException ex) {
