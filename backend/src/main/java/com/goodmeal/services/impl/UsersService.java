@@ -50,4 +50,6 @@ public class UsersService implements IService<User> {
     }
 
     public User getUserById(Long id) { return userRepository.getById(id); }
+
+    public void saveUser(User user) { userRepository.save(user); }
 }

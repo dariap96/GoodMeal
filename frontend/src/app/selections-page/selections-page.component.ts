@@ -20,17 +20,13 @@ export class SelectionsPageComponent implements OnInit {
     constructor(private service : RestapiService) {}
 
     ngOnInit() {
-        forkJoin(this.service.getUserInfo(),this.service.getUserSelections).subscribe(([userInfo,userSelections]) => {
-            this.activeUser = ConvertUserInfo.toUserInfo(userInfo.toString());
-            this.userSelections = ConvertSelections.toSelections(userSelections.toString());
-        })
-        // this.service.getUserInfo().subscribe( data => {
-        //     this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
-        //
-        //     this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-        //         this.userSelections = ConvertSelections.toSelections(data.toString());
-        //     });
+        this.service.getUserInfo().subscribe( data => {
+            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
 
+            this.service.getUserSelections(this.activeUser.login).subscribe(data => {
+                this.userSelections = ConvertSelections.toSelections(data.toString());
+            });
+        });
     }
 
     createNewSelection() {
