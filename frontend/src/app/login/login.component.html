@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title></title>
 </head>
-<body class=" gradient-hor" >
+<body class="bg-pan-left gradient-hor" >
 <div class="background-wrap">
   <div class="background"></div>
 </div>
@@ -16,14 +16,14 @@
 
     <mat-form-field appearance="outline" style="margin-top: 20px">
        <mat-label>Enter your username</mat-label>
-       <input matInput [(ngModel)]="username">
+       <input matInput [(ngModel)]="username" (change)="changeUsernameHandler($event)">
        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
     <p></p>
 
     <mat-form-field appearance="outline">
        <mat-label>Enter your password</mat-label>
-       <input matInput [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+       <input matInput [(ngModel)]="password" [type]="hide ? 'password' : 'text'" (change)="changePasswordHandler($event)">
        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
          <mat-error style="margin-bottom:15px;margin-right:260px;font-size:10px" *ngIf="this.er==true">
