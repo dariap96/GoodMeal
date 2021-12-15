@@ -4,6 +4,8 @@ import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.RolesRepositoryImplementation;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
+import com.goodmeal.services.impl.RolesService;
+import com.goodmeal.services.impl.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,17 +20,17 @@ import java.util.Set;
 public class UserServiceImplementation implements UserDetailsService{
 
     @Autowired
-    private UsersRepositoryImplementation userRepository;
-
-    @Autowired
-    private RolesRepositoryImplementation rolesRepository;
-
-    @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UsersService usersService;
+
+    @Autowired
+    private RolesService rolesService;
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userRepository.getUserByLogin(login);
+        User user = usersService.getUserByLogin(login);
 
         if (user == null) {
             throw new UsernameNotFoundException("Could not find user");
@@ -42,7 +44,7 @@ public class UserServiceImplementation implements UserDetailsService{
     }
 
     public UserDetails loadUserById(Long id) {
-        User user = userRepository.getById(id);
+        User user = usersService.getUserById(id);
 
         if (user == null) {
             throw new UsernameNotFoundException("Could not find user");
@@ -52,7 +54,7 @@ public class UserServiceImplementation implements UserDetailsService{
     }
 
     public boolean saveUser(User user) {
-        User userFromDB = userRepository.getUserByLogin(user.getLogin());
+        User userFromDB = usersService.getUserByLogin(user.getLogin());
 
         if (userFromDB != null) {
             return false;
@@ -61,14 +63,14 @@ public class UserServiceImplementation implements UserDetailsService{
         // if you need to add users to database manually comment line below
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = rolesRepository.getRoleByRole("USER");
+        Role userRole = rolesService.getRoleByRole("USER");
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(userRole);
 
         user.setRoleSet(roleSet);
         user.setSelectionSet(null);
 
-        userRepository.save(user);
+        usersService.saveUser(user);
         return true;
     }
 }
