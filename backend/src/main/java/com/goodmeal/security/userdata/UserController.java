@@ -2,7 +2,6 @@ package com.goodmeal.security.userdata;
 
 import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
-import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
 import com.goodmeal.services.impl.RolesService;
 import com.goodmeal.services.impl.UsersService;
 import com.goodmeal.utils.Utils;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,6 +75,14 @@ public class UserController {
     public boolean disableAdminAccess(HttpServletRequest request, @PathVariable String login) {
         User user = usersService.getUserByLogin(login);
         Role userRole = rolesService.getRoleByRole("USER");
+        Set<Role> userRoleSet = user.getRoleSet();
+
+        int counter = 0;
+        for(Role role : userRoleSet) {
+            if(role.getRole().equals("USER")) { counter++; }
+        }
+
+        if (counter <= 0) { return false; }
 
         Set<Role> roleSet = new HashSet<>();
         roleSet.add(userRole);
