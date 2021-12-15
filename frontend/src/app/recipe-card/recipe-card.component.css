@@ -121,9 +121,10 @@ body {
 
 .logo {
     font-size: 25px;
-    padding: 7px;
+    padding: 11px;
     position: relative;
     margin-left:30px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .h1 {
@@ -166,66 +167,6 @@ body {
     margin-left: 5px;
 }
 
-.bounceball {
-    position: relative;
-    display: inline-block;
-    height: 37px;
-    width: 15px;
-    animation-iteration-count: 5;
-}
-
-.bounceball:before {
-    position: absolute;
-    content: '';
-    display: block;
-    top: 0;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #fbae17;
-    transform-origin: 50%;
-    animation: bounce 500ms alternate infinite ease;
-}
-
-@keyframes bounce {
-    0% {
-        top: 30px;
-        height: 5px;
-        border-radius: 60px 60px 20px 20px;
-        transform: scaleX(2);
-    }
-    35% {
-        height: 15px;
-        border-radius: 50%;
-        transform: scaleX(1);
-    }
-    100% {
-        top: 0;
-    }
-}
-
-.bg-pan-left {
-    -webkit-animation: bg-pan-left 10s infinite both;
-    animation: bg-pan-left 10s infinite both;
-}
-
-@-webkit-keyframes bg-pan-left {
-    0% {
-        background-position: 80% 50%;
-    }
-    100% {
-        background-position: 0 60%;
-    }
-}
-
-@keyframes bg-pan-left {
-    0% {
-        background-position: 90% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
-}
 .gradient-hor {
     position: absolute;
     width: 100%;
@@ -237,5 +178,4 @@ body {
     left: 0;
     background-size: 600% 100%;
     background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
-//animation: bg-pan-left;
 }

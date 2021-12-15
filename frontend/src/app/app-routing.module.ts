@@ -13,6 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { UserCardComponent } from "./user-card/user-card.component";
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -28,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes),MatPaginatorModule],
     exports: [RouterModule]
 })
 

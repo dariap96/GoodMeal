@@ -33,28 +33,6 @@
     }
 }
 
-.bg-pan-left {
-    -webkit-animation: bg-pan-left 10s infinite both;
-    animation: bg-pan-left 10s infinite both;
-}
-
-@-webkit-keyframes bg-pan-left {
-    0% {
-        background-position: 80% 50%;
-    }
-    100% {
-        background-position: 0 60%;
-    }
-}
-
-@keyframes bg-pan-left {
-    0% {
-        background-position: 90% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
-}
 
 body  {
     position: absolute;
@@ -68,12 +46,13 @@ body  {
 .gradient-hor {
     position: absolute;
     width: 100%;
-    height: max-content;
+    height: 100%;
+    overflow: scroll;
+    max-height: 5000px;
     top: 0;
     left: 0;
     background-size: 600% 100%;
     background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
-//animation: bg-pan-left;
 }
 
 input {

@@ -17,7 +17,6 @@ import {forkJoin} from "rxjs";
 })
 
 export class RecipeCardComponent implements OnInit {
-
     activeUser : UserInfo;
     userSelections : Selections;
     recipeId : number;
@@ -36,57 +35,59 @@ export class RecipeCardComponent implements OnInit {
     constructor(private route : ActivatedRoute, private service : RestapiService) { this.recipeId = route.snapshot.params['id']; }
 
     ngOnInit() {
-        forkJoin(this.service.getRecipeById(this.recipeId),this.service.getIngredientsByRecipeId(this.recipeId), this.service.getRecipeRatingsById(this.recipeId),this.service.getLabelsByRecipeId(this.recipeId),
-            this.service.getUserInfo(), this.service.getUserSelections(this.activeUser.login), this.service.getReviews(this.recipeId)).subscribe(([ recipeById, ingByRecipeId,recipeRatings,
-        labels, userInfo, userSelections,reviews]) =>  {
-            this.selectedRecipe = ConvertRecipe.toRecipe(recipeById.toString());
-            this.recipeName = this.selectedRecipe.data.attributes.name;
-            this.recipeCookTime = this.selectedRecipe.data.attributes.time;
-            this.recipeImg = this.selectedRecipe.data.attributes.image;
-            this.recipeDescr = this.selectedRecipe.data.attributes.actionsSequence;
-            this.relatedIngredients = ConvertIngredients.toIngredients( ingByRecipeId.toString());
-            this.rating = recipeRatings.toString();
-            this.recipeLables = ConvertLabels.toLabels(labels.toString());
-            this.activeUser = ConvertUserInfo.toUserInfo(userInfo.toString());
-            this.userSelections = ConvertSelections.toSelections(userSelections.toString());
-            this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(reviews.toString());
-        })
-        // this.service.getRecipeById(this.recipeId).subscribe( data => {
-        //     this.selectedRecipe = ConvertRecipe.toRecipe(data.toString());
-        //
+        // forkJoin(this.service.getRecipeById(this.recipeId), this.service.getIngredientsByRecipeId(this.recipeId),
+        //     this.service.getRecipeRatingsById(this.recipeId), this.service.getLabelsByRecipeId(this.recipeId),
+        //     this.service.getUserInfo(), this.service.getUserSelections(this.activeUser.login),
+        //     this.service.getReviews(this.recipeId)).subscribe(([recipeById, ingByRecipeId, recipeRatings,
+        //                                                                           labels, userInfo, userSelections, reviews]) => {
+        //     this.selectedRecipe = ConvertRecipe.toRecipe(recipeById.toString());
         //     this.recipeName = this.selectedRecipe.data.attributes.name;
         //     this.recipeCookTime = this.selectedRecipe.data.attributes.time;
         //     this.recipeImg = this.selectedRecipe.data.attributes.image;
         //     this.recipeDescr = this.selectedRecipe.data.attributes.actionsSequence;
-        // });
-
-        // this.service.getIngredientsByRecipeId(this.recipeId).subscribe( data => {
-        //     this.relatedIngredients = ConvertIngredients.toIngredients(data.toString());
-        // });
-        //
-        // this.service.getRecipeRatingsById(this.recipeId).subscribe(data => {
-        //         this.rating = data.toString();
-        // });
-        //
-        // this.service.getLabelsByRecipeId(this.recipeId).subscribe(data => {
-        //     this.recipeLables = ConvertLabels.toLabels(data.toString());
+        //     this.relatedIngredients = ConvertIngredients.toIngredients(ingByRecipeId.toString());
+        //     this.rating = recipeRatings.toString();
+        //     this.recipeLables = ConvertLabels.toLabels(labels.toString());
+        //     this.activeUser = ConvertUserInfo.toUserInfo(userInfo.toString());
+        //     this.userSelections = ConvertSelections.toSelections(userSelections.toString());
+        //     this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(reviews.toString());
         // })
-        //
-        // this.service.getUserInfo().subscribe( data => {
-        //     this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
-        //
-        //     this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-        //         this.userSelections = ConvertSelections.toSelections(data.toString());
-        //     });
-        // });
-        //
-        // this.service.getReviews(this.recipeId).subscribe(
-        //     data => {
-        //         this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString());
-        //     }
-        // );
-    }
 
+        this.service.getRecipeById(this.recipeId).subscribe( data => {
+            this.selectedRecipe = ConvertRecipe.toRecipe(data.toString());
+
+            this.recipeName = this.selectedRecipe.data.attributes.name;
+            this.recipeCookTime = this.selectedRecipe.data.attributes.time;
+            this.recipeImg = this.selectedRecipe.data.attributes.image;
+            this.recipeDescr = this.selectedRecipe.data.attributes.actionsSequence;
+        });
+
+        this.service.getIngredientsByRecipeId(this.recipeId).subscribe( data => {
+            this.relatedIngredients = ConvertIngredients.toIngredients(data.toString());
+        });
+
+        this.service.getRecipeRatingsById(this.recipeId).subscribe(data => {
+                this.rating = data.toString();
+        });
+
+        this.service.getLabelsByRecipeId(this.recipeId).subscribe(data => {
+            this.recipeLables = ConvertLabels.toLabels(data.toString());
+        })
+
+        this.service.getUserInfo().subscribe( data => {
+            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+
+            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
+                this.userSelections = ConvertSelections.toSelections(data.toString());
+            });
+        });
+
+        this.service.getReviews(this.recipeId).subscribe(
+            data => {
+                this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString());
+            }
+        );
+    }
     selectChangeHandlerSelection(e) {
         this.selectedSelection = e.value;
     }
@@ -98,10 +99,9 @@ export class RecipeCardComponent implements OnInit {
     }
 
     PrintRating() {
-        if (this.rating == '') {
+        if (this.rating == '')
             return 'Not rated';
-        }
-
-        return 'Rating: ' + this.rating;
+        else
+            return 'Rating: ' + this.rating;
     }
 }

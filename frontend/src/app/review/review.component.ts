@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
-import {ConvertUser, User} from '../model/User'
+import {ConvertUser} from '../model/User'
 import { HttpErrorResponse } from '@angular/common/http';
 import {RecipeRating} from "../model/RecipeRating";
 
@@ -32,12 +32,11 @@ export class ReviewComponent implements OnInit {
         this.service.addRating(addForm.value).subscribe(
             (response: RecipeRating[]) => {
                 this.Close();
-            }
-            ,
+            },
             (error: HttpErrorResponse) => {
                 console.log(error)
-            })
-        ;
+            }
+        );
     }
 
     Close() {

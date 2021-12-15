@@ -13,7 +13,6 @@ import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRa
 })
 
 export class UserProfileComponent implements OnInit {
-
     activeUser : UserInfo;
     usersList : Users;
     adminAccess : boolean = false;

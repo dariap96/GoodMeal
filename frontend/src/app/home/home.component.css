@@ -1,4 +1,3 @@
-
 * {box-sizing: border-box;}
 .example-form {
     min-width: 150px;
@@ -85,6 +84,9 @@ body {
 .a:hover{
     background-color: whitesmoke;
 }
+.aa:visited {
+    color: #c5c5de;
+}
 
 mat-divider {
     border-width: 0;
@@ -102,7 +104,6 @@ body {
 }
 
 .wrap {
-    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -163,6 +164,18 @@ body {
     left: 0;
     /*background-size: 600% 100%;
     background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);*/
+}
+
+.gradient-hor1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    max-height: 5000px;
+    top: 0;
+    left: 0;
+    background-size: 600% 100%;
+    background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
 }
 
 

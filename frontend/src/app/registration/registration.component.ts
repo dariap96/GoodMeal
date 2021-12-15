@@ -5,7 +5,6 @@ import { NgForm } from '@angular/forms';
 import { User } from '../model/User'
 import { HttpErrorResponse } from '@angular/common/http';
 
-
 @Component({
     selector: 'app-registration',
     templateUrl: './registration.component.html',
@@ -20,14 +19,14 @@ export class RegistrationComponent implements OnInit {
 
     public onAddUser(addForm: NgForm): void {
       document.getElementById('add-user-form').click();
-            this.service.addUser(addForm.value).subscribe(
-                (response: User[]) => {
-                    this.router.navigate(["/login"])
-                },
-                (error: HttpErrorResponse) => {
-                    alert(error.message);
-                    addForm.reset();
-                }
-            );
+      this.service.addUser(addForm.value).subscribe(
+        (response: User[]) => {
+            this.router.navigate(["/login"])
+        },
+        (error: HttpErrorResponse) => {
+            alert(error.message);
+            addForm.reset();
         }
+      );
+    }
 }

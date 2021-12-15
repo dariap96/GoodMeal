@@ -25,7 +25,6 @@ export class SelectionCardComponent implements OnInit {
             ([selectionById, recipeSetForSelection]) => {
                 this.selectedSelection = ConvertSelection.toSelection(selectionById.toString());
                 this.recipeSet = ConvertRecipes.toRecipes(recipeSetForSelection.toString());
-
             }
         )
         // this.service.getSelectionById(this.selectionId).subscribe( data => {

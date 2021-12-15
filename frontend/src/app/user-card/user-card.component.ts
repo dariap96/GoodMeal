@@ -12,13 +12,11 @@ import {ThemePalette} from "@angular/material/core";
 })
 
 export class UserCardComponent implements OnInit {
-
     activeUser : UserInfo;
     adminAccess : boolean = false;
     selectedUser : UserInfo;
     selectedUserId : string;
     selectedUsersRatings : RecipeRatingInfo[];
-
     showPasswordUpdateMenu : boolean = false;
     showDifferentPasswordsLabel : boolean = false;
     newPassword : string = '';

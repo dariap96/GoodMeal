@@ -1,18 +1,22 @@
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="addUserModalLabel">Register</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body">
-            <form #addForm="ngForm" (ngSubmit)="onAddUser(addForm)">
-               <div class="form-group">
-                  <label for="login">Your login</label>
-                  <input type="text" ngModel name="login" class="form-control" id="login" placeholder="Login" required>
-               </div>
+<!DOCTYPE html>
+<html>
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title></title>
+</head>
+<body class="gradient-hor">
+<form  id="addUserModal" #addForm="ngForm" (ngSubmit)="onAddUser(addForm)" style="text-align: center;position: center">
+   <mat-card  class="mat-elevation-z4 text-focus-in " style="text-align: center;vertical-align:center;position: center;
+  margin-left:520px; margin-bottom:100px;margin-top:100px;width:25%;border-radius:20px;padding:20px;box-shadow: #d4d4d4;size: inherit">
+       <h1 mat-card-title class="text-focus-in" >Register</h1>
+         <div class="example-container " style="text-align: center;">
+
+               <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
+                  <mat-label>Your login</mat-label>
+                  <input matInput type="text" ngModel name="login" class="form-control" id="login" placeholder="Login" required>
+                   <mat-icon matSuffix>face</mat-icon>
+               </mat-form-field>
+
                <div class="form-group">
                   <label for="password">Your password</label>
                   <input type="text" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
@@ -37,8 +41,13 @@
                   <button type="button" id="add-user-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Register!</button>
                </div>
-            </form>
+
          </div>
-      </div>
-   </div>
-</div>
+
+   </mat-card>
+
+</form>
+
+
+</body>
+</html>
