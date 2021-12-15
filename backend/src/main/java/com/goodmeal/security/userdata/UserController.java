@@ -1,7 +1,9 @@
 package com.goodmeal.security.userdata;
 
+import com.goodmeal.entities.Role;
 import com.goodmeal.entities.User;
 import com.goodmeal.repositoriesImplementations.UsersRepositoryImplementation;
+import com.goodmeal.services.impl.RolesService;
 import com.goodmeal.services.impl.UsersService;
 import com.goodmeal.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +13,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.security.Principal;
+import java.util.HashSet;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class UserController {
 
     private UserDtoMapper userDtoMapper = new UserDtoMapper();
+
+    @Autowired
+    RolesService rolesService;
 
     @Autowired
     UsersService usersService;
@@ -50,6 +57,32 @@ public class UserController {
 
         UserDetails user = userService.loadUserByUsername(login);
         return user;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/grant-admin-access/{login}", method = RequestMethod.GET)
+    public boolean grantAdminAccess(HttpServletRequest request, @PathVariable String login) {
+        User user = usersService.getUserByLogin(login);
+        Set<Role> userRoleSet = user.getRoleSet();
+        Role adminRole = rolesService.getRoleByRole("ADMIN");
+
+        userRoleSet.add(adminRole);
+        user.setRoleSet(userRoleSet);
+        usersService.saveUser(user);
+        return true;
+    }
+
+    @Transactional
+    @RequestMapping(value = "/disable-admin-access/{login}", method = RequestMethod.GET)
+    public boolean disableAdminAccess(HttpServletRequest request, @PathVariable String login) {
+        User user = usersService.getUserByLogin(login);
+        Role userRole = rolesService.getRoleByRole("USER");
+
+        Set<Role> roleSet = new HashSet<>();
+        roleSet.add(userRole);
+        user.setRoleSet(roleSet);
+        usersService.saveUser(user);
+        return true;
     }
 
     @Transactional
