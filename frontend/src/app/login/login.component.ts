@@ -40,4 +40,12 @@ export class LoginComponent implements OnInit {
     goToRegistration() {
         this.router.navigate(["/registration"])
     }
+
+    changeUsernameHandler(e) {
+        this.username = e.value;
+    }
+
+    changePasswordHandler(e) {
+        this.password = e.value;
+    }
 }
