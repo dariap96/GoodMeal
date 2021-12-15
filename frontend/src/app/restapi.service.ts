@@ -5,6 +5,7 @@ import { User } from './model/User'
 import { RecipeRating } from "./model/RecipeRating";
 import { BehaviorSubject } from "rxjs";
 import {RecipeRatingInfo} from "./model/RecipesRatingsInfo";
+import {UpdateData} from "./model/UpdateData";
 
 @Injectable({
     providedIn: 'root'
@@ -188,5 +189,9 @@ export class RestapiService {
 
     getUserByAdmin(userId: string) {
         return this.http.get(baseUrl + '/userinfo/' + userId, {responseType: 'text' as 'json'});
+    }
+
+    updateData(request: UpdateData) {
+        return this.http.post(baseUrl + '/admin/recipe-update', request);
     }
 }

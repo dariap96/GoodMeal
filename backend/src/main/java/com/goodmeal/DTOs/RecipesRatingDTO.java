@@ -1,4 +1,4 @@
-package com.goodmeal.controllers;
+package com.goodmeal.DTOs;
 
 import com.goodmeal.entities.RecipesRating;
 import com.goodmeal.services.impl.RecipesService;
