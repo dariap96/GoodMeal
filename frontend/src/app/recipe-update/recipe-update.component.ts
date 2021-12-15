@@ -80,6 +80,8 @@ export class RecipeUpdateComponent implements OnInit {
         request.dish = this.selectedDish;
         request.cuisine = this.selectedCuisine;
 
+        console.log(request)
+
         this.service.updateData(request).subscribe(data => {
             console.log(data.toString());   
         });

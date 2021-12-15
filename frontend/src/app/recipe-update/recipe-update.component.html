@@ -17,7 +17,7 @@
                 <form #addForm="ngForm">
                     <mat-form-field appearance="outline" style="padding-bottom:10px">
                         <mat-label>Query</mat-label>
-                        <input (change)= "changeHandlerQuery($event)" matInput ngModel type="text" name="query" class="form-control" id="query" placeholder="Query" required>
+                        <input [(ngModel)]="query" matInput type="text" name="query" class="form-control" id="query" placeholder="Query" required>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Select meal</mat-label>
