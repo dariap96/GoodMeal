@@ -47,9 +47,10 @@ public class RecipesRatingController {
         }
 
         RecipesRating rating =
-                recipesRatingService.getRating(
-                        usersService.getUserByLogin(userLogin).getId(),
-                        ratingDTO.getRecipeId()
+                RecipesRatingDTO.toRecipesRating(
+                        recipesService,
+                        usersService,
+                        ratingDTO
                 );
 
         boolean exists = recipesRatingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;

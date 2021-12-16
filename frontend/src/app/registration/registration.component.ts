@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
       document.getElementById('add-user-form').click();
       this.service.addUser(addForm.value).subscribe(
         (response: User[]) => {
-            this.router.navigate(["/login"])
+            this.router.navigate(["/login"]);
         },
         (error: HttpErrorResponse) => {
             alert(error.message);

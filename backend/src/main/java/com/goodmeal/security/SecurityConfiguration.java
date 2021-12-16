@@ -35,9 +35,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests().antMatchers("/register", "/*.js", "/*.css", "/login", "/", "/favicon.ico").permitAll()
                 .antMatchers(
-                        "/api/user/**",
+                         "/api/user/**",
                                     "/update-password-by-admin/**",
-                                    "recipe_rating/remove-by-admin/**",
+                                    "/recipe_rating/remove-by-admin/**",
                                     "/userinfo/{\\d+}",
                                     "/grant-admin-access/**",
                                     "/disable-admin-access/**")
