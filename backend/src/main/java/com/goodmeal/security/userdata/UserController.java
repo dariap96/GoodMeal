@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class UserController {
 
     private UserDtoMapper userDtoMapper = new UserDtoMapper();

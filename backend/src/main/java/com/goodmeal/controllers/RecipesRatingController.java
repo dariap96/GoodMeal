@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/recipe_rating")
-@CrossOrigin(origins = "*")
 public class RecipesRatingController {
     public static final int MAX_REVIEWS = 30;
 

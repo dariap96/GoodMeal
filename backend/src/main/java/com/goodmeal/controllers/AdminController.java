@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/admin")
-@CrossOrigin(origins = "*")
 public class AdminController {
 
     private static final String ROLE = "ADMIN";

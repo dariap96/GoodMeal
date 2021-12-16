@@ -36,17 +36,17 @@ public class EdamRecipeRequest extends EdamRequest {
 
         );
 
-        if (!meal.isBlank()) {
+        if (meal != null && !meal.isBlank()) {
             request.append(SEP)
                     .append("meal=")
                     .append(meal);
         }
-        if (!dish.isBlank()) {
+        if (dish != null && !dish.isBlank()) {
             request.append(SEP)
                     .append("dish=")
                     .append(dish);
         }
-        if (!cuisine.isBlank()) {
+        if (cuisine != null && !cuisine.isBlank()) {
             request.append(SEP)
                     .append("cuisine=")
                     .append(cuisine);
