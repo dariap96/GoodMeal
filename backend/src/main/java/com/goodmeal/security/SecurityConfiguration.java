@@ -35,12 +35,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests().antMatchers("/register", "/*.js", "/*.css", "/login", "/", "/favicon.ico").permitAll()
                 .antMatchers(
-                        "/api/user/{\\d+}",
-                                    "/update-password-by-admin/{\\d+}",
-                                    "recipe_rating/remove-by-admin/{\\d+}",
+                        "/api/user/**",
+                                    "/update-password-by-admin/**",
+                                    "recipe_rating/remove-by-admin/**",
                                     "/userinfo/{\\d+}",
-                                    "/grant-admin-access/{\\d+}",
-                                    "/disable-admin-access/{\\d+}")
+                                    "/grant-admin-access/**",
+                                    "/disable-admin-access/**")
                 .hasRole("ADMIN")
                 .anyRequest().authenticated().and().logout().invalidateHttpSession(true).logoutUrl("/logout").permitAll()
                 .and().httpBasic();
