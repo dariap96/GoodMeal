@@ -19,6 +19,7 @@
                         <mat-label>Query</mat-label>
                         <input [(ngModel)]="query" matInput type="text" name="query" class="form-control" id="query" placeholder="Query" required>
                     </mat-form-field>
+                    <br>
                     <mat-form-field appearance="outline">
                         <mat-label>Select meal</mat-label>
                         <mat-select  panelClass="example-panel-" (selectionChange)="selectChangeHandlerMeal($event)">
@@ -26,6 +27,7 @@
                             <mat-option *ngFor="let meal of mealsList.data" [value]="meal.attributes.type">{{meal.attributes.type}}<mat-divider></mat-divider></mat-option>
                         </mat-select>
                     </mat-form-field>
+                    <br>
                     <mat-form-field appearance="outline">
                         <mat-label>Select dish</mat-label>
                         <mat-select #dish (selectionChange)="selectChangeHandlerDish($event)">
