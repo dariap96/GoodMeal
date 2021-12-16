@@ -73,38 +73,8 @@ export class HomeComponent implements OnInit {
             );
 
         })
-        // this.service.getUserdata().subscribe( data => {
-        //     this.userdata = ConvertUser.toUser(data.toString());
-        // });
-        //
-        // this.service.getDishes().subscribe(data => {
-        //     this.dishesList = ConvertDishes.toDishes(data.toString());
-        // });
-        //
-        // this.service.getMeals().subscribe( data => {
-        //     this.mealsList = ConvertMeals.toMeals(data.toString());
-        //
-        // });
-        //
-        // this.service.getLabels().subscribe(  data => {
-        //     this.labelsList = ConvertLabels.toLabels(data.toString());
-        // });
-        // this.service.getIngredients().subscribe(data => {
-        //     this.ingredientsList = ConvertIngredients.toIngredients(data.toString());
-        // });
-        // this.service.getFirstTenIng().subscribe( data => {
-        //     this.visibleIng = ConvertIngredients.toIngredients(data.toString());
-        // });
-        //
-        // this.service.getCuisines().subscribe( data => {
-        //     this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
-        // });
-        //
-        // this.service.getFirstHundredRecipes().subscribe( data => {
-        //     this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
-        //     this.loading = false;
-        // });
     }
+
     displayFn(ingredient : Ingredients["data"]): string {
         return ingredient && ingredient["attributes"].name ? ingredient["attributes"].name : '';
     }
@@ -143,35 +113,16 @@ export class HomeComponent implements OnInit {
         this.selectedLabel = e.value;
     }
 
-    // requestSign(any: any, base: string, counter: number) {
-    //     if (any != null && any != 'default' &&  any != '') {
-    //         if (counter > 0) {
-    //             counter++;
-    //             return '&'
-    //         }
-    //         else {
-    //             counter++;
-    //             return '?'
-    //         }
-    //     }
-    //     else return null;
-    // }
-
     selectClickHandlerRecipe() {
         let base = baseUrl + '/api/recipe';
         let counter = 0;
-        // if (this.requestSign(this.selectedMeal,base,counter)!=null) {
-        //     base = base + this.requestSign(this.selectedMeal,base,counter) + 'filter[meal.id]=' + this.selectedMeal;
-        // }
-        //
-        if(this.selectedMeal != null && this.selectedMeal != 'default') {
+
+        if(this.selectedMeal != null && this.selectedMeal != 'default' && this.selectedMeal != '') {
             base = base + '?filter[meal.id]=' + this.selectedMeal;
             counter++;
         }
-        // if (this.requestSign(this.selectedDish,base,counter)!=null) {
-        //     base = base + this.requestSign(this.selectedDish,base,counter) + 'filter[dish.id]=' + this.selectedDish;
-        // }
-        if(this.selectedDish != null && this.selectedDish != 'default') {
+
+        if(this.selectedDish != null && this.selectedDish != 'default' && this.selectedDish != '') {
             if(counter > 0) {
                 base = base + '&filter[dish.id]=' + this.selectedDish;
             } else {
@@ -179,10 +130,8 @@ export class HomeComponent implements OnInit {
                 counter++;
             }
         }
-        // if (this.requestSign(this.selectedCuisine,base,counter)!=null) {
-        //     base = base + this.requestSign(this.selectedCuisine,base,counter) + 'filter[cuisine.id]=' + this.selectedCuisine;
-        // }
-        if(this.selectedCuisine != null && this.selectedCuisine != 'default') {
+
+        if(this.selectedCuisine != null && this.selectedCuisine != 'default' && this.selectedCuisine != '') {
             if(counter > 0) {
                 base = base + '&filter[cuisine.id]=' + this.selectedCuisine;
             } else {
@@ -190,10 +139,8 @@ export class HomeComponent implements OnInit {
                 counter++;
             }
         }
-        // if (this.requestSign(this.includeIng,base,counter)!=null) {
-        //     base = base + this.requestSign(this.includeIng,base,counter) + 'filter[ingredientsSet.ingredient.id]=' + this.includeIng;
-        // }
-        if(this.includeIng != null && this.includeIng != 'default') {
+
+        if(this.includeIng != null && this.includeIng != 'default' && this.includeIng != '') {
             if(counter > 0) {
                 base = base + '&filter[ingredientsSet.ingredient.id]=' + this.includeIng;
             } else {
@@ -201,10 +148,8 @@ export class HomeComponent implements OnInit {
                 counter++;
             }
         }
-        // if (this.requestSign(this.excludeIng,base,counter)!=null) {
-        //     base = base + this.requestSign(this.excludeIng,base,counter) + 'filter[ingredientsSet.ingredient.id][NEQ]=' + this.excludeIng;
-        // }
-        if(this.excludeIng != null && this.excludeIng != 'default') {
+
+        if(this.excludeIng != null && this.excludeIng != 'default' && this.excludeIng != '') {
             if (counter > 0) {
                 base = base + '&filter[ingredientsSet.ingredient.id][NEQ]=' + this.excludeIng;
             } else {
@@ -212,10 +157,8 @@ export class HomeComponent implements OnInit {
                 counter++;
             }
         }
-        // if (this.requestSign(this.selectedLabel,base,counter)!=null)  {
-        //     base = base + this.requestSign(this.selectedLabel,base,counter) + 'filter[labelsSet.id]=' + this.selectedLabel;
-        // }
-        if(this.selectedLabel != null && this.selectedLabel != 'default') {
+
+        if(this.selectedLabel != null && this.selectedLabel != 'default' && this.selectedLabel != '') {
             if (counter > 0) {
                 base = base + '&filter[labelsSet.id]=' + this.selectedLabel;
             } else {
@@ -223,9 +166,7 @@ export class HomeComponent implements OnInit {
                 counter++;
             }
         }
-        // if (this.requestSign(this.searchBoxInput,base,counter)!=null) {
-        //     base = base + this.requestSign(this.searchBoxInput,base,counter) + 'filter={%20%22LIKE%22%3A{%22name%22%3A%22%25' + this.searchBoxInput + '%25%22}}';
-        // }
+
         if (this.searchBoxInput != null && this.searchBoxInput != 'default' && this.searchBoxInput != '') {
             if (counter >0) {
                 base = base + '&filter={%20%22LIKE%22%3A{%22name%22%3A%22%25' + this.searchBoxInput + '%25%22}}';
