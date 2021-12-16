@@ -85,4 +85,9 @@ export class UserProfileComponent implements OnInit {
     removeReview(rating : RecipeRatingInfo) {
         return this.service.removeReviewByAdmin(rating)
     }
+
+    grantAdminAccess(login: String) {
+        return this.service.grantAdminAccess(login).subscribe( data => {});
+    }
+
 }

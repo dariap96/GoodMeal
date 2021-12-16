@@ -70,7 +70,7 @@
                         <td><a href="http://localhost:8080/user-card/{{user.id}}">{{ user.attributes.login }}</a></td>
                         <td>{{ user.attributes.name }}</td>
                         <td>{{ user.attributes.surname }}</td>
-                        <!--            <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="changeUserPassword()">Change password</button></td>-->
+                        <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Give admin access" (click)="grantAdminAccess(user.attributes.login)">Grant admin access</button></td>
                     </tr>
                     </tbody>
                 </table>

@@ -34,6 +34,8 @@
             <!--        <p>Birthday: {{ activeUserBdayDay }}.{{ activeUserBdayMonth }}.{{ activeUserBdayYear}}</p>-->
             <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Change password" (click)="showPassUpdMenu()">Change password</button>
             <br>
+            <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Disable admin access" (click)="disableAdminAccess()">Disable admin access</button></td>
+            <br>
             <div class="example-container" *ngIf="showPasswordUpdateMenu" style="text-align: center;position:center;margin-top:20px;">
                 <input matInput style="border-radius: 3px;" type="password"  id="password-placeholder"  placeholder="New password"  [(ngModel)]="newPassword">
                 <p></p>
