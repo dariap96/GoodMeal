@@ -1,5 +1,6 @@
 -- cleaning tables
 
+DELETE FROM goodmeal.recipes_rating;
 DELETE FROM goodmeal.users_roles;
 DELETE FROM goodmeal.roles;
 DELETE FROM goodmeal.users;
