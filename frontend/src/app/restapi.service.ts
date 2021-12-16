@@ -15,6 +15,8 @@ import {RecipeRatingInfo} from "./model/RecipesRatingsInfo";
 import {baseUrl,backendUrl} from "./configuration";
 import { BehaviorSubject } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {UpdateData} from "./model/UpdateData";
+
 @Injectable({
     providedIn: 'root'
 })
@@ -324,5 +326,9 @@ export class RestapiService {
 
     disableAdminAccess(login: String) {
         return this.http.get(baseUrl + '/disable-admin-access/' + login, {responseType: 'text' as 'json'});
+    }
+
+    updateData(request: UpdateData) {
+        return this.http.post(baseUrl + '/admin/recipe-update', request);
     }
 }

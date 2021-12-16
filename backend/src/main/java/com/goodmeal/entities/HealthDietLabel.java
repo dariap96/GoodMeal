@@ -16,9 +16,23 @@ import java.util.Set;
 @Table(name = "Health_Diet_Labels", schema = "goodmeal")
 public class HealthDietLabel {
 
-    public static final String DEFAULT_HEALTHS_NAME = "No healths label";
-    public static final String DEFAULT_CAUTIONS_NAME = "No cautions label";
-    public static final String DEFAULT_DIET_NAME = "No diet label";
+    @Getter
+    public enum Defaults {
+        cautions ("No cautions label"),
+        diets ("No diet label"),
+        healths ("No healths label");
+
+        String title;
+
+        Defaults(String title) {
+            this.title = title;
+        }
+
+        @Override
+        public String toString() {
+            return title;
+        }
+    }
 
     @Id
     @JsonApiId

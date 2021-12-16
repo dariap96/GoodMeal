@@ -1,24 +1,20 @@
 package com.srcsite.edamrequest;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.web.client.RestTemplate;
 
-import javax.transaction.Transactional;
-
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public abstract class EdamRequest {
 
     public static final String SEP = "&";
 
-    protected final String base;
-    private final String appId;
-    private final String appKey;
-
-    protected EdamRequest(String appId, String appKey, String base) {
-        this.appId = appId;
-        this.appKey = appKey;
-        this.base = base;
-    }
+    protected String base;
+    protected String appId;
+    protected String appKey;
 
     protected abstract String getURI();
 

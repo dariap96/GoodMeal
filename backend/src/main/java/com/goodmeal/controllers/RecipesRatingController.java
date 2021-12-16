@@ -1,5 +1,6 @@
 package com.goodmeal.controllers;
 
+import com.goodmeal.DTOs.RecipesRatingDTO;
 import com.goodmeal.entities.RecipesRating;
 import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.RecipesRatingService;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
