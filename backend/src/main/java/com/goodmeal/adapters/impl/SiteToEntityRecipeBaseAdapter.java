@@ -5,9 +5,12 @@ import com.goodmeal.entities.Recipe;
 import com.goodmeal.services.impl.*;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
+import lombok.AllArgsConstructor;
+
 import java.util.LinkedList;
 import java.util.List;
 
+@AllArgsConstructor
 public class SiteToEntityRecipeBaseAdapter implements SiteToEntityAdapter<SiteRecipeBase, List<Recipe>> {
 
     private final RecipesService recipesService;
@@ -18,18 +21,7 @@ public class SiteToEntityRecipeBaseAdapter implements SiteToEntityAdapter<SiteRe
     private final HealthDietLabelsService healthDietLabelsService;
     private final HdLabelTypesService hdLabelTypesService;
     private final IngredientsToRecipesService ingredientsToRecipesService;
-
-    public SiteToEntityRecipeBaseAdapter(RecipesService recipesService, IngredientsService ingredientsService, CuisinesService cuisinesService, DishesService dishesService, MealsService mealsService, HealthDietLabelsService healthDietLabelsService, HdLabelTypesService hdLabelTypesService, IngredientsToRecipesService ingredientsToRecipesService) {
-        this.recipesService = recipesService;
-        this.ingredientsService = ingredientsService;
-        this.cuisinesService = cuisinesService;
-        this.dishesService = dishesService;
-        this.mealsService = mealsService;
-        this.healthDietLabelsService = healthDietLabelsService;
-        this.hdLabelTypesService = hdLabelTypesService;
-        this.ingredientsToRecipesService = ingredientsToRecipesService;
-    }
-
+    private final APIFoodKeysService apiFoodKeysService;
 
     @Override
     public List<Recipe> transform(SiteRecipeBase siteRecipeBase) {
@@ -43,7 +35,8 @@ public class SiteToEntityRecipeBaseAdapter implements SiteToEntityAdapter<SiteRe
                     mealsService,
                     healthDietLabelsService,
                     hdLabelTypesService,
-                    ingredientsToRecipesService
+                    ingredientsToRecipesService,
+                    apiFoodKeysService
             ).transform(siteRecipe));
         }
         return recipeBase;

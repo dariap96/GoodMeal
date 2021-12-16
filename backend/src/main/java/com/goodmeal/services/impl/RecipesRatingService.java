@@ -5,6 +5,7 @@ import com.goodmeal.entities.RecipesRatingKey;
 import com.goodmeal.repositoriesImplementations.RecipesRatingRepositoryImplementation;
 import com.goodmeal.services.IService;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,13 +15,10 @@ import java.util.Optional;
 
 @Transactional
 @Service("jpaRecipesRatingService")
+@Getter
 public class RecipesRatingService implements IService<RecipesRating> {
 
     private final RecipesRatingRepositoryImplementation recipesRatingRepository;
-
-    public RecipesRatingRepositoryImplementation getRecipesRatingRepository() {
-        return recipesRatingRepository;
-    }
 
     @Autowired
     public RecipesRatingService(RecipesRatingRepositoryImplementation recipesRatingRepository) {

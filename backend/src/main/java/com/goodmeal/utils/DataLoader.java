@@ -1,6 +1,9 @@
 package com.goodmeal.utils;
 
 import com.goodmeal.adapters.impl.SiteToEntityRecipeBaseAdapter;
+import com.goodmeal.services.impl.APIFoodKeysService;
+import com.goodmeal.services.impl.APIRecipeKeysService;
+import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.edamrequest.impl.EdamIngredientRequest;
 import com.srcsite.edamrequest.impl.EdamRecipeRequest;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
@@ -8,53 +11,49 @@ import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 public interface DataLoader {
     int SLEEP_MS = 60_000;
-    int UNSET_COUNT = -1;
+    int API_KEYS_ID = 1;
 
     static int loadRecipes(
+            APIRecipeKeysService apiRecipeKeysService,
             SiteToEntityRecipeBaseAdapter recipeBaseAdapter,
             String query,
             String meal,
             String dish,
-            String cuisine,
-            int recipeCount,
-            int allCount
+            String cuisine
     ) {
-        int j = recipeCount;
-        try {
-            if (allCount <= UNSET_COUNT) {
-                SiteRecipeBase recipeBase =
-                        new EdamRecipeRequest(query, meal, dish, cuisine).sendRequest();
-                allCount = recipeBase.getCount();
-            }
-            j += 1;
-            for(; j < Math.sqrt(allCount); j++){
-                SiteRecipeBase recipeBase =
-                        new EdamRecipeRequest(query, meal, dish, cuisine).sendRequest();
+        EdamRecipeRequest request =
+                new EdamRecipeRequest(apiRecipeKeysService.findById((long) API_KEYS_ID).get());
+        SiteRecipeBase recipeBase =
+                request.sendRequest(query, meal, dish, cuisine);
+        int allCount = recipeBase.getCount();
+        for(int j = 0; j < Math.sqrt(allCount); j++){
+            try {
+                recipeBase =
+                        request.sendRequest(query, meal, dish, cuisine);
                 recipeBaseAdapter.transform(recipeBase);
+            } catch (Exception exception) {
+                exception.printStackTrace(System.out);
+                exception.printStackTrace(System.out);
+                try {
+                    //API cool down
+                    Thread.sleep(SLEEP_MS);
+                }
+                catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
+                j--;
             }
-            return allCount;
-
-        } catch (Exception exception) {
-            exception.printStackTrace(System.out);
-            exception.printStackTrace(System.out);
-            try
-            {
-                //API cool down
-                Thread.sleep(SLEEP_MS);
-            }
-            catch(InterruptedException ex)
-            {
-                Thread.currentThread().interrupt();
-            }
-            return loadRecipes(recipeBaseAdapter, query, meal, dish, cuisine, j, allCount);
         }
+        return allCount;
     }
 
     static SiteIngredientBase loadIngredients(
+            APIFoodKeysService apiFoodKeysService,
             String name
     ) {
         try {
-            return new EdamIngredientRequest(name).sendRequest();
+            return new EdamIngredientRequest(apiFoodKeysService.findById((long) API_KEYS_ID).get())
+                    .sendRequest(name);
         } catch (Exception exception) {
 
             try {
@@ -64,8 +63,7 @@ public interface DataLoader {
             catch(InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            return loadIngredients(name);
+            return loadIngredients(apiFoodKeysService, name);
         }
     }
-
 }

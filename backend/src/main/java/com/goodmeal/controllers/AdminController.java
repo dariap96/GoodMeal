@@ -47,6 +47,11 @@ public class AdminController {
     private HdLabelTypesService hdLabelTypesService;
     @Autowired
     private IngredientsToRecipesService ingredientsToRecipesService;
+    @Autowired
+    private APIRecipeKeysService apiRecipeKeysService;
+    @Autowired
+    private APIFoodKeysService apiFoodKeysService;
+
 
     private boolean isAdmin(HttpServletRequest request){
         String userLogin = Utils.getLoginFromPrincipal(request);
@@ -111,17 +116,17 @@ public class AdminController {
                         mealsService,
                         healthDietLabelsService,
                         hdLabelTypesService,
-                        ingredientsToRecipesService
+                        ingredientsToRecipesService,
+                        apiFoodKeysService
                 );
 
         return DataLoader.loadRecipes(
+                apiRecipeKeysService,
                 adapter,
                 updateRecipesDTO.getQuery(),
                 updateRecipesDTO.getMeal(),
                 updateRecipesDTO.getDish(),
-                updateRecipesDTO.getCuisine(),
-                0,
-                DataLoader.UNSET_COUNT
+                updateRecipesDTO.getCuisine()
         );
     }
 
