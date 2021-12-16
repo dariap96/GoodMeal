@@ -1,13 +1,15 @@
-package com.goodmeal.controllers;
+package com.goodmeal.DTOs;
 
 import com.goodmeal.entities.RecipesRating;
 import com.goodmeal.services.impl.RecipesService;
 import com.goodmeal.services.impl.UsersService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class RecipesRatingDTO {
 
     private Long recipeId;
@@ -36,6 +38,4 @@ public class RecipesRatingDTO {
                 ratingDTO.getReview()
         );
     }
-
-    public RecipesRatingDTO() {}
 }

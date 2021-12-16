@@ -15,6 +15,8 @@ import {RecipeRatingInfo} from "./model/RecipesRatingsInfo";
 import {baseUrl,backendUrl} from "./configuration";
 import { BehaviorSubject } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {UpdateData} from "./model/UpdateData";
+
 @Injectable({
     providedIn: 'root'
 })
@@ -317,4 +319,8 @@ export class RestapiService {
     // getUserByAdmin(userId: string) {
     //     this.usersService.getUserByAdmin(userId);
     // }
+
+    updateData(request: UpdateData) {
+        return this.http.post(baseUrl + '/admin/recipe-update', request);
+    }
 }

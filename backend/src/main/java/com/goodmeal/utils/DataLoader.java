@@ -8,35 +8,45 @@ import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
 
 public interface DataLoader {
     int SLEEP_MS = 60_000;
+    int UNSET_COUNT = -1;
 
-    static void loadRecipes(
+    static int loadRecipes(
             SiteToEntityRecipeBaseAdapter recipeBaseAdapter,
             String query,
             String meal,
             String dish,
             String cuisine,
-            int recipeCount
+            int recipeCount,
+            int allCount
     ) {
         int j = recipeCount;
         try {
-            SiteRecipeBase recipeBase =
-                    new EdamRecipeRequest(query, meal, dish, cuisine).sendRequest();
+            if (allCount <= UNSET_COUNT) {
+                SiteRecipeBase recipeBase =
+                        new EdamRecipeRequest(query, meal, dish, cuisine).sendRequest();
+                allCount = recipeBase.getCount();
+            }
             j += 1;
-            for(; j < recipeBase.getCount() / 10; j++){
-                recipeBase =
+            for(; j < Math.sqrt(allCount); j++){
+                SiteRecipeBase recipeBase =
                         new EdamRecipeRequest(query, meal, dish, cuisine).sendRequest();
                 recipeBaseAdapter.transform(recipeBase);
             }
+            return allCount;
+
         } catch (Exception exception) {
+            exception.printStackTrace(System.out);
+            exception.printStackTrace(System.out);
             try
             {
+                //API cool down
                 Thread.sleep(SLEEP_MS);
             }
             catch(InterruptedException ex)
             {
                 Thread.currentThread().interrupt();
             }
-            loadRecipes(recipeBaseAdapter, query, meal, dish, cuisine, j);
+            return loadRecipes(recipeBaseAdapter, query, meal, dish, cuisine, j, allCount);
         }
     }
 
@@ -48,6 +58,7 @@ public interface DataLoader {
         } catch (Exception exception) {
 
             try {
+                //API cool down
                 Thread.sleep(SLEEP_MS);
             }
             catch(InterruptedException ex) {

@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { UserCardComponent } from "./user-card/user-card.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {RecipeUpdateComponent} from "./recipe-update/recipe-update.component";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
     { path: "selections", component: SelectionsPageComponent },
     { path: "user-profile", component: UserProfileComponent },
     { path: "user-card/:id", component: UserCardComponent },
-    { path: "recipe_review/:id", component: ReviewComponent }
+    { path: "recipe_review/:id", component: ReviewComponent },
+    { path: "recipe-update-page", component: RecipeUpdateComponent}
 ];
 
 @NgModule({
