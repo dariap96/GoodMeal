@@ -317,4 +317,12 @@ export class RestapiService {
     // getUserByAdmin(userId: string) {
     //     this.usersService.getUserByAdmin(userId);
     // }
+
+    grantAdminAccess(login: String) {
+        return this.http.get(baseUrl + '/grant-admin-access/' + login, {responseType: 'text' as 'json'});
+    }
+
+    disableAdminAccess(login: String) {
+        return this.http.get(baseUrl + '/disable-admin-access/' + login, {responseType: 'text' as 'json'});
+    }
 }

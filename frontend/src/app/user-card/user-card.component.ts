@@ -70,4 +70,8 @@ export class UserCardComponent implements OnInit {
             }
         }
     }
+
+    disableAdminAccess() {
+        return this.service.disableAdminAccess(this.selectedUser.login).subscribe( data => {});
+    }
 }
