@@ -26,8 +26,11 @@ public interface DataLoader {
         SiteRecipeBase recipeBase =
                 request.sendRequest(query, meal, dish, cuisine);
         int allCount = recipeBase.getCount();
-        for(int j = 0; j < Math.sqrt(allCount); j++){
+        for(int j = 0; j < (int)Math.sqrt(allCount); j++){
             try {
+                System.out.println("==================================================");
+                System.out.println("Request " + j + " of " + (int) Math.sqrt(allCount));
+                System.out.println("==================================================");
                 recipeBase =
                         request.sendRequest(query, meal, dish, cuisine);
                 recipeBaseAdapter.transform(recipeBase);
