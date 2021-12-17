@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/recipe_rating")
-@CrossOrigin(origins = "*")
 public class RecipesRatingController {
     public static final int MAX_REVIEWS = 30;
 
@@ -47,9 +46,10 @@ public class RecipesRatingController {
         }
 
         RecipesRating rating =
-                recipesRatingService.getRating(
-                        usersService.getUserByLogin(userLogin).getId(),
-                        ratingDTO.getRecipeId()
+                RecipesRatingDTO.toRecipesRating(
+                        recipesService,
+                        usersService,
+                        ratingDTO
                 );
 
         boolean exists = recipesRatingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;
