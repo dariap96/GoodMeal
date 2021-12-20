@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ConvertSelections, Selections } from "../model/Selections";
 import { ConvertUserInfo, UserInfo } from "../model/User";
 import { RestapiService } from "../restapi.service";
-import {ThemePalette} from "@angular/material/core";
-import {forkJoin} from "rxjs";
+import { ThemePalette } from "@angular/material/core";
+
 
 @Component({
     selector: 'app-selections-page',
@@ -32,10 +32,19 @@ export class SelectionsPageComponent implements OnInit {
     createNewSelection() {
         this.service.addNewSelection(this.newSelectionName, this.activeUser.login).subscribe( data => {
             this.newSelectionName = '';
+            this.refreshData();
         });
     }
 
     removeSelection(selectionId: string) {
-        this.service.removeSelection(parseInt(selectionId, 10)).subscribe( data => {});
+        this.service.removeSelection(parseInt(selectionId, 10)).subscribe( data => {
+            this.refreshData();
+        });
+    }
+
+    refreshData() {
+        this.service.getUserSelections(this.activeUser.login).subscribe( data => {
+            this.userSelections = ConvertSelections.toSelections(data.toString());
+        });
     }
 }
