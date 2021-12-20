@@ -21,11 +21,11 @@
     <div>
         <nav mat-tab-nav-bar [backgroundColor]="background"  style="align-items: flex-end">
 
-            <a mat-tab-link class="a" [active]="true" style= "margin-top: 0.5px" href="http://localhost:8080/home">Home</a>
-            <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/user-profile">Profile</a>
-            <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/selections">Selections</a>
-            <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
-            <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
+            <a mat-tab-link class="a" [active]="true" href="http://localhost:8080/home">Home</a>
+            <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/user-profile">Profile</a>
+            <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/selections">Selections</a>
+            <a mat-tab-link class="a" [active]="false" href="#about">About</a>
+            <a mat-tab-link class="a" [active]="false" href="#contact">Contact</a>
         </nav>
     </div>
 </div>
@@ -36,7 +36,7 @@
         <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px;marging-top: 2px">{{recipeName}}</div>
     </header>
 
-<mat-card class="slide-in-blurred-right" style="width:90%;margin:auto;padding:50px;margin-top: 60px;height: max-content" tabindex="0">
+<mat-card class="slide-in-blurred-right" tabindex="0">
     <div style="display:flex;">
     <div class="recipe-card slide-in-blurred-right" style=" width: 500px; margin-left: 75px" >
         <img mat-card-xl-image src="{{ recipeImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px" />
@@ -44,12 +44,12 @@
         <mat-card-content style="width:400px">Description: {{ recipeDescr }}</mat-card-content>
         <mat-card-content style="width:400px"> <mat-list style="display: inline-flex" *ngFor="let la of recipeLables.data">{{la.attributes.label}} </mat-list></mat-card-content>
         <mat-card-content style="width:400px"> {{ PrintRating() }}</mat-card-content>
-        <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:8080/recipe_review/{{ recipeId }}">Rate</a>
+        <a mat-card-content mat-list-item style="width:400px;color:Black" id="recipe_review" href="http://localhost:8080/recipe_review/{{ recipeId }}"><button mat-stroked-button>Rate</button></a>
     </div>
 
     <div class="card my-5">
       <div class="card-body slide-in-blurred-right w3-container" style="display: flex">
-        <table class="w3-table w3-bordered mat-table" style="font-family: Roboto,sans-serif; text-align: right;width:300px;margin-left: 200px;">
+        <table class="w3-table w3-bordered mat-table">
             <thead class="thead-dark">
             <tr>
                 <th scope="col" class="mat-option" style="font-size: 17px">Ingredients</th>
