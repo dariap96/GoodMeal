@@ -53,26 +53,46 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.loading = true;
-        forkJoin( this.service.getUserdata(), this.service.getDishes(),this.service.getMeals(), this.service.getLabels(),
-            this.service.getIngredients(),  this.service.getCuisines(), this.service.getFirstTenIng(),
-            this.service.getFirstHundredRecipes()).subscribe(([userdata,dishesList,mealsList,labelsList,
-            ingredientsList,cuisinesList,visibleIng,visibleRecipes]) => {
-            this.userdata = ConvertUser.toUser(userdata.toString());
-            this.dishesList = ConvertDishes.toDishes(dishesList.toString());
-            this.mealsList = ConvertMeals.toMeals(mealsList.toString());
-            this.labelsList = ConvertLabels.toLabels(labelsList.toString());
-            this.ingredientsList = ConvertIngredients.toIngredients(ingredientsList.toString());
-            this.visibleIng = ConvertIngredients.toIngredients(visibleIng.toString());
-            this.cuisinesList = ConvertCuisines.toCuisines(cuisinesList.toString());
-            this.visibleRecipes = ConvertRecipes.toRecipes(visibleRecipes.toString());
-            this.loading = false;
-            this.filteredOptions = this.myControl.valueChanges.pipe(
-                startWith(''),
-                map(value => (typeof value === 'string' ? value : value.name)),
-                map(name => (name ? this._filter(name) : this.ingredientsList["data"].slice())),
-            );
 
+        this.service.getUserdata().subscribe( data => {
+            this.userdata = ConvertUser.toUser(data.toString());
+        });
+
+        this.service.getDishes().subscribe(data => {
+            this.dishesList = ConvertDishes.toDishes(data.toString());
+        });
+
+        this.service.getMeals().subscribe( data => {
+            this.mealsList = ConvertMeals.toMeals(data.toString());
+
+        });
+
+        this.service.getLabels().subscribe(  data => {
+            this.labelsList = ConvertLabels.toLabels(data.toString());
+        });
+
+        this.service.getFirstTenIng().subscribe( data => {
+            this.visibleIng = ConvertIngredients.toIngredients(data.toString());
+        });
+
+        this.service.getCuisines().subscribe( data => {
+            this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
+        });
+
+        this.service.getFirstTenIng().subscribe( data => {
+            this.ingredientsList = ConvertIngredients.toIngredients(data.toString());
         })
+
+        this.service.getFirstHundredRecipes().subscribe( data => {
+            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
+            this.loading = false;
+        });
+    }
+
+    ngAfterViewInit() {
+        this.service.getIngredients().subscribe(data => {
+            this.ingredientsList = ConvertIngredients.toIngredients(data.toString());
+        });
     }
 
     displayFn(ingredient : Ingredients["data"]): string {
