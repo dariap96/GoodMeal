@@ -1,35 +1,26 @@
 package com.srcsite.edamrequest.impl;
 
-import com.srcsite.edamrequest.APIKeys;
+import com.goodmeal.entities.APIRecipeKey;
+import com.goodmeal.services.impl.APIRecipeKeysService;
 import com.srcsite.edamrequest.EdamRequest;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipeBase;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class EdamRecipeRequest extends EdamRequest {
 
     public static final String DEFAULT_Q = "*";
     private static final String BASE = "https://api.edamam.com/api/recipes/v2?type=public";
 
-    private final String query;
-    private final String meal;
-    private final String dish;
-    private final String cuisine;
+    @Autowired
+    APIRecipeKeysService apiRecipeKeysService;
+    
+    private String query;
+    private String meal;
+    private String dish;
+    private String cuisine;
 
-    public EdamRecipeRequest(
-            String query,
-            String meal,
-            String dish,
-            String cuisine
-    ){
-        super(APIKeys.APP_RECIPE_ID, APIKeys.APP_RECIPE_KEY, BASE);
-
-        if(query.isBlank()){
-            query = DEFAULT_Q;
-        }
-        this.query = query;
-        this.meal = meal;
-        this.dish = dish;
-        this.cuisine = cuisine;
+    public EdamRecipeRequest(APIRecipeKey apiRecipeKey){
+        super(apiRecipeKey.getBase(), apiRecipeKey.getAppId(), apiRecipeKey.getAppKey());
     }
 
     @Override
@@ -45,17 +36,17 @@ public class EdamRecipeRequest extends EdamRequest {
 
         );
 
-        if (!meal.isBlank()) {
+        if (meal != null && !meal.isBlank()) {
             request.append(SEP)
                     .append("meal=")
                     .append(meal);
         }
-        if (!dish.isBlank()) {
+        if (dish != null && !dish.isBlank()) {
             request.append(SEP)
                     .append("dish=")
                     .append(dish);
         }
-        if (!cuisine.isBlank()) {
+        if (cuisine != null && !cuisine.isBlank()) {
             request.append(SEP)
                     .append("cuisine=")
                     .append(cuisine);
@@ -65,7 +56,20 @@ public class EdamRecipeRequest extends EdamRequest {
     }
 
 
-    public SiteRecipeBase sendRequest() {
+    public SiteRecipeBase sendRequest(
+            String query,
+            String meal,
+            String dish,
+            String cuisine
+    ) {
+        if(query.isBlank()){
+            query = DEFAULT_Q;
+        }
+        this.query = query;
+        this.meal = meal;
+        this.dish = dish;
+        this.cuisine = cuisine;
+
         return super.sendRequest(SiteRecipeBase.class);
     }
 }

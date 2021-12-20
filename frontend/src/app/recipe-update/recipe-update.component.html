@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>@import "../../../node_modules/@angular/material/_theming.scss";</style>
+</head>
+<body>
+<div  class="gradient-hor bg-pan-left">
+<div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" *ngIf="adminAccess">
+        <mat-card>
+            <div class="example-container">
+                <form #addForm="ngForm">
+                    <mat-form-field appearance="outline" style="padding-bottom:10px">
+                        <mat-label>Query</mat-label>
+                        <input [(ngModel)]="query" matInput type="text" name="query" class="form-control" id="query" placeholder="Query" required>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select meal</mat-label>
+                        <mat-select  panelClass="example-panel-" (selectionChange)="selectChangeHandlerMeal($event)">
+                            <mat-option value="default" hidden></mat-option>
+                            <mat-option *ngFor="let meal of mealsList.data" [value]="meal.attributes.type">{{meal.attributes.type}}<mat-divider></mat-divider></mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select dish</mat-label>
+                        <mat-select #dish (selectionChange)="selectChangeHandlerDish($event)">
+                            <mat-option value="default" hidden></mat-option>
+                            <mat-option *ngFor="let dish of dishesList.data" [value]="dish.attributes.type">{{dish.attributes.type}}<mat-divider></mat-divider></mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Select cuisine</mat-label>
+                        <mat-select #cuisine (selectionChange)="selectChangeHandlerCuisine($event)">
+                            <mat-option value="default" hidden></mat-option>
+                            <mat-option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.attributes.type">{{cuisine.attributes.type}}<mat-divider></mat-divider></mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <br>
+                </form>
+                <button mat-stroked-button (click) = "update()" color="primary">Update</button>
+                <button mat-stroked-button (click) = "Close()" color="primary">Close</button>
+            </div>
+        </mat-card>
+        </div>
+    </div>
+</div>>
+</body>
+</html>

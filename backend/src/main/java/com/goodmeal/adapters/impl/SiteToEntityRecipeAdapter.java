@@ -8,12 +8,14 @@ import com.goodmeal.services.impl.*;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteRecipe;
+import lombok.AllArgsConstructor;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe, Recipe> {
 
     private final RecipesService recipesService;
@@ -24,17 +26,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
     private final HealthDietLabelsService healthDietLabelsService;
     private final HdLabelTypesService hdLabelTypesService;
     private final IngredientsToRecipesService ingredientsToRecipesService;
-
-    public SiteToEntityRecipeAdapter(RecipesService recipesService, IngredientsService ingredientsService, CuisinesService cuisinesService, DishesService dishesService, MealsService mealsService, HealthDietLabelsService healthDietLabelsService, HdLabelTypesService hdLabelTypesService, IngredientsToRecipesService ingredientsToRecipesService) {
-        this.recipesService = recipesService;
-        this.ingredientsService = ingredientsService;
-        this.cuisinesService = cuisinesService;
-        this.dishesService = dishesService;
-        this.mealsService = mealsService;
-        this.healthDietLabelsService = healthDietLabelsService;
-        this.hdLabelTypesService = hdLabelTypesService;
-        this.ingredientsToRecipesService = ingredientsToRecipesService;
-    }
+    private final APIFoodKeysService apiFoodKeysService;
 
     private String getFirstOrSetDefault(String def, List<String> list) {
         if(list != null && list.size() != 0){
@@ -45,7 +37,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
     private Ingredient createIngredient(SiteIngredient siteIngredient) {
         // getting new site ingredients
-        SiteIngredientBase siteIngredientBase = DataLoader.loadIngredients(siteIngredient.getName());
+        SiteIngredientBase siteIngredientBase = DataLoader.loadIngredients(apiFoodKeysService, siteIngredient.getName());
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =
@@ -172,17 +164,17 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     label,
                     healthDietLabelsService.getHdLabelRepository()::getByLabel,
-                    (str -> createHealthDietLabel(str, HdLabelType.HEALTHS)),
+                    (str -> createHealthDietLabel(str, HdLabelType.Types.diets.name())),
                     label
             ));
         }
 
         if(siteRecipe.getHealths().size() == 0) {
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
-                    HealthDietLabel.DEFAULT_HEALTHS_NAME,
+                    HealthDietLabel.Defaults.healths.getTitle(),
                     healthDietLabelsService.getHdLabelRepository()::getByLabel,
-                    (str -> createHealthDietLabel(str, HdLabelType.HEALTHS)),
-                    HealthDietLabel.DEFAULT_HEALTHS_NAME
+                    (str -> createHealthDietLabel(str, HdLabelType.Types.healths.name())),
+                    HealthDietLabel.Defaults.healths.getTitle()
             ));
         }
 
@@ -190,16 +182,16 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     label,
                     healthDietLabelsService.getHdLabelRepository()::getByLabel,
-                    (str -> createHealthDietLabel(str, HdLabelType.CAUTIONS)),
+                    (str -> createHealthDietLabel(str, HdLabelType.Types.cautions.name())),
                     label
             ));
         }
         if(siteRecipe.getCautions().size() == 0) {
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
-                    HealthDietLabel.DEFAULT_CAUTIONS_NAME,
+                    HealthDietLabel.Defaults.cautions.getTitle(),
                     healthDietLabelsService.getHdLabelRepository()::getByLabel,
-                    (str -> createHealthDietLabel(str, HdLabelType.CAUTIONS)),
-                    HealthDietLabel.DEFAULT_CAUTIONS_NAME
+                    (str -> createHealthDietLabel(str, HdLabelType.Types.cautions.name())),
+                    HealthDietLabel.Defaults.cautions.getTitle()
             ));
         }
 
@@ -207,17 +199,17 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
                     label,
                     healthDietLabelsService.getHdLabelRepository()::getByLabel,
-                    (str -> createHealthDietLabel(str, HdLabelType.DIETS)),
+                    (str -> createHealthDietLabel(str, HdLabelType.Types.diets.name())),
                     label
             ));
         }
 
         if(siteRecipe.getDiets().size() == 0) {
             healthDietLabels.add(SiteToEntityAdapter.findOrCreate(
-                    HealthDietLabel.DEFAULT_DIET_NAME,
+                    HealthDietLabel.Defaults.healths.getTitle(),
                     healthDietLabelsService.getHdLabelRepository()::getByLabel,
-                    (str -> createHealthDietLabel(str, HdLabelType.DIETS)),
-                    HealthDietLabel.DEFAULT_DIET_NAME
+                    (str -> createHealthDietLabel(str, HdLabelType.Types.diets.name())),
+                    HealthDietLabel.Defaults.healths.getTitle()
             ));
         }
 

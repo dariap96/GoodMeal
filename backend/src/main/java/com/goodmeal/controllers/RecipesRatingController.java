@@ -1,5 +1,6 @@
 package com.goodmeal.controllers;
 
+import com.goodmeal.DTOs.RecipesRatingDTO;
 import com.goodmeal.entities.RecipesRating;
 import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.RecipesRatingService;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/recipe_rating")
-@CrossOrigin(origins = "*")
 public class RecipesRatingController {
     public static final int MAX_REVIEWS = 30;
 
@@ -47,9 +46,10 @@ public class RecipesRatingController {
         }
 
         RecipesRating rating =
-                recipesRatingService.getRating(
-                        usersService.getUserByLogin(userLogin).getId(),
-                        ratingDTO.getRecipeId()
+                RecipesRatingDTO.toRecipesRating(
+                        recipesService,
+                        usersService,
+                        ratingDTO
                 );
 
         boolean exists = recipesRatingService.getRating(rating.getRecipe().getId(), rating.getUser().getId()) != null;

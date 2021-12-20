@@ -42,7 +42,6 @@ public class RecipesService implements IService<Recipe>{
 
     @Override
     public boolean existsById(Long id) {
-        return (recipesRepository.existsById(id));
-
+        return recipesRepository.existsById(id);
     }
 }

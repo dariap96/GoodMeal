@@ -15,11 +15,11 @@ import java.util.Set;
 @Table(name = "HD_Label_Types", schema = "goodmeal")
 public class HdLabelType {
 
-    public static final String CAUTIONS = "cautions";
-    public static final String DIETS = "diets";
-    public static final String HEALTHS = "healths";
-
-
+    public enum Types {
+        cautions,
+        diets,
+        healths
+    }
 
     @Id
     @JsonApiId

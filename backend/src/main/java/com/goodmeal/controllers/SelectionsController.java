@@ -17,7 +17,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/edit-selections")
 public class SelectionsController {
 
