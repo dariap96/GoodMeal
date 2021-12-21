@@ -17,34 +17,6 @@ body {
     font-family:"Courier New",monospace;
 }
 
-.topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-
-}
-
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.topnav input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
-
-.topnav .search-container button:hover {
-    background: #ccc;
-}
-
 @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text], .topnav .search-container button {
         float: none;
@@ -66,33 +38,6 @@ body {
 
     font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
-
-.custom-dropdown select,ng-form {
-    position: center;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 3px;
-}
-
-.custom-dropdown select,ng-select {
-    cursor:default;
-    background-color: transparent;
-    color: #2a2a2b;
-    font-size: inherit;
-    border: #e9e9e9;
-    margin: 0;
-    border-radius: 0.2px;
-    text-indent: 1px;
-    text-overflow: '';
-    -webkit-appearance: button-bevel;
-    size: 1px;
-}
-
-.nav-links a {
-    color: white;
-}
-
-
 
 .component-page-header {
     font-size: 7px;
@@ -173,9 +118,28 @@ body {
     height: 5000px;
     max-height: 5000px;
     overflow: hidden;
-
     top: 0;
     left: 0;
     background-size: 600% 100%;
     background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
 }
+
+.a {
+    margin-top: 0.5px
+}
+
+.mat-card {
+    width:90%;
+    margin:auto;
+    padding:50px;
+    margin-top: 60px;
+    height: max-content
+}
+
+.table {
+    font-family: Roboto,sans-serif;
+    text-align: right;
+    width:300px;
+    margin-left: 200px;
+}
+

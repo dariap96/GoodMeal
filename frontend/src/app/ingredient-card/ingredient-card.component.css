@@ -17,34 +17,6 @@ body {
     font-family:"Courier New",monospace;
 }
 
-.topnav a {
-    float: left;
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-
-}
-
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.topnav input[type=text] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
-
-.topnav .search-container button:hover {
-    background: #ccc;
-}
-
 @media screen and (max-width: 600px) {
     .topnav a, .topnav input[type=text], .topnav .search-container button {
         float: none;
@@ -67,31 +39,7 @@ body {
     font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
 }
 
-.custom-dropdown select,ng-form {
-    position: center;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 3px; /* demo only */
-}
 
-.custom-dropdown select,ng-select {
-    cursor:default;
-    background-color: transparent;
-    color: #2a2a2b;
-    font-size: inherit;
-
-    border: #e9e9e9;
-    margin: 0;
-    border-radius: 0.2px;
-    text-indent: 1px;
-    text-overflow: '';
-    -webkit-appearance: button-bevel;
-    size: 1px;
-}
-
-.nav-links a {
-    color: white;
-}
 
 .logo {
     font-size: 25px;
@@ -99,6 +47,7 @@ body {
     position: relative;
     margin-right: 675px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin-top: 5px
 
 }
 
@@ -129,6 +78,11 @@ body {
     font-size: 17px;
     position: relative;
 }
+
+.a {
+    margin-top: 0.5px
+}
+
 
 .a:hover {
     background-color: whitesmoke;
@@ -162,67 +116,14 @@ body {
     margin-left: 5px;
 }
 
-.bounceball {
-    position: relative;
-    display: inline-block;
-    height: 37px;
-    width: 15px;
-    animation-iteration-count: 5;
+.mat-card{
+    display:flex;
+    width:60%;
+    margin:auto;
+    padding:60px;
+    margin-top: 160px;
+    height: max-content
 }
-
-.bounceball:before {
-    position: absolute;
-    content: '';
-    display: block;
-    top: 0;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #fbae17;
-    transform-origin: 50%;
-    animation: bounce 500ms alternate infinite ease;
-}
-
-@keyframes bounce {
-    0% {
-        top: 30px;
-        height: 5px;
-        border-radius: 60px 60px 20px 20px;
-        transform: scaleX(2);
-    }
-    35% {
-        height: 15px;
-        border-radius: 50%;
-        transform: scaleX(1);
-    }
-    100% {
-        top: 0;
-    }
-}
-
-.bg-pan-left {
-    -webkit-animation: bg-pan-left 10s infinite both;
-    animation: bg-pan-left 10s infinite both;
-}
-
-@-webkit-keyframes bg-pan-left {
-    0% {
-        background-position: 80% 50%;
-    }
-    100% {
-        background-position: 0 60%;
-    }
-}
-
-@keyframes bg-pan-left {
-    0% {
-        background-position: 90% 50%;
-    }
-    100% {
-        background-position: 0 50%;
-    }
-}
-
 .gradient-hor {
     position: absolute;
     width: 100%;
@@ -232,5 +133,17 @@ body {
     left: 0;
     background-size: 600% 100%;
     background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
-//animation: bg-pan-left;
+}
+.nutritiens {
+    margin-left: 100px;
+    font-size: 20px;
+    width: 300px
+}
+
+.user-img {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px; margin-top:10px
+}
+
+.mat-card-content {
+    margin-top: 20px
 }

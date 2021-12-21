@@ -1,0 +1,108 @@
+
+
+.navig{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 2000;
+    background-color: #FFFFFF;
+    padding: 7px;
+    width:100%;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between
+}
+
+.logo {
+    font-size: 25px;
+    padding: 7px;
+    position: relative;
+    margin-left:30px;
+}
+
+.a:hover{
+    background-color: whitesmoke;
+}
+
+.component-page-header {
+    max-height: 80px;
+    background-attachment: scroll;
+    color: black;
+    font-weight: 200;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: whitesmoke;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;}
+
+
+
+body {
+    position: relative;
+    background: white;
+    color: black;
+    text-align: left;
+    margin:0;
+    width: 100%;
+    height: 100vh;
+    font-family: "Roboto","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
+
+.wrap {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    padding:0;
+    font-size: 2px;
+    color: white;
+    position: relative;
+
+}
+
+.gradient-hor {
+    position: absolute;
+    width: 100%;
+    height: max-content;
+    min-height: 1000px;
+    top: 0;
+    left: 0;
+    background-size: 600% 100%;
+    background-image: linear-gradient(90deg,#6977C9,#F7E3B6,#EEC76D,#95A1DA,#6878CA);
+
+}
+
+.text-focus-in {
+    -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+@keyframes text-focus-in {
+    0% {
+        -webkit-filter: blur(12px);
+        filter: blur(12px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        filter: blur(0px);
+        opacity: 1;
+    }
+}
+

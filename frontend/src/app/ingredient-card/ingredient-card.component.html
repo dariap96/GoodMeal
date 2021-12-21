@@ -17,12 +17,12 @@
 </div>
 
 <nav mat-tab-nav-bar class="navig" [backgroundColor]="background"  mat-align-tabs="end">
-    <div style= "margin-top: 5px" class="logo">GOOD MEAL</div>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/home">Home</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/user-profile">Profile</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="http://localhost:8080/selections">Selections</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#about">About</a>
-    <a mat-tab-link class="a" [active]="false" style= "margin-top: 0.5px" href="#contact">Contact</a>
+    <div class="logo">GOOD MEAL</div>
+    <a mat-tab-link class="a" [active]="false"  href="http://localhost:8080/home">Home</a>
+    <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/user-profile">Profile</a>
+    <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/selections">Selections</a>
+    <a mat-tab-link class="a" [active]="false"  href="#about">About</a>
+    <a mat-tab-link class="a" [active]="false" href="#contact">Contact</a>
 </nav>
 
 <div  class="gradient-hor bg-pan-left">
@@ -30,18 +30,18 @@
         <div  class="docs-primary-header component-page-header h1"   _ngcontent-ugx-c129="" style="height:30px">{{ingredientName}}</div>
     </header>
 
-    <mat-card class="slide-in-blurred-right" style="display:flex;width:60%;margin:auto;padding:60px;margin-top: 160px;height: max-content" tabindex="0">
+    <mat-card class="slide-in-blurred-right" tabindex="0">
         <div class="ingredient-card slide-in-blurred-right" style=" width: 500px; margin-left: 75px;display: flex" >
     <div class="ingredient-img">
-        <img mat-card-xl-image src="{{ ingredientImg }}" class="user-img " style="box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;border-radius: 5px; margin-top:10px" />
+        <img mat-card-xl-image src="{{ ingredientImg }}" class="user-img "/>
     </div>
-            <div class="nutritiens" style="margin-left: 100px;font-size: 20px;width: 300px">
-                <mat-card-content style="margin-top: 20px">Nutritional value per 100g.: </mat-card-content>
-                <mat-card-content style="margin-top: 20px">Energy: {{ ingredientEnergy }} kсal. </mat-card-content>
-                <mat-card-content style="margin-top: 20px">Fat: {{ ingredientFat }} g.</mat-card-content>
-                <mat-card-content style="margin-top: 20px">Protein: {{ ingredientProtein }}</mat-card-content>
-                <mat-card-content style="margin-top: 20px">Carbs: {{ ingredientCarbs }} g.</mat-card-content>
-                <mat-card-content style="margin-top: 20px">Fiber: {{ ingredientFiber }} g.</mat-card-content>
+            <div class="nutritiens">
+                <mat-card-content>Nutritional value per 100g.: </mat-card-content>
+                <mat-card-content>Energy: {{ ingredientEnergy }} kсal. </mat-card-content>
+                <mat-card-content>Fat: {{ ingredientFat }} g.</mat-card-content>
+                <mat-card-content>Protein: {{ ingredientProtein }}</mat-card-content>
+                <mat-card-content>Carbs: {{ ingredientCarbs }} g.</mat-card-content>
+                <mat-card-content>Fiber: {{ ingredientFiber }} g.</mat-card-content>
             </div>
         </div>
     </mat-card>

@@ -1,5 +1,6 @@
 .example-container {
     margin-left: 8px;
+    text-align: center;
 }
 
 .text-focus-in {
@@ -62,3 +63,19 @@ input {
     text-align: center;
 }
 
+.mat-card {
+    text-align: center;
+    vertical-align: middle;
+    margin:auto;
+    margin-top:180px;
+    width:50%;
+    position:center;
+    border-radius:20px;
+    padding:80px;
+    box-shadow: #d4d4d4
+}
+.mat-stroked-button {
+    text-align: center;
+    position: center;
+    margin-top: 20px;
+}
