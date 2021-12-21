@@ -50,39 +50,11 @@
             <p></p>
             <mat-error style="font-size: 12px;" *ngIf="showDifferentPasswordsLabel">*passwords must match</mat-error>
         </div>
+        <br>
+        <div class="example-container" *ngIf="adminAccess" style="text-align: center;position:center;margin-top:20px;">
+            <button style="text-align: center;position: center;margin-top: 10px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Open admin panel" (click)="openAdminPanel()">Open admin panel</button>
+        </div>
 </mat-card>
-
-    <div style="display:flex;flex-wrap: nowrap;margin-left: 40px">
-        <div class="users-list" *ngIf="adminAccess" style="margin-top:30px">
-            <div class="card-body">
-                <table class="table mat-table-sticky">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th ma scope="col">#</th>
-                        <th scope="col">Login</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Surname</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let user of usersList.data">
-                        <td>{{ user.id }}</td>
-                        <td><a href="http://localhost:8080/user-card/{{user.id}}">{{ user.attributes.login }}</a></td>
-                        <td>{{ user.attributes.name }}</td>
-                        <td>{{ user.attributes.surname }}</td>
-                        <td><button  style="text-align: center;border-radius: 3px;position: center;margin-top: 5px;" class="mat-elevation-z1" mat-stroked-button type="submit" name="Submit" value="Give admin access" (click)="grantAdminAccess(user.attributes.login)">Grant admin access</button></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div style="display:flex;flex-wrap: nowrap;margin-left: 40px">
-        <div class="update" *ngIf="adminAccess" style="margin-top:30px">
-            <a href="http://localhost:8080/recipe-update-page">Update Data</a>
-        </div>
-    </div>
 
 </div>
 </body>

@@ -33,6 +33,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {UserCardComponent} from "./user-card/user-card.component";
 import {RecipeUpdateComponent} from "./recipe-update/recipe-update.component";
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 
 @NgModule({
     declarations: [
@@ -46,6 +47,7 @@ import {RecipeUpdateComponent} from "./recipe-update/recipe-update.component";
         SelectionCardComponent,
         UserProfileComponent,
         UserCardComponent,
+        AdminPanelComponent,
         ReviewComponent,
         RecipeUpdateComponent
     ],

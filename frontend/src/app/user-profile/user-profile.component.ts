@@ -78,12 +78,8 @@ export class UserProfileComponent implements OnInit {
         }
     }
 
-    getUserReviews(userLogin : string) {
-        return this.service.getUserReviews(userLogin)
-    }
-
-    removeReview(rating : RecipeRatingInfo) {
-        return this.service.removeReviewByAdmin(rating)
+    openAdminPanel() {
+        this.router.navigate(["/admin-panel"]);
     }
 
     grantAdminAccess(login: String) {

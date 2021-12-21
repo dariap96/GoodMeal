@@ -15,6 +15,7 @@ import { AppComponent } from "./app.component";
 import { UserCardComponent } from "./user-card/user-card.component";
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {RecipeUpdateComponent} from "./recipe-update/recipe-update.component";
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 
 const routes: Routes = [
     { path: "login", component: LoginComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: "selections", component: SelectionsPageComponent },
     { path: "user-profile", component: UserProfileComponent },
     { path: "user-card/:id", component: UserCardComponent },
+    { path: "admin-panel", component: AdminPanelComponent },
     { path: "recipe_review/:id", component: ReviewComponent },
     { path: "recipe-update-page", component: RecipeUpdateComponent}
 ];
