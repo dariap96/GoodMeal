@@ -27,7 +27,7 @@ export class UserCardComponent implements OnInit {
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
-            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+            this.activeUser = data;
 
             for(let role of this.activeUser.roles) {
                 if(role == "ADMIN") {
@@ -36,13 +36,13 @@ export class UserCardComponent implements OnInit {
             }
 
             if(this.adminAccess) {
-                this.service.getUserByAdmin(this.selectedUserId).subscribe( data => {
-                    this.selectedUser = ConvertUserInfo.toUserInfo(data.toString());
+                this.service.getUserByAdmin(this.selectedUserId).subscribe( user => {
+                    this.selectedUser = user;
 
                     console.log(this.selectedUser.bday);
 
-                    this.service.getUserReviews(this.selectedUser.login).subscribe(data => {
-                        this.selectedUsersRatings = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString())
+                    this.service.getUserReviews(this.selectedUser.login).subscribe(userReviews => {
+                        this.selectedUsersRatings = userReviews;
                     });
                 });
             }

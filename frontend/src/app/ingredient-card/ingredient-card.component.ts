@@ -26,7 +26,7 @@ export class IngredientCardComponent implements OnInit {
 
     ngOnInit() {
         this.service.getIngredientById(this.ingredientId).subscribe( data => {
-            this.selectedIngredient = ConvertIngredient.toIngredient(data.toString());
+            this.selectedIngredient = data;
             this.ingredientName = this.selectedIngredient.data.attributes.name;
             this.ingredientEnergy = this.selectedIngredient.data.attributes.energy;
             this.ingredientFat = this.selectedIngredient.data.attributes.fat;

@@ -21,10 +21,10 @@ export class SelectionsPageComponent implements OnInit {
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
-            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+            this.activeUser = data;
 
-            this.service.getUserSelections(this.activeUser.login).subscribe(data => {
-                this.userSelections = ConvertSelections.toSelections(data.toString());
+            this.service.getUserSelections(this.activeUser.login).subscribe(selectionsData => {
+                this.userSelections = selectionsData;
             });
         });
     }
@@ -44,7 +44,7 @@ export class SelectionsPageComponent implements OnInit {
 
     refreshData() {
         this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-            this.userSelections = ConvertSelections.toSelections(data.toString());
+            this.userSelections = data;
         });
     }
 }

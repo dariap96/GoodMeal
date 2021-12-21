@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
-            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+            this.activeUser = data;
             this.activeUserBdayDay = new Date(this.activeUser.bday.toString()).getDate();
             this.activeUserBdayMonth = new Date(this.activeUser.bday.toString()).getMonth() + 1; //because january - 0-month etc
             this.activeUserBdayYear = new Date(this.activeUser.bday.toString()).getFullYear();
@@ -43,11 +43,11 @@ export class UserProfileComponent implements OnInit {
             }
 
             if(this.adminAccess) {
-                this.service.getAllUsers().subscribe( data => {
-                    this.usersList = ConvertUsers.toUsers(data.toString());
+                this.service.getAllUsers().subscribe( users => {
+                    this.usersList = users;
                 });
-                this.service.getUserReviews(this.activeUser.login).subscribe(data => {
-                    this.usersRatings = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString())
+                this.service.getUserReviews(this.activeUser.login).subscribe(userReviews => {
+                    this.usersRatings = userReviews;
                 });
             }
         });

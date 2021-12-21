@@ -54,7 +54,7 @@ export class RecipeCardComponent implements OnInit {
         // })
 
         this.service.getRecipeById(this.recipeId).subscribe( data => {
-            this.selectedRecipe = ConvertRecipe.toRecipe(data.toString());
+            this.selectedRecipe = data;
 
             this.recipeName = this.selectedRecipe.data.attributes.name;
             this.recipeCookTime = this.selectedRecipe.data.attributes.time;
@@ -63,7 +63,7 @@ export class RecipeCardComponent implements OnInit {
         });
 
         this.service.getIngredientsByRecipeId(this.recipeId).subscribe( data => {
-            this.relatedIngredients = ConvertIngredients.toIngredients(data.toString());
+            this.relatedIngredients = data;
         });
 
         this.service.getRecipeRatingsById(this.recipeId).subscribe(data => {
@@ -71,20 +71,20 @@ export class RecipeCardComponent implements OnInit {
         });
 
         this.service.getLabelsByRecipeId(this.recipeId).subscribe(data => {
-            this.recipeLables = ConvertLabels.toLabels(data.toString());
+            this.recipeLables = data;
         })
 
         this.service.getUserInfo().subscribe( data => {
-            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+            this.activeUser = data;
 
-            this.service.getUserSelections(this.activeUser.login).subscribe( data => {
-                this.userSelections = ConvertSelections.toSelections(data.toString());
+            this.service.getUserSelections(this.activeUser.login).subscribe( selectionsData => {
+                this.userSelections = selectionsData;
             });
         });
 
         this.service.getReviews(this.recipeId).subscribe(
             data => {
-                this.reviews = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString());
+                this.reviews = data;
             }
         );
     }

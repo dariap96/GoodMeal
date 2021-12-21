@@ -23,8 +23,8 @@ export class SelectionCardComponent implements OnInit {
     ngOnInit() {
         forkJoin(this.service.getSelectionById(this.selectionId),this.service.getRecipeSetForSelectionById(this.selectionId)).subscribe(
             ([selectionById, recipeSetForSelection]) => {
-                this.selectedSelection = ConvertSelection.toSelection(selectionById.toString());
-                this.recipeSet = ConvertRecipes.toRecipes(recipeSetForSelection.toString());
+                this.selectedSelection = selectionById;
+                this.recipeSet = recipeSetForSelection;
             }
         )
     }

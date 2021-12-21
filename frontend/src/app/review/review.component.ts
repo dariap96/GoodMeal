@@ -22,7 +22,7 @@ export class ReviewComponent implements OnInit {
 
     ngOnInit() {
         this.service.getUserdata().subscribe( data => {
-            this.userLogin = ConvertUser.toUser(data.toString()).username;
+            this.userLogin = data.username;
         });
     }
 

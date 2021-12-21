@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { NgForm } from '@angular/forms';
 import {ConvertUser, ConvertUserInfo, User, UserInfo} from '../model/User'
-import { HttpErrorResponse } from '@angular/common/http';
-import {RecipeRating} from "../model/RecipeRating";
 import {ConvertDishes, Dishes} from "../model/Dishes";
 import {ConvertMeals, Meals} from "../model/Meals";
 import {ConvertCuisines, Cuisines} from "../model/Cuisines";
 import {forkJoin} from "rxjs";
-import {ConvertLabels} from "../model/Labels";
-import {ConvertIngredients} from "../model/Ingredients";
-import {ConvertRecipes} from "../model/Recipes";
 import {UpdateData} from "../model/UpdateData";
-import {query} from "@angular/animations";
 
 @Component({
     selector: 'app-recipe-update',
@@ -40,7 +33,7 @@ export class RecipeUpdateComponent implements OnInit {
         forkJoin(this.service.getUserInfo(), this.service.getDishes(),this.service.getMeals(), this.service.getCuisines())
             .subscribe(([userInfo,dishesList,mealsList,cuisinesList]) =>
             {
-                this.activeUser = ConvertUserInfo.toUserInfo(userInfo.toString());
+                this.activeUser = userInfo;
                 for(let role of this.activeUser.roles) {
                     if(role == "ADMIN") {
                         this.adminAccess = true;
@@ -48,9 +41,9 @@ export class RecipeUpdateComponent implements OnInit {
                 }
 
                 if(this.adminAccess) {
-                    this.dishesList = ConvertDishes.toDishes(dishesList.toString());
-                    this.mealsList = ConvertMeals.toMeals(mealsList.toString());
-                    this.cuisinesList = ConvertCuisines.toCuisines(cuisinesList.toString());
+                    this.dishesList = dishesList;
+                    this.mealsList = mealsList;
+                    this.cuisinesList = cuisinesList;
                 }
             })
 

@@ -55,45 +55,44 @@ export class HomeComponent implements OnInit {
         this.loading = true;
 
         this.service.getUserdata().subscribe( data => {
-            this.userdata = ConvertUser.toUser(data.toString());
+            this.userdata = data;
         });
 
         this.service.getDishes().subscribe(data => {
-            this.dishesList = ConvertDishes.toDishes(data.toString());
+            this.dishesList = data;
         });
 
         this.service.getMeals().subscribe( data => {
-            this.mealsList = ConvertMeals.toMeals(data.toString());
-
+            this.mealsList = data;
         });
 
         this.service.getLabels().subscribe(  data => {
-            this.labelsList = ConvertLabels.toLabels(data.toString());
+            this.labelsList = data;
         });
 
         this.service.getFirstTenIng().subscribe( data => {
-            this.visibleIng = ConvertIngredients.toIngredients(data.toString());
+            this.visibleIng = data;
         });
 
         this.service.getCuisines().subscribe( data => {
-            this.cuisinesList = ConvertCuisines.toCuisines(data.toString());
+            this.cuisinesList = data;
         });
 
         this.service.getFirstTenIng().subscribe( data => {
-            this.ingredientsList = ConvertIngredients.toIngredients(data.toString());
+            this.ingredientsList = data;
         })
 
         this.service.getFirstHundredRecipes().subscribe( data => {
-            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
+            this.visibleRecipes = data;
             this.loading = false;
         });
     }
 
-    ngAfterViewInit() {
-        this.service.getIngredients().subscribe(data => {
-            this.ingredientsList = ConvertIngredients.toIngredients(data.toString());
-        });
-    }
+    // ngAfterViewInit() {
+    //     this.service.getIngredients().subscribe(data => {
+    //         this.ingredientsList = data;
+    //     });
+    // }
 
     displayFn(ingredient : Ingredients["data"]): string {
         return ingredient && ingredient["attributes"].name ? ingredient["attributes"].name : '';

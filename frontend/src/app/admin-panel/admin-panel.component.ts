@@ -23,7 +23,7 @@ export class AdminPanelComponent implements OnInit {
 
     ngOnInit() {
         this.service.getUserInfo().subscribe( data => {
-            this.activeUser = ConvertUserInfo.toUserInfo(data.toString());
+            this.activeUser = data;
 
             for(let role of this.activeUser.roles) {
                 if(role == "ADMIN") {
@@ -32,11 +32,11 @@ export class AdminPanelComponent implements OnInit {
             }
 
             if(this.adminAccess) {
-                this.service.getAllUsers().subscribe( data => {
-                    this.usersList = ConvertUsers.toUsers(data.toString());
+                this.service.getAllUsers().subscribe( users => {
+                    this.usersList = users;
                 });
-                this.service.getUserReviews(this.activeUser.login).subscribe(data => {
-                    this.usersRatings = ConvertRecipesRatingsArray.toRecipesRatingsArray(data.toString())
+                this.service.getUserReviews(this.activeUser.login).subscribe(reviews => {
+                    this.usersRatings = reviews;
                 });
             }
         });
