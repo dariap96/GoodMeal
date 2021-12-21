@@ -13,40 +13,40 @@
 
                <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
                   <mat-label>Your login</mat-label>
-                  <input matInput type="text" ngModel name="login" class="form-control" id="login" placeholder="Login" required>
+                  <input matInput type="text" ngModel name="login" class="form-control" id="login" minlength="3" placeholder="Login" required>
                    <mat-icon matSuffix>face</mat-icon>
                </mat-form-field>
 
                <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
                   <mat-label for="password">Your password</mat-label>
-                  <input matInput type="text" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+                  <input matInput type="text" ngModel name="password" class="form-control" id="password" minlength="3" placeholder="Password" required>
                   <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                </mat-form-field>
                <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
                   <mat-label for="name">Your name</mat-label>
-                  <input matInput type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+                  <input matInput type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" minlength="2" required>
                    <mat-icon matSuffix>face</mat-icon>
                </mat-form-field>
                <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
                   <mat-label for="surname">Your surname</mat-label>
-                  <input matInput type="text" ngModel name="surname" class="form-control" id="surname" placeholder="Surname" required>
+                  <input matInput type="text" ngModel name="surname" class="form-control" id="surname" placeholder="Surname" minlength="2" required>
                   <mat-icon matSuffix>face</mat-icon>
                </mat-form-field>
                <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
                   <mat-label for="email">Your Email Address</mat-label>
-                  <input matInput type="text" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+                  <input matInput type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" required>
                   <mat-icon matSuffix>mail_outline</mat-icon>
                </mat-form-field>
                <mat-form-field appearance="outline" class="form-group" style="margin-top: 5px">
-                  <mat-label for="bday">Your birthday date</mat-label>
-                  <input matInput type="date" ngModel name="bday" class="form-control"  id="bday" placeholder="Birthday" required>
+                  <mat-label>Your birthday date</mat-label>
+                  <input matInput type="date" name="bday" class="form-control" id="bday" placeholder="Birthday" [(ngModel)]="bday" required>
 
                </mat-form-field>
                <div class="modal-footer">
 <!--                   <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Register!</button>-->
-                   <button [disabled]="addForm.invalid" style="text-align: center;position: center;margin-top: 5px;" mat-stroked-button type="submit" class="mat-elevation-z1" data-dismiss="modal" value="Register" >Register!</button>
+                   <button [disabled]="addForm.invalid" style="text-align: center;position: center;margin-top: 5px;" mat-stroked-button type="submit" class="mat-elevation-z1" data-dismiss="modal" value="Register">Register!</button>
                    <a id="add-user-form" style="position: center;margin-top: 5px;margin-left:10px " mat-stroked-button type="button" class="mat-elevation-z1"  href = "http://localhost:8080/login">Go back</a>
                </div>
          </div>
