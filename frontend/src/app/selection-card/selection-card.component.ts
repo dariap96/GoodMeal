@@ -27,16 +27,20 @@ export class SelectionCardComponent implements OnInit {
                 this.recipeSet = ConvertRecipes.toRecipes(recipeSetForSelection.toString());
             }
         )
-        // this.service.getSelectionById(this.selectionId).subscribe( data => {
-        //     this.selectedSelection = ConvertSelection.toSelection(data.toString());
-        // });
-        //
-        // this.service.getRecipeSetForSelectionById(this.selectionId).subscribe( data => {
-        //     this.recipeSet = ConvertRecipes.toRecipes(data.toString());
-        // });
     }
 
     deleteFromSelection(recipeId: number, selectionId: number) {
-        this.service.removeRecipeFromSelection(recipeId, selectionId).subscribe( data => {});
+        this.service.removeRecipeFromSelection(recipeId, selectionId).subscribe( data => {
+            this.refreshData();
+        });
+    }
+
+    refreshData() {
+        forkJoin(this.service.getSelectionById(this.selectionId),this.service.getRecipeSetForSelectionById(this.selectionId)).subscribe(
+            ([selectionById, recipeSetForSelection]) => {
+                this.selectedSelection = ConvertSelection.toSelection(selectionById.toString());
+                this.recipeSet = ConvertRecipes.toRecipes(recipeSetForSelection.toString());
+            }
+        )
     }
 }

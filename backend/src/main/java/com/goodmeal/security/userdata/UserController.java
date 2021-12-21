@@ -56,7 +56,6 @@ public class UserController {
         return user;
     }
 
-    @Transactional
     @RequestMapping(value = "/grant-admin-access/{login}", method = RequestMethod.GET)
     public boolean grantAdminAccess(HttpServletRequest request, @PathVariable String login) {
         User user = usersService.getUserByLogin(login);
@@ -69,7 +68,6 @@ public class UserController {
         return true;
     }
 
-    @Transactional
     @RequestMapping(value = "/disable-admin-access/{login}", method = RequestMethod.GET)
     public boolean disableAdminAccess(HttpServletRequest request, @PathVariable String login) {
         User user = usersService.getUserByLogin(login);
@@ -90,7 +88,6 @@ public class UserController {
         return true;
     }
 
-    @Transactional
     @RequestMapping(value = "/update-password", method = RequestMethod.PUT)
     public boolean updateUserPassword(HttpServletRequest request, @RequestBody String newPassword) {
         User user = usersService.getUserByLogin(Utils.getLoginFromPrincipal(request));
@@ -100,7 +97,6 @@ public class UserController {
         return true;
     }
 
-    @Transactional
     @RequestMapping(value = "/update-password-by-admin/{login}", method = RequestMethod.PUT)
     public boolean updateUserPasswordByAdmin(@PathVariable String login, @RequestBody String newPassword) {
         User user = usersService.getUserByLogin(login);

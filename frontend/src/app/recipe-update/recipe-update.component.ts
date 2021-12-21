@@ -88,6 +88,6 @@ export class RecipeUpdateComponent implements OnInit {
     }
 
     Close() {
-        this.router.navigate(['/user-profile']);
+        this.router.navigate(['/admin-panel']);
     }
 }
