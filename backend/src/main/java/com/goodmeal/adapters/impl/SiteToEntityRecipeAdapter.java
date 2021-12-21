@@ -1,9 +1,10 @@
 package com.goodmeal.adapters.impl;
 
 import com.goodmeal.adapters.SiteToEntityAdapter;
+import com.goodmeal.dataloader.impl.EdamamDataLoader;
 import com.goodmeal.entities.*;
 
-import com.goodmeal.utils.DataLoader;
+import com.goodmeal.dataloader.DataLoader;
 import com.goodmeal.services.impl.*;
 import com.srcsite.siteDataBase.siteIngredientDataBase.SiteIngredientBase;
 import com.srcsite.siteDataBase.siteRecipeDataBase.SiteIngredient;
@@ -18,15 +19,15 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe, Recipe> {
 
-    private final RecipesService recipesService;
-    private final IngredientsService ingredientsService;
-    private final CuisinesService cuisinesService;
-    private final DishesService dishesService;
-    private final MealsService mealsService;
-    private final HealthDietLabelsService healthDietLabelsService;
-    private final HdLabelTypesService hdLabelTypesService;
-    private final IngredientsToRecipesService ingredientsToRecipesService;
-    private final APIFoodKeysService apiFoodKeysService;
+    private RecipesService recipesService;
+    private IngredientsService ingredientsService;
+    private CuisinesService cuisinesService;
+    private DishesService dishesService;
+    private MealsService mealsService;
+    private HealthDietLabelsService healthDietLabelsService;
+    private HdLabelTypesService hdLabelTypesService;
+    private IngredientsToRecipesService ingredientsToRecipesService;
+    private APIFoodKeysService apiFoodKeysService;
 
     private String getFirstOrSetDefault(String def, List<String> list) {
         if(list != null && list.size() != 0){
@@ -37,7 +38,7 @@ public class SiteToEntityRecipeAdapter implements SiteToEntityAdapter<SiteRecipe
 
     private Ingredient createIngredient(SiteIngredient siteIngredient) {
         // getting new site ingredients
-        SiteIngredientBase siteIngredientBase = DataLoader.loadIngredients(apiFoodKeysService, siteIngredient.getName());
+        SiteIngredientBase siteIngredientBase = new EdamamDataLoader().loadIngredients(apiFoodKeysService, siteIngredient.getName());
 
         // getting or creating new ingredients
         List<Ingredient> ingredients =

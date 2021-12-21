@@ -3,10 +3,11 @@ package com.goodmeal.controllers;
 import com.goodmeal.DTOs.RecipesRatingDTO;
 import com.goodmeal.DTOs.UpdateRecipesDTO;
 import com.goodmeal.adapters.impl.SiteToEntityRecipeBaseAdapter;
+import com.goodmeal.dataloader.impl.EdamamDataLoader;
 import com.goodmeal.entities.RecipesRating;
 import com.goodmeal.entities.User;
 import com.goodmeal.services.impl.*;
-import com.goodmeal.utils.DataLoader;
+import com.goodmeal.dataloader.DataLoader;
 import com.goodmeal.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -119,13 +120,10 @@ public class AdminController {
                         apiFoodKeysService
                 );
 
-        return DataLoader.loadRecipes(
+        return new EdamamDataLoader().loadRecipes(
                 apiRecipeKeysService,
                 adapter,
-                updateRecipesDTO.getQuery(),
-                updateRecipesDTO.getMeal(),
-                updateRecipesDTO.getDish(),
-                updateRecipesDTO.getCuisine()
+                updateRecipesDTO
         );
     }
 

@@ -24,8 +24,3 @@ public class SiteRecipeBase {
     }
 }
 
-@Getter
-class Hit {
-
-    private SiteRecipe recipe;
-}
