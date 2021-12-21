@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import {ConvertUserInfo, ConvertUsers, UserInfo, Users} from "../model/User";
-import {ThemePalette} from "@angular/material/core";
-import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
-import {RestapiService} from "../restapi.service";
-import {Router} from "@angular/router";
+import { UserInfo, Users } from "../model/User";
+import { ThemePalette } from "@angular/material/core";
+import { RecipeRatingInfo } from "../model/RecipesRatingsInfo";
+import { RestapiService} from "../restapi.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-admin-panel',

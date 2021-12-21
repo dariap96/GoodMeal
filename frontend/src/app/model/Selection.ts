@@ -43,13 +43,3 @@ export interface UserData {
     id:   string;
     type: string;
 }
-
-export class ConvertSelection {
-    public static toSelection(json: string): Selection {
-        return JSON.parse(json);
-    }
-
-    public static selectionToJson(value: Selection): string {
-        return JSON.stringify(value);
-    }
-}

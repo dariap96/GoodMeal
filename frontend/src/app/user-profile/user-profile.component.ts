@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ConvertUserInfo, ConvertUsers, UserInfo, Users } from "../model/User";
+import { UserInfo, Users } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import { ThemePalette } from "@angular/material/core";
 import { Router } from "@angular/router";
 import { baseUrl } from "../configuration";
-import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRatingsInfo";
+import { RecipeRatingInfo } from "../model/RecipesRatingsInfo";
 
 @Component({
     selector: 'app-user-profile',
@@ -25,7 +25,6 @@ export class UserProfileComponent implements OnInit {
     activeUserBdayYear : number;
     background : ThemePalette = undefined;
     usersRatings : RecipeRatingInfo[];
-
 
     constructor(private service : RestapiService, private router : Router ) {}
 

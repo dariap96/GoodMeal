@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
-import { ConvertIngredient, Ingredient } from "../model/Ingredient";
-import {ThemePalette} from "@angular/material/core";
+import { Ingredient } from "../model/Ingredient";
+import { ThemePalette } from "@angular/material/core";
 
 @Component({
     selector: 'app-ingredient-card',

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {ConvertUser, ConvertUserInfo, User, UserInfo} from '../model/User'
-import {ConvertDishes, Dishes} from "../model/Dishes";
-import {ConvertMeals, Meals} from "../model/Meals";
-import {ConvertCuisines, Cuisines} from "../model/Cuisines";
-import {forkJoin} from "rxjs";
-import {UpdateData} from "../model/UpdateData";
+import { Router } from '@angular/router';
+import { UserInfo } from '../model/User'
+import { Dishes } from "../model/Dishes";
+import { Meals } from "../model/Meals";
+import { Cuisines } from "../model/Cuisines";
+import { forkJoin } from "rxjs";
+import { UpdateData } from "../model/UpdateData";
 
 @Component({
     selector: 'app-recipe-update',

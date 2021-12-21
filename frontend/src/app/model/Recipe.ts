@@ -36,13 +36,3 @@ export interface Relationships {
 export enum Type {
     Recipe = "recipe",
 }
-
-export class ConvertRecipe {
-    public static toRecipe(json : string) : Recipe {
-        return JSON.parse(json);
-    }
-
-    public static recipeToJson(value : Recipe) : string {
-        return JSON.stringify(value);
-    }
-}

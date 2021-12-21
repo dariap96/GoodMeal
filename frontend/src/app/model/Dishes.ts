@@ -35,13 +35,3 @@ export interface RecipesLinks {
 export enum Type {
     Dish = "dish",
 }
-
-export class ConvertDishes {
-    public static toDishes(json : string) : Dishes {
-        return JSON.parse(json);
-    }
-
-    public static dishesToJson(value : Dishes) : string {
-        return JSON.stringify(value);
-    }
-}

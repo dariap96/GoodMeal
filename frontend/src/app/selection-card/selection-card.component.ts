@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
-import { Selection, ConvertSelection } from "../model/Selection";
-import { Recipes, ConvertRecipes } from "../model/Recipes";
-import {ThemePalette} from "@angular/material/core";
-import {forkJoin} from "rxjs";
+import { Selection } from "../model/Selection";
+import { Recipes } from "../model/Recipes";
+import { ThemePalette } from "@angular/material/core";
+import { forkJoin } from "rxjs";
 
 @Component({
     selector: 'app-selection-card',
@@ -38,8 +38,8 @@ export class SelectionCardComponent implements OnInit {
     refreshData() {
         forkJoin(this.service.getSelectionById(this.selectionId),this.service.getRecipeSetForSelectionById(this.selectionId)).subscribe(
             ([selectionById, recipeSetForSelection]) => {
-                this.selectedSelection = ConvertSelection.toSelection(selectionById.toString());
-                this.recipeSet = ConvertRecipes.toRecipes(recipeSetForSelection.toString());
+                this.selectedSelection = selectionById;
+                this.recipeSet = recipeSetForSelection;
             }
         )
     }

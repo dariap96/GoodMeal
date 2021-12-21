@@ -1,18 +1,18 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { baseUrl } from "../configuration";
 import { RestapiService } from '../restapi.service';
-import { ConvertDishes, Dishes } from '../model/Dishes';
-import { ConvertMeals, Meals} from "../model/Meals";
-import { ConvertCuisines, Cuisines } from "../model/Cuisines";
-import { ConvertUser, User } from "../model/User";
-import { ConvertRecipes, Recipes } from "../model/Recipes";
-import { ConvertLabels, Labels } from "../model/Labels";
-import { ConvertIngredients, Ingredients } from "../model/Ingredients";
+import { Dishes } from '../model/Dishes';
+import { Meals} from "../model/Meals";
+import { Cuisines } from "../model/Cuisines";
+import { User } from "../model/User";
+import { Recipes } from "../model/Recipes";
+import { Labels } from "../model/Labels";
+import { Ingredients } from "../model/Ingredients";
 import { ThemePalette } from "@angular/material/core";
-import {forkJoin,Observable} from "rxjs";
-import {PageEvent} from '@angular/material/paginator';
-import {FormControl} from "@angular/forms";
-import {map, startWith} from 'rxjs/operators';
+import { Observable } from "rxjs";
+import { PageEvent } from '@angular/material/paginator';
+import { FormControl } from "@angular/forms";
+
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -197,8 +197,8 @@ export class HomeComponent implements OnInit {
 
         console.log(base);
 
-            this.service.getFilteredRecipes(base).subscribe( data => {
-            this.visibleRecipes = ConvertRecipes.toRecipes(data.toString());
+        this.service.getFilteredRecipes(base).subscribe( data => {
+            this.visibleRecipes = data;
         });
     }
 }

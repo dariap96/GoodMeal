@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ConvertSelections, Selections } from "../model/Selections";
-import { ConvertUserInfo, UserInfo } from "../model/User";
+import { Selections } from "../model/Selections";
+import { UserInfo } from "../model/User";
 import { RestapiService } from "../restapi.service";
 import { ThemePalette } from "@angular/material/core";
 

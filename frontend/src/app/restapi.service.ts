@@ -54,8 +54,7 @@ export class RestapiService {
     }
 
     searchRecipes(term: string)  {
-        let headers = this.authHeader;
-        return this.http.get(baseUrl + "/api/recipe?filter[name][EQ]=${term}", {headers, responseType: 'text' as 'json'})
+        return this.http.get(baseUrl + "/api/recipe?filter[name][EQ]=${term}")
     }
 
     getCuisines() : Observable<Cuisines> {
@@ -96,7 +95,7 @@ export class RestapiService {
 
     // понятия не имею зачем оно у Миши так (пока не трогаю)
     getRecipeRatingsById(id: number) {
-        return this.http.get(baseUrl + '/recipe_rating/' + id, {responseType: 'text' as 'json'});
+        return this.http.get(baseUrl + '/recipe_rating/' + id);
     }
 
     addRating(rating: RecipeRating) {
@@ -113,12 +112,11 @@ export class RestapiService {
     }
 
     updatePassword(newPass: string) {
-        let headers = this.authHeader;
-        return this.http.put(baseUrl + '/update-password', newPass, {headers, responseType: 'text' as 'json'});
+        return this.http.put(baseUrl + '/update-password', newPass);
     }
 
     updatePasswordByAdmin(login: string, newPass: string) {
-        return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass, {responseType: 'text' as 'json'});
+        return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass);
     }
 
     //

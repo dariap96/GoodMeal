@@ -23,13 +23,3 @@ export interface DatumLinks {
 export enum Type {
     RecipeRating = "recipe rating"
 }
-
-export class ConvertRecipeRating {
-    public static toRecipeRating(json : string) : RecipeRating {
-        return JSON.parse(json);
-    }
-
-    public static recipeRatingToJson(value : RecipeRating) : string {
-        return JSON.stringify(value);
-    }
-}

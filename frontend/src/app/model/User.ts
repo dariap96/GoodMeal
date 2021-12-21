@@ -12,16 +12,6 @@ export interface Authority {
     authority : string;
 }
 
-export class ConvertUser {
-    public static toUser(json : string) : User {
-        return JSON.parse(json);
-    }
-
-    public static userToJson(value : User) : string {
-        return JSON.stringify(value);
-    }
-}
-
 export interface UserInfo {
     name:    string;
     surname: string;
@@ -30,22 +20,6 @@ export interface UserInfo {
     bday:    Date;
     roles:   string[];
 }
-
-export class ConvertUserInfo {
-    public static toUserInfo(json: string): UserInfo {
-        return JSON.parse(json);
-    }
-
-    public static userInfoToJson(value: UserInfo): string {
-        return JSON.stringify(value);
-    }
-}
-
-// To parse this data:
-//
-//   import { Convert, Users } from "./file";
-//
-//   const users = Convert.toUsers(json);
 
 export interface Users {
     data:  UsersDatum[];
@@ -91,16 +65,3 @@ export interface RoleSetLinks {
     self:    string;
     related: string;
 }
-
-// Converts JSON strings to/from your types
-export class ConvertUsers {
-    public static toUsers(json: string): Users {
-        return JSON.parse(json);
-    }
-
-    public static usersToJson(value: Users): string {
-        return JSON.stringify(value);
-    }
-}
-
-export var currentUser : User;

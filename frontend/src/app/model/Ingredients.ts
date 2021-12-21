@@ -39,13 +39,3 @@ export interface IngredientsSetLinks {
     self:    string;
     related: string;
 }
-
-export class ConvertIngredients {
-    public static toIngredients(json: string): Ingredients {
-        return JSON.parse(json);
-    }
-
-    public static ingredientsToJson(value: Ingredients): string {
-        return JSON.stringify(value);
-    }
-}

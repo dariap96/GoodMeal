@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { RestapiService } from "../restapi.service";
-import { ConvertRecipe, Recipe } from "../model/Recipe";
-import { ConvertIngredients, Ingredients } from "../model/Ingredients";
-import { UserInfo, ConvertUserInfo } from "../model/User";
-import { Selections, ConvertSelections } from "../model/Selections";
-import {ThemePalette} from "@angular/material/core";
-import {ConvertRecipesRatingsArray, RecipeRatingInfo} from "../model/RecipesRatingsInfo";
-import {ConvertLabels, Labels} from "../model/Labels";
-import {forkJoin} from "rxjs";
+import { Recipe } from "../model/Recipe";
+import { Ingredients } from "../model/Ingredients";
+import { UserInfo } from "../model/User";
+import { Selections } from "../model/Selections";
+import { ThemePalette } from "@angular/material/core";
+import { RecipeRatingInfo } from "../model/RecipesRatingsInfo";
+import { Labels } from "../model/Labels";
 
 @Component({
     selector: 'app-recipe-card',
@@ -82,12 +81,11 @@ export class RecipeCardComponent implements OnInit {
             });
         });
 
-        this.service.getReviews(this.recipeId).subscribe(
-            data => {
-                this.reviews = data;
-            }
-        );
+        this.service.getReviews(this.recipeId).subscribe(data => {
+            this.reviews = data;
+        });
     }
+
     selectChangeHandlerSelection(e) {
         this.selectedSelection = e.value;
     }

@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../restapi.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import {ConvertUser} from '../model/User'
 import { HttpErrorResponse } from '@angular/common/http';
-import {RecipeRating} from "../model/RecipeRating";
+import { RecipeRating } from "../model/RecipeRating";
 
 @Component({
     selector: 'app-review',

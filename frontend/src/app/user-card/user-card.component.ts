@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ConvertUserInfo, UserInfo } from "../model/User";
+import { UserInfo } from "../model/User";
 import { RestapiService } from "../restapi.service";
-import { ConvertRecipesRatingsArray, RecipeRatingInfo } from "../model/RecipesRatingsInfo";
-import {ThemePalette} from "@angular/material/core";
+import { RecipeRatingInfo } from "../model/RecipesRatingsInfo";
+import { ThemePalette } from "@angular/material/core";
 
 @Component({
     selector: 'app-user-card',

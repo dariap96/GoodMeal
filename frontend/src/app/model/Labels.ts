@@ -35,13 +35,3 @@ export interface RecipesLinks {
 export enum Type {
     Label = "label",
 }
-
-export class ConvertLabels {
-    public static toLabels(json : string) : Labels {
-        return JSON.parse(json);
-    }
-
-    public static labelsToJson(value : Labels) : string {
-        return JSON.stringify(value);
-    }
-}
