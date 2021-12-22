@@ -91,18 +91,33 @@
   </mat-form-field>
 </form>
 
-<form class="example-form-exclude" >
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Ingredient to exclude</mat-label>
-      <!--input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"-->
-      <mat-select #label (selectionChange)="selectExcludeIng($event)" multiple>
-          <mat-option value="default" hidden></mat-option>
-          <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>
-          </mat-select>
-<!--      /mat-autocomplete-->
-  </mat-form-field>
-</form>
+<!--<form #f="ngForm" class="example-form-exclude" >-->
+<!--  <mat-form-field class="example-full-width" appearance="fill">-->
+<!--    <mat-label>Ingredient to exclude</mat-label>-->
+<!--      <input type="text" matInput [matAutocomplete]="auto" #ingredient="ngModel" [(ngModel)]="currentIng" (ngModelChange)="doFilter()" >-->
+<!--      <mat-autocomplete #auto="matAutocomplete">-->
+<!--      &lt;!&ndash;mat-select #label (selectionChange)="selectExcludeIng($event)" multiple&ndash;&gt;-->
+<!--          <mat-option value="default" hidden></mat-option>-->
+<!--          <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>-->
+<!--          &lt;!&ndash;/mat-select&ndash;&gt;-->
+<!--</mat-autocomplete>-->
+<!--  </mat-form-field>-->
+<!--</form>-->
+    <form #f="ngForm">
+        <mat-form-field>
+            <input matInput placeholder="Joke" [matAutocomplete]="auto" name="joke" #joke="ngModel" [(ngModel)]="currentIng" (ngModelChange)="doFilter()">
+        </mat-form-field>
+
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="
+
+
+let joke of ingredientsList | async" [value]="joke.id">
+                {{joke.attributes.name}}
+            </mat-option>
+        </mat-autocomplete>
+
+    </form>
 
 <button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>
 

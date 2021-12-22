@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {async} from '@angular/core/testing';
 import { baseUrl } from "../configuration";
 import { RestapiService } from '../restapi.service';
 import { Dishes } from '../model/Dishes';
@@ -12,6 +13,12 @@ import { ThemePalette } from "@angular/material/core";
 import { Observable } from "rxjs";
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl } from "@angular/forms";
+import {filter, map, startWith} from "rxjs/operators";
+
+import {Injectable } from '@angular/core'; 7
+import { HttpClient } from '@angular/common/http';
+import {  of } from 'rxjs';
+import { tap,} from 'rxjs/operators';
 
 @Component({
     selector: 'app-home',
@@ -28,11 +35,10 @@ export class HomeComponent implements OnInit {
     cuisinesList : Cuisines;
     userdata : User;
     visibleRecipes : Recipes;
-    ingredientsList: Ingredients;
-    filteredOptions: Observable<Ingredients["data"]>
-    myControl = new FormControl();
+    ingredientsList;
     visibleIng: Ingredients;
     selectedLabel = null;
+    currentIng = '';
 
     selectedMeal = null;
     selectedDish = null;
@@ -94,15 +100,16 @@ export class HomeComponent implements OnInit {
     //     });
     // }
 
-    displayFn(ingredient : Ingredients["data"]): string {
-        return ingredient && ingredient["attributes"].name ? ingredient["attributes"].name : '';
+    doFilter() {
+        this.ingredientsList = this.service.getIngredients()
+            .pipe(map(jokes => this.filter(jokes)),
+            )
     }
 
-    private _filter(name: string): Ingredients["data"] {
-        const filterValue = name.toLowerCase();
-
-        return this.ingredientsList["data"].filter(option => option.attributes.name.toLowerCase().includes(filterValue));
+    filter(values) {
+        return values.filter(ing => ing.attributes.name.toLowerCase().includes(this.currentIng))
     }
+
 
     selectIncludeIng(e) {
         this.includeIng = e.value;
