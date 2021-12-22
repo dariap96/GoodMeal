@@ -119,12 +119,6 @@ export class RestapiService {
         return this.http.put(baseUrl + '/update-password-by-admin/' + login, newPass);
     }
 
-    //
-    //
-    //
-    //
-    //
-
     getUserSelections(login: string) : Observable<Selections>  {
         return this.http.get<Selections>(baseUrl + '/api/selection?filter[user.login]=' + login);
     }
@@ -192,4 +186,5 @@ export class RestapiService {
     updateData(request: UpdateData) {
         return this.http.post(baseUrl + '/admin/recipe-update', request);
     }
+
 }

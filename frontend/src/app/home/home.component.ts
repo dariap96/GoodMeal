@@ -48,8 +48,20 @@ export class HomeComponent implements OnInit {
     excludeIng = null;
     background: ThemePalette = undefined;
     loading: boolean= true;
+    jokes = [];
 
-    constructor(private service: RestapiService) {}
+
+    getData() {
+        return this.jokes.length ? of(this.jokes)
+            : this.httpClient.get<Ingredients>(baseUrl + '/api/ingredient').pipe(
+                map((data) => {
+                    this.jokes = data.data;
+                    return this.jokes;
+                })
+            )
+    }
+
+    constructor(private service: RestapiService, private httpClient: HttpClient) {}
 
     public getPaginatorData(event: PageEvent): PageEvent {
         this.lowValue = event.pageIndex * event.pageSize;
@@ -101,8 +113,7 @@ export class HomeComponent implements OnInit {
     // }
 
     doFilter() {
-        this.ingredientsList = this.service.getIngredients()
-            .pipe(map(jokes => this.filter(jokes)),
+        this.ingredientsList = this.getData().pipe(map(jokes => this.filter(jokes)),
             )
     }
 

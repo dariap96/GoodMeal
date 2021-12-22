@@ -112,7 +112,7 @@
             <mat-option *ngFor="
 
 
-let joke of ingredientsList | async" [value]="joke.id">
+let joke of ingredientsList" [value]="joke.id">
                 {{joke.attributes.name}}
             </mat-option>
         </mat-autocomplete>
