@@ -105,18 +105,14 @@
 <!--</form>-->
     <form #f="ngForm">
         <mat-form-field>
-            <input matInput placeholder="Joke" [matAutocomplete]="auto" name="joke" #joke="ngModel" [(ngModel)]="currentIng" (ngModelChange)="doFilter()">
+            <input matInput placeholder="Ing" [matAutocomplete]="auto" name="joke" #joke="ngModel" [(ngModel)]="currentIng" (ngModelChange)="doFilter()">
         </mat-form-field>
 
         <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="
-
-
-let joke of ingredientsList" [value]="joke.id">
-                {{joke.attributes.name}}
+            <mat-option *ngFor="let ing of dropdownIng | async" [value]="ing.data.id">
+                {{ing.data.attributes.name}}
             </mat-option>
         </mat-autocomplete>
-
     </form>
 
 <button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>

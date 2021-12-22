@@ -19,6 +19,7 @@ import {Injectable } from '@angular/core'; 7
 import { HttpClient } from '@angular/common/http';
 import {  of } from 'rxjs';
 import { tap,} from 'rxjs/operators';
+import {Ingredient} from "../model/Ingredient";
 
 @Component({
     selector: 'app-home',
@@ -35,10 +36,13 @@ export class HomeComponent implements OnInit {
     cuisinesList : Cuisines;
     userdata : User;
     visibleRecipes : Recipes;
-    ingredientsList;
-    visibleIng: Ingredients;
+    ingredientsList : Ingredients;
+    visibleIng : Ingredients;
+    dropdownIng : Promise<Ingredient[]>;
     selectedLabel = null;
     currentIng = '';
+
+    myControl : FormControl;
 
     selectedMeal = null;
     selectedDish = null;
@@ -48,18 +52,17 @@ export class HomeComponent implements OnInit {
     excludeIng = null;
     background: ThemePalette = undefined;
     loading: boolean= true;
-    jokes = [];
+    basicIng = [];
 
-
-    getData() {
-        return this.jokes.length ? of(this.jokes)
-            : this.httpClient.get<Ingredients>(baseUrl + '/api/ingredient').pipe(
-                map((data) => {
-                    this.jokes = data.data;
-                    return this.jokes;
-                })
-            )
-    }
+    // getData() {
+    //     return this.jokes.length ? of(this.jokes)
+    //         : this.httpClient.get<any>(baseUrl + '/api/ingredient').pipe(
+    //             map((data) => {
+    //                 this.jokes = data.data;
+    //                 return this.jokes;
+    //             })
+    //         )
+    // }
 
     constructor(private service: RestapiService, private httpClient: HttpClient) {}
 
@@ -104,6 +107,10 @@ export class HomeComponent implements OnInit {
             this.visibleRecipes = data;
             this.loading = false;
         });
+
+        this.service.getIngredients().subscribe(data => {
+            this.ingredientsList = data;
+        });
     }
 
     // ngAfterViewInit() {
@@ -113,12 +120,12 @@ export class HomeComponent implements OnInit {
     // }
 
     doFilter() {
-        this.ingredientsList = this.getData().pipe(map(jokes => this.filter(jokes)),
-            )
+        this.filter(this.ingredientsList.data);
     }
 
     filter(values) {
-        return values.filter(ing => ing.attributes.name.toLowerCase().includes(this.currentIng))
+        this.dropdownIng = values.filter(ing => ing.attributes.name.toLowerCase().includes(this.currentIng));
+        console.log(this.dropdownIng);
     }
 
 
