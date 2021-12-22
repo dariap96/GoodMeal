@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {async} from '@angular/core/testing';
 import { baseUrl } from "../configuration";
 import { RestapiService } from '../restapi.service';
 import { Dishes } from '../model/Dishes';
@@ -13,13 +12,6 @@ import { ThemePalette } from "@angular/material/core";
 import { Observable } from "rxjs";
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl } from "@angular/forms";
-import {filter, map, startWith} from "rxjs/operators";
-
-import {Injectable } from '@angular/core'; 7
-import { HttpClient } from '@angular/common/http';
-import {  of } from 'rxjs';
-import { tap,} from 'rxjs/operators';
-import {Ingredient} from "../model/Ingredient";
 
 @Component({
     selector: 'app-home',
@@ -36,13 +28,11 @@ export class HomeComponent implements OnInit {
     cuisinesList : Cuisines;
     userdata : User;
     visibleRecipes : Recipes;
-    ingredientsList : Ingredients;
-    visibleIng : Ingredients;
-    dropdownIng : Promise<Ingredient[]>;
+    ingredientsList: Ingredients;
+    filteredOptions: Observable<Ingredients["data"]>
+    myControl = new FormControl();
+    visibleIng: Ingredients;
     selectedLabel = null;
-    currentIng = '';
-
-    myControl : FormControl;
 
     selectedMeal = null;
     selectedDish = null;
@@ -52,19 +42,8 @@ export class HomeComponent implements OnInit {
     excludeIng = null;
     background: ThemePalette = undefined;
     loading: boolean= true;
-    basicIng = [];
 
-    // getData() {
-    //     return this.jokes.length ? of(this.jokes)
-    //         : this.httpClient.get<any>(baseUrl + '/api/ingredient').pipe(
-    //             map((data) => {
-    //                 this.jokes = data.data;
-    //                 return this.jokes;
-    //             })
-    //         )
-    // }
-
-    constructor(private service: RestapiService, private httpClient: HttpClient) {}
+    constructor(private service: RestapiService) {}
 
     public getPaginatorData(event: PageEvent): PageEvent {
         this.lowValue = event.pageIndex * event.pageSize;
@@ -107,27 +86,23 @@ export class HomeComponent implements OnInit {
             this.visibleRecipes = data;
             this.loading = false;
         });
+    }
 
+    ngAfterViewInit() {
         this.service.getIngredients().subscribe(data => {
             this.ingredientsList = data;
         });
     }
 
-    // ngAfterViewInit() {
-    //     this.service.getIngredients().subscribe(data => {
-    //         this.ingredientsList = data;
-    //     });
-    // }
-
-    doFilter() {
-        this.filter(this.ingredientsList.data);
+    displayFn(ingredient : Ingredients["data"]): string {
+        return ingredient && ingredient["attributes"].name ? ingredient["attributes"].name : '';
     }
 
-    filter(values) {
-        this.dropdownIng = values.filter(ing => ing.attributes.name.toLowerCase().includes(this.currentIng));
-        console.log(this.dropdownIng);
-    }
+    private _filter(name: string): Ingredients["data"] {
+        const filterValue = name.toLowerCase();
 
+        return this.ingredientsList["data"].filter(option => option.attributes.name.toLowerCase().includes(filterValue));
+    }
 
     selectIncludeIng(e) {
         this.includeIng = e.value;

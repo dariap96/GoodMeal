@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-    @import "~@ng-select/ng-select/themes/default.theme.css";
-    @import "~@angular/material/_theming.scss";
-    @import "~@angular/core/testing";
-    @import"~@angular/material/divider";
-    @import  url(https://fonts.googleapis.com/css?family=Montserrat);
+        @import "~@ng-select/ng-select/themes/default.theme.css";
+        @import "~@angular/material/_theming.scss";
+        @import "~@angular/core/testing";
+        @import"~@angular/material/divider";
+        @import  url(https://fonts.googleapis.com/css?family=Montserrat);
     </style>
-<title></title>
+    <title></title>
 </head>
 <body>
 
 <div class="navig">
     <div class="logo">GOOD MEAL</div>
     <div>
-<nav mat-tab-nav-bar [backgroundColor]="background"  style="align-items: flex-end">
+        <nav mat-tab-nav-bar [backgroundColor]="background"  style="align-items: flex-end">
 
-    <a mat-tab-link class="a" [active]="true" href="http://localhost:8080/home">Home</a>
-    <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/user-profile">Profile</a>
-    <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/selections">Selections</a>
-    <a mat-tab-link class="a" [active]="false" href="#about">About</a>
-    <a mat-tab-link class="a" [active]="false" href="#contact">Contact</a>
-</nav>
+            <a mat-tab-link class="a" [active]="true" href="http://localhost:8080/home">Home</a>
+            <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/user-profile">Profile</a>
+            <a mat-tab-link class="a" [active]="false" href="http://localhost:8080/selections">Selections</a>
+            <a mat-tab-link class="a" [active]="false" href="#about">About</a>
+            <a mat-tab-link class="a" [active]="false" href="#contact">Contact</a>
+        </nav>
     </div>
 </div>
 
@@ -35,112 +35,101 @@
 </div>
 
 <div *ngIf="!loading" class="gradient-hor ">
-<header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
+    <header _ngcontent-ugx-c129="" style="margin-top:60px" class="docs-primary-header component-page-header">
         <div  class="docs-primary-header component-page-header h1  header"  _ngcontent-ugx-c129="">RECIPE SEARCH</div>
     </header>
 
-<div style="display:flex;flex-wrap: nowrap;margin-top:20px" >
-<div style="margin-left: 50px; padding-top: 10px; width:800px; color:black">
+    <div style="display:flex;flex-wrap: nowrap;margin-top:20px" >
+        <div style="margin-left: 50px; padding-top: 10px; width:800px; color:black">
 
-<mat-form-field appearance="outline">
-     <mat-label>Select meal</mat-label>
-     <mat-select #meal (selectionChange)="selectChangeHandlerMeal($event)" multiple >
-       <mat-option value="default" hidden></mat-option>
-       <mat-option *ngFor="let meal of mealsList.data" [value]="meal.id">{{meal.attributes.type}}<mat-divider></mat-divider></mat-option>
-     </mat-select>
-</mat-form-field>
-<br>
-<br>
-<mat-form-field appearance="outline">
-     <mat-label>Select dish</mat-label>
-     <mat-select #dish (selectionChange)="selectChangeHandlerDish($event)" multiple>
-       <mat-option value="default" hidden></mat-option>
-       <mat-option *ngFor="let dish of dishesList.data" [value]="dish.id">{{dish.attributes.type}}<mat-divider></mat-divider></mat-option>
-     </mat-select>
-</mat-form-field>
-<br>
+            <mat-form-field appearance="outline">
+                <mat-label>Select meal</mat-label>
+                <mat-select #meal (selectionChange)="selectChangeHandlerMeal($event)" multiple >
+                    <mat-option value="default" hidden></mat-option>
+                    <mat-option *ngFor="let meal of mealsList.data" [value]="meal.id">{{meal.attributes.type}}<mat-divider></mat-divider></mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Select dish</mat-label>
+                <mat-select #dish (selectionChange)="selectChangeHandlerDish($event)" multiple>
+                    <mat-option value="default" hidden></mat-option>
+                    <mat-option *ngFor="let dish of dishesList.data" [value]="dish.id">{{dish.attributes.type}}<mat-divider></mat-divider></mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
 
-<mat-form-field appearance="outline">
-    <mat-label>Select cuisine</mat-label>
-    <mat-select #cuisine (selectionChange)="selectChangeHandlerCuisine($event)" multiple>
-       <mat-option value="default" hidden></mat-option>
-       <mat-option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.id">{{cuisine.attributes.type}}<mat-divider></mat-divider></mat-option>
-    </mat-select>
-</mat-form-field>
-<br>
-<mat-form-field appearance="outline">
-    <mat-label>Select label</mat-label>
-    <mat-select #label (selectionChange)="selectChangeHandlerLabel($event)" multiple>
-        <mat-option value="default" hidden></mat-option>
-        <mat-option *ngFor="let label of labelsList.data" [value]="label.id" >{{label.attributes.label}} <mat-divider></mat-divider></mat-option>
-    </mat-select>
-</mat-form-field>
-<br>
-<mat-form-field appearance="outline">
-     <mat-label>Search by recipe name</mat-label>
-     <input (change)= "selectChangeHandlerSearchBox($event)" matInput>
-</mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Select cuisine</mat-label>
+                <mat-select #cuisine (selectionChange)="selectChangeHandlerCuisine($event)" multiple>
+                    <mat-option value="default" hidden></mat-option>
+                    <mat-option *ngFor="let cuisine of cuisinesList.data" [value]="cuisine.id">{{cuisine.attributes.type}}<mat-divider></mat-divider></mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Select label</mat-label>
+                <mat-select #label (selectionChange)="selectChangeHandlerLabel($event)" multiple>
+                    <mat-option value="default" hidden></mat-option>
+                    <mat-option *ngFor="let label of labelsList.data" [value]="label.id" >{{label.attributes.label}} <mat-divider></mat-divider></mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline">
+                <mat-label>Search by recipe name</mat-label>
+                <input (change)= "selectChangeHandlerSearchBox($event)" matInput>
+            </mat-form-field>
 
-<form class="example-form-include">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Ingredient to include</mat-label>
-    <mat-select #label (selectionChange)="selectIncludeIng($event)" multiple>
-      <mat-option value="default" hidden></mat-option>
-      <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>
-  </mat-select>
-  </mat-form-field>
-</form>
+            <form class="example-form-include">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Ingredient to include</mat-label>
+                    <mat-select #label (selectionChange)="selectIncludeIng($event)" multiple>
+                        <mat-option value="default" hidden></mat-option>
+                        <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
 
-<!--<form #f="ngForm" class="example-form-exclude" >-->
-<!--  <mat-form-field class="example-full-width" appearance="fill">-->
-<!--    <mat-label>Ingredient to exclude</mat-label>-->
-<!--      <input type="text" matInput [matAutocomplete]="auto" #ingredient="ngModel" [(ngModel)]="currentIng" (ngModelChange)="doFilter()" >-->
-<!--      <mat-autocomplete #auto="matAutocomplete">-->
-<!--      &lt;!&ndash;mat-select #label (selectionChange)="selectExcludeIng($event)" multiple&ndash;&gt;-->
-<!--          <mat-option value="default" hidden></mat-option>-->
-<!--          <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>-->
-<!--          &lt;!&ndash;/mat-select&ndash;&gt;-->
-<!--</mat-autocomplete>-->
-<!--  </mat-form-field>-->
-<!--</form>-->
-    <form #f="ngForm">
-        <mat-form-field>
-            <input matInput placeholder="Ing" [matAutocomplete]="auto" name="joke" #joke="ngModel" [(ngModel)]="currentIng" (ngModelChange)="doFilter()">
-        </mat-form-field>
+            <form class="example-form-exclude" >
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Ingredient to exclude</mat-label>
+                    <!--input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"-->
+                    <mat-select #label (selectionChange)="selectExcludeIng($event)" multiple>
+                        <mat-option value="default" hidden></mat-option>
+                        <mat-option *ngFor="let ing of ingredientsList.data" [value]="ing.id" >{{ing.attributes.name}} <mat-divider></mat-divider></mat-option>
+                    </mat-select>
+                    <!--      /mat-autocomplete-->
+                </mat-form-field>
+            </form>
 
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let ing of dropdownIng | async" [value]="ing.data.id">
-                {{ing.data.attributes.name}}
-            </mat-option>
-        </mat-autocomplete>
-    </form>
+            <button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>
 
-<button mat-stroked-button appearance="legacy" (click) = "selectClickHandlerRecipe()" color="primary">Submit</button>
+        </div>
 
-</div>
+        <mat-divider vertical style="margin-left: 100px"></mat-divider>
 
-<mat-divider vertical style="margin-left: 100px"></mat-divider>
-
-<div class="card my-5" style="text-align: right;margin-left: 170px;">
-    <div class="w3-container" style="text-align: right; margin-right:50px">
-        <table class="w3-table  mat-table">
-            <thead class="thead-dark">
-            <!--mat-card-header>Discover recipes</mat-card-header-->
-            </thead>
-            <tbody>
-            <tr *ngFor="let recipe of visibleRecipes.data.slice(lowValue,highValue)">
-                <td class="w3-right-align mat-option"><a class="aa" href="http://localhost:8080/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}</a> </td>
-                <td class="w3-right-align mat-option">{{ recipe.id }}</td >
-            </tr>
-            </tbody>
-        </table>
-        <mat-paginator [length]="visibleRecipes.data.length" pageSize=10
-                       (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
-                       showFirstLastButtons="false">
-        </mat-paginator>
+        <div class="card my-5" style="text-align: right;margin-left: 170px;">
+            <div class="w3-container" style="text-align: right; margin-right:50px">
+                <table class="w3-table  mat-table">
+                    <thead class="thead-dark">
+                    <!--mat-card-header>Discover recipes</mat-card-header-->
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let recipe of visibleRecipes.data.slice(lowValue,highValue)">
+                        <td class="w3-right-align mat-option"><a class="aa" href="http://localhost:8080/recipe-card/{{recipe.id}}">{{ recipe.attributes.name }}</a> </td>
+                        <td class="w3-right-align mat-option">{{ recipe.id }}</td >
+                    </tr>
+                    </tbody>
+                </table>
+                <mat-paginator [length]="visibleRecipes.data.length" pageSize=10
+                               (page)="getPaginatorData($event)" [pageSizeOptions]="[10, 20, 30]"
+                               showFirstLastButtons="false">
+                </mat-paginator>
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </div>
 </body>
 </html>

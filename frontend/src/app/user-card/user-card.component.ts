@@ -50,7 +50,9 @@ export class UserCardComponent implements OnInit {
     }
 
     removeUserReview(reviewDTO: RecipeRatingInfo) {
-        this.service.removeReviewByAdmin(reviewDTO).subscribe( data => {});
+        this.service.removeReviewByAdmin(reviewDTO).subscribe( data => {
+            this.refreshData();
+        });
     }
 
     showPassUpdMenu() {
@@ -69,6 +71,12 @@ export class UserCardComponent implements OnInit {
                 });
             }
         }
+    }
+
+    refreshData() {
+        this.service.getUserReviews(this.selectedUser.login).subscribe(userReviews => {
+            this.selectedUsersRatings = userReviews;
+        });
     }
 
     disableAdminAccess() {
