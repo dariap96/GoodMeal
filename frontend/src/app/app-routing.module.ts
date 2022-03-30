@@ -29,7 +29,8 @@ const routes: Routes = [
     { path: "user-card/:id", component: UserCardComponent },
     { path: "admin-panel", component: AdminPanelComponent },
     { path: "recipe_review/:id", component: ReviewComponent },
-    { path: "recipe-update-page", component: RecipeUpdateComponent}
+    { path: "recipe-update-page", component: RecipeUpdateComponent},
+    { path: "**", component: LoginComponent}
 ];
 
 @NgModule({
