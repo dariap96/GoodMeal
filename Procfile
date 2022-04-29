@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/GoodMeal-0.0.1-SNAPSHOT.jar
+web: java --port $PORT -jar target/GoodMeal-0.0.1-SNAPSHOT.jar
